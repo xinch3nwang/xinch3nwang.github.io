@@ -13,6 +13,42 @@
             padding: 20px;
         }
 
+        #sidebar {
+            position: fixed; /* 添加此行 */
+            top: 20%; /* 距离顶部的距离 */
+            right: 20px; /* 距离右侧的距离 */
+            width: 10%; /* 根据需要调整宽度 */
+            margin-left: 0; /* 移除原来的 margin-left */
+            padding: 15px;
+            background-color: #f9f9f999;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            
+        }
+
+        #sidebar p {
+            font: 1.3em sans-serif;
+        }
+
+        #sidebar nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar nav ul li {
+            margin-bottom: 10px;
+        }
+
+        #sidebar nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+            transition: color 0.3s ease;
+        }
+
+        #sidebar nav ul li a:hover {
+            color: #0056b3;
+        }
+
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -67,9 +103,28 @@
         <h1>Some Extensive Reading on the Internet During FIS Research</h1>
         <p>Read a lot of knowledge in various directions and do a lot of experiments inspired by them, only a few help, but thank them too.</p>
     </header>
+    <aside id="sidebar">
+        <nav aria-labelledby="sidebarTitle">
+            <p id="sidebarTitle">Content</p>
+            <ul role="list">
+                <li><a href="#convolution">Convolution</a></li>
+                <li><a href="#attention">Attention</a></li>
+                <li><a href="#basic">Basic</a></li>
+                <li><a href="#diffusionmodel">DiffusionModel</a></li>
+                <li><a href="#inn">INN</a></li>
+                <li><a href="#mtl">MTL</a></li>
+                <li><a href="#loss">Loss</a></li>
+                <li><a href="#frequency">Frequency</a></li>
+                <li><a href="#opticflow">OpticFlow</a></li>
+                <li><a href="#upsampling">UpSampling</a></li>
+                <li><a href="#metalearning">Meta Learning</a></li>
+                <li><a href="#others">Others</a></li>
+            </ul>
+        </nav>
+    </aside>
     <main>
-        <fieldset>
-            <legend>Convolution</legend>
+        <fieldset id="convolution">
+            <legend>convolution</legend>
             <ul>
                 <li><a href="https://poloclub.github.io/cnn-explainer/">CNN Explainer</a></li>
                 <li><a href="https://zhuanlan.zhihu.com/p/40050371">1x1卷积核</a></li>
@@ -88,7 +143,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="attention">
             <legend>Attention</legend>
             <ul>
                 <li><a href="https://zhuanlan.zhihu.com/p/83665899?from=groupmessage">CBAM: Convolutional Block Attention Module</a></li>
@@ -101,7 +156,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="basic">
             <legend>Basic</legend>
             <ul>
                 <li><a href="https://zhuanlan.zhihu.com/p/433836153">深度学习中的超参数调节（learning rate、epochs、batch-size...） - 知乎</a></li>
@@ -115,7 +170,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="diffusionmodel">
             <legend>DiffusionModel</legend>
             <ul>
                 <li><a href="https://zhuanlan.zhihu.com/p/638442430">Diffusion Model详解：直观理解、数学原理、PyTorch 实现</a></li>
@@ -125,7 +180,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="inn">
             <legend>INN</legend>
             <ul>
                 <li><a href="https://zhuanlan.zhihu.com/p/268242678">神经网络的可逆形式 - 知乎</a></li>
@@ -133,7 +188,7 @@
             </ul>
         </fieldset>
 
-        <fieldset>
+        <fieldset id="mtl">
             <legend>MTL</legend>
             <ul>
                 <li><a href="https://www.zhihu.com/question/375794498">深度学习的多个loss如何平衡?</a></li>
@@ -146,7 +201,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="loss">
             <legend>Loss</legend>
             <ul>
                 <li><a href="https://github.com/xxgege/GAM">xxgege/GAM: The official repo for CVPR2023 highlight paper "Gradient Norm Aware Minimization Seeks First-Order Flatness and Improves Generalization".</a></li>
@@ -158,7 +213,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="frequency">
             <legend>Frequency</legend>
             <ul>
                 <li><a href="https://zhuanlan.zhihu.com/p/494060193">论文汇总|如何从频域视角提升图像生成质量 (Frequency GANs)</a></li>
@@ -168,7 +223,7 @@
             </ul>
         </fieldset>
 
-        <fieldset>
+        <fieldset id="opticflow">
             <legend>OpticFlow</legend>
             <ul>
                 <li><a href="https://zhuanlan.zhihu.com/p/532681825">CVPR 2022 Oral | 基于全局匹配的光流学习框架</a></li>
@@ -183,7 +238,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="upsampling">
             <legend>UpSampling</legend>
             <ul>
                 <li><a href="https://zhuanlan.zhihu.com/p/48501100">反卷积(Transposed Convolution)详细推导</a></li>
@@ -193,7 +248,7 @@
             </ul>
         </fieldset>
         
-        <fieldset>
+        <fieldset id="metalearning">
             <legend>Meta Learning</legend>
             <ul>
                 <li><a href="https://blog.csdn.net/weixin_42392454/article/details/127228377">Meta-SGD原理讲解和代码实现</a></li>
@@ -208,7 +263,7 @@
             </ul>
         </fieldset>
 
-        <fieldset>
+        <fieldset id="others">
             <legend>Others</legend>
             <ul>
                 <li><a href="https://aijishu.com/a/1060000000258839">Self-Attention与CNN融合范式</a></li>
