@@ -4,87 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人主页</title>
+    <!-- 引入 Element Plus 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
+        /* 自定义一些简单的样式 */
+        .header {
+            background-color: #409EFF;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
         }
-        header {
-            background-color: #a8abb1;
+        .footer {
+            background-color: #409EFF;
             color: white;
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
+            margin-top: 40px;
         }
-        header h1 {
-            margin: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-        }
-        .intro, .reading {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .section-title {
+            color: #409EFF;
             margin-bottom: 20px;
         }
-        .intro h2, .reading h2 {
-            color: #333;
-            border-bottom: 2px solid #a8abb1;
-            padding-bottom: 5px;
+        .social-links a {
+            margin: 0 10px;
+            color: #409EFF;
+            text-decoration: none;
         }
-        .intro p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: #555;
-        }
-        .reading ul {
-            list-style: none;
-            padding: 0;
-        }
-        .reading ul li {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #a8abb1;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        .social-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>欢迎来到我的个人主页</h1>
-</header>
+<el-container>
+    <!-- 头部 -->
+    <el-header class="header">
+        <h1>欢迎来到我的个人主页</h1>
+        <p>这里是汪欣晨的个人空间，分享我的学习、工作和生活。</p>
+    </el-header>
 
-<div class="container">
-    <section class="intro">
-        <h2>个人简介</h2>
-        <p>你好，我是汪欣晨。</p>
-        <h2>联系方式</h2>
-        <ul>
-            <li>Email: <a href="mailto:xinchen0709@foxmail.com">xinchen0709@foxmail.com</a></li>
-        </ul>
-    </section>
+    <!-- 主体内容 -->
+    <el-main>
+        <el-row justify="center">
+            <el-col :span="20">
+                <!-- 个人简介 -->
+                <el-card>
+                    <template #header>
+                        <h2 class="section-title">个人简介</h2>
+                    </template>
+                    <p>你好，我是汪欣晨。</p>
+                    <el-divider></el-divider>
+                    <h3>联系方式</h3>
+                    <ul>
+                        <li>Email: <a href="mailto:xinchen0709@foxmail.com">xinchen0709@foxmail.com</a></li>
+                    </ul>
+                </el-card>
 
-    <section class="reading">
-        <h2>最近阅读</h2>
-        <a href="./extensive_reading_fis.html" target="_blank">科研泛读</a>
-    </section>
-</div>
+                <!-- 技能展示 -->
+                <el-card style="margin-top: 20px;">
+                    <template #header>
+                        <h2 class="section-title">技能展示</h2>
+                    </template>
+                    <el-tag type="success">HTML/CSS/JavaScript</el-tag>
+                    <el-tag type="success">Vue.js</el-tag>
+                    <el-tag type="success">Python</el-tag>
+                </el-card>
 
-<footer>
-    <p>清风徐来，水波不兴。</p>
-</footer>
+                <!-- 项目经验 -->
+                <el-card style="margin-top: 20px;">
+                    <template #header>
+                        <h2 class="section-title">项目经验</h2>
+                    </template>
+                    <el-timeline>
+                        <el-timeline-item timestamp="2023-09" placement="top">
+                            <el-card>
+                                <h4>xx系统</h4>
+                                <p>使用 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
+                            </el-card>
+                        </el-timeline-item>
+                        <el-timeline-item timestamp="2023-06" placement="top">
+                            <el-card>
+                                <h4>xx系统</h4>
+                                <p>基于 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
+                            </el-card>
+                        </el-timeline-item>
+                    </el-timeline>
+                </el-card>
+
+                <!-- 最近阅读 -->
+                <el-card style="margin-top: 20px;">
+                    <template #header>
+                        <h2 class="section-title">最近阅读</h2>
+                    </template>
+                    <el-link type="primary" href="./extensive_reading_fis.html" target="_blank">2024上半年科研泛读</el-link>
+                </el-card>
+
+                <!-- 社交链接 -->
+                <el-card style="margin-top: 20px;">
+                    <template #header>
+                        <h2 class="section-title">社交链接</h2>
+                    </template>
+                    <div class="social-links">
+                        <a href="https://github.com/xinch3nwang" target="_blank">GitHub</a>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </el-main>
+
+    <!-- 页脚 -->
+    <el-footer class="footer">
+        <p>&copy; 2025 汪欣晨. All Rights Reserved.</p>
+    </el-footer>
+</el-container>
+
+<!-- 引入 Vue 3 和 Element Plus 的 JS 文件 -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/element-plus/dist/index.full.js"></script>
+<script>
+    // 初始化 Vue 应用
+    const { createApp } = Vue;
+    const app = createApp({});
+
+    // 使用 Element Plus
+    app.use(ElementPlus);
+
+    // 挂载应用
+    app.mount('body');
+</script>
 
 </body>
 </html>
