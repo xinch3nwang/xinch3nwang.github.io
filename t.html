@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMind Content Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .topic {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .subtopics {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>XMind Content</h1>
+    <div id="xmind-content"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xmind@2.2.33/dist/xmind.esm.min.js"></script>
+    <script>
+        async function loadAndDisplayXMindFile() {
+            const xmindContent = document.getElementById('xmind-content');
+
+            try {
+                // Load the XMind file from GitHub Pages URL
+                const response = await fetch('https://github.com/xinch3nwang/xinch3nwang.github.io/blob/main/%E6%B5%8B%E8%AF%95.xmind');
+                const arrayBuffer = await response.arrayBuffer();
+                const workbook = new xmind.Workbook();
+                await workbook.load(arrayBuffer);
+
+                // Get the first sheet
+                const sheet = workbook.getSheets()[0];
+                const rootTopic = sheet.getRootTopic();
+
+                // Function to recursively display topics
+                function displayTopic(topic, parentElement) {
+                    const topicElement = document.createElement('div');
+                    topicElement.className = 'topic';
+                    topicElement.textContent = topic.getTitle();
+                    parentElement.appendChild(topicElement);
+
+                    const subtopicsElement = document.createElement('div');
+                    subtopicsElement.className = 'subtopics';
+                    topicElement.appendChild(subtopicsElement);
+
+                    topic.getChildren().forEach(subtopic => {
+                        displayTopic(subtopic, subtopicsElement);
+                    });
+                }
+
+                // Display the root topic and its subtopics
+                displayTopic(rootTopic, xmindContent);
+            } catch (error) {
+                console.error('Error loading XMind file:', error);
+            }
+        }
+
+        // Load and display the XMind file when the page is loaded
+        window.onload = loadAndDisplayXMindFile;
+    </script>
+</body>
+</html>
