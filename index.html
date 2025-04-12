@@ -1,138 +1,113 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人主页</title>
-    <!-- 引入 Element Plus 的 CSS 文件 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
-    <style>
-        /* 自定义一些简单的样式 */
-        .header {
-            background-color: #409EFF;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        .footer {
-            background-color: #409EFF;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-        }
-        .section-title {
-            color: #409EFF;
-            margin-bottom: 20px;
-        }
-        .social-links a {
-            margin: 0 10px;
-            color: #409EFF;
-            text-decoration: none;
-        }
-        .social-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <!-- 引入 Bootstrap 核心样式 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<el-container>
-    <!-- 头部 -->
-    <el-header class="header">
-        <h1>欢迎来到我的个人主页</h1>
-        <p>这里是汪欣晨的个人空间，分享我的学习、工作和生活。</p>
-    </el-header>
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">个人主页</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./tech_learn/qa.html">技术学习</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <!-- 主体内容 -->
-    <el-main>
-        <el-row justify="center">
-            <el-col :span="20">
-                <!-- 个人简介 -->
-                <el-card>
-                    <template #header>
-                        <h2 class="section-title">个人简介</h2>
-                    </template>
-                    <p>你好，我是汪欣晨。</p>
-                    <el-divider></el-divider>
-                    <h3>联系方式</h3>
-                    <ul>
-                        <li>Email: <a href="mailto:xinchen0709@foxmail.com">xinchen0709@foxmail.com</a></li>
-                    </ul>
-                </el-card>
+<!-- 头部 -->
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4">欢迎来到我的个人主页</h1>
+        <!-- <p class="lead">这里是汪欣晨的个人空间，分享我的学习、工作和生活。</p> -->
+    </div>
+</div>
 
-                <!-- 技能展示 -->
-                <el-card style="margin-top: 20px;">
-                    <template #header>
-                        <h2 class="section-title">技能展示</h2>
-                    </template>
-                    <el-tag type="success">HTML/CSS/JavaScript</el-tag>
-                    <el-tag type="success">Vue.js</el-tag>
-                    <el-tag type="success">Python</el-tag>
-                </el-card>
+<!-- 主体内容 -->
+<div class="container mt-4">
+    <!-- 个人简介 -->
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">个人简介</h2>
+            <p>你好，我是汪欣晨。</p>
+            <hr>
+            <h3 class="card-subtitle mb-2 text-muted">联系方式</h3>
+            <ul class="list-unstyled">
+                <li>Email: <a href="mailto:xinchen0709@foxmail.com">xinchen0709@foxmail.com</a></li>
+            </ul>
+        </div>
+    </div>
 
-                <!-- 项目经验 -->
-                <el-card style="margin-top: 20px;">
-                    <template #header>
-                        <h2 class="section-title">项目经验</h2>
-                    </template>
-                    <el-timeline>
-                        <el-timeline-item timestamp="2023-09" placement="top">
-                            <el-card>
-                                <h4>xx系统</h4>
-                                <p>使用 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
-                            </el-card>
-                        </el-timeline-item>
-                        <el-timeline-item timestamp="2023-06" placement="top">
-                            <el-card>
-                                <h4>xx系统</h4>
-                                <p>基于 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
-                            </el-card>
-                        </el-timeline-item>
-                    </el-timeline>
-                </el-card>
+    <!-- 技能展示 -->
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2 class="card-title">技能展示</h2>
+            <span class="badge badge-primary">HTML/CSS/JavaScript</span>
+            <span class="badge badge-primary">Vue.js</span>
+            <span class="badge badge-primary">Python</span>
+        </div>
+    </div>
 
-                <!-- 最近阅读 -->
-                <el-card style="margin-top: 20px;">
-                    <template #header>
-                        <h2 class="section-title">最近阅读</h2>
-                    </template>
-                    <el-link type="primary" href="./extensive_reading_fis.html" target="_blank">2024上半年科研泛读</el-link>
-                </el-card>
+    <!-- 项目经验 -->
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2 class="card-title">项目经验</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h4>xx系统</h4>
+                    <p>使用 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
+                </li>
+                <li class="list-group-item">
+                    <h4>xx系统</h4>
+                    <p>基于 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-                <!-- 社交链接 -->
-                <el-card style="margin-top: 20px;">
-                    <template #header>
-                        <h2 class="section-title">社交链接</h2>
-                    </template>
-                    <div class="social-links">
-                        <a href="https://github.com/xinch3nwang" target="_blank">GitHub</a>
-                    </div>
-                </el-card>
-            </el-col>
-        </el-row>
-    </el-main>
+    <!-- 最近阅读 -->
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2 class="card-title">最近阅读</h2>
+            <a href="./extensive_reading_fis.html" target="_blank" class="btn btn-primary">2024上半年科研泛读</a>
+        </div>
+    </div>
 
-    <!-- 页脚 -->
-    <el-footer class="footer">
-        <p>&copy; 2025 汪欣晨. All Rights Reserved.</p>
-    </el-footer>
-</el-container>
+    <!-- 社交链接 -->
+    <div class="card mt-3">
+        <div class="card-body">
+            <h2 class="card-title">社交链接</h2>
+            <div>
+                <a href="https://github.com/xinch3nwang" target="_blank" class="btn btn-outline-primary">GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- 引入 Vue 3 和 Element Plus 的 JS 文件 -->
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script src="https://unpkg.com/element-plus/dist/index.full.js"></script>
-<script>
-    // 初始化 Vue 应用
-    const { createApp } = Vue;
-    const app = createApp({});
+<!-- 页脚 -->
+<footer class="bg-light text-center py-3 mt-4">
+    <div class="container">
+        <p class="text-muted">&copy; 2025 汪欣晨. All Rights Reserved.</p>
+    </div>
+</footer>
 
-    // 使用 Element Plus
-    app.use(ElementPlus);
-
-    // 挂载应用
-    app.mount('body');
-</script>
-
+<!-- 引入 Bootstrap 核心JavaScript 文件 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
