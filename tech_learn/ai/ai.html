@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="../../assets/images/logo.png" alt="个人logo" height="30"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../projects/projects.html">项目工作</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">技术学习 <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../qa/qa.html">软件测试</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../frontend/frontend.html">前端开发</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">深度学习</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="card sticky-top" style="top: 20px;">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">目录</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush" id="sidebar-posts">
+                            <!-- Post titles will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <h1 class="text-center py-3">深度学习</h1>
+                <div id="posts-container">
+            <!-- Blog posts will be loaded here -->
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS CDNs -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" class="btn btn-primary rounded-circle position-fixed" style="bottom: 20px; right: 20px; display: none; width: 50px; height: 50px;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        $(document).ready(function() {
+            // Load blog posts from JSON
+            $.getJSON('aiposts.json', function(data) {
+                data.forEach(function(post) {
+                    const postHtml = `
+                        <div class="col-md-12 mb-4" id="post-${post.title.toLowerCase().replace(/\s+/g, '-')}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${post.title}</h5>
+                                    <p class="card-text">${post.content}</p>
+                                    <small class="text-muted">Posted on ${post.date} by ${post.author}</small>
+                                </div>
+                            </div>
+                        </div>`;
+                    $('#posts-container').append(postHtml);
+                    
+                    // Add post title to sidebar
+                    const sidebarItem = `<a href="#post-${post.title.toLowerCase().replace(/\s+/g, '-')}" class="list-group-item list-group-item-action" onclick="event.preventDefault(); document.getElementById('post-${post.title.toLowerCase().replace(/\s+/g, '-')}').scrollIntoView({behavior: 'smooth'});">${post.title}</a>`;
+                    $('#sidebar-posts').append(sidebarItem);
+                });
+                            const frontMatter = postContent.split('---')[1];
+                            const title = frontMatter.match(/title: (.+)/)[1];
+                            const date = frontMatter.match(/date: (.+)/)[1];
+                            const author = frontMatter.match(/author: (.+)/)[1];
+                            
+                            // Create post card
+                            const postHtml = `
+                                <div class="col-md-6 mb-4" id="post-${title.toLowerCase().replace(/\s+/g, '-')}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">${date} by ${author}</h6>
+                                            <p class="card-text">${content.substring(0, 100)}...</p>
+                                            <a href="#" class="card-link">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            $('#posts-container').append(postHtml);
+                        });
+                    });
+                    
+                    // Back to top button functionality
+                    $(window).scroll(function() {
+                        if ($(this).scrollTop() > 300) {
+                            $('#back-to-top').fadeIn();
+                        } else {
+                            $('#back-to-top').fadeOut();
+                        }
+                    });
+                    
+                    $('#back-to-top').click(function() {
+                        $('html, body').animate({scrollTop: 0}, 'fast');
+                        return false;
+                    });
+                
+    </script>
+</body>
+</html>
