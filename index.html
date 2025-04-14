@@ -6,13 +6,17 @@
     <title>个人主页</title>
     <!-- 引入 Bootstrap 核心样式 -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS CDN -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body style="background-color: rgb(246, 246, 246);">
 
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">个人主页</a>
+        <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" alt="个人logo" height="30"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,7 +26,7 @@
                     <a class="nav-link" href="index.html">首页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./projects/projects.html">项目介绍</a>
+                    <a class="nav-link" href="./projects/projects.html">项目工作</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./tech_learn/qa/qa.html">技术学习</a>
@@ -33,10 +37,9 @@
 </nav>
 
 <!-- 头部 -->
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" style="background: url('./assets/images/bg2.png') center/cover; height: 200px; display: flex; align-items: center; justify-content: center;">
     <div class="container">
-        <h1 class="display-4">欢迎来到我的个人主页</h1>
-        <!-- <p class="lead">这里是汪欣晨的个人空间，分享我的学习、工作和生活。</p> -->
+        <h1 class="display-4 text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">欢迎来到我的个人主页</h1>
     </div>
 </div>
 
@@ -59,17 +62,22 @@
     <div class="card mt-3">
         <div class="card-body">
             <h2 class="card-title">技能展示</h2>
-            <span class="badge badge-primary">HTML/CSS/JavaScript</span>
-            <span class="badge badge-primary">Vue.js</span>
-            <span class="badge badge-primary">Python</span>
+            <span class="badge badge-primary">深度学习(Python)</span>
+            <span class="badge badge-primary">后端开发(Python)</span>
+            <span class="badge badge-primary">前端开发(HTML/CSS/JavaScript+Vue.js)</span>
+            <span class="badge badge-primary">Android开发(Java)</span>
+            <span class="badge badge-primary">游戏开发(Unity+C#)</span>
+            <span class="badge badge-primary">嵌入式开发(C/C++)</span>
+            <span class="badge badge-primary">数字电路设计(Verilog)</span>
+            <span class="badge badge-primary">图像处理(Matlab)</span>
         </div>
     </div>
 
     <!-- 项目经验 -->
     <div class="card mt-3">
         <div class="card-body">
-            <h2 class="card-title">项目经验</h2>
-            <a href="projects.html" class="btn btn-outline-primary">查看我的项目经验</a>
+            <h2 class="card-title">项目工作</h2>
+            <a href="./projects/projects.html" class="btn btn-outline-primary">查看我的项目</a>
         </div>
     </div>
 
@@ -77,7 +85,7 @@
     <div class="card mt-3">
         <div class="card-body">
             <h2 class="card-title">最近阅读</h2>
-            <a href="./extensive_reading_fis.html" target="_blank" class="btn btn-outline-primary">2024上半年科研泛读</a>
+            <a href="./reading/extensive_reading_fis.html" target="_blank" class="btn btn-outline-primary">2024上半年科研泛读</a>
         </div>
     </div>
 
@@ -103,5 +111,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // 随机选择背景图片
+    const bgImages = ['bg0.png', 'bg1.png', 'bg2.png'];
+    const randomBg = bgImages[Math.floor(Math.random() * bgImages.length)];
+    document.querySelector('.jumbotron').style.backgroundImage = `url('./assets/images/${randomBg}')`;
+</script>
 </body>
 </html>
