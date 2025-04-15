@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>前端开发</title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
@@ -86,14 +86,37 @@
                 data.forEach(function(post) {
                     const postHtml = `
                         <div class="col-md-12 mb-4" id="post-${post.title.toLowerCase().replace(/\s+/g, '-')}">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">${post.title}</h5>
-                                    <p class="card-text">${post.content}</p>
-                                    <small class="text-muted">Posted on ${post.date} by ${post.author}</small>
+                            <a href="${post.link || '#'}" class="card-link text-decoration-none">
+                                <div class="card h-100 shadow-sm" style="transition: all 0.3s ease;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${post.title}</h5>
+                                        <p class="card-text">${post.content}</p>
+                                        <small class="text-muted">Posted on ${post.date} by ${post.author}</small>
+                                        <p class="click-hint" style="color: #0d6efd; display: none;">点击查看详情</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>`;
+                            </a>
+                        </div>
+                        <style>
+                            #posts-container .card:hover {
+                                transform: translateY(-5px);
+                                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                                border: 2px solid #0d6efd;
+                                cursor: pointer;
+                                background-color: #f8f9fa;
+                            }
+                            #posts-container .card {
+                                border: 2px solid lightgray;
+                                transition: all 0.3s ease;
+                            }
+                            #posts-container .card:hover .click-hint {
+                                display: block !important;
+                            }
+                            #posts-container a.card-link {
+                                text-decoration: none;
+                                color: inherit;
+                            }
+                        </style>`;
                     $('#posts-container').append(postHtml);
                     
                     // Add post title to sidebar

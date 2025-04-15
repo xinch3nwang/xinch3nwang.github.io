@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS基础</title>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@latest/dist/markdown-it.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        #markdown-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+
+        .toc-item {
+            padding: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toc-item:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        #back-button {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+
+        #back-button:hover {
+            background: #dae0e6b8;
+            text-decoration: none;
+        }
+
+        .toc-h1 {
+            padding-left: 0;
+            font-weight: bold;
+        }
+
+        .toc-h2 {
+            padding-left: 15px;
+        }
+
+        .toc-h3 {
+            padding-left: 30px;
+        }
+
+        .toc-h4 {
+            padding-left: 45px;
+        }
+
+        .toc-h5 {
+            padding-left: 60px;
+        }
+
+        .toc-h6 {
+            padding-left: 75px;
+        }
+
+        pre,
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 0.2em 0.4em;
+        }
+
+        pre {
+            padding: 1em;
+            overflow: auto;
+            border-left: 3px solid #007bff;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background: #0069d9;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar">
+        <div id="back-button" class="toc-item toc-h1"> ← 返回   </div>
+    </div>
+    <div id="nav-bar" style="display: flex; flex-direction: column; gap: 10px; padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #dee2e6; margin-left: 250px; margin-right: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s ease; position: fixed; right: 0; top: 0; z-index: 998;">
+        <button style="padding: 12px 16px; border: none; border-radius: 6px; background: #e9ecef; cursor: pointer; transition: all 0.2s ease; font-weight: 500;" onclick="loadMarkdown('css-basic.md')" onmouseover="this.style.background='#007bff'; this.style.color='white'" onmouseout="this.style.background='#e9ecef'; this.style.color='inherit'">CSS基础</button>
+        <button style="padding: 12px 16px; border: none; border-radius: 6px; background: #e9ecef; cursor: pointer; transition: all 0.2s ease; font-weight: 500;" onclick="loadMarkdown('css-advanced.md')" onmouseover="this.style.background='#007bff'; this.style.color='white'" onmouseout="this.style.background='#e9ecef'; this.style.color='inherit'">CSS进阶</button>
+    </div>
+    <div id="markdown-content"></div>
+    <div id="back-to-top" class="back-to-top">↑</div>
+    <script>
+        // 添加返回按钮点击事件回到frontend.html
+        document.getElementById('back-button').addEventListener('click', () => {
+                window.location.href = '../../frontend/frontend.html';
+            });
+        const md = window.markdownit();
+        // 加载Markdown文件的函数
+        function loadMarkdown(file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(markdownText => {
+                    const html = md.render(markdownText);
+                    document.getElementById('markdown-content').innerHTML = html;
+
+                    // 生成目录
+                    const headings = html.match(/<h[1-6][^>]*>.*?<\/h[1-6]>/g) || [];
+                    const sidebar = document.getElementById('sidebar');
+                    // 保留原有的 back-button，不重新创建
+            const backButton = sidebar.querySelector('#back-button'); 
+            sidebar.innerHTML = '';
+            if (backButton) {
+                sidebar.appendChild(backButton);
+            }
+                    headings.forEach(heading => {
+                        const div = document.createElement('div');
+                        const headingLevel = heading.match(/<h([1-6])/)?.[1] || '1';
+                        div.className = `toc-item toc-h${headingLevel}`;
+                        div.innerHTML = heading.replace(/<[^>]+>/g, '');
+
+                        const headingText = heading.replace(/<[^>]+>/g, '').trim().toLowerCase().replace(/\s+/g, '-');
+                        const id = heading.match(/id="([^"]+)"/)?.[1] || headingText;
+
+                        const headingWithId = heading.replace(/id="[^"]*"/, '')
+                            .replace(/>/, ` id="${id}">`);
+                        document.getElementById('markdown-content').innerHTML =
+                            document.getElementById('markdown-content').innerHTML
+                                .replace(heading, headingWithId);
+
+                        div.setAttribute('data-target', id);
+                        div.onclick = () => {
+                            document.getElementById(id).scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        };
+                        sidebar.appendChild(div);
+                    });
+                });
+        }
+
+        // 默认加载基础内容
+        loadMarkdown('css-basic.md');
+        
+        // 返回顶部按钮功能
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        loadMarkdown('css-basic.md')
+            .then(response => response.text())
+            .then(markdownText => {
+                const html = md.render(markdownText);
+                document.getElementById('markdown-content').innerHTML = html;
+
+                // 生成目录
+                const headings = html.match(/<h[1-6][^>]*>.*?<\/h[1-6]>/g) || [];
+                const sidebar = document.getElementById('sidebar');
+                headings.forEach(heading => {
+                    const div = document.createElement('div');
+                    const headingLevel = heading.match(/<h([1-6])/)?.[1] || '1';
+                    div.className = `toc-item toc-h${headingLevel}`;
+                    div.innerHTML = heading.replace(/<[^>]+>/g, '');
+
+                    // 确保标题有ID，如果没有则生成一个
+                    const headingText = heading.replace(/<[^>]+>/g, '').trim().toLowerCase().replace(/\s+/g, '-');
+                    const id = heading.match(/id="([^"]+)"/)?.[1] || headingText;
+
+                    // 更新HTML中的标题ID
+                    const headingWithId = heading.replace(/id="[^"]*"/, '')
+                        .replace(/>/, ` id="${id}">`);
+                    document.getElementById('markdown-content').innerHTML =
+                        document.getElementById('markdown-content').innerHTML
+                            .replace(heading, headingWithId);
+
+                    div.setAttribute('data-target', id);
+                    div.onclick = () => {
+                        document.getElementById(id).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    };
+                    sidebar.appendChild(div);
+                });
+
+                // 添加返回按钮点击事件
+                document.getElementById('back-button').addEventListener('click', () => {
+                    window.history.back();
+                });
+
+                // 返回顶部按钮功能
+                const backToTopBtn = document.getElementById('back-to-top');
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.classList.add('show');
+                    } else {
+                        backToTopBtn.classList.remove('show');
+                    }
+                });
+
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+    </script>
+</body>
+
+</html>

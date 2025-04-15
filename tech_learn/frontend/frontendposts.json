@@ -1,32 +1,37 @@
 [
   {
-    "title": "React核心概念",
-    "content": "React是一个用于构建用户界面的JavaScript库，核心概念包括组件、状态和生命周期。",
+    "title": "前端基础知识",
+    "content": "HTML、CSS和JavaScript是前端开发的基础，每个都有自己的学习路径。除此之外，还需要了解浏览器工作原理、HTTP协议等。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./basic/basic.html",
+    "author": "汪欣晨"
   },
   {
-    "title": "Vue响应式原理",
-    "content": "Vue使用Object.defineProperty或Proxy实现数据响应式，这是其核心特性之一。",
-    "date": "2023-11-15",
-    "author": "wxc"
+    "title": "HTML基础",
+    "content": "HTML是网页的基础结构，了解标签、属性和语义化是前端开发的重要组成部分。",
+    "date": "2023-11-16",
+    "link": "./html/html.html",
+    "author": "汪欣晨"
   },
   {
-    "title": "CSS布局技巧",
-    "content": "Flexbox和Grid是现代CSS布局的两种强大工具，可以创建复杂的响应式布局。",
-    "date": "2023-11-15",
-    "author": "wxc"
+    "title": "CSS基础",
+    "content": "CSS用于控制网页的样式，包括布局、颜色、字体等。学习CSS的基本语法和选择器是入门的关键。Flexbox和Grid是现代CSS布局的两种强大工具，可以创建复杂的响应式布局。",
+    "date": "2023-12-20",
+    "link": "./css/css.html",
+    "author": "汪欣晨"
   },
   {
-    "title": "Web性能优化",
-    "content": "代码分割、懒加载和缓存策略是提升Web应用性能的关键技术。",
-    "date": "2023-11-15",
-    "author": "wxc"
+    "title": "Javascript基础",
+    "content": "JavaScript是前端开发的核心语言，掌握基本语法和常用API是必备的。学习ES6+的新特性可以提高开发效率。",
+    "date": "2023-12-25",
+    "link": "./js/js.html",
+    "author": "汪欣晨"
   },
   {
-    "title": "TypeScript入门",
-    "content": "TypeScript为JavaScript添加了类型系统，提高了代码的可维护性和开发体验。",
-    "date": "2023-11-15",
-    "author": "wxc"
+    "title": "Vue.js基础",
+    "content": "Vue.js是一个流行的JavaScript框架，用于构建交互式的单页应用。学习Vue.js的基本概念和组件化开发是入门的关键。Vue的意义在于它的易用性和灵活性，使得开发者能够快速构建复杂的应用。",
+    "date": "2024-01-05",
+    "link": "./vue/vue.html",
+    "author": "汪欣晨"
   }
 ]
