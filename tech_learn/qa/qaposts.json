@@ -1,61 +1,56 @@
 [
   {
-    "title": "单元测试基础",
-    "content": "<p>单元测试是软件测试的最小单位，专注于验证单个函数或方法的正确性。</p><p>良好的单元测试应该<strong>独立</strong>、<strong>快速</strong>且<strong>可重复</strong>。</p><p>了解更多请访问<a href='https://example.com/unittest'>单元测试指南</a></p>",
+    "title": "前置计算机基础",
+    "content": "前置计算机基础包括操作系统、网络编程、数据库管理等，是进行软件测试的前提条件。",
+    "date": "2024-11-15",
+    "link": "./pre/pre.html",
+    "author": "汪欣晨"
+  },
+  {
+    "title": "测试基础",
+    "content": "软件测试基础概念和方法论，包括黑盒测试、白盒测试、静态测试和动态测试等基本测试类型。",
     "date": "2023-11-15",
     "author": "wxc"
   },
   {
-    "title": "集成测试的重要性",
-    "content": "集成测试验证不同模块之间的交互是否正常。与单元测试不同，它关注的是系统组件间的接口和协作。",
+    "title": "功能测试",
+    "content": "功能测试验证系统是否按照需求规格说明书正常工作，包括正向测试和异常测试场景。",
     "date": "2023-11-15",
     "author": "wxc"
   },
   {
-    "title": "自动化测试框架比较",
-    "content": "Selenium、Cypress和Playwright是目前流行的Web自动化测试框架。本文比较它们的优缺点和适用场景。",
+    "title": "接口测试",
+    "content": "接口测试专注于验证系统组件间的数据交换，包括REST API、SOAP和GraphQL等接口类型的测试方法。",
     "date": "2023-11-15",
     "author": "wxc"
   },
   {
-    "title": "测试驱动开发实践",
-    "content": "TDD(测试驱动开发)要求先写测试再写实现代码。这种方法可以提高代码质量和设计灵活性。",
+    "title": "性能测试",
+    "content": "性能测试评估系统在不同负载下的表现，包括负载测试、压力测试和稳定性测试等。",
     "date": "2023-11-15",
     "author": "wxc"
   },
   {
-    "title": "性能测试关键指标",
-    "content": "响应时间、吞吐量和并发用户数是性能测试的核心指标。了解这些指标有助于评估系统性能瓶颈。",
+    "title": "Python测试库",
+    "content": "Python生态中常用的测试库：requests用于API测试，unittest是标准库单元测试框架，pytest提供更简洁的测试语法和丰富插件。",
     "date": "2023-11-15",
     "author": "wxc"
   },
   {
-    "title": "API测试最佳实践",
-    "content": "有效的API测试应该验证状态码、响应时间、数据格式和边界条件。Postman和RestAssured是常用工具。",
+    "title": "UI自动化测试",
+    "content": "UI自动化测试工具如Selenium、Cypress和Playwright的使用方法和最佳实践，包括元素定位策略和等待机制。",
     "date": "2023-11-15",
     "author": "wxc"
   },
   {
-    "title": "持续集成中的测试",
-    "content": "在CI/CD流程中，自动化测试是质量保障的关键。了解如何在Jenkins或GitHub Actions中集成测试。",
+    "title": "自动化框架封装",
+    "content": "如何设计和封装可维护的自动化测试框架，包括分层架构设计、数据驱动和关键字驱动等模式。",
     "date": "2023-11-15",
     "author": "wxc"
   },
   {
-    "title": "移动端测试挑战",
-    "content": "设备碎片化、网络条件和用户交互是移动端测试的主要挑战。Appium和Espresso是常用解决方案。",
-    "date": "2023-11-15",
-    "author": "wxc"
-  },
-  {
-    "title": "测试覆盖率分析",
-    "content": "代码覆盖率工具如JaCoCo和Istanbul可以帮助识别未被测试的代码路径。但高覆盖率不等于高质量测试。",
-    "date": "2023-11-15",
-    "author": "wxc"
-  },
-  {
-    "title": "安全测试入门",
-    "content": "OWASP Top 10列出了最常见的Web应用安全风险。了解如何使用ZAP和Burp Suite进行基本安全测试。",
+    "title": "持续集成",
+    "content": "在CI/CD流程中集成自动化测试，包括Jenkins、GitHub Actions等工具中的测试任务配置和触发策略。",
     "date": "2023-11-15",
     "author": "wxc"
   }

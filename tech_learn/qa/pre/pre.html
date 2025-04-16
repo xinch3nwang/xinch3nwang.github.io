@@ -1,0 +1,112 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="//cdn.jsdelivr.net/npm/jsmind@0.8.7/style/jsmind.css" />
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/jsmind@0.8.7/es6/jsmind.js"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="../../../assets/images/logo.png" alt="个人logo" height="30"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>   
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../../index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../../projects/projects.html">项目工作</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">技术学习 <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../qa.html">软件测试</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../frontend/frontend.html">前端开发</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../ai/ai.html">深度学习</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 新增悬浮导航按钮 -->
+    <div class="position-fixed" style="top: 120px; left: 20px; z-index: 1000;">
+        <div class="btn-group-vertical">
+            <button id="loadPreBtn" class="btn btn-primary mb-2" title="加载测试前置知识">
+                <i class="fas fa-brain"></i> 前置知识
+            </button>
+            <button id="loadTestBtn" class="btn btn-success" title="加载测试知识">
+                <i class="fas fa-vial"></i> 测试知识
+            </button>
+        </div>
+    </div>
+
+    <div id="jsmind_container" style="height: calc(100vh - 112px);"></div>
+
+    <script type="text/javascript">
+        var options = {
+            container: 'jsmind_container',
+            editable: true,
+        };
+        var jm = new jsMind(options);
+
+        // 加载思维导图函数
+        function loadMindMap(file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    const mind = {
+                        meta: {
+                            name: file.replace('.mm',''),
+                            author: 'xinchen0709@foxmail.com',
+                            version: '0.2'
+                        },
+                        format: 'freemind',
+                        data: data
+                    };
+                    jm.show(mind);
+                    jm.expand_to_depth(1);
+                    jm.disable_edit();
+                })
+                .catch(error => {
+                    console.error('加载文件失败:', error);
+                    alert('加载失败: ' + file);
+                });
+        }
+
+        // 初始加载pre.mm
+        loadMindMap('pre.mm');
+
+        // 按钮点击事件
+        document.getElementById('loadPreBtn').addEventListener('click', () => {
+            loadMindMap('pre.mm');
+        });
+
+        document.getElementById('loadTestBtn').addEventListener('click', () => {
+            loadMindMap('test.mm'); // 请确保test.mm文件存在
+        });
+    </script>
+</body>
+
+</html>
