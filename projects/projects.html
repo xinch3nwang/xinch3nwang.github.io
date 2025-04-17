@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>项目经验</title>
+    <title>项目工作</title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
@@ -11,59 +11,72 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="../assets/images/logo.png" alt="个人logo" height="30"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="../assets/images/logo.png" alt="个人logo" height="35" class="me-2">
+            <!-- <span class="font-weight-bold">汪欣晨</span> -->
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">首页</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">项目工作 <span class="sr-only">(current)</span></a>
+                    <a class="nav-link px-3" href="../index.html">
+                        <i class="fas fa-home me-1"></i>首页
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../tech_learn/qa/qa.html">技术学习</a>
+                    <a class="nav-link px-3 active" href="#">
+                        <i class="fas fa-project-diagram me-1"></i>项目工作
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="../tech_learn/qa/qa.html">
+                        <i class="fas fa-code me-1"></i>技术学习
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h2 class="mb-0"><i class="fas fa-project-diagram me-2"></i>科研项目</h2>
-        </div>
-        <div class="card-body">
-            <div class="list-group list-group-flush">
-                <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-3">Frequency-Guided Iterative Network for Image Steganography</h4>
-                        <span class="badge bg-info text-dark">中科院2区在投</span>
-                    </div>
-                    <div class="mb-3">
-                        <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">PyTorch</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Linux</span>
-                        <a href="https://github.com/xinch3nwang/FIS" target="_blank" class="badge rounded-pill bg-dark text-white">
-                            <i class="fab fa-github me-1"></i>源代码
-                        </a>
-                    </div>
-                    <p class="mb-2">频率引导的迭代图像隐写网络</p>
-                    <ul class="mb-3">
-                        <li>设计了迭代循环的图像隐写网络架构</li>
-                        <li>开发了频率扰动模块，将信息隐藏到高频域</li>
-                        <li>实现了轻量级注意力机制增强特征选择</li>
-                        <li>在Linux环境下完成模型开发与自动化测试</li>
-                    </ul>
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">摘要</h6>
-                            <p class="card-text">High-accuracy image steganography seeks to conceal secret binary messages within a single cover image and recover them with minimal error. However, the pursuit of accuracy often introduces distortions, such as noise and artifacts, increasing the risk of detection. To cope with this issue, we propose an innovative Frequency-guided Iterative network for secure image Steganography, namely FIS, to minimize detectability while preserving visual quality in this paper...</p>
+<!-- 头部内容 -->
+<div style="padding-top: 85px;"> <!-- 添加顶部内边距避免内容被导航栏遮挡 -->
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h2 class="mb-0"><i class="fas fa-project-diagram me-2"></i>科研项目</h2>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">   
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-3">Frequency-Guided Iterative Network for Image Steganography</h4>
+                            <span class="badge bg-warning text-white fs-6">中科院2区在投</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
+                            <span class="badge rounded-pill bg-light text-dark me-2">PyTorch</span>
+                            <span class="badge rounded-pill bg-light text-dark me-2">Linux</span>
+                            <a href="https://github.com/xinch3nwang/FIS" target="_blank" class="badge rounded-pill bg-dark text-white">
+                                <i class="fab fa-github me-1"></i>源代码
+                            </a>
+                        </div>
+                        <p class="mb-2">频率引导的迭代图像隐写网络</p>
+                        <ul class="mb-3">
+                            <li>设计了迭代循环的图像隐写网络架构</li>
+                            <li>开发了频率扰动模块，将信息隐藏到高频域</li>
+                            <li>实现了轻量级注意力机制增强特征选择</li>
+                            <li>在Linux环境下完成模型开发与自动化测试</li>
+                        </ul>
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">摘要</h6>
+                                <p class="card-text">High-accuracy image steganography seeks to conceal secret binary messages within a single cover image and recover them with minimal error. However, the pursuit of accuracy often introduces distortions, such as noise and artifacts, increasing the risk of detection. To cope with this issue, we propose an innovative Frequency-guided Iterative network for secure image Steganography, namely FIS, to minimize detectability while preserving visual quality in this paper...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,15 +88,15 @@
 <div class="container mt-4">
     <!-- 新增开发项目卡片 -->
     <div class="card shadow mt-4">
-        <div class="card-header bg-success text-white">
+        <div class="card-header bg-primary text-white">
             <h2 class="mb-0"><i class="fas fa-laptop-code me-2"></i>开发项目</h2>
         </div>
         <div class="card-body">
             <div class="list-group list-group-flush">
                 <div class="list-group-item">
                     <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-3">A Simple Travel Website</h4>
-                        <span class="badge bg-warning text-dark">已完成</span>
+                        <h4 class="mb-3">A Simple Vue.js Travel Website</h4>
+                        <span class="badge bg-success text-white fs-6">已完成</span>
                     </div>
                     <div class="mb-3">
                         <span class="badge rounded-pill bg-light text-dark me-2">Vue3</span>
