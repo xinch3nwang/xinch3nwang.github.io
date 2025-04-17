@@ -34,23 +34,84 @@
 </nav>
 
 <div class="container mt-4">
-    <div class="card">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="fas fa-project-diagram me-2"></i>科研项目</h2>
+        </div>
         <div class="card-body">
-            <h2 class="card-title">项目</h2>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <h4>xx系统</h4>
-                    <p>使用 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
-                </li>
-                <li class="list-group-item">
-                    <h4>xx系统</h4>
-                    <p>基于 xx 和 xx 开发的 xx 系统，支持 xx 功能。</p>
-                </li>
-            </ul>
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-3">Frequency-Guided Iterative Network for Image Steganography</h4>
+                        <span class="badge bg-info text-dark">中科院2区在投</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
+                        <span class="badge rounded-pill bg-light text-dark me-2">PyTorch</span>
+                        <span class="badge rounded-pill bg-light text-dark me-2">Linux</span>
+                        <a href="https://github.com/xinch3nwang/FIS" target="_blank" class="badge rounded-pill bg-dark text-white">
+                            <i class="fab fa-github me-1"></i>源代码
+                        </a>
+                    </div>
+                    <p class="mb-2">频率引导的迭代图像隐写网络</p>
+                    <ul class="mb-3">
+                        <li>设计了迭代循环的图像隐写网络架构</li>
+                        <li>开发了频率扰动模块，将信息隐藏到高频域</li>
+                        <li>实现了轻量级注意力机制增强特征选择</li>
+                        <li>在Linux环境下完成模型开发与自动化测试</li>
+                    </ul>
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">摘要</h6>
+                            <p class="card-text">High-accuracy image steganography seeks to conceal secret binary messages within a single cover image and recover them with minimal error. However, the pursuit of accuracy often introduces distortions, such as noise and artifacts, increasing the risk of detection. To cope with this issue, we propose an innovative Frequency-guided Iterative network for secure image Steganography, namely FIS, to minimize detectability while preserving visual quality in this paper...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<div class="container mt-4">
+    <!-- 新增开发项目卡片 -->
+    <div class="card shadow mt-4">
+        <div class="card-header bg-success text-white">
+            <h2 class="mb-0"><i class="fas fa-laptop-code me-2"></i>开发项目</h2>
+        </div>
+        <div class="card-body">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-3">A Simple Travel Website</h4>
+                        <span class="badge bg-warning text-dark">已完成</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="badge rounded-pill bg-light text-dark me-2">Vue3</span>
+                        <span class="badge rounded-pill bg-light text-dark me-2">Vue Router 4</span>
+                        <span class="badge rounded-pill bg-light text-dark me-2">Vite</span>
+                        <span class="badge rounded-pill bg-light text-dark me-2">JavaScript</span>
+                        <span class="badge rounded-pill bg-light text-dark me-2">CSS3</span>
+                        <a href="https://github.com/xinch3nwang/TravelWebsite-Vue" target="_blank" class="badge rounded-pill bg-dark text-white">
+                            <i class="fab fa-github me-1"></i>源代码
+                        </a>
+                    </div>
+                    <p class="mb-2">基于Vue3的旅游网站前端项目</p>
+                    <ul class="mb-3">
+                        <li>使用Vue3 Composition API开发</li>
+                        <li>集成Vue Router 4实现多页面导航</li>
+                        <li>实现响应式布局，适配各种设备</li>
+                    </ul>
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
+                            <p class="card-text">该项目是一个完整的旅游网站前端实现，包含首页、目的地列表、景点详情和用户中心等模块。采用现代化的Vite构建与Vue3开发模式，代码结构清晰，性能优化良好，可作为Vue3学习的参考项目。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

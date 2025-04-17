@@ -1,5 +1,10 @@
 <script>
     const path = window.location.pathname;
+
+    if(path.startsWith('/projects')) {
+        window.location.href = '/projects/projects.html';
+    }
+
     if(path.startsWith('/tech_learn/qa')) {
         window.location.href = '/tech_learn/qa/qa.html';
     }
