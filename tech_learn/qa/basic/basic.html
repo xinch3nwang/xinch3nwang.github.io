@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试基础知识</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        .knowledge-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: bold;
+        }
+
+        .topic-badge {
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .diagram-img {
+            max-width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid px-0"> 
+        <div class="row gx-0"> 
+            <!-- 侧边栏导航 -->
+            <div class="col-md-2">  
+                <div class="sidebar ps-3"> 
+                    <a href="javascript:history.back();" class="btn btn-light mb-3 w-100 text-start">
+                        <i class="fas fa-arrow-left me-2"></i>返回
+                    </a>
+                    <h4 class="mb-4 text-primary"><i class="fas fa-book me-2"></i>测试基础</h4>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#test-theory">测试理论</a>
+                            <ul class="nav nav-pills flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#software-lifecycle">软件生命周期</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#test-models">测试模型</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#test-classification">测试分类</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#test-process">测试流程</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#packet-capture">抓包工具Fiddler</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="col-md-10 pe-3">  <!-- 从col-md-9改为col-md-10 -->
+                <div class="content-section">
+                    <!-- 测试理论 -->
+                    <section id="test-theory">
+                        <h1 class="mb-4"><i class="fas fa-lightbulb me-2 text-warning"></i>测试理论</h1>
+
+                        <!-- 软件生命周期 -->
+                        <section id="software-lifecycle" class="mt-4">
+                            <h2 class="mb-3"><i class="fas fa-recycle me-2 text-primary"></i>软件生命周期</h2>
+
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">软件生命周期</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5><strong>定义</strong></h5>
+                                    <p>一个计算机软件从功能确定、设计，开发成功并投入使用，并在使用中不断完善，直到停止使用的全过程</p>
+
+                                    <h5 class="mt-4"><strong>阶段</strong></h5>
+                                    <p>可行性分析 → 需求分析 → 总体设计 → 详细设计 → 编码 → 测试 → 维护 → 升级 → 再测试 → 逐步淘汰</p>
+
+                                    <h5 class="mt-4"><strong>常见模型</strong></h5>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-info text-white">
+                                                    <h6 class="mb-0">瀑布模型</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>软件生命周期各项活动按固定顺序依次进行</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-success text-white">
+                                                    <h6 class="mb-0">敏捷开发</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>强调团队协作、客户参与以及对变化的快速响应，通过短周期的迭代开发，不断交付可工作的软件版本，逐步满足客户需求</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 测试模型 -->
+                        <section id="test-models" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-project-diagram me-2 text-info"></i>测试模型</h2>
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-body">
+                                    <div class="card mt-2">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="mb-0">质量模型</h5>
+                                        </div>
+                                        <p>&emsp;用于描述和评估软件质量：功能；性能；兼容；易用；安全；可靠；维护；可移植</p>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-warning text-dark">
+                                                    <h5 class="mb-0">V模型</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <img src="./v-model.jpg" alt="V模型示意图" class="img-fluid mt-1 mb-1">
+                                                    <p>需求分析、概要设计、详细设计、编码 → 单元测试、集成测试、系统测试、验收测试</p>
+                                                    <p class="mt-2"><strong>文档对应：</strong><br>
+                                                        需求分析 - 测试计划文档、测试需求文档<br>
+                                                        设计 - 测试方案文档；测试用例文档<br>
+                                                        集成 - 测试报告文档</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-danger text-white">
+                                                    <h5 class="mb-0">W模型</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <img src="./w-model.png" alt="V模型示意图" class="img-fluid mt-1 mb-1">
+                                                    <p>测试开发同步进行</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 测试分类 -->
+                        <section id="test-classification" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-tasks me-2 text-success"></i>测试分类</h2>
+
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">按阶段划分</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-secondary text-white">
+                                                    <h6 class="mb-0">单元测试</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>对软件中的最小可测试单元进行检查和验证</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-info text-white">
+                                                    <h6 class="mb-0">集成测试</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>对各个单元组合成的模块或系统之间的接口和集成后的功能进行测试</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-success text-white">
+                                                    <h6 class="mb-0">系统测试</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>在模拟的实际运行环境下，对软件系统的功能、性能、兼容性等方面进行全面测试</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-warning text-dark">
+                                                    <h6 class="mb-0">验收测试(交付测试)</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>相关用户和独立测试人员验证系统是否达到了用户需求规格说明书</p>
+                                                    <p class="mt-2"><strong>包括：</strong><br>
+                                                        α内测(模拟真实场景)<br>
+                                                        β公测(实际使用场景)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">按代码可见度划分</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-info text-white">
+                                                    <h6 class="mb-0">白盒测试</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p><strong>(结构测试/逻辑驱动测试)</strong>基于程序的内部逻辑结构来设计测试用例</p>
+                                                    <p class="mt-2"><strong>包括：</strong><br>单元测试</p>
+                                                    <p class="mt-2">
+                                                        <strong>方法：</strong><br>
+                                                        逻辑覆盖法[语句覆盖、判定覆盖、条件覆盖、判定条件覆盖、条件组合覆盖、路径覆盖(覆盖率最高)]<br>
+                                                        基本路径测试法
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-warning text-dark">
+                                                    <h6 class="mb-0">黑盒测试</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p><strong>(功能测试/数据驱动测试)</strong>不考虑软件内部结构，从用户需求出发，关注软件功能是否正确实现</p>
+                                                    <p class="mt-2"><strong>包括：</strong><br>功能测试；UI自动化测试；冒烟测试</p>
+                                                    <p class="mt-2"><strong>方法：</strong><br>
+                                                        等价类划分法，边界值分析法，因果图法，错误推断法，场景法，判定表法
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-success text-white">
+                                                    <h6 class="mb-0">灰盒测试</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>了解部分软件内部结构情况下关注软件功能实现</p>
+                                                    <p class="mt-2"><strong>包括：</strong><br>
+                                                        接口测试</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-4">
+                                            <h5><strong>黑白盒测试优缺点</strong></h5>
+                                            <p><strong>黑盒测试</strong>优点是关注用户需求，不依赖代码知识，能测功能完整性；<br>
+                                                缺点是难发现代码逻辑错误，对复杂功能覆盖可能不足。</p>
+                                            <p class="mt-2"><strong>白盒测试</strong>优点是深入代码逻辑，能揪出隐藏错误，利于优化代码；<br>
+                                                缺点是成本高，需代码知识，且难以全面覆盖，可能忽视功能需求。</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card mb-3">
+                                            <div class="card-header bg-dark text-white">
+                                                <h6 class="mb-0">冒烟测试</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>执行全面测试前对程序主要功能进行快速验证，保证程序具备进一步测试的条件</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card mb-3">
+                                            <div class="card-header bg-secondary text-white">
+                                                <h6 class="mb-0">回归测试</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>在软件发生代码修改等变更后，通过重新执行全部或部分以往的测试用例，来验证软件原有功能是否正常、新变更是否引入新错误</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                        <!-- 测试流程 -->
+                        <section id="test-process" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-sitemap me-2 text-danger"></i>测试流程</h2>
+
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">测试流程概述</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ol>
+                                        <li><strong>需求分析</strong> - 确定各部门需求理解一致，查漏补缺</li>
+                                        <li><strong>测试计划编写</strong> - 包括：
+                                            <ul>
+                                                <li><strong>What</strong> - 测试目标及范围</li>
+                                                <li><strong>Who</strong> - 人员进度安排</li>
+                                                <li><strong>How</strong> - 测试策略；测试工具</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>测试用例设计</strong> - 测试用例是为测试软件而精心设计的一组测试输入、执行条件和预期结果</li>
+                                        <li><strong>测试用例执行</strong></li>
+                                        <li><strong>缺陷管理</strong></li>
+                                        <li><strong>测试报告</strong></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </section>
+
+                    </section>
+
+                    <!-- 抓包工具 -->
+                    <section id="packet-capture" class="mt-5">
+                        <h2 class="mb-4"><i class="fas fa-network-wired me-2 text-info"></i>抓包工具</h2>
+
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><strong>Fiddler</strong></h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>与F12区别</strong></h5>
+                                <p><strong>Fiddler</strong>是独立抓包工具，能捕获所有设备/应用的HTTP请求，支持断点修改、性能分析，适合接口测试、全链路调试（比如测APP接口时抓包）
+                                </p>
+                                <p><strong>F12</strong>是浏览器内置工具，仅针对当前网页，强在前端调试（改DOM样式、看资源加载），操作更轻量，适合快速定位页面问题（如元素错位）</p>
+
+                                <h5 class="mt-4"><strong>工作原理</strong></h5>
+                                <p>Fiddler作为代理服务器存在，本地应用与服务器之间所有的请求和响应，都由Fiddler进行中转，因此能够截取数据信息，显示网络数据的抓包内容</p>
+
+                                <h5 class="mt-4"><strong>典型应用</strong></h5>
+                                <ul>
+                                    <li><strong>辅助定位前后端bug</strong> - Inspectors：抓包-检查接口地址(前)-检查传递参数(前)-检查响应状态/结果(后端)
+                                    </li>
+                                    <li><strong>构建模拟测试场景</strong> - Composers：模拟发送请求，进行接口测试；AutoResponder：Mock接口返回数据
+                                    </li>
+                                    <li><strong>断点调试</strong> - Menu/Rules/Auto Breakpoints：请求前/响应后拦截暂停</li>
+                                    <li><strong>模拟弱网测试</strong> - Menu/Rules/Performance/Simulate... 或 Menu/Customize
+                                        Rules</li>
+                                    <li><strong>前端性能分析及优化</strong> - Statistics&Timeline</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
