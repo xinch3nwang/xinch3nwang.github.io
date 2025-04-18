@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>深度学习</title>
     <!-- Bootstrap CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -87,8 +88,8 @@
 
             <!-- jQuery and Bootstrap JS CDNs -->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
             <!-- Back to top button -->
             <button id="back-to-top" class="btn btn-primary rounded-circle position-fixed"
                 style="bottom: 20px; right: 20px; display: none; width: 50px; height: 50px;">
@@ -139,25 +140,25 @@
                             const sidebarItem = `<a href="#post-${post.title.toLowerCase().replace(/\s+/g, '-')}" class="list-group-item list-group-item-action" onclick="event.preventDefault(); document.getElementById('post-${post.title.toLowerCase().replace(/\s+/g, '-')}').scrollIntoView({behavior: 'smooth'});">${post.title}</a>`;
                             $('#sidebar-posts').append(sidebarItem);
                         });
-                        const frontMatter = postContent.split('---')[1];
-                        const title = frontMatter.match(/title: (.+)/)[1];
-                        const date = frontMatter.match(/date: (.+)/)[1];
-                        const author = frontMatter.match(/author: (.+)/)[1];
+                        // const frontMatter = postContent.split('---')[1];
+                        // const title = frontMatter.match(/title: (.+)/)[1];
+                        // const date = frontMatter.match(/date: (.+)/)[1];
+                        // const author = frontMatter.match(/author: (.+)/)[1];
 
-                        // Create post card
-                        const postHtml = `
-                                <div class="col-md-6 mb-4" id="post-${title.toLowerCase().replace(/\s+/g, '-')}">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${title}</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">${date} by ${author}</h6>
-                                            <p class="card-text">${content.substring(0, 100)}...</p>
-                                            <a href="#" class="card-link">Read more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-                        $('#posts-container').append(postHtml);
+                        // // Create post card
+                        // const postHtml = `
+                        //         <div class="col-md-6 mb-4" id="post-${title.toLowerCase().replace(/\s+/g, '-')}">
+                        //             <div class="card">
+                        //                 <div class="card-body">
+                        //                     <h5 class="card-title">${title}</h5>
+                        //                     <h6 class="card-subtitle mb-2 text-muted">${date} by ${author}</h6>
+                        //                     <p class="card-text">${content.substring(0, 100)}...</p>
+                        //                     <a href="#" class="card-link">Read more</a>
+                        //                 </div>
+                        //             </div>
+                        //         </div>
+                        //     `;
+                        // $('#posts-container').append(postHtml);
                     });
                 });
 
