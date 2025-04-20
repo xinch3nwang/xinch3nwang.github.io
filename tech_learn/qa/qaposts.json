@@ -11,48 +11,55 @@
     "content": "软件测试基础概念和方法论，包括软件生命周期、测试模型、测试分类、测试流程和测试常用的抓包工具Fiddler介绍。",
     "date": "2024-11-15",
     "link":"./basic/basic.html",
-    "author": "wxc"
+    "author": "汪欣晨"
   },
   {
     "title": "功能测试",
     "content": "功能测试验证系统是否按照需求规格说明书正常工作，包括正向测试和异常测试场景。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./func/func.html",
+    "author": "汪欣晨"
   },
   {
     "title": "接口测试",
     "content": "接口测试专注于验证系统组件间的数据交换，包括REST API、SOAP和GraphQL等接口类型的测试方法。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./api/api.html",
+    "author": "汪欣晨"
   },
   {
     "title": "性能测试",
     "content": "性能测试评估系统在不同负载下的表现，包括负载测试、压力测试和稳定性测试等。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./perf/perf.html",
+    "author": "汪欣晨"
   },
   {
     "title": "Python测试库",
     "content": "Python生态中常用的测试库：requests用于API测试，unittest是标准库单元测试框架，pytest提供更简洁的测试语法和丰富插件。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./pylib/pylib.html",
+    "author": "汪欣晨"
   },
   {
     "title": "UI自动化测试",
     "content": "UI自动化测试工具如Selenium、Cypress和Playwright的使用方法和最佳实践，包括元素定位策略和等待机制。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./auto/auto.html",
+    "author": "汪欣晨"
   },
   {
     "title": "自动化框架封装",
     "content": "如何设计和封装可维护的自动化测试框架，包括分层架构设计、数据驱动和关键字驱动等模式。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./po/po.html",
+    "author": "汪欣晨"
   },
   {
     "title": "持续集成",
     "content": "在CI/CD流程中集成自动化测试，包括Jenkins、GitHub Actions等工具中的测试任务配置和触发策略。",
     "date": "2023-11-15",
-    "author": "wxc"
+    "link": "./ci/ci.html",
+    "author": "汪欣晨"
   }
 ]

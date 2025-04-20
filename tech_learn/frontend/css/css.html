@@ -125,19 +125,28 @@
 
 <body>
     <div id="sidebar">
-        <div id="back-button" class="toc-item toc-h1"> ← 返回   </div>
+        <div id="back-button" class="toc-item toc-h1"> ← 返回 </div>
     </div>
-    <div id="nav-bar" style="display: flex; flex-direction: column; gap: 10px; padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #dee2e6; margin-left: 250px; margin-right: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s ease; position: fixed; right: 0; top: 0; z-index: 998;">
-        <button style="padding: 12px 16px; border: none; border-radius: 6px; background: #e9ecef; cursor: pointer; transition: all 0.2s ease; font-weight: 500;" onclick="loadMarkdown('css-basic.md')" onmouseover="this.style.background='#007bff'; this.style.color='white'" onmouseout="this.style.background='#e9ecef'; this.style.color='inherit'">CSS基础</button>
-        <button style="padding: 12px 16px; border: none; border-radius: 6px; background: #e9ecef; cursor: pointer; transition: all 0.2s ease; font-weight: 500;" onclick="loadMarkdown('css-advanced.md')" onmouseover="this.style.background='#007bff'; this.style.color='white'" onmouseout="this.style.background='#e9ecef'; this.style.color='inherit'">CSS进阶</button>
+    <div id="nav-bar"
+        style="display: flex; flex-direction: column; gap: 10px; padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #dee2e6; margin-left: 250px; margin-right: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s ease; position: fixed; right: 0; top: 0; z-index: 998;">
+        <button
+            style="padding: 12px 16px; border: none; border-radius: 6px; background: #e9ecef; cursor: pointer; transition: all 0.2s ease; font-weight: 500;"
+            onclick="loadMarkdown('css-basic.md')"
+            onmouseover="this.style.background='#007bff'; this.style.color='white'"
+            onmouseout="this.style.background='#e9ecef'; this.style.color='inherit'">CSS基础</button>
+        <button
+            style="padding: 12px 16px; border: none; border-radius: 6px; background: #e9ecef; cursor: pointer; transition: all 0.2s ease; font-weight: 500;"
+            onclick="loadMarkdown('css-advanced.md')"
+            onmouseover="this.style.background='#007bff'; this.style.color='white'"
+            onmouseout="this.style.background='#e9ecef'; this.style.color='inherit'">CSS进阶</button>
     </div>
     <div id="markdown-content"></div>
     <div id="back-to-top" class="back-to-top">↑</div>
     <script>
         // 添加返回按钮点击事件回到frontend.html
         document.getElementById('back-button').addEventListener('click', () => {
-                window.location.href = '../../frontend/frontend.html';
-            });
+            window.location.href = '../../frontend/frontend.html';
+        });
         const md = window.markdownit();
         // 加载Markdown文件的函数
         function loadMarkdown(file) {
@@ -151,11 +160,11 @@
                     const headings = html.match(/<h[1-6][^>]*>.*?<\/h[1-6]>/g) || [];
                     const sidebar = document.getElementById('sidebar');
                     // 保留原有的 back-button，不重新创建
-            const backButton = sidebar.querySelector('#back-button'); 
-            sidebar.innerHTML = '';
-            if (backButton) {
-                sidebar.appendChild(backButton);
-            }
+                    const backButton = sidebar.querySelector('#back-button');
+                    sidebar.innerHTML = '';
+                    if (backButton) {
+                        sidebar.appendChild(backButton);
+                    }
                     headings.forEach(heading => {
                         const div = document.createElement('div');
                         const headingLevel = heading.match(/<h([1-6])/)?.[1] || '1';
@@ -184,7 +193,7 @@
 
         // 默认加载基础内容
         loadMarkdown('css-basic.md');
-        
+
         // 返回顶部按钮功能
         const backToTopBtn = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {

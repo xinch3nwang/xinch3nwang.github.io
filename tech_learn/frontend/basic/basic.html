@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>前端基础知识</title>
@@ -10,71 +11,89 @@
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         #sidebar {
             width: 250px;
             height: 100vh;
             overflow-y: auto;
             background: #f8f9fa;
             padding: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
         }
+
         #markdown-content {
-            flex: 1;
             padding: 20px;
             max-width: 800px;
-            margin-left: 90px;
+            margin-left: 290px;
             margin-right: 20px;
             font-size: 16px;
         }
+
         .toc-item {
             padding: 8px 0;
             cursor: pointer;
             transition: all 0.2s ease;
         }
+
         .toc-item:hover {
             color: #007bff;
             text-decoration: underline;
         }
+
         #back-button {
             margin-bottom: 20px;
             padding: 10px;
             background: #e9ecef;
             border-radius: 4px;
         }
+
         #back-button:hover {
             background: #dae0e6b8;
             text-decoration: none;
         }
+
         .toc-h1 {
             padding-left: 0;
             font-weight: bold;
         }
+
         .toc-h2 {
             padding-left: 15px;
         }
+
         .toc-h3 {
             padding-left: 30px;
         }
+
         .toc-h4 {
             padding-left: 45px;
         }
+
         .toc-h5 {
             padding-left: 60px;
         }
+
         .toc-h6 {
             padding-left: 75px;
         }
-        pre, code {
+
+        pre,
+        code {
             font-family: 'Courier New', Courier, monospace;
             background-color: #f5f5f5;
             border-radius: 4px;
             padding: 0.2em 0.4em;
         }
+
         pre {
             padding: 1em;
             overflow: auto;
             border-left: 3px solid #007bff;
         }
+
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -93,16 +112,19 @@
             transition: all 0.3s ease;
             z-index: 999;
         }
+
         .back-to-top:hover {
             background: #0069d9;
         }
+
         .back-to-top.show {
             opacity: 1;
         }
     </style>
 </head>
+
 <body>
-    
+
     <div id="sidebar">
         <div id="back-button" class="toc-item toc-h1">← 返回</div>
     </div>
@@ -111,11 +133,11 @@
     <script>
         const md = window.markdownit();
         fetch('basic.md')
-          .then(response => response.text())
-          .then(markdownText => {
+            .then(response => response.text())
+            .then(markdownText => {
                 const html = md.render(markdownText);
                 document.getElementById('markdown-content').innerHTML = html;
-                
+
                 // 生成目录
                 const headings = html.match(/<h[1-6][^>]*>.*?<\/h[1-6]>/g) || [];
                 const sidebar = document.getElementById('sidebar');
@@ -124,18 +146,18 @@
                     const headingLevel = heading.match(/<h([1-6])/)?.[1] || '1';
                     div.className = `toc-item toc-h${headingLevel}`;
                     div.innerHTML = heading.replace(/<[^>]+>/g, '');
-                    
+
                     // 确保标题有ID，如果没有则生成一个
                     const headingText = heading.replace(/<[^>]+>/g, '').trim().toLowerCase().replace(/\s+/g, '-');
                     const id = heading.match(/id="([^"]+)"/)?.[1] || headingText;
-                    
+
                     // 更新HTML中的标题ID
                     const headingWithId = heading.replace(/id="[^"]*"/, '')
-                                              .replace(/>/, ` id="${id}">`);
-                    document.getElementById('markdown-content').innerHTML = 
+                        .replace(/>/, ` id="${id}">`);
+                    document.getElementById('markdown-content').innerHTML =
                         document.getElementById('markdown-content').innerHTML
                             .replace(heading, headingWithId);
-                    
+
                     div.setAttribute('data-target', id);
                     div.onclick = () => {
                         document.getElementById(id).scrollIntoView({
@@ -144,12 +166,12 @@
                     };
                     sidebar.appendChild(div);
                 });
-                
+
                 // 添加返回按钮点击事件
                 document.getElementById('back-button').addEventListener('click', () => {
                     window.history.back();
                 });
-                
+
                 // 返回顶部按钮功能
                 const backToTopBtn = document.getElementById('back-to-top');
                 window.addEventListener('scroll', () => {
@@ -159,7 +181,7 @@
                         backToTopBtn.classList.remove('show');
                     }
                 });
-                
+
                 backToTopBtn.addEventListener('click', () => {
                     window.scrollTo({
                         top: 0,
@@ -169,4 +191,5 @@
             });
     </script>
 </body>
+
 </html>

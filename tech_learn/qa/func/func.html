@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>功能测试</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        .knowledge-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: bold;
+        }
+
+        .topic-badge {
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .diagram-img {
+            max-width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid px-0">
+        <div class="row gx-0">
+            <!-- 侧边栏导航 -->
+            <div class="col-md-2">
+                <div class="sidebar ps-3">
+                    <a href="javascript:history.back();" class="btn btn-light mb-3 w-100 text-start">
+                        <i class="fas fa-arrow-left me-2"></i>返回
+                    </a>
+                    <h4 class="mb-4 text-primary"><i class="fas fa-book me-2"></i>测试用例</h4>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#test-case-elements">用例要素</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#test-case-methods">用例设计方法</a>
+                            <ul class="nav nav-pills flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#equivalence-partitioning">等价类划分法</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#boundary-value">边界值分析法</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#decision-table">判定表法</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#scenario">场景法</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#error-guessing">错误推测法</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#quiz">练习题</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="col-md-10 pe-3">
+                <div class="content-section">
+                    <!-- 用例要素 -->
+                    <section id="test-case-elements">
+                        <h1 class="mb-4"><i class="fas fa-list-ul me-2 text-warning"></i>测试用例要素</h1>
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">测试用例要素</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>测试用例是为测试软件而精心设计的一组测试输入、执行条件和预期结果</p>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>用例编号</th>
+                                            <th>用例标题</th>
+                                            <th>所属模块</th>
+                                            <th>优先级</th>
+                                            <th>前置条件</th>
+                                            <th>测试输入</th>
+                                            <th>执行步骤</th>
+                                            <th>预期结果</th>
+                                            <th>实际结果</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 用例设计方法 -->
+                    <section id="test-case-methods" class="mt-5">
+                        <h1 class="mb-4"><i class="fas fa-tools me-2 text-info"></i>测试用例设计方法</h1>
+
+                        <!-- 等价类划分法 -->
+                        <section id="equivalence-partitioning" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-equals me-2 text-primary"></i>等价类划分法</h2>
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">等价类划分法</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>针对需要大量数据测试输入但无法穷举场景</strong></p>
+                                    <h5 class="mt-3"><strong>等价类</strong></h5>
+                                    <p>所有测试数据中具有某种共同特征的数据子集</p>
+                                    <h5 class="mt-3"><strong>步骤</strong></h5>
+                                    <ol>
+                                        <li>明确需求</li>
+                                        <table class="table table-bordered table-sm" style="font-size: 0.85rem;">
+                                            <tr>
+                                                <th style="font-weight: bold; width: 15%;"></th>
+                                                <th style="width: 25%;">长度</th>
+                                                <th style="width: 25%;">类型</th>
+                                                <th style="width: 35%;">规则</th>
+                                            </tr>
+                                            <tr>
+                                                <td>输入1</td>
+                                                <td>..</td>
+                                                <td>..</td>
+                                                <td>..</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>..</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>输入2</td>
+                                                <td>..</td>
+                                                <td>..</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>..</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>...</td>
+                                                <td>...</td>
+                                                <td>...</td>
+                                                <td>...</td>
+                                            </tr>
+                                        </table>
+                                        <li>划分等价类：确定有效（所有有效数据集合取一）、无效等价类</li>
+                                        <table class="table table-bordered table-sm" style="font-size: 0.85rem;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="font-weight: bold; width: 15%;"></th>
+                                                    <th style="width: 25%;">有效等价类</th>
+                                                    <th style="width: 20%;">取值</th>
+                                                    <th style="width: 20%;">无效等价类</th>
+                                                    <th style="width: 20%;">取值</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>输入1</td>
+                                                    <td>长度1 x 类型1(规则下)</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>输入2</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                    <td>..</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>...</td>
+                                                    <td>...</td>
+                                                    <td>...</td>
+                                                    <td>...</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <li>提取数据编写测试用例</li>
+                                    </ol>
+                                    <!-- <h5 class="mt-3"><strong>示例</strong></h5>
+                                     -->
+                                    <!-- 新增折叠示例区域 -->
+                                    <div class="accordion mb-3" id="equivalenceExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                                    aria-expanded="false" aria-controls="collapseExample">
+                                                    <strong>示例：</strong>邮箱名为4-16位字符,支持英文、数字、下划线(不能全是数字或者下划线); 密码为6-18位字符
+                                                </button>
+                                            </h2>
+                                            <div id="collapseExample" class="accordion-collapse collapse"
+                                                aria-labelledby="headingOne" data-bs-parent="#equivalenceExample">
+                                                <div class="accordion-body">
+                                                    <!-- <p><strong>示例：</strong>邮箱名为4-16位字符,支持英文、数字、下划线(不能全是数字或者下划线); 密码:6-18位字符</p> -->
+                                                    <ol>
+                                                        <li>明确需求</li>
+                                                        <img src="e1.png" alt="明确需求" class="diagram-img">
+                                                        <li>划分等价类：确定有效（所有有效数据集合取一）、无效等价类</li>
+                                                        <img src="e2.png" alt="等价类划分" class="diagram-img">
+                                                        <li>提取数据编写测试用例</li>
+                                                    </ol>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 边界值分析法 -->
+                        <section id="boundary-value" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-border-style me-2 text-success"></i>边界值分析法</h2>
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">边界值分析法</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>等价类补充:关注输入数据边界情况</strong></p>
+                                    <h5 class="mt-3"><strong>步骤</strong></h5>
+                                    <ol>
+                                        <li>等价类划分+确定边界范围[上点、离点(开内闭外)、内点]</li>
+                                        <img src="f1.png" alt="边界值分析" class="diagram-img">
+                                    </ol>
+
+                                    <div class="accordion mb-3" id="equivalenceExample1">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseExample1"
+                                                    aria-expanded="false" aria-controls="collapseExample1">
+                                                    <strong>示例：</strong>邮箱名为4-16位字符,支持英文、数字、下划线(不能全是数字或者下划线); 密码为6-18位字符
+                                                </button>
+                                            </h2>
+                                            <div id="collapseExample1" class="accordion-collapse collapse"
+                                                aria-labelledby="headingOne" data-bs-parent="#equivalenceExample1">
+                                                <div class="accordion-body">
+                                                    <p><strong>大致同上</strong></p>
+                                                    <img src="e3.png" alt="等价类划分+边界值分析" class="diagram-img">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 判定表法 -->
+                        <section id="decision-table" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-table me-2 text-danger"></i>判定表法</h2>
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">判定表法</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>多条件依赖关系</strong></p>
+                                    <h5 class="mt-3"><strong>画判定表</strong></h5>
+                                    <ol>
+                                        <li>列出条件桩和动作桩</li>
+                                        <li>填写条件项（取值） 对条件进行全组合</li>
+                                        <li>根据条件项的组合确定动作项</li>
+                                        <li>简化合并相似规则（有相同动作）</li>
+                                        <img src="f2.png" alt="判定表" class="diagram-img">
+                                    </ol>
+
+                                    <div class="accordion mb-3" id="equivalenceExample2">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseExample2"
+                                                    aria-expanded="false" aria-controls="collapseExample2">
+                                                    <strong>示例</strong>
+                                                </button>
+                                            </h2>
+                                            <div id="collapseExample2" class="accordion-collapse collapse"
+                                                aria-labelledby="headingOne" data-bs-parent="#equivalenceExample2">
+                                                <div class="accordion-body">
+                                                    <img src="e4.png" alt="判定表" class="diagram-img">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 场景法 -->
+                        <section id="scenario" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-project-diagram me-2 text-info"></i>场景法</h2>
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">场景法</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>模拟实际项目的业务流程</strong></p>
+                                    <h5 class="mt-3"><strong>流程图</strong></h5>
+                                    <p>描述用户使用多功能场景，覆盖流程路径</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 错误推测法 -->
+                        <section id="error-guessing" class="mt-4">
+                            <h2 class="mb-4"><i class="fas fa-lightbulb me-2 text-warning"></i>错误推测法</h2>
+                            <div class="knowledge-card card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">错误推测法</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p>根据经验推测系统可能出现的问题</p>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <!-- 练习题 -->
+                    <section id="quiz" class="mt-5">
+                        <h1 class="mb-4"><i class="fas fa-question-circle me-2 text-danger"></i>练习题</h1>
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">测试用例设计方法练习题</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="mb-3">题目：</h5>
+                                <img src="quiz-question.png" alt="练习题题目" class="diagram-img mb-4">
+
+                                <div class="accordion" id="quizAnswer">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseQuizAnswer"
+                                                aria-expanded="false" aria-controls="collapseQuizAnswer">
+                                                <strong>查看答案</strong>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseQuizAnswer" class="accordion-collapse collapse"
+                                            aria-labelledby="headingQuizAnswer" data-bs-parent="#quizAnswer">
+                                            <div class="accordion-body">
+                                                <h5 class="mb-3">参考答案：</h5>
+                                                <img src="quiz-answer.png" alt="练习题答案" class="diagram-img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- 在</body>标签前添加 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
