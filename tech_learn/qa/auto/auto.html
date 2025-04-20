@@ -1,0 +1,310 @@
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动化测试</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        .knowledge-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: bold;
+        }
+
+        .topic-badge {
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .diagram-img {
+            max-width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid px-0">
+        <div class="row gx-0">
+            <!-- 侧边栏导航 -->
+            <div class="col-md-2">
+                <div class="sidebar ps-3">
+                    <a href="javascript:history.back();" class="btn btn-light mb-3 w-100 text-start">
+                        <i class="fas fa-arrow-left me-2"></i>返回
+                    </a>
+                    <h4 class="mb-4 text-primary"><i class="fas fa-robot me-2"></i>自动化测试</h4>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#web">Web自动化</a>
+                            <ul class="nav nav-pills flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#selenium-basics">Selenium基础</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#selenium-waits">等待机制</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#selenium-elements">元素定位</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#selenium-actions">元素操作</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#selenium-browser">浏览器操作</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#mobile">移动自动化</a>
+                            <ul class="nav nav-pills flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#appium-basics">Appium基础</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="col-md-10 pe-3">
+                <div class="content-section">
+                    <!-- Web自动化 -->
+                    <section id="web">
+                        <h1 class="mb-4"><i class="fas fa-globe me-2 text-primary"></i>Web自动化</h1>
+                        
+                        <!-- Selenium基础 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">Selenium基础</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>WebDriver</strong></h5>
+                                <pre><code>from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("[url]") / driver.close()
+driver.quit()</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- 等待机制 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">等待机制</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>隐式等待</strong></h5>
+                                <p>全局性等待，如果超时仍未找到元素，则抛出异常</p>
+                                <pre><code>driver.implicitly_wait([sec])</code></pre>
+                                
+                                <h5 class="mt-3"><strong>显式等待</strong></h5>
+                                <p>为特定的操作设置等待条件</p>
+                                <pre><code>from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+element = WebDriverWait(driver, [sec]).until(
+    EC.[expected_conditions]((By.ID, ["element_id"]))
+)</code></pre>
+                                <ul>
+                                    <li>presence_of_element_located：等待元素出现在 DOM 中</li>
+                                    <li>visibility_of_element_located：等待元素出现在 DOM 中并且可见</li>
+                                    <li>element_to_be_clickable：等待元素可点击</li>
+                                    <li>text_to_be_present_in_element：等待元素的文本包含指定的文本</li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>固定等待</strong></h5>
+                                <pre><code>time.sleep()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>Fluent Wait</strong></h5>
+                                <p>动态设置等待条件，可以自定义轮询频率和忽略特定异常</p>
+                                <pre><code>from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+wait = WebDriverWait(driver, timeout=, poll_frequency=, ignored_exceptions=[])
+element = wait.until(EC.presence_of_element_located((By.ID, "...")))</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- 元素定位 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">元素定位</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>id属性</strong></h5>
+                                <pre><code>driver.find_element_by_id()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>name属性</strong></h5>
+                                <pre><code>driver.find_element_by_name()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>类名</strong></h5>
+                                <pre><code>driver.find_element_by_class_name()</code></pre>
+                                <p>如果元素的class属性值存在多个值，只能使用其中的任意一个</p>
+                                
+                                <h5 class="mt-3"><strong>标签名</strong></h5>
+                                <pre><code>driver.find_element_by_tag_name()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>链接</strong></h5>
+                                <pre><code>driver.find_element_by_link_text()
+driver.find_element_by_partial_link_text()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>CSS选择器</strong></h5>
+                                <pre><code>driver.find_element_by_css_selector()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>XPath表达器</strong></h5>
+                                <pre><code>driver.find_element_by_xpath()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>定位多个元素</strong></h5>
+                                <pre><code>find_elements...</code></pre>
+                                <p>返回list</p>
+                            </div>
+                        </div>
+
+                        <!-- 元素操作 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">元素操作</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>获取元素文本</strong></h5>
+                                <pre><code>element.text</code></pre>
+                                
+                                <h5 class="mt-3"><strong>清除输入框内容</strong></h5>
+                                <pre><code>element.clear()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>获取元素属性</strong></h5>
+                                <pre><code>element.get_attribute()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>复选框/单选框是否被选中</strong></h5>
+                                <pre><code>checkbox.is_selected()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>下拉列表操作</strong></h5>
+                                <pre><code>from selenium.webdriver.support.ui import Select
+Select(dropdown).select_by_index(index)
+.select_by_value("...")
+.select_by_visible_text("...")</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- 键鼠操作 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">键鼠操作</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>鼠标操作</strong></h5>
+                                <pre><code>from selenium.webdriver.common.action_chains import ActionChains
+actions = ActionChains(driver)</code></pre>
+                                <ul>
+                                    <li>点击元素
+                                        <pre><code>element.click()
+element.double_click()
+element.context_click()</code></pre>
+                                    </li>
+                                    <li>拖放
+                                        <pre><code>actions.drag_and_drop([source_ele], [target_ele]).perform()</code></pre>
+                                    </li>
+                                    <li>悬停
+                                        <pre><code>actions.move_to_element(element).perform()</code></pre>
+                                    </li>
+                                    <li>按住和释放
+                                        <pre><code>actions.click_and_hold([source_ele]).release([tar_ele]).perform()</code></pre>
+                                    </li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>键盘操作</strong></h5>
+                                <pre><code>element.send_keys("text"/Keys.KEY_NAME)
+file_input.send_keys("/path/to/your/file.txt")</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- 浏览器操作 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">浏览器操作</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>处理浏览器弹窗</strong></h5>
+                                <pre><code>from selenium.webdriver.common.alert import Alert
+Alert(driver).accept()
+Alert(driver).dismiss()</code></pre>
+                                
+                                <h5 class="mt-3"><strong>切换窗口和标签页</strong></h5>
+                                <pre><code>window_handles = driver.window_handles
+driver.switch_to.window(window_handles[1])</code></pre>
+                                
+                                <h5 class="mt-3"><strong>处理 iframe</strong></h5>
+                                <pre><code>driver.switch_to.frame(iframe)
+driver.switch_to.default_content()切回主页面</code></pre>
+                                
+                                <h5 class="mt-3"><strong>Cookies 操作</strong></h5>
+                                <pre><code>cookies = driver.get_cookies()
+driver.add_cookie({"name": "test", "value": "123"})
+driver.delete_cookie("test")</code></pre>
+                                
+                                <h5 class="mt-3"><strong>执行 JS 代码并获取返回值</strong></h5>
+                                <pre><code>result = driver.execute_script("return document.title;")</code></pre>
+                                
+                                <h5 class="mt-3"><strong>截图</strong></h5>
+                                <pre><code>driver.get_screenshot_as_file('path/img_{}.png'.format(time))</code></pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 移动自动化 -->
+                    <section id="mobile" class="mt-5">
+                        <h1 class="mb-4"><i class="fas fa-mobile-alt me-2 text-info"></i>移动自动化</h1>
+                        
+                        <!-- Appium基础 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">Appium基础</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>...</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

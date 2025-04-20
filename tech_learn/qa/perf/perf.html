@@ -1,0 +1,359 @@
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>性能测试</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        .knowledge-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: bold;
+        }
+
+        .topic-badge {
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .diagram-img {
+            max-width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid px-0">
+        <div class="row gx-0">
+            <!-- 侧边栏导航 -->
+            <div class="col-md-2">
+                <div class="sidebar ps-3">
+                    <a href="javascript:history.back();" class="btn btn-light mb-3 w-100 text-start">
+                        <i class="fas fa-arrow-left me-2"></i>返回
+                    </a>
+                    <h4 class="mb-4 text-primary"><i class="fas fa-tachometer-alt me-2"></i>性能测试</h4>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#basics">基础</a>
+                            <ul class="nav nav-pills flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#overview">概述</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#metrics">指标</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#strategies">策略</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#process">流程</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#jmeter">JMeter</a>
+                            <ul class="nav nav-pills flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#basic-usage">基本使用</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#api-testing">接口测试</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#performance-testing">性能测试</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 主要内容 -->
+            <div class="col-md-10 pe-3">
+                <div class="content-section">
+                    <!-- 基础 -->
+                    <section id="basics">
+                        <h1 class="mb-4"><i class="fas fa-info-circle me-2 text-warning"></i>基础</h1>
+                        
+                        <!-- 概述 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">概述</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>目的</strong></h5>
+                                <ul>
+                                    <li>评估当前系统能力</li>
+                                    <li>寻找性能瓶颈，优化性能</li>
+                                    <li>评估是否满足未来需要</li>
+                                </ul>
+                                <h5 class="mt-3"><strong>与功能测试不同</strong></h5>
+                                <p>是否满足业务需求（焦点：时间 资源）</p>
+                            </div>
+                        </div>
+
+                        <!-- 指标 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">指标</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>响应时间</strong></h5>
+                                <p>从客户端发起请求开始，到客户端接收到结果的总时间（服务器处理时间+网络传输时间）</p>
+                                
+                                <h5 class="mt-3"><strong>并发数</strong></h5>
+                                <p>某一时刻同时向服务器发送的请求数</p>
+                                
+                                <h5 class="mt-3"><strong>吞吐量</strong></h5>
+                                <p>单位时间内处理的客户端请求数量</p>
+                                <p><strong>单位</strong></p>
+                                <ul>
+                                    <li>TPS每秒事务数：服务器每秒处理的事务请求数量（事务：即业务，页面上的一次操作，可能对应一个请求/多个请求）</li>
+                                    <li>QPS每秒查询数：服务器每秒处理的指定请求数量</li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>资源使用率</strong></h5>
+                                <p>系统各种资源的使用情况</p>
+                                
+                                <h5 class="mt-3"><strong>点击数</strong></h5>
+                                <p>所有的页面元素的请求总数量</p>
+                                
+                                <h5 class="mt-3"><strong>错误率</strong></h5>
+                                <p>系统在负载情况下业务失败的概率</p>
+                            </div>
+                        </div>
+
+                        <!-- 策略 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">策略</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>基准测试</strong></h5>
+                                <p>狭义：就是单用户测试。（单用户循环多次得到的数据）</p>
+                                <p>广义：建立基准系统环境变化后对比确定对性能的影响。不会单独存在，为综合场景测试提供参考依据。</p>
+                                
+                                <h5 class="mt-3"><strong>负载测试</strong></h5>
+                                <p>逐步增加系统负载，满足系统性能指标情况下，找出最大负载量</p>
+                                
+                                <h5 class="mt-3"><strong>稳定性测试</strong></h5>
+                                <p>正常负载下长时间持续进行测试</p>
+                                
+                                <h5 class="mt-3"><strong>并发测试</strong></h5>
+                                <p>极短时间内模拟多个用户或进程同时对系统进行并发访问</p>
+                                
+                                <h5 class="mt-3"><strong>压力测试</strong></h5>
+                                <p>极限负载下，查看系统在峰值情况下的容错能力和可恢复能力</p>
+                            </div>
+                        </div>
+
+                        <!-- 流程 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">流程</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>性能需求分析</li>
+                                    <li>性能测试计划</li>
+                                    <li>性能测试用例设计<br>
+                                        <img src="./case.png" alt="性能测试用例设计" class="diagram-img">
+                                    </li>
+                                    <li>性能测试执行和分析调优</li>
+                                    <li>性能测试报告</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- JMeter -->
+                    <section id="jmeter" class="mt-5">
+                        <h1 class="mb-4"><i class="fas fa-paper-plane me-2 text-success"></i>JMeter</h1>
+                        
+                        <!-- 基本使用 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">基本使用</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>元件和组件</strong></h5>
+                                <ul>
+                                    <li>元件：多个类似功能组件的容器（类似于类）<br>
+                                        <img src="./component.png" alt="元件" class="diagram-img">
+                                    </li>
+                                    <li>组件：容器中独立实现的某个功能（类似于方法）</li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>作用域和执行顺序</strong></h5>
+                                <p><strong>作用域</strong></p>
+                                <ul>
+                                    <li>取样器：执行核心，没有作用域</li>
+                                    <li>逻辑控制器：只对其子节点中的取样器和逻辑控制器起作用</li>
+                                    <li>其他元件：
+                                        <ul>
+                                            <li>如果是某个取样器的子节点，则该元件只对其父节点起作用</li>
+                                            <li>如果其父节点不是取样器，则其作用域是该元件父节点下的其他所有后代节点</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                                <p><strong>执行顺序</strong></p>
+                                <p>配置元件-前置处理-定时器-取样器-后置处理-断言-监听器</p>
+                                
+                                <p><strong>实例</strong></p>
+                                <img src="./order.png" alt="执行顺序" class="diagram-img">
+                                <p>定时1-请求1-定时1-定时2-请求2-定时1-定时3-请求3</p>
+                                
+                                <h5 class="mt-3"><strong>线程组</strong></h5>
+                                <p>控制JMeter用于执行测试的一组用户</p>
+                                <p><strong>分类</strong></p>
+                                <ul>
+                                    <li>线程组：并行时看返回速度，串行看顺序</li>
+                                    <li>setUp线程组：先执行</li>
+                                    <li>tearDown线程组：后执行</li>
+                                </ul>
+                                <p><strong>属性参数</strong></p>
+                                <img src="./thread.png" alt="线程组属性参数" class="diagram-img">
+                            </div>
+                        </div>
+
+                        <!-- 接口测试 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">接口测试</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>参数化</strong></h5>
+                                <p>使用不同的测试数据，调用相同的测试方法进行测试</p>
+                                <p><strong>实现方式</strong></p>
+                                <ul>
+                                    <li>用户定义的变量(全局变量)
+                                        <ul>
+                                            <li>添加：配置元件/</li>
+                                            <li>使用：${变量名}</li>
+                                        </ul>
+                                    </li>
+                                    <li>用户参数(同一组参数 不同用户/线程 不同值)
+                                        <ul>
+                                            <li>添加：前置处理器/</li>
+                                            <li>使用：${变量名}</li>
+                                        </ul>
+                                    </li>
+                                    <li>CSV(不同的用户/同一个用户多次循环 不同的值)
+                                        <ul>
+                                            <li>添加：配置元件/</li>
+                                            <li>使用：${变量名}</li>
+                                        </ul>
+                                    </li>
+                                    <li>函数
+                                        <ul>
+                                            <li>添加：选项/函数助手对话框/__counter</li>
+                                            <li>使用：${__counter(FALSE,)}</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>断言</strong></h5>
+                                <ul>
+                                    <li>响应断言：任何格式的响应数据（自动处理状态码）</li>
+                                    <li>JSON断言
+                                        <img src="./json.png" alt="JSON断言" class="diagram-img">
+                                    </li>
+                                    <li>持续时间断言：响应时间是否符合</li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>关联</strong></h5>
+                                <ul>
+                                    <li>正则表达式关联：提取任意格式的数据</li>
+                                    <li>XPath关联：提取HTML格式的数据</li>
+                                    <li>JSON关联</li>
+                                    <li>跨线程组关联：不能用提取器直接关联，需借助 JMeter 属性传递</li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>录制脚本</strong></h5>
+                                <img src="./record.png" alt="录制脚本" class="diagram-img">
+                                
+                                <h5 class="mt-3"><strong>直连数据库</strong></h5>
+                                <p><strong>使用场景</strong></p>
+                                <ul>
+                                    <li>用作请求参数化</li>
+                                    <li>用作结果断言</li>
+                                    <li>清理垃圾数据</li>
+                                    <li>准备测试数据</li>
+                                </ul>
+                                <p><strong>操作步骤</strong></p>
+                                <img src="./db.png" alt="直连数据库" class="diagram-img">
+                                
+                                <h5 class="mt-3"><strong>逻辑控制器</strong></h5>
+                                <ul>
+                                    <li>IF控制器</li>
+                                    <li>循环控制器：线程组循环次数与循环控制器：作用域不同</li>
+                                    <li>ForEach控制器</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 性能测试 -->
+                        <div class="knowledge-card card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">性能测试</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5><strong>定时器</strong></h5>
+                                <ul>
+                                    <li>同步定时器：阻塞线程，当在规定的时间内达到一定的线程数量，这些线程会在同一个时间点一起释放</li>
+                                    <li>常数吞吐量定时器：以分钟为单位按指定的吞吐量执行</li>
+                                    <li>固定定时器：添加在需要等待的HTTP请求的子节点下</li>
+                                </ul>
+                                
+                                <h5 class="mt-3"><strong>分布式</strong></h5>
+                                
+                                <h5 class="mt-3"><strong>测试报告</strong></h5>
+                                
+                                <h5 class="mt-3"><strong>性能测试图表</strong></h5>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
