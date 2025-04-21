@@ -12,7 +12,7 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body style="background-color: #f8f9fa;">
+<body style="background-color: #f5f7fa;" class="animate__animated animate__fadeIn">
 
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
@@ -46,16 +46,16 @@
 </nav>
 
 <!-- 头部 -->
-<div class="jumbotron text-center" style="margin-top: 90px; background: url('./assets/images/bg2.png') center/cover; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px 15px 15px 15px;">
+<div class="jumbotron text-center" style="margin-top: 90px; background: url('./assets/images/bg2.png') center/cover; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px 15px 15px 15px; width: 100%; max-width: 1100px; margin-left: auto; margin-right: auto;">
     <div class="container">
         <h1 class="display-4 text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">欢迎来到我的个人主页</h1>
     </div>
 </div>
 
 <!-- 主体内容 -->
-<div class="container mt-4" style="max-width: 1000px;">
+<div class="container mt-4" style="max-width: 1100px;">
     <!-- 个人简介 -->
-    <div class="card shadow-sm rounded-3" style="border: none;">
+    <div class="card shadow-lg rounded-4 animate__animated animate__fadeInUp" style="border: none; transition: all 0.3s ease; background: rgba(255,255,255,0.95);" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
         <div class="card-body">
             <h2 class="card-title">个人简介</h2>
             <p>你好，我是汪欣晨。</p>
@@ -68,22 +68,22 @@
     </div>
 
     <!-- 技能展示 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none;">
+    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
         <div class="card-body">
             <h2 class="card-title">技能展示</h2>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">深度学习(Python)</span>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">后端开发(Python)</span>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">前端开发(HTML/CSS/JavaScript+Vue.js)</span>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">Android开发(Java)</span>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">游戏开发(Unity+C#)</span>
+            <a href="projects/projects.html#research-work"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">深度学习(Python)</span></a>
+            <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">后端开发(Python)</span></a>
+            <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">前端开发(HTML/CSS/JavaScript+Vue.js)</span></a>
+            <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">Android开发(Java)</span></a>
+            <a href="projects/projects.html#game-development"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">游戏开发(Unity+C#)</span></a>
             <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">嵌入式开发(C/C++)</span>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">数字电路设计(Verilog)</span>
+            <a href="projects/projects.html#hardware-design"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">数字电路设计(Verilog)</span></a>
             <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">图像处理(Matlab)</span>
         </div>
     </div>
 
     <!-- 最近阅读 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none;">
+    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
         <div class="card-body">
             <h2 class="card-title">最近阅读</h2>
             <a href="./reading/extensive_reading_fis.html" target="_blank" class="btn btn-outline-primary">2024上半年科研泛读</a>
@@ -91,7 +91,7 @@
     </div>
 
     <!-- 项目经验 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none;">
+    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
         <div class="card-body">
             <h2 class="card-title">项目工作</h2>
             <a href="./projects/projects.html" class="btn btn-outline-primary">查看我的项目</a>
@@ -99,11 +99,11 @@
     </div>
 
     <!-- 社交链接 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none;">
+    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
         <div class="card-body">
             <h2 class="card-title">社交链接</h2>
             <div>
-                <a href="https://github.com/xinch3nwang" target="_blank" class="btn btn-outline-primary">GitHub</a>
+                <a href="https://github.com/xinch3nwang" target="_blank" class="btn btn-primary shadow-sm" style="transition: all 0.3s ease;  border: none;">GitHub <i class="fas fa-external-link-alt ms-1"></i></a>
             </div>
         </div>
     </div>

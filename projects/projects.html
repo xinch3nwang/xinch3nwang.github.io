@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,76 +11,293 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
-<!-- 导航栏 -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="../assets/images/logo.png" alt="个人logo" height="35" class="me-2">
-            <!-- <span class="font-weight-bold">汪欣晨</span> -->
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="../index.html">
-                        <i class="fas fa-home me-1"></i>首页
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3 active" href="#">
-                        <i class="fas fa-project-diagram me-1"></i>项目工作
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="../tech_learn/qa/qa.html">
-                        <i class="fas fa-code me-1"></i>技术学习
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- 头部内容 -->
-<div style="padding-top: 85px;">
-    <div class="container">
-        <div class="card shadow">
-            <div class="card-header bg-success text-white">
-                <h2 class="mb-0"><i class="fas fa-project-diagram me-2"></i>科研工作</h2>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="../assets/images/logo.png" alt="个人logo" height="35" class="me-2">
+                <!-- <span class="font-weight-bold">汪欣晨</span> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="../index.html">
+                            <i class="fas fa-home me-1"></i>首页
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 active" href="#">
+                            <i class="fas fa-project-diagram me-1"></i>项目工作
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" href="../tech_learn/qa/qa.html">
+                            <i class="fas fa-code me-1"></i>技术学习
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="card-body">
-                <div class="list-group list-group-flush">   
-                    <div class="list-group-item">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-3">Frequency-Guided Iterative Network for Image Steganography</h4>
-                            <span class="badge bg-warning text-white fs-6 align-self-start">中科院2区在投</span>
+        </div>
+    </nav>
+
+
+    <div style="padding-top: 85px;">
+        <!-- 科研工作卡片 -->
+        <div class="container">
+            <div class="card shadow" id="research-work">
+                <div class="card-header bg-success text-white">
+                    <h2 class="mb-0"><i class="fas fa-project-diagram me-2"></i>科研工作</h2>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-3">Frequency-Guided Iterative Network for Image Steganography</h4>
+                                <span class="badge bg-warning text-white fs-6 align-self-start">中科院2区在投</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">PyTorch</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Linux</span>
+                                <a href="https://github.com/xinch3nwang/FIS" target="_blank"
+                                    class="badge rounded-pill bg-dark text-white">
+                                    <i class="fab fa-github me-1"></i>源代码
+                                </a>
+                            </div>
+                            <p class="mb-2">频率引导的迭代图像隐写网络</p>
+                            <ul class="mb-3">
+                                <li>设计了迭代循环的图像隐写网络架构</li>
+                                <li>开发了频率扰动模块，将信息隐藏到高频域</li>
+                                <li>实现了轻量级注意力机制增强特征选择</li>
+                                <li>在Linux环境下完成模型开发与自动化测试</li>
+                            </ul>
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">摘要</h6>
+                                    <p class="card-text collapse-text"
+                                        style="-webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">
+                                        High-accuracy image steganography seeks to conceal secret binary messages within
+                                        a single cover image and recover them with minimal error. However, the pursuit
+                                        of accuracy often introduces distortions, such as noise and artifacts,
+                                        increasing the risk of detection. To cope with this issue, we propose an
+                                        innovative Frequency-guided Iterative network for secure image Steganography,
+                                        namely FIS, to minimize detectability while preserving visual quality in this
+                                        paper. FIS comprises four key components. First, a flexible iterative encoder,
+                                        implemented as a recurrent neural network, refines the cover image iteratively
+                                        to identify optimal pixel locations for data embedding. Second, a frequency
+                                        perturbation module strategically directs the hiding of secret information into
+                                        the high-frequency domain, effectively reducing detectability. Third, a decoder
+                                        incorporates a secure mechanism to obfuscate the output, providing robust
+                                        protection against unauthorized access. Finally, we introduce a lightweight and
+                                        effective attention module that enhances feature selection throughout the
+                                        network. Experimental results across multiple datasets demonstrate the
+                                        superiority of FIS over other state-of-the-art methods, showcasing its improved
+                                        recovery accuracy, hiding invisibility, and overall security.
+                                    </p>
+                                    <button class="btn btn-link p-0 toggle-text"
+                                        style="text-decoration: none;">显示更多</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
-                            <span class="badge rounded-pill bg-light text-dark me-2">PyTorch</span>
-                            <span class="badge rounded-pill bg-light text-dark me-2">Linux</span>
-                            <a href="https://github.com/xinch3nwang/FIS" target="_blank" class="badge rounded-pill bg-dark text-white">
-                                <i class="fab fa-github me-1"></i>源代码
-                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开发项目卡片 -->
+        <div class="container mt-4">
+            <div class="card shadow" id="development-projects">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0"><i class="fas fa-laptop-code me-2"></i>开发项目</h2>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-3">校园生活助手(Android客户端+服务端)</h4>
+                                <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge rounded-pill bg-light text-dark me-2">Java</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Android</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Django</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">SQLite&MySQl&Redis</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Channels</span>
+                                <a href="https://github.com/xinch3nwang/CampusLife" target="_blank"
+                                    class="badge rounded-pill bg-dark text-white">
+                                    <i class="fab fa-github me-1"></i>源代码
+                                </a>
+                            </div>
+                            <p class="mb-2">Android平台的校园生活助手APP，实现课程提醒、地图导航、学生交流等功能</p>
+                            <ul class="mb-3">
+                                <li>采用MVC设计模式开发</li>
+                                <li>使用Android Studio进行移动端开发</li>
+                                <li>Django、Channels、Rest Framework实现服务端</li>
+                                <li>支持SQLite、MySQL、Redis多种数据库</li>
+                            </ul>
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
+                                    <p class="card-text">
+                                        该项目是一个完整的校园生活助手APP，包含课程提醒、地图导航、学生交流等功能。采用MVC架构设计，前后端分离开发，使用RESTful
+                                        API，支持多种数据库，具有良好的扩展性和可维护性。</p>
+                                </div>
+                            </div>
                         </div>
-                        <p class="mb-2">频率引导的迭代图像隐写网络</p>
-                        <ul class="mb-3">
-                            <li>设计了迭代循环的图像隐写网络架构</li>
-                            <li>开发了频率扰动模块，将信息隐藏到高频域</li>
-                            <li>实现了轻量级注意力机制增强特征选择</li>
-                            <li>在Linux环境下完成模型开发与自动化测试</li>
-                        </ul>
-                        <div class="card bg-light mb-3">
-                            <div class="card-body">
-                                <h6 class="card-subtitle mb-2 text-muted">摘要</h6>
-                                <p class="card-text collapse-text" style="-webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">
-                                    High-accuracy image steganography seeks to conceal secret binary messages within a single cover image and recover them with minimal error. However, the pursuit of accuracy often introduces distortions, such as noise and artifacts, increasing the risk of detection. To cope with this issue, we propose an innovative Frequency-guided Iterative network for secure image Steganography, namely FIS, to minimize detectability while preserving visual quality in this paper. FIS comprises four key components. First, a flexible iterative encoder, implemented as a recurrent neural network, refines the cover image iteratively to identify optimal pixel locations for data embedding. Second, a frequency perturbation module strategically directs the hiding of secret information into the high-frequency domain, effectively reducing detectability. Third, a decoder incorporates a secure mechanism to obfuscate the output, providing robust protection against unauthorized access. Finally, we introduce a lightweight and effective attention module that enhances feature selection throughout the network. Experimental results across multiple datasets demonstrate the superiority of FIS over other state-of-the-art methods, showcasing its improved recovery accuracy, hiding invisibility, and overall security.
-                                </p>
-                                <button class="btn btn-link p-0 toggle-text" style="text-decoration: none;">显示更多</button>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between mt-3">
+                                <h4 class="mb-3">基于Django的轻量级购物平台</h4>
+                                <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Django</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">DRF</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">pyecharts</span>
+                                <a href="#" target="https://github.com/xinch3nwang/DjangoShop"
+                                    class="badge rounded-pill bg-dark text-white">
+                                    <i class="fab fa-github me-1"></i>源代码
+                                </a>
+                            </div>
+                            <p class="mb-2">基于Django构建的轻量级开源商城模块，可快速集成到现有项目中</p>
+                            <ul class="mb-3">
+                                <li>使用Django+DRF构建RESTful API</li>
+                                <li>集成pyecharts实现数据分析图表</li>
+                                <li>使用Pillow处理商品图片</li>
+                                <li>轻量级设计，依赖少，易于集成</li>
+                            </ul>
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
+                                    <p class="card-text">
+                                        该项目是一个轻量级的Django商城模块，包含商品管理、订单处理、用户权限等核心功能。采用DRF构建API，使用pyecharts实现销售数据分析图表，Pillow处理商品图片，代码结构清晰，易于二次开发和集成到现有项目中。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between mt-3">
+                                <h4 class="mb-3">基于Vue3的旅游网站前端项目</h4>
+                                <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge rounded-pill bg-light text-dark me-2">Vue3</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Vue Router 4</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Vite</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">JavaScript</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">CSS3</span>
+                                <a href="https://github.com/xinch3nwang/TravelWebsite-Vue" target="_blank"
+                                    class="badge rounded-pill bg-dark text-white">
+                                    <i class="fab fa-github me-1"></i>源代码
+                                </a>
+                            </div>
+                            <p class="mb-2">基于Vue3的旅游网站前端项目, 采用现代化的Vite构建与Vue3开发模式。</p>
+                            <ul class="mb-3">
+                                <li>使用Vue3 Composition API开发</li>
+                                <li>集成Vue Router 4实现多页面导航</li>
+                                <li>实现响应式布局，适配各种设备</li>
+                            </ul>
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
+                                    <p class="card-text">
+                                        该项目是一个完整的旅游网站前端实现，包含首页、目的地列表、景点详情和用户中心等模块。采用现代化的Vite构建与Vue3开发模式，代码结构清晰，性能优化良好，可作为Vue3学习的参考项目。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 硬件设计卡片 -->
+        <div class="container mt-4">
+            <div class="card shadow" id="hardware-design">
+                <div class="card-header bg-info text-white">
+                    <h2 class="mb-0"><i class="fas fa-microchip me-2"></i>硬件设计</h2>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-3">32位MIPS架构模型机硬件设计</h4>
+                                <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge rounded-pill bg-light text-dark me-2">Verilog</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Vivado</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">FPGA</span>
+                                <a href="https://github.com/xinch3nwang/32-bit-MIPS-model-computer" target="_blank"
+                                    class="badge rounded-pill bg-dark text-white">
+                                    <i class="fab fa-github me-1"></i>源代码
+                                </a>
+                            </div>
+                            <p class="mb-2">基于单总线结构的32位MIPS模型机设计</p>
+                            <ul class="mb-3">
+                                <li>32位数据总线与32位地址总线设计</li>
+                                <li>包含运算器、存储器、微程序控制器等模块</li>
+                                <li>32*32bit存储器容量设计</li>
+                                <li>32个通用寄存器，支持32位数据存储</li>
+                                <li>时序产生器生成时钟信号</li>
+                            </ul>
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">设计亮点</h6>
+                                    <p class="card-text">
+                                        该设计实现了完整的32位MIPS架构模型机，采用单总线结构，包含运算器、存储器、微程序控制器、时序产生器和通用寄存器等模块。运算器完成计算功能，存储器实现32*32bit存储容量，时序产生器生成时钟信号，32个通用寄存器支持32位数据存储。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏开发卡片 -->
+        <div class="container mt-4">
+            <div class="card shadow" id="game-development">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="mb-0"><i class="fas fa-gamepad me-2"></i>游戏开发</h2>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-3">动漫风FPS射击游戏</h4>
+                                <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="badge rounded-pill bg-light text-dark me-2">Unity</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">C#</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">3D建模</span>
+                                <span class="badge rounded-pill bg-light text-dark me-2">Shader</span>
+                                <a href="#" target="https://github.com/xinch3nwang/ShotTheMonster"
+                                    class="badge rounded-pill bg-dark text-white">
+                                    <i class="fab fa-github me-1"></i>源代码
+                                </a>
+                            </div>
+                            <p class="mb-2">基于Unity引擎开发的动漫风格第一人称射击游戏</p>
+                            <ul class="mb-3">
+                                <li>使用Unity URP渲染管线实现动漫风格渲染</li>
+                                <li>C#脚本实现游戏逻辑和交互</li>
+                                <li>自定义Shader增强视觉效果</li>
+                            </ul>
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
+                                    <p class="card-text">
+                                        该项目是一个完整的FPS游戏开发实践，包含角色控制、武器系统、敌人AI和关卡设计等功能。采用Unity引擎开发，使用C#编写游戏逻辑，通过自定义Shader实现独特的动漫风格视觉效果。
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,207 +305,28 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="container mt-4">
-    <!-- 开发项目卡片 -->
-    <div class="card shadow mt-4">
-        <div class="card-header bg-primary text-white">
-            <h2 class="mb-0"><i class="fas fa-laptop-code me-2"></i>开发项目</h2>
-        </div>
-        <div class="card-body">
-            <div class="list-group list-group-flush">
-                <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-3">校园生活助手(Android客户端+服务端)</h4>
-                        <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
-                    </div>
-                    <div class="mb-3">
-                        <span class="badge rounded-pill bg-light text-dark me-2">Java</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Android</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Django</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">SQLite&MySQl&Redis</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Channels</span>
-                        <a href="https://github.com/xinch3nwang/CampusLife" target="_blank" class="badge rounded-pill bg-dark text-white">
-                            <i class="fab fa-github me-1"></i>源代码
-                        </a>
-                    </div>
-                    <p class="mb-2">Android平台的校园生活助手APP，实现课程提醒、地图导航、学生交流等功能</p>
-                    <ul class="mb-3">
-                        <li>采用MVC设计模式开发</li>
-                        <li>使用Android Studio进行移动端开发</li>
-                        <li>Django、Channels、Rest Framework实现服务端</li>
-                        <li>支持SQLite、MySQL、Redis多种数据库</li>
-                    </ul>
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
-                            <p class="card-text">该项目是一个完整的校园生活助手APP，包含课程提醒、地图导航、学生交流等功能。采用MVC架构设计，前后端分离开发，使用RESTful API，支持多种数据库，具有良好的扩展性和可维护性。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between mt-3">
-                        <h4 class="mb-3">基于Django的轻量级购物平台</h4>
-                        <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
-                    </div>
-                    <div class="mb-3">
-                        <span class="badge rounded-pill bg-light text-dark me-2">Python</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Django</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">DRF</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">pyecharts</span>
-                        <a href="#" target="https://github.com/xinch3nwang/DjangoShop" class="badge rounded-pill bg-dark text-white">
-                            <i class="fab fa-github me-1"></i>源代码
-                        </a>
-                    </div>
-                    <p class="mb-2">基于Django构建的轻量级开源商城模块，可快速集成到现有项目中</p>
-                    <ul class="mb-3">
-                        <li>使用Django+DRF构建RESTful API</li>
-                        <li>集成pyecharts实现数据分析图表</li>
-                        <li>使用Pillow处理商品图片</li>
-                        <li>轻量级设计，依赖少，易于集成</li>
-                    </ul>
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
-                            <p class="card-text">该项目是一个轻量级的Django商城模块，包含商品管理、订单处理、用户权限等核心功能。采用DRF构建API，使用pyecharts实现销售数据分析图表，Pillow处理商品图片，代码结构清晰，易于二次开发和集成到现有项目中。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between mt-3">
-                        <h4 class="mb-3">基于Vue3的旅游网站前端项目</h4>
-                        <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
-                    </div>
-                    <div class="mb-3">
-                        <span class="badge rounded-pill bg-light text-dark me-2">Vue3</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Vue Router 4</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Vite</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">JavaScript</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">CSS3</span>
-                        <a href="https://github.com/xinch3nwang/TravelWebsite-Vue" target="_blank" class="badge rounded-pill bg-dark text-white">
-                            <i class="fab fa-github me-1"></i>源代码
-                        </a>
-                    </div>
-                    <p class="mb-2">基于Vue3的旅游网站前端项目, 采用现代化的Vite构建与Vue3开发模式。</p>
-                    <ul class="mb-3">
-                        <li>使用Vue3 Composition API开发</li>
-                        <li>集成Vue Router 4实现多页面导航</li>
-                        <li>实现响应式布局，适配各种设备</li>
-                    </ul>
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
-                            <p class="card-text">该项目是一个完整的旅游网站前端实现，包含首页、目的地列表、景点详情和用户中心等模块。采用现代化的Vite构建与Vue3开发模式，代码结构清晰，性能优化良好，可作为Vue3学习的参考项目。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- 硬件设计卡片 -->
-<div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-header bg-info text-white">
-            <h2 class="mb-0"><i class="fas fa-microchip me-2"></i>硬件设计</h2>
-        </div>
-        <div class="card-body">
-            <div class="list-group list-group-flush">
-                <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-3">32位MIPS架构模型机硬件设计</h4>
-                        <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
-                    </div>
-                    <div class="mb-3">
-                        <span class="badge rounded-pill bg-light text-dark me-2">Verilog</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Vivado</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">FPGA</span>
-                        <a href="https://github.com/xinch3nwang/32-bit-MIPS-model-computer" target="_blank" class="badge rounded-pill bg-dark text-white">
-                            <i class="fab fa-github me-1"></i>源代码
-                        </a>
-                    </div>
-                    <p class="mb-2">基于单总线结构的32位MIPS模型机设计</p>
-                    <ul class="mb-3">
-                        <li>32位数据总线与32位地址总线设计</li>
-                        <li>包含运算器、存储器、微程序控制器等模块</li>
-                        <li>32*32bit存储器容量设计</li>
-                        <li>32个通用寄存器，支持32位数据存储</li>
-                        <li>时序产生器生成时钟信号</li>
-                    </ul>
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">设计亮点</h6>
-                            <p class="card-text">该设计实现了完整的32位MIPS架构模型机，采用单总线结构，包含运算器、存储器、微程序控制器、时序产生器和通用寄存器等模块。运算器完成计算功能，存储器实现32*32bit存储容量，时序产生器生成时钟信号，32个通用寄存器支持32位数据存储。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 游戏开发卡片 -->
-<div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-header bg-danger text-white">
-            <h2 class="mb-0"><i class="fas fa-gamepad me-2"></i>游戏开发</h2>
-        </div>
-        <div class="card-body">
-            <div class="list-group list-group-flush">
-                <div class="list-group-item">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-3">动漫风FPS射击游戏</h4>
-                        <span class="badge bg-success text-white fs-6 align-self-start">已完成</span>
-                    </div>
-                    <div class="mb-3">
-                        <span class="badge rounded-pill bg-light text-dark me-2">Unity</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">C#</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">3D建模</span>
-                        <span class="badge rounded-pill bg-light text-dark me-2">Shader</span>
-                        <a href="#" target="https://github.com/xinch3nwang/ShotTheMonster" class="badge rounded-pill bg-dark text-white">
-                            <i class="fab fa-github me-1"></i>源代码
-                        </a>
-                    </div>
-                    <p class="mb-2">基于Unity引擎开发的动漫风格第一人称射击游戏</p>
-                    <ul class="mb-3">
-                        <li>使用Unity URP渲染管线实现动漫风格渲染</li>
-                        <li>C#脚本实现游戏逻辑和交互</li>
-                        <li>自定义Shader增强视觉效果</li>
-                    </ul>
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">项目亮点</h6>
-                            <p class="card-text">该项目是一个完整的FPS游戏开发实践，包含角色控制、武器系统、敌人AI和关卡设计等功能。采用Unity引擎开发，使用C#编写游戏逻辑，通过自定义Shader实现独特的动漫风格视觉效果。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
-<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.toggle-text').forEach(button => {
-            button.addEventListener('click', function() {
-                const textElement = this.previousElementSibling;
-                if (textElement.style.webkitLineClamp === '3') {
-                    textElement.style.webkitLineClamp = 'unset';
-                    this.textContent = '显示更少';
-                } else {
-                    textElement.style.webkitLineClamp = '3';
-                    this.textContent = '显示更多';
-                }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.toggle-text').forEach(button => {
+                button.addEventListener('click', function () {
+                    const textElement = this.previousElementSibling;
+                    if (textElement.style.webkitLineClamp === '3') {
+                        textElement.style.webkitLineClamp = 'unset';
+                        this.textContent = '显示更少';
+                    } else {
+                        textElement.style.webkitLineClamp = '3';
+                        this.textContent = '显示更多';
+                    }
+                });
             });
         });
-    });
-</script>
-    
+    </script>
+
 </body>
+
 </html>
