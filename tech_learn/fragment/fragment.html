@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>深度学习</title>
+        <title>零碎知识</title>
         <!-- Bootstrap CSS CDN -->
         <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
         <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -60,10 +60,10 @@
                             <a class="nav-link" href="../frontend/frontend.html">前端开发</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">深度学习</a>
+                            <a class="nav-link" href="../ai/ai.html">深度学习</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../fragment/fragment.html">零碎知识</a>
+                            <a class="nav-link active" href="#">零碎知识</a>
                         </li>
                     </ul>
                 </div>
@@ -84,30 +84,52 @@
                     </div>
                 </div>
                 <div class="col-md-10">
-                    <h1 class="text-center py-3">深度学习</h1>
+                    <h1 class="text-center py-3">零碎知识</h1>
                     <div id="posts-container">
                         <!-- Blog posts will be loaded here -->
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- jQuery and Bootstrap JS CDNs -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
         <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Marked.js for markdown parsing -->
+        <script src="https://g.alicdn.com/code/lib/marked/15.0.4/marked.min.js"></script>
         <!-- Back to top button -->
         <button id="back-to-top" class="btn btn-primary rounded-circle position-fixed"
             style="bottom: 20px; right: 20px; display: none; width: 50px; height: 50px;">
             <i class="fas fa-arrow-up"></i>
         </button>
         <script>
+            // Modal for displaying markdown content
+            const markdownModal = `
+            <div class="modal fade" id="markdownModal" tabindex="-1" aria-labelledby="markdownModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="markdownModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="markdownContent">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            $('body').append(markdownModal);
+
             $(document).ready(function () {
-                // Load blog posts from JSON
-                $.getJSON('aiposts.json', function (data) {
+                // Load blog posts from JSON    
+                $.getJSON('fragposts.json', function (data) {
                     data.forEach(function (post) {
                         const postHtml = `
                     <div class="col-md-12 mb-4" id="post-${post.title.toLowerCase().replace(/\s+/g, '-')}">
-                        <a href="${post.link || '#'}" class="card-link text-decoration-none">
+                        <a href="#" class="card-link text-decoration-none" data-md-link="${post.link || ''}">
                             <div class="card h-100 shadow-sm" style="transition: all 0.3s ease;">
                                 <div class="card-body">
                                     <h5 class="card-title">${post.title}</h5>
@@ -139,6 +161,21 @@
                         }
                     </style>`;
                         $('#posts-container').append(postHtml);
+
+                        // Handle click event for markdown content
+                        $(`#post-${post.title.toLowerCase().replace(/\s+/g, '-')} a`).click(function(e) {
+                            e.preventDefault();
+                            const mdLink = $(this).data('md-link');
+                            if(mdLink) {
+                                $.get(mdLink, function(data) {
+                                    $('#markdownModalLabel').text(post.title);
+                                    $('#markdownContent').html(marked.parse(data));
+                                    new bootstrap.Modal(document.getElementById('markdownModal')).show();
+                                }).fail(function() {
+                                    alert('无法加载Markdown文件');
+                                });
+                            }
+                        });
 
                         // Add post title to sidebar
                         const sidebarItem = `<a href="#post-${post.title.toLowerCase().replace(/\s+/g, '-')}" class="list-group-item list-group-item-action" onclick="event.preventDefault(); document.getElementById('post-${post.title.toLowerCase().replace(/\s+/g, '-')}').scrollIntoView({behavior: 'smooth'});">${post.title}</a>`;

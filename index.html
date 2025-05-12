@@ -1,135 +1,135 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页</title>
-    <!-- 引入 Bootstrap 核心样式 -->
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- Bootstrap CSS CDN -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body style="background-color: #f5f7fa;" class="animate__animated animate__fadeIn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>个人主页</title>
+        <!-- 引入 Bootstrap 核心样式 -->
+        <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+        <!-- Bootstrap CSS CDN -->
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body style="background-color: #f5f7fa;" class="animate__animated animate__fadeIn">
+        <!-- 导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="./assets/images/logo.png" alt="个人logo" height="35" class="me-2">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 active" href="index.html">
+                                <i class="fas fa-home fa-sm me-1"></i> 首页
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" href="./projects/projects.html">
+                                <i class="fas fa-project-diagram fa-sm me-1"></i> 项目工作
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" href="./tech_learn/qa/qa.html">
+                                <i class="fas fa-code fa-sm me-1"></i> 技术学习
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" href="./civil_exam/index.html">
+                                <i class="fas fa-graduation-cap fa-sm me-1"></i> 公考
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-<!-- 导航栏 -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="./assets/images/logo.png" alt="个人logo" height="35" class="me-2">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link px-3 active" href="index.html">
-                        <i class="fas fa-home fa-sm me-1"></i> 首页
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="./projects/projects.html">
-                        <i class="fas fa-project-diagram fa-sm me-1"></i> 项目工作
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="./tech_learn/qa/qa.html">
-                        <i class="fas fa-code fa-sm me-1"></i> 技术学习
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link px-3" href="./civil_exam/index.html">
-                        <i class="fas fa-graduation-cap fa-sm me-1"></i> 公考
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- 头部 -->
-<div class="jumbotron text-center" style="margin-top: 90px; background: url('./assets/images/bg2.png') center/cover; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px 15px 15px 15px; width: 100%; max-width: 1100px; margin-left: auto; margin-right: auto;">
-    <div class="container">
-        <h1 class="display-4 text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">欢迎来到我的个人主页</h1>
-    </div>
-</div>
-
-<!-- 主体内容 -->
-<div class="container mt-4" style="max-width: 1100px;">
-    <!-- 个人简介 -->
-    <div class="card shadow-lg rounded-4 animate__animated animate__fadeInUp" style="border: none; transition: all 0.3s ease; background: rgba(255,255,255,0.95);" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
-        <div class="card-body">
-            <h2 class="card-title">个人简介</h2>
-            <p>你好，我是汪欣晨。</p>
-            <hr>
-            <h3 class="card-subtitle mb-2 text-muted">联系方式</h3>
-            <ul class="list-unstyled">
-                <li>Email: <a href="mailto:xinchen0709@foxmail.com">xinchen0709@foxmail.com</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- 技能展示 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
-        <div class="card-body">
-            <h2 class="card-title">技能展示</h2>
-            <a href="projects/projects.html#research-work"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">深度学习(Python)</span></a>
-            <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">后端开发(Python)</span></a>
-            <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">前端开发(HTML/CSS/JavaScript+Vue.js)</span></a>
-            <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">Android开发(Java)</span></a>
-            <a href="projects/projects.html#game-development"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">游戏开发(Unity+C#)</span></a>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">嵌入式开发(C/C++)</span>
-            <a href="projects/projects.html#hardware-design"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">数字电路设计(Verilog)</span></a>
-            <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">图像处理(Matlab)</span>
-        </div>
-    </div>
-
-    <!-- 最近阅读 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
-        <div class="card-body">
-            <h2 class="card-title">最近阅读</h2>
-            <a href="./reading/extensive_reading_fis.html" target="_blank" class="btn btn-outline-primary">2024上半年科研泛读</a>
-        </div>
-    </div>
-
-    <!-- 项目经验 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
-        <div class="card-body">
-            <h2 class="card-title">项目工作</h2>
-            <a href="./projects/projects.html" class="btn btn-outline-primary">查看我的项目</a>
-        </div>
-    </div>
-
-    <!-- 社交链接 -->
-    <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
-        <div class="card-body">
-            <h2 class="card-title">社交链接</h2>
-            <div>
-                <a href="https://github.com/xinch3nwang" target="_blank" class="btn btn-primary shadow-sm" style="transition: all 0.3s ease;  border: none;">GitHub <i class="fas fa-external-link-alt ms-1"></i></a>
+        <!-- 头部 -->
+        <div class="jumbotron text-center" style="margin-top: 90px; background: url('./assets/images/bg2.png') center/cover; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 15px 15px 15px 15px; width: 100%; max-width: 1100px; margin-left: auto; margin-right: auto;">
+            <div class="container">
+                <h1 class="display-4 text-white" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">欢迎来到我的个人主页</h1>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- 页脚 -->
-<footer class="bg-light text-center py-3 mt-4" style="box-shadow: 0 -5px 10px rgba(0,0,0,0.05);">
-    <div class="container">
-        <p class="text-muted">&copy; 2025 汪欣晨. All Rights Reserved.</p>
-    </div>
-</footer>
+        <!-- 主体内容 -->
+        <div class="container mt-4" style="max-width: 1100px;">
+            <!-- 个人简介 -->
+            <div class="card shadow-lg rounded-4 animate__animated animate__fadeInUp" style="border: none; transition: all 0.3s ease; background: rgba(255,255,255,0.95);" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
+                <div class="card-body">
+                    <h2 class="card-title">个人简介</h2>
+                    <p>你好，我是汪欣晨。</p>
+                    <hr>
+                    <h3 class="card-subtitle mb-2 text-muted">联系方式</h3>
+                    <ul class="list-unstyled">
+                        <li>Email: <a href="mailto:xinchen0709@foxmail.com">xinchen0709@foxmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
 
-<!-- 引入 Bootstrap 核心JavaScript 文件 -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    // 随机选择背景图片
-    const bgImages = ['bg0.png', 'bg1.png', 'bg2.png'];
-    const randomBg = bgImages[Math.floor(Math.random() * bgImages.length)];
-    document.querySelector('.jumbotron').style.backgroundImage = `url('./assets/images/${randomBg}')`;
-</script>
-</body>
+            <!-- 技能展示 -->
+            <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
+                <div class="card-body">
+                    <h2 class="card-title">技能展示</h2>
+                    <a href="projects/projects.html#research-work"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">深度学习(Python)</span></a>
+                    <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">后端开发(Python)</span></a>
+                    <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">前端开发(HTML/CSS/JavaScript+Vue.js)</span></a>
+                    <a href="projects/projects.html#development-projects"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">Android开发(Java)</span></a>
+                    <a href="projects/projects.html#game-development"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">游戏开发(Unity+C#)</span></a>
+                    <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">嵌入式开发(C/C++)</span>
+                    <a href="projects/projects.html#hardware-design"><span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">数字电路设计(Verilog)</span></a>
+                    <span class="badge rounded-pill bg-light text-dark border border-secondary me-2 mb-2" style="font-weight: normal;">图像处理(Matlab)</span>
+                </div>
+            </div>
+
+            <!-- 最近阅读 -->
+            <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
+                <div class="card-body">
+                    <h2 class="card-title">最近阅读</h2>
+                    <a href="./reading/extensive_reading_fis.html" target="_blank" class="btn btn-outline-primary">2024上半年科研泛读</a>
+                </div>
+            </div>
+
+            <!-- 项目经验 -->
+            <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
+                <div class="card-body">
+                    <h2 class="card-title">项目工作</h2>
+                    <a href="./projects/projects.html" class="btn btn-outline-primary">查看我的项目</a>
+                </div>
+            </div>
+
+            <!-- 社交链接 -->
+            <div class="card shadow-sm rounded-3 mt-3" style="border: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'; this.style.zIndex='100'" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.zIndex=''" >
+                <div class="card-body">
+                    <h2 class="card-title">社交链接</h2>
+                    <div>
+                        <a href="https://github.com/xinch3nwang" target="_blank" class="btn btn-primary shadow-sm" style="transition: all 0.3s ease;  border: none;">GitHub <i class="fas fa-external-link-alt ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="bg-light text-center py-3 mt-4" style="box-shadow: 0 -5px 10px rgba(0,0,0,0.05);">
+            <div class="container">
+                <p class="text-muted">&copy; 2025 汪欣晨. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+        <!-- 引入 Bootstrap 核心JavaScript 文件 -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+        <script>
+            // 随机选择背景图片
+            const bgImages = ['bg0.png', 'bg1.png', 'bg2.png'];
+            const randomBg = bgImages[Math.floor(Math.random() * bgImages.length)];
+            document.querySelector('.jumbotron').style.backgroundImage = `url('./assets/images/${randomBg}')`;
+        </script>
+    </body>
 </html>
