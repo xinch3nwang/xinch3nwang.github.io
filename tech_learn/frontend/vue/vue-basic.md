@@ -845,7 +845,7 @@ rawHtml = '<span style="color: red">This should be red.</span>'
 <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
 
-![image-20241221150051535](D:\Learning\Frontend\Note\image-20241221150051535.png)
+![image-20241221150051535](image-20241221150051535.png)
 
 #### v-bind
 

@@ -46,7 +46,7 @@ const currentView = computed(() => {
 
 ### Vue Router
 
-[CheatSheet](D:\Learning\Frontend\Note\Vue-Router-Cheat-Sheet.pdf)
+[CheatSheet](Vue-Router-Cheat-Sheet.pdf)
 
 
 
@@ -887,7 +887,7 @@ export function useCount() {
 
 ### [Pinia](https://pinia.vuejs.org/zh/)
 
-[CheatSheet]("D:\Learning\Frontend\Note\Pinia-Cheat-Sheet.pdf")
+[CheatSheet]("Pinia-Cheat-Sheet.pdf")
 
 Store (如 Pinia) 是一个保存状态和业务逻辑的实体，它并不与你的组件树绑定。换句话说，**它承载着全局状态**。它有点像一个永远存在的组件，每个组件都可以读取和写入它。它有三个概念，[state](https://pinia.vuejs.org/zh/core-concepts/state.html)、[getter](https://pinia.vuejs.org/zh/core-concepts/getters.html) 和 [action](https://pinia.vuejs.org/zh/core-concepts/actions.html)。一个 Store 应该包含可以在整个应用中访问的数据。这包括在许多地方使用的数据，例如显示在导航栏中的用户信息，以及需要通过页面保存的数据，例如一个非常复杂的多步骤表单。
 

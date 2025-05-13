@@ -300,7 +300,7 @@ string.endsWith(searchvalue, length)  // 如果字符串前length个字母以指
 
 #### 类型转换
 
-![image-20241209153353768](D:\Learning\Frontend\Note\image-20241209153353768.png)
+![image-20241209153353768](image-20241209153353768.png)
 
 
 
@@ -787,7 +787,7 @@ for (const num of myNumbers) {
 
 Set（集合）是一组唯一值的集合
 
-![image-20241212195552105](D:\Learning\Frontend\Note\image-20241212195552105.png)
+![image-20241212195552105](image-20241212195552105.png)
 
 ```js
 // values() 方法返回包含 Set 中所有值的 Iterator 对象, keys() 返回与 values() 相同的结果
@@ -808,7 +808,7 @@ for (const entry of iterator) {
 
 Map 保存键值对，其中键可以是任何数据类型。Map 会记住键的原始插入顺序。
 
-![image-20241212205042499](D:\Learning\Frontend\Note\image-20241212205042499.png)
+![image-20241212205042499](image-20241212205042499.png)
 
 JavaScript 对象与映射之间的差异：
 
@@ -896,9 +896,9 @@ d.toUTCString();
 d.toDateString();
 ```
 
-![image-20241210001026680](D:\Learning\Frontend\Note\image-20241210001026680.png)
+![image-20241210001026680](image-20241210001026680.png)
 
-![image-20241210001119098](D:\Learning\Frontend\Note\image-20241210001119098.png)
+![image-20241210001119098](image-20241210001119098.png)
 
 
 
@@ -1128,9 +1128,9 @@ alert( 0 == '' ); // true
 
 ### 数学Math
 
-![image-20241209000550549](D:\Learning\Frontend\Note\image-20241209000550549.png)
+![image-20241209000550549](image-20241209000550549.png)
 
-![image-20241209000607408](D:\Learning\Frontend\Note\image-20241209000607408.png)
+![image-20241209000607408](image-20241209000607408.png)
 
 
 
@@ -1267,9 +1267,9 @@ name 属性可返回六个不同的值：
 /pattern/modifiers;
 ```
 
-![image-20241210154036244](D:\Learning\Frontend\Note\image-20241210154036244.png)
+![image-20241210154036244](image-20241210154036244.png)
 
-![image-20241210154058074](D:\Learning\Frontend\Note\image-20241210154058074.png)
+![image-20241210154058074](image-20241210154058074.png)
 
 #### RegExp 对象
 
