@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面试准备</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .card-header {
+            cursor: pointer;
+            border-radius: 0 !important;
+        }
+
+        .card {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            border: 1px solid #dee2e6;
+        }
+
+        .mode-selector {
+            margin-bottom: 5px;
+        }
+        
+        .col-md-6:first-child {
+            padding-right: 1px;
+        }
+        
+        .col-md-6:last-child {
+            padding-left: 1px;
+        }
+        
+        .row {
+            border-radius: 0 !important;
+        }
+        
+        .form-select {
+            border-radius: 0 !important;
+        }
+
+        #nav {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            z-index: 1000;
+            box-shadow: none;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .list-group-item {
+            border-radius: 0 !important;
+        }
+
+        #back-to-top {
+            border-radius: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-4">
+        <h1 class="text-center mb-4"><i class="fas fa-user-tie me-2"></i>面试准备</h1>
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+            <i class="fas fa-arrow-right me-2"></i>去模拟面试
+            <a href="mock.html" class="alert-link">点击这里</a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                style="transform: scale(0.7);"></button>
+        </div>
+        <div id="nav">
+            <div class="row mode-selector">
+                <div class="col-md-6">
+                    <select class="form-select" id="mode-select">
+                        <option value="study">学习模式</option>
+                        <option value="recite">背诵模式</option>
+                        <option value="random">随机抽查(10题)</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select" id="bank-select">
+                        <option value="qa">软件测试题库</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="list-group list-group-horizontal-md" id="category-nav">
+                        <a href="#" class="list-group-item list-group-item-action active" data-category="all">全部</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="questions-container"></div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="btn btn-primary rounded-circle position-fixed"
+        style="bottom: 20px; right: 20px; display: none; width: 50px; height: 50px;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        $(document).ready(function () {
+            // Back to top button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            
+            $('#back-to-top').click(function() {
+                $('html, body').animate({scrollTop: 0}, 'smooth');
+                return false;
+            });
+            
+            loadQuestions('qa', 'study');
+
+            $('#mode-select').change(function () {
+                const mode = $(this).val();
+                const bank = $('#bank-select').val();
+                loadQuestions(bank, mode);
+            });
+
+            $('#bank-select').change(function () {
+                const bank = $(this).val();
+                const mode = $('#mode-select').val();
+                loadQuestions(bank, mode);
+            });
+        });
+
+        function loadQuestions(bank, mode) {
+            $.getJSON(`./question_bank/${bank}.json`, function (data) {
+                let questions = data;
+
+                if (mode === 'random') {
+                    // 随机抽取10题
+                    questions = shuffleArray(data).slice(0, 10);
+                }
+
+                // 动态生成分类导航
+                const categories = [...new Set(data.map(q => q.category || 'basic'))];
+                let navHtml = '<a href="#" class="list-group-item list-group-item-action active" data-category="all">全部</a>';
+                categories.forEach(cat => {
+                    navHtml += `<a href="#" class="list-group-item list-group-item-action" data-category="${cat}">${cat}</a>`;
+                });
+                $('#category-nav').html(navHtml);
+
+                renderQuestions(questions, mode);
+
+                // 初始化分类导航点击事件
+                $('#category-nav a').click(function (e) {
+                    e.preventDefault();
+                    $('#category-nav a').removeClass('active');
+                    $(this).addClass('active');
+
+                    const category = $(this).data('category');
+                    if (category === 'all') {
+                        $('.card').show();
+                    } else {
+                        $('.card').hide();
+                        $(`.card[data-category="${category}"]`).show();
+                    }
+                });
+            }).fail(function () {
+                $('#questions-container').html('<div class="alert alert-danger">加载题库失败</div>');
+            });
+        }
+
+        function renderQuestions(questions, mode) {
+            let html = '';
+
+            questions.forEach((q, index) => {
+                const showAnswer = mode === 'study' || mode === 'simulate';
+
+                html += `
+                <div class="card mb-3" data-category="${q.category || 'basic'}">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#answer-${index}">
+                        <h5 class="mb-0">${q.question} <i class="fas fa-chevron-down float-end" data-bs-toggle="collapse" data-bs-target="#answer-${index}"></i></h5>
+                    </div>
+                    <div id="answer-${index}" class="collapse ${showAnswer ? 'show' : ''}">
+                        <div class="card-body">
+                            <p>${q.answer}</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+
+            $('#questions-container').html(html);
+        }
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+    </script>
+</body>
+
+</html>

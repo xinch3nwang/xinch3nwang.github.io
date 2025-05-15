@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本朗读工具</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .btn-speak {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-stop {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4"><i class="fas fa-volume-up me-2"></i>文本朗读工具</h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="voiceSelect" class="form-label">选择语音</label>
+                    <select id="voiceSelect" class="form-select"></select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="fileInput" class="form-label">可上传.txt文件</label>
+                    <input type="file" id="fileInput" class="form-control" accept=".txt,.text">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="textInput" class="form-label">输入文本</label>
+                    <textarea class="form-control" id="textInput" rows="5" placeholder="请输入要朗读的文本..."></textarea>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="rate" class="form-label">语速: <span id="rateValue">1</span></label>
+                    <input type="range" class="form-range" min="0.5" max="2" step="0.1" id="rate" value="1">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="pitch" class="form-label">音调: <span id="pitchValue">1</span></label>
+                    <input type="range" class="form-range" min="0.5" max="2" step="0.1" id="pitch" value="1">
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button id="speakButton" class="btn btn-speak me-md-2">
+                        <i class="fas fa-play me-1"></i>朗读
+                    </button>
+                    <button id="stopButton" class="btn btn-stop">
+                        <i class="fas fa-stop me-1"></i>停止
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const voiceSelect = document.getElementById('voiceSelect');
+            const textInput = document.getElementById('textInput');
+            const fileInput = document.getElementById('fileInput');
+            
+            // 文件上传处理
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    textInput.value = e.target.result;
+                };
+                reader.readAsText(file);
+            });
+            const rate = document.getElementById('rate');
+            const pitch = document.getElementById('pitch');
+            const rateValue = document.getElementById('rateValue');
+            const pitchValue = document.getElementById('pitchValue');
+            const speakButton = document.getElementById('speakButton');
+            const stopButton = document.getElementById('stopButton');
+            
+            let voices = [];
+            let synth = window.speechSynthesis;
+            
+            // 更新语音列表
+            function populateVoiceList() {
+                voices = synth.getVoices();
+                voiceSelect.innerHTML = '';
+                
+                voices.forEach(voice => {
+                    const option = document.createElement('option');
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    option.setAttribute('data-lang', voice.lang);
+                    option.setAttribute('data-name', voice.name);
+                    voiceSelect.appendChild(option);
+                });
+            }
+            
+            // 语音列表加载
+            populateVoiceList();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = populateVoiceList;
+            }
+            
+            // 朗读文本
+            speakButton.addEventListener('click', function() {
+                if (textInput.value !== '') {
+                    const utterance = new SpeechSynthesisUtterance(textInput.value);
+                    const selectedOption = voiceSelect.selectedOptions[0];
+                    
+                    if (selectedOption) {
+                        const selectedVoice = voices.find(voice => 
+                            voice.name === selectedOption.getAttribute('data-name'));
+                        if (selectedVoice) {
+                            utterance.voice = selectedVoice;
+                        }
+                    }
+                    
+                    utterance.rate = rate.value;
+                    utterance.pitch = pitch.value;
+                    
+                    synth.speak(utterance);
+                }
+            });
+            
+            // 停止朗读
+            stopButton.addEventListener('click', function() {
+                synth.cancel();
+            });
+            
+            // 更新滑块显示值
+            rate.addEventListener('input', function() {
+                rateValue.textContent = rate.value;
+            });
+            
+            pitch.addEventListener('input', function() {
+                pitchValue.textContent = pitch.value;
+            });
+        });
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
