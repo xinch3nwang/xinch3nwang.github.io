@@ -9,6 +9,36 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<style>
+  .recommended-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(45deg, #ff4b4b, #ff8f8f);
+    padding: 5px 10px;
+    border-radius: 15px;
+    color: white;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .recommended-badge i {
+    margin-right: 5px;
+  }
+  .glow-border {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,0,0,0.3), transparent);
+    animation: glow 3s linear infinite;
+  }
+  @keyframes glow {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+</style>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
@@ -55,13 +85,18 @@
     <main class="container mt-5 pt-5">
         <div class="row g-4">
             <div class="col-md-6">
-                <div class="card h-100 shadow-sm" style="transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 15px rgba(40,167,69,0.5)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0.5rem 1rem rgba(0, 0, 0, 0.15)'" onclick="window.open('interview/interview.html', '_blank')">
+                <div class="card h-100 shadow-sm" style="transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 15px rgba(40,167,69,0.5)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0.5rem 1rem rgba(0, 0, 0, 0.15)'" onclick="window.open('interview/interview.html', '_blank')">
+            <div class="recommended-badge">
+              <i class="fas fa-star"></i>
+              <span>推荐</span>
+            </div>
+            <div class="glow-border"></div>
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fas fa-comments fa-2x text-primary me-3"></i>
                             <h3 class="card-title mb-0">面试准备</h3>
                         </div>
-                        <p class="card-text">通过提供面试题学习/模拟面试场景，帮助您更好地准备面试。</p>
+                        <p class="card-text">通过提供面试题学习/视频面试模拟，帮助您更好地准备面试。</p>
                     </div>
                 </div>
             </div>
