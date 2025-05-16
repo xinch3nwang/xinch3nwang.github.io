@@ -2,6 +2,15 @@
 
 在前后端分离的项目中，使用 **JWT（JSON Web Token）** 进行身份认证是一种常见的方案。
 
+JWT结构：
+
+![JWT结构](./jwt.png)
+
+JWT流程：
+
+![JWT流程](./jwt1.png)
+
+
 以Django为例， **`djangorestframework-simplejwt`** 是 Django REST Framework (DRF) 中一个流行的 JWT 实现库。以下是 **JWT 认证的完整流程及前后端协作方式**：
 
 ---

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频来电</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #1a1a1a, #121212);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .call-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem 3rem;
+            border-radius: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.2);
+        }
+
+        .call-icon {
+            position: relative;
+            background: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+            font-size: 60px;
+            width: 120px;
+            height: 120px;
+            border-radius: 100%;
+            border: 2px solid rgba(0, 123, 255, 0.2);
+            animation: anim 2s ease-in infinite, vibration 2s ease-in infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes anim {
+            0% {
+                box-shadow: 0 1px 0 4px #ffffff;
+            }
+
+            10% {
+                box-shadow: 0 1px 0 8px rgba(0, 123, 255, 1);
+            }
+
+            25% {
+                box-shadow: 0 1px 0 12px rgba(0, 123, 255, 0.5), 0 1px 0 16px rgba(0, 123, 255, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 2px 5px 10px rgba(0, 123, 255, 0.7), 0 2px 5px 23px rgba(0, 123, 255, 0.2);
+            }
+        }
+
+        @keyframes vibration {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(20deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            75% {
+                transform: rotate(-15deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .answer-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: linear-gradient(45deg, #28a745, #1e7e34);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .answer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .answer-btn:hover {
+            opacity: 0.9;
+        }
+
+        .hangup-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            background: linear-gradient(45deg, #de4141, #df4141);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .hangup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .hangup-btn:hover {
+            opacity: 0.9;
+        }
+
+        .camera-window {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            border: 2px solid #64707d;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="statusBar"
+        style="position: fixed; top: 0; left: 0; right: 0; height: 10px; background: #2c87f0be; display: none; z-index: 1000;">
+        <div id="stageText" style="position: absolute; top: 12px; left: 10px; color: white; font-size: 12px;"></div>
+    </div>
+    <div class="call-container">
+        <p style="font-size: 24px; margin-bottom: 20px;"><span id="inviterName">xxx</span>邀请你进行面试</p>
+        <div class="call-icon">
+            <i class="fas fa-solid fa-phone"></i>
+        </div>
+    </div>
+    <div style="position: fixed; bottom: 10px; display: flex; gap: 20px;">
+        <button class="answer-btn" id="answerBtn" style="display: none;">接听</button>
+        <button class="hangup-btn" id="hangupBtn" style="display: none; background-color: #dc3545;">结束通话</button>
+        <button id="skipBtn"
+            style="position: fixed; bottom: 20px; right: 20px; padding: 8px 16px; background: #2c353e; color: white; border: none; border-radius: 4px; cursor: pointer; display: none;">
+            跳过>> </button>
+    </div>
+    <video class="camera-window" id="cameraWindow" autoplay muted></video>
+    <audio id="ringtone" src="asset/ring.mp3" loop></audio>
+    <script>
+        const answerBtn = document.getElementById('answerBtn');
+        const hangupBtn = document.getElementById('hangupBtn');
+
+        const cameraWindow = document.getElementById('cameraWindow');
+        const ringtone = document.getElementById('ringtone');
+        const callContainer = document.querySelector('.call-container');
+        const statusBar = document.getElementById('statusBar');
+        const skipBtn = document.getElementById('skipBtn');
+        let currentStage = 0;
+        const stages = ['自我介绍', '技术问题', '项目介绍', '开放性问题'];
+        const speech = new SpeechSynthesisUtterance();
+        speech.lang = 'zh-CN';
+        speech.rate = 1.55;
+        speech.pitch = 1.45;
+        speech.volume = 1.0;
+        const questions = [];
+        let questionIndex = 1;
+        let questionTimer = null;
+
+        function playSpeech(text) {
+            speech.text = text;
+            window.speechSynthesis.speak(speech);
+        }
+
+        function loadQuestions() {
+            try {
+                fetch('question_bank/qa.json')
+                .then(response => response.json())
+                .then(data => {
+                    questions.push(...data);
+                });    
+            }
+            catch (error) {
+                console.error('Error loading questions:', error);
+            }
+        }
+
+        function startQuestionTimer() {
+            questionTimer = setInterval(() => {
+                if (questionIndex < questions.length) {
+                    console.log(questions[questionIndex].question);
+                    playSpeech(questions[questionIndex].question);
+                    questionIndex++;
+                } else {
+                    clearInterval(questionTimer);
+                }
+            }, 15000);
+        }
+
+        function updateStage() {
+            statusBar.style.width = `${(currentStage + 1) * 25}%`;
+            document.getElementById('stageText').textContent = stages[currentStage];
+            if (currentStage === stages.length - 1) {
+                skipBtn.style.display = 'none';
+            }
+        }
+
+        skipBtn.addEventListener('click', () => {
+            currentStage++;
+            if (currentStage === 1) {
+                console.log(questions[0].question);
+                playSpeech(questions[0].question);
+                startQuestionTimer();
+            } else if (currentStage === 2) {
+                playSpeech('你介绍一下你做的项目');
+            } else if (currentStage === 3) {
+                playSpeech('你的职业规划');
+            }
+            if (currentStage < stages.length) {
+                updateStage();
+            }
+        });
+
+        // 定义随机姓名数组
+        const names = ['张工', 'Catrina', '主管Allen', 'HR赵女士'];
+        // 随机选择一个姓名
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        // 替换页面中的姓名
+        document.getElementById('inviterName').textContent = randomName;
+
+        // 页面加载时播放铃声
+        window.addEventListener('load', () => {
+            ringtone.play();
+            setTimeout(() => {
+                document.getElementById('answerBtn').style.display = 'inline-block';
+            }, 200);
+        });
+
+        answerBtn.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                const dingdongAudio = new Audio('asset/dingdong.mp3');
+                dingdongAudio.play();
+                const interviewerImg = document.createElement('img');
+                interviewerImg.src = 'asset/interviewer1.gif';
+                interviewerImg.style.position = 'fixed';
+                interviewerImg.style.top = '20px';
+                interviewerImg.style.left = '10px';
+                interviewerImg.style.width = '85%';
+                interviewerImg.style.height = '90%';
+                interviewerImg.style.objectFit = 'cover';
+                interviewerImg.style.zIndex = '-999';
+                document.body.appendChild(interviewerImg);
+                cameraWindow.srcObject = stream;
+                cameraWindow.style.display = 'block';
+                ringtone.pause();
+                ringtone.currentTime = 0;
+                callContainer.style.display = 'none';
+                answerBtn.style.display = 'none';
+                hangupBtn.style.display = 'inline-block';
+                statusBar.style.display = 'block';
+                skipBtn.style.display = 'block';
+                updateStage();
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                    document.documentElement.msRequestFullscreen();
+                }
+                currentStage = 0;
+                setTimeout(() => {
+                    playSpeech('现在开始面试，请你做个简单的自我介绍');
+                }, 2000);
+                loadQuestions();
+            } catch (error) {
+                console.error('错误:', error);
+            }
+        });
+
+        hangupBtn.addEventListener('click', () => {
+            window.close();
+        });
+    </script>
+</body>
+
+</html>

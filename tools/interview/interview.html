@@ -59,6 +59,16 @@
         #back-to-top {
             border-radius: 0 !important;
         }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .alert-warning {
+            animation: blink 0.5s ease-in-out 4;
+        }
     </style>
 </head>
 
@@ -67,7 +77,7 @@
         <h1 class="text-center mb-4"><i class="fas fa-user-tie me-2"></i>面试准备</h1>
         <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
             <i class="fas fa-arrow-right me-2"></i>去模拟面试
-            <a href="mock.html" class="alert-link">点击这里</a>
+            <a href="mock.html" target="_blank" class="alert-link">点击这里</a>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
                 style="transform: scale(0.7);"></button>
         </div>
