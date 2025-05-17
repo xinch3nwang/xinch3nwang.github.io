@@ -64,6 +64,14 @@
             border-radius: 0 !important;
         }
 
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
         @keyframes blink {
             0% { opacity: 1; }
             50% { opacity: 0.3; }
@@ -71,7 +79,7 @@
         }
 
         .alert-warning {
-            animation: blink 0.7s ease-in-out 5;
+            animation: shake 0.5s ease-in-out 2, blink 0.7s ease-in-out 5 1s;
         }
     </style>
 </head>
@@ -80,7 +88,7 @@
     <div class="container py-4">
         <h1 class="text-center mb-4"><i class="fas fa-user-tie me-2"></i>面试准备</h1>
         <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-            <i class="fas fa-arrow-right me-2"></i>去模拟视频面试
+            <i class="fas fa-arrow-right me-2"></i>去模拟视频面试&nbsp;
             <a href="mock.html" target="_blank" class="alert-link">点击这里</a>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
                 style="transform: scale(0.7);"></button>

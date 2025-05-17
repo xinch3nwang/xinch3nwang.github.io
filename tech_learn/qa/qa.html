@@ -11,6 +11,25 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+    <style>
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .alert-warning {
+            animation: shake 0.5s ease-in-out 2, blink 0.7s ease-in-out 5 1s;
+        }
+    </style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
@@ -94,7 +113,7 @@
                 <h1 class="text-center py-3">软件测试</h1>
                 <div class="alert alert-warning alert-dismissible fade show text-center py-2 d-flex align-items-center justify-content-center"
                     role="alert" style="margin: 0.5rem 0;">
-                    <i class="fas fa-arrow-right me-2"></i>去准备面试
+                    <i class="fas fa-arrow-right me-2"></i>去准备面试&nbsp;&nbsp;
                     <a href="../../tools/interview/interview.html" class="alert-link">点击这里</a>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
                         style="transform: scale(0.5);"></button>
@@ -120,6 +139,7 @@
         $(document).ready(function () {
             // Load blog posts from JSON    
             $.getJSON('qaposts.json', function (data) {
+                console.log('get json data successfully');
                 data.forEach(function (post) {
                     const postHtml = `
                             <div class="col-md-12 mb-4" id="post-${post.title.toLowerCase().replace(/\s+/g, '-')}">
@@ -160,6 +180,7 @@
                     const sidebarItem = `<a href="#post-${post.title.toLowerCase().replace(/\s+/g, '-')}" class="list-group-item list-group-item-action" onclick="event.preventDefault(); document.getElementById('post-${post.title.toLowerCase().replace(/\s+/g, '-')}').scrollIntoView({behavior: 'smooth'});">${post.title}</a>`;
                     $('#sidebar-posts').append(sidebarItem);
                 });
+                console.log('load json data successfully');
             });
         });
 
