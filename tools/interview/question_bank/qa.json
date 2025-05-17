@@ -2,361 +2,469 @@
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
-        "question": "软件生命周期的定义是什么？",
+        "question": "软件生命周期的定义是什么?",
         "answer": "一个计算机软件从功能确定、设计、开发、测试到投入使用, 并在使用中不断完善的全过程。"
     },
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
-        "question": "软件生命周期的阶段有哪些？",
+        "question": "软件生命周期的阶段有哪些?",
         "answer": "可行性分析-需求分析-总体设计-概要设计-详细设计-编码-测试-维护"
     },
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
-        "question": "软件生命周期有哪些常见的模型？",
+        "question": "软件生命周期有哪些常见的模型?",
         "answer": "瀑布模型(软件生命周期各项活动按固定顺序连接)；敏捷开发(通过短周期迭代, 不断交付新的软件版本, 逐步满足客户需求；比较强调团队协作客户参与和对变化的快速响应)；另外还有螺旋模型、增量模型等等。"
     },
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
-        "question": "V模型是什么？",
+        "question": "V模型是什么?",
         "answer": "V模型是一种开发阶段从左到右依次进行的软件开发模型。流程由需求分析到概要设计到详细设计到编码, 再到单元测试、集成测试、系统测试最后验收测试, 测试开发阶段一一对应呈V字形"
     },
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
-        "question": "W模型是什么？",
+        "question": "W模型是什么?",
         "answer": "W模型又叫双V模型是一种每个开发阶段对应特定测试阶段的一种软件开发模型, 用户需求对应验收测试设计、需求分析对应系统测试设计、概要设计对应集成测试设计、详细设计对应单元测试设计, 编码对应单元测试、集成对应集成测试、实施对应系统测试、交付对应验收测试。更早进行测试能更早发现问题"
     },
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
-        "question": "质量模型是什么？",
+        "question": "质量模型是什么?",
         "answer": "质量模型用来描述和评估软件质量, 一般从功能、性能、兼容、易用、安全、可靠、可维护和可移植性这几个方面考虑。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试分类",
-        "question": "测试的分类有哪些？(按测试阶段划分)",
+        "question": "测试的分类有哪些?(按测试阶段划分)",
         "answer": "按照测试阶段来划分的话, 大概可以分为单元测试, 就是对软件的最小可测单元进行验证。然后是集成测试, 是对各个单元组成的模块之间的接口和集成的功能进行测试。然后是系统测试, 就是在模拟的真实运行环境下对软件的功能、性能等各方面进行全面测试。然后是验收测试, 一般是由相关用户或者独立测试人员验证系统是否满足业务需求和客户要求。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试分类",
-        "question": "测试的分类有哪些？(按代码可见度划分)",
+        "question": "测试的分类有哪些?(按代码可见度划分)",
         "answer": "按照代码可见度划分, 一般可以分为白盒测试、黑盒测试和灰盒测试。白盒测试是基于程序内部逻辑结构进行测试。黑盒测试不考虑软件内部结构, 从用户需求出发, 关注软件功能是否正确实现。灰盒测试在两者之间, 指在知道部分软件内部结构的情况下关注于功能实现。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试分类",
-        "question": "冒烟测试是什么？",
+        "question": "冒烟测试是什么?",
         "answer": "冒烟测试是指在大规模执行测试前对程序主要功能/模块进行验证, 保证程序具有可测性。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试分类",
-        "question": "回归测试是什么？",
+        "question": "回归测试是什么?",
         "answer": "回归测试是指在软件发生代码修改(功能新增、系统重构)之后, 重新执行全部或者部分以前的测试用例, 验证程序软件原有功能是否正常、新变更是否引入新错误。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "你了解测试流程吗？",
+        "question": "你了解测试流程吗?",
         "answer": "测试流程一般有需求分析、测试计划编写、测试用例设计、测试用例执行、缺陷跟踪管理到测试报告生成。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "在需求分析阶段测试人员为什么要参与？",
+        "question": "在需求分析阶段测试人员为什么要参与?",
         "answer": "确保各部门之间需求理解一致, 可以查漏补缺。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "测试计划要有哪些内容？",
-        "answer": "测什么？谁来测？怎么测？测什么就是确定测试目标和范围；谁来测是来确定人员进度安排；怎么测是确定测试策略、测试工具、测试环境等。"
+        "question": "测试计划要有哪些内容?",
+        "answer": "测什么?谁来测?怎么测?测什么就是确定测试目标和范围；谁来测是来确定人员进度安排；怎么测是确定测试策略、测试工具、测试环境等。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "缺陷的定义是什么？",
+        "question": "缺陷的定义是什么?",
         "answer": "软件使用过程中存在的任何问题。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "缺陷的判断标准是什么？",
+        "question": "缺陷的判断标准是什么?",
         "answer": "看用户需求规格说明书, 一般有少功能、多功能、功能错误、隐性的功能错误、不易使用这些方面。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "软件缺陷的类型有哪些？",
+        "question": "软件缺陷的类型有哪些?",
         "answer": "软件缺陷类型有功能缺陷、界面缺陷、兼容性、易用性等。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "软件缺陷的提交要素有哪些？",
+        "question": "软件缺陷的提交要素有哪些?",
         "answer": "一般有缺陷ID、缺陷标题、所属模块、状态、优先级、缺陷描述(包括前置条件、复现步骤、期望结果和实际结果)，最后附上附件作证明。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "软件缺陷的跟踪流程是什么？",
+        "question": "软件缺陷的跟踪流程是什么?",
         "answer": "一般由测试人员提交缺陷、分派缺陷, 再由开发人员进行确定, 看bug是否重复提交、是否确定是bug、是否推迟处理, 然后在后续版本中修复, 测试人员进行回归测试后, 测试通过关闭, 未通过重新打开。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "测试报告要有哪些内容？",
+        "question": "测试报告要有哪些内容?",
         "answer": "测试报告一般要有测试目标、测试过程、测试范围、测试结果(包括缺陷统计和分析)、测试结论。"
     },
     {
         "category": "测试基础",
         "subcategory": "功能测试",
-        "question": "",
+        "question": "测试用例的要素有哪些?",
+        "answer": "一般由用例ID、用例标题、所属模块、优先级、前置条件、测试数据、测试步骤、预期结果组成。"
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "功能测试",
+        "question": "你知道哪些测试用例的设计方法?",
+        "answer": "一般有等价类划分法、边界值分析法、判定表法、因果图法、错误推断法、场景法。"
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "功能测试",
+        "question": "介绍一下等价类划分法?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "功能测试",
-        "question": "",
+        "question": "介绍一下边界值分析法?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "功能测试",
-        "question": "",
+        "question": "介绍一下判定表法?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "功能测试",
-        "question": "",
+        "question": "介绍一下因果图法?",
+        "answer": ""
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "功能测试",
+        "question": "判定表法和因果图法有什么异同?",
+        "answer": ""
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "功能测试",
+        "question": "介绍一下错误推断法?",
+        "answer": ""
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "功能测试",
+        "question": "介绍一下场景法?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "接口测试",
-        "question": "",
+        "question": "什么是接口?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "接口测试",
-        "question": "",
+        "question": "你知道接口文档的结构吗?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "接口测试",
-        "question": "",
+        "question": "接口测试的测试用例要素你知道吗?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "接口测试",
-        "question": "",
-        "answer": ""
-    },
-    {
-        "category": "测试基础",
-        "subcategory": "接口测试",
-        "question": "",
-        "answer": ""
-    },
-    {
-        "category": "测试基础",
-        "subcategory": "接口测试",
-        "question": "",
+        "question": "接口测试的测试点有哪些?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "性能测试的目的是什么?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "性能测试和功能测试有什么不同?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "性能测试的策略有哪些?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "性能测试的指标有哪些?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "请介绍一下基准测试",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "请介绍一下压力测试",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "请介绍一下稳定性测试",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "请介绍一下并发测试",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "请介绍一下负载测试",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "吞吐量的单位是什么?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
+        "question": "性能测试的流程是什么?",
         "answer": ""
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "",
-        "answer": ""
-    },
-    {
-        "category": "测试基础",
-        "subcategory": "性能测试",
-        "question": "",
-        "answer": ""
-    },
-    {
-        "category": "测试基础",
-        "subcategory": "性能测试",
-        "question": "",
+        "question": "性能测试的测试用例设计了解吗?",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
-        "question": "",
+        "question": "Fiddler是什么?与F12有什么区别?",
+        "answer": ""
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Fiddler",
+        "question": "Fiddler的工作原理是什么?",
+        "answer": ""
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Fiddler",
+        "question": "Fiddler的典型应用场景有哪些?",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "",
+        "question": "你对Postman有什么了解?",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "",
+        "question": "你对JMeter有什么了解?",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests库",
-        "question": "",
+        "question": "你对requests库有什么了解?",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "pytest库",
-        "question": "",
+        "question": "你对pytest库有什么了解?",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "selenium库",
-        "question": "",
+        "question": "你对selenium库有什么了解?",
         "answer": ""
     },
     {
         "category": "编程语言",
         "subcategory": "Python",
-        "question": "",
+        "question": "Python的数据类型你都有哪些了解?",
+        "answer": ""
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python迭代器了解吗?",
+        "answer": ""
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python生成器了解吗?",
+        "answer": ""
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python闭包了解吗?",
+        "answer": ""
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python装饰器了解吗?",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
-        "question": "",
+        "question": "数据库的三大范式是什么?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "数据库",
+        "question": "数据库的事务是什么?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "数据库",
+        "question": "数据库主键和外键是什么?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "数据库",
+        "question": "介绍一下数据库索引。",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "数据库",
+        "question": "MySQL查询语句谓词的执行顺序是什么?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "数据库",
+        "question": "非关系型数据库了解多少？",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
-        "question": "",
+        "question": "介绍一下计算机网络的分层模型。",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "计算机网络网络层的协议有哪些?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "HTTP/HTTPS协议是什么?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "CORS跨域资源共享是什么?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "TCP/IP协议是什么?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "Cookie, Session, Token是什么? 有什么关系?",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "Linux",
-        "question": "",
+        "question": "Linux的常用命令有哪些?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "Linux",
+        "question": "Shell脚本能写吗?",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "Git",
-        "question": "",
+        "question": "Git会用吗? 常用命令有哪些?",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "Docker",
-        "question": "",
+        "question": "Docker是什么? 和虚拟机有什么区别?",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "工作沟通",
-        "question": "如果你提交了缺陷, 开发说这不是BUG怎么办？",
+        "question": "如果你提交了缺陷, 开发说这不是BUG怎么办?",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你觉得你有什么优缺点？",
+        "question": "你觉得你有什么优缺点?",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你的职业规划是什么？",
+        "question": "你的职业规划是什么?",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你为什么选择测试？",
+        "question": "你为什么选择测试?",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你有什么想问我的吗？",
+        "question": "你有什么想问我的吗?",
         "answer": ""
     }
 ]
