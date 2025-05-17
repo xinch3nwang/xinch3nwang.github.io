@@ -15,6 +15,10 @@
             border-radius: 0 !important;
         }
 
+        .badge {
+            font-size: 0.7rem;
+        }
+
         .card {
             border-radius: 0 !important;
             box-shadow: none !important;
@@ -67,7 +71,7 @@
         }
 
         .alert-warning {
-            animation: blink 0.5s ease-in-out 4;
+            animation: blink 0.7s ease-in-out 5;
         }
     </style>
 </head>
@@ -76,7 +80,7 @@
     <div class="container py-4">
         <h1 class="text-center mb-4"><i class="fas fa-user-tie me-2"></i>面试准备</h1>
         <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-            <i class="fas fa-arrow-right me-2"></i>去模拟面试
+            <i class="fas fa-arrow-right me-2"></i>去模拟视频面试
             <a href="mock.html" target="_blank" class="alert-link">点击这里</a>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
                 style="transform: scale(0.7);"></button>
@@ -196,7 +200,7 @@
                 html += `
                 <div class="card mb-3" data-category="${q.category || 'basic'}">
                     <div class="card-header" data-bs-toggle="collapse" data-bs-target="#answer-${index}">
-                        <h5 class="mb-0">${q.question} <i class="fas fa-chevron-down float-end" data-bs-toggle="collapse" data-bs-target="#answer-${index}"></i></h5>
+                        <h5 class="mb-0">${q.question} <span class="badge bg-primary me-2">${q.subcategory}</span><i class="fas fa-chevron-down float-end" data-bs-toggle="collapse" data-bs-target="#answer-${index}"></i></h5>
                     </div>
                     <div id="answer-${index}" class="collapse ${showAnswer ? 'show' : ''}">
                         <div class="card-body">
