@@ -167,7 +167,7 @@
     </div>
     <video class="camera-window" id="cameraWindow" autoplay muted></video>
     <audio id="ringtone" src="asset/ring.mp3" loop></audio>
-    <script>
+    <script type="module">
         const answerBtn = document.getElementById('answerBtn');
         const hangupBtn = document.getElementById('hangupBtn');
 
@@ -178,6 +178,7 @@
         const skipBtn = document.getElementById('skipBtn');
         let currentStage = 0;
         const stages = ['自我介绍', '技术问题', '项目介绍', '开放性问题'];
+        import textToSpeech from '../tts/tts_api.js';
         const speech = new SpeechSynthesisUtterance();
         speech.lang = 'zh-CN';
         speech.rate = 1.55;
@@ -187,9 +188,17 @@
         let questionIndex = 1;
         let questionTimer = null;
 
-        function playSpeech(text) {
-            speech.text = text;
-            window.speechSynthesis.speak(speech);
+        async function playSpeech(text) {
+            try {
+                const audioBlob = await textToSpeech(text);
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const audio = new Audio(audioUrl);
+                audio.play();
+            } catch (error) {
+                console.log('使用API语音合成失败，回退到本地语音合成');
+                speech.text = text;
+                window.speechSynthesis.speak(speech);
+            }
         }
 
         function loadQuestions() {
