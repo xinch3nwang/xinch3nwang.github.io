@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,23 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbarNav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+    </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
@@ -25,27 +42,27 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../index.html">
-                            <i class="fas fa-home me-1"></i>首页
+                            <i class="fas fa-home me-1"></i> 首页
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3 active" href="#">
-                            <i class="fas fa-project-diagram me-1"></i>项目工作
+                            <i class="fas fa-project-diagram me-1"></i> 项目
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../tech_learn/qa/qa.html">
-                            <i class="fas fa-code me-1"></i>技术学习
+                            <i class="fas fa-code me-1"></i> 技术
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../tools/tools.html">
-                            <i class="fas fa-tools me-1"></i>工具
+                            <i class="fas fa-tools me-1"></i> 工具
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../civil_exam/index.html">
-                            <i class="fas fa-graduation-cap me-1"></i>公考
+                            <i class="fas fa-graduation-cap me-1"></i> 公考
                         </a>
                     </li>
                 </ul>
@@ -405,4 +422,5 @@
         });
     </script>
 </body>
+
 </html>

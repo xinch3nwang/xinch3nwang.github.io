@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,35 +11,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <style>
-  .recommended-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: linear-gradient(45deg, #ff4b4b, #ff8f8f);
-    padding: 5px 10px;
-    border-radius: 15px;
-    color: white;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  .recommended-badge i {
-    margin-right: 5px;
-  }
-  .glow-border {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,0,0,0.3), transparent);
-    animation: glow 3s linear infinite;
-  }
-  @keyframes glow {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
+    .recommended-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: linear-gradient(45deg, #ff4b4b, #ff8f8f);
+        padding: 5px 10px;
+        border-radius: 15px;
+        color: white;
+        font-size: 14px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .recommended-badge i {
+        margin-right: 5px;
+    }
+
+    .glow-border {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+        animation: glow 3s linear infinite;
+    }
+
+    @keyframes glow {
+        0% {
+            left: -100%;
+        }
+
+        100% {
+            left: 100%;
+        }
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 </style>
+
 <body>
     <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
@@ -54,27 +71,27 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../index.html">
-                            <i class="fas fa-home me-1"></i>首页
+                            <i class="fas fa-home me-1"></i> 首页
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../projects/projects.html">
-                            <i class="fas fa-project-diagram me-1"></i>项目工作
+                            <i class="fas fa-project-diagram me-1"></i> 项目
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../tech_learn/qa/qa.html">
-                            <i class="fas fa-code me-1"></i>技术学习
+                            <i class="fas fa-code me-1"></i> 技术
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3 active" href="#">
-                            <i class="fas fa-tools me-1"></i>工具
+                            <i class="fas fa-tools me-1"></i> 工具
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../civil_exam/index.html">
-                            <i class="fas fa-graduation-cap me-1"></i>公考
+                            <i class="fas fa-graduation-cap me-1"></i> 公考
                         </a>
                     </li>
                 </ul>
@@ -85,12 +102,16 @@
     <main class="container mt-5 pt-5">
         <div class="row g-4">
             <div class="col-md-6">
-                <div class="card h-100 shadow-sm" style="transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 15px rgba(40,167,69,0.5)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0.5rem 1rem rgba(0, 0, 0, 0.15)'" onclick="window.open('interview/interview.html', '_blank')">
-            <div class="recommended-badge">
-              <i class="fas fa-star"></i>
-              <span>推荐</span>
-            </div>
-            <div class="glow-border"></div>
+                <div class="card h-100 shadow-sm"
+                    style="transition: all 0.3s ease; position: relative; overflow: hidden;"
+                    onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 15px rgba(40,167,69,0.5)'"
+                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0.5rem 1rem rgba(0, 0, 0, 0.15)'"
+                    onclick="window.open('interview/interview.html', '_blank')">
+                    <div class="recommended-badge">
+                        <i class="fas fa-star"></i>
+                        <span>推荐</span>
+                    </div>
+                    <div class="glow-border"></div>
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fas fa-comments fa-2x text-primary me-3"></i>
@@ -101,7 +122,10 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card h-100 shadow-sm" style="transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 15px rgba(40,167,69,0.5)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0.5rem 1rem rgba(0, 0, 0, 0.15)'" onclick="window.open('tts/tts.html', '_blank')">
+                <div class="card h-100 shadow-sm" style="transition: all 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 15px rgba(40,167,69,0.5)'"
+                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0.5rem 1rem rgba(0, 0, 0, 0.15)'"
+                    onclick="window.open('tts/tts.html', '_blank')">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fas fa-volume-up fa-2x text-success me-3"></i>
@@ -117,4 +141,5 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -10,26 +10,55 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
     <style>
         @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
 
         @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         .alert-warning {
             animation: shake 0.5s ease-in-out 2, blink 0.7s ease-in-out 5 1s;
         }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
     </style>
+</head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
@@ -45,27 +74,27 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../../index.html">
-                            <i class="fas fa-home me-1"></i>首页
+                            <i class="fas fa-home me-1"></i> 首页
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../../projects/projects.html">
-                            <i class="fas fa-project-diagram me-1"></i>项目工作
+                            <i class="fas fa-project-diagram me-1"></i> 项目
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3 active" href="#">
-                            <i class="fas fa-code me-1"></i>技术学习
+                            <i class="fas fa-code me-1"></i> 技术
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../../tools/tools.html">
-                            <i class="fas fa-tools me-1"></i>工具
+                            <i class="fas fa-tools me-1"></i> 工具
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3" href="../../civil_exam/index.html">
-                            <i class="fas fa-graduation-cap fa-sm me-1"></i>公考
+                            <i class="fas fa-graduation-cap fa-sm me-1"></i> 公考
                         </a>
                     </li>
                 </ul>
