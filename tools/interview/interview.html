@@ -28,19 +28,19 @@
         .mode-selector {
             margin-bottom: 5px;
         }
-        
+
         .col-md-6:first-child {
             padding-right: 1px;
         }
-        
+
         .col-md-6:last-child {
             padding-left: 1px;
         }
-        
+
         .row {
             border-radius: 0 !important;
         }
-        
+
         .form-select {
             border-radius: 0 !important;
         }
@@ -65,17 +65,39 @@
         }
 
         @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
         }
 
         @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         .alert-warning {
@@ -133,19 +155,19 @@
     <script>
         $(document).ready(function () {
             // Back to top button
-            $(window).scroll(function() {
+            $(window).scroll(function () {
                 if ($(this).scrollTop() > 300) {
                     $('#back-to-top').fadeIn();
                 } else {
                     $('#back-to-top').fadeOut();
                 }
             });
-            
-            $('#back-to-top').click(function() {
-                $('html, body').animate({scrollTop: 0}, 'smooth');
+
+            $('#back-to-top').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 'smooth');
                 return false;
             });
-            
+
             loadQuestions('qa', 'study');
 
             $('#mode-select').change(function () {
@@ -194,6 +216,15 @@
                         $(`.card[data-category="${category}"]`).show();
                     }
                 });
+                if (bank === 'qa') {
+                    $('#questions-container').prepend(`
+                    <div class="alert alert-info mb-4 alert-dismissible fade show">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        除了基本概念外，还需重点加强&nbsp;<b>测试用例设计方法</b>、<b>测试工具/框架使用</b>、<b>MySQL语句</b>&nbsp;的练习！
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="transform: scale(0.7);"></button>
+                    </div>
+                `);
+                }
             }).fail(function () {
                 $('#questions-container').html('<div class="alert alert-danger">加载题库失败</div>');
             });
