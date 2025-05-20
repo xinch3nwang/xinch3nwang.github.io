@@ -291,7 +291,7 @@
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
         "question": "Fiddler的典型应用场景有哪些?",
-        "answer": "可以用来辅助定位前后端的 bug; 可以构建模拟测试场景，比如模拟发送请求进行接口测试，比如 mock 接口返回数据; 还可以模拟弱网环境进行测试；还可以对前端的性能进行分析。"
+        "answer": "可以用来辅助定位前后端的 bug; 可以构建模拟测试场景, 比如模拟发送请求进行接口测试, 比如 mock 接口返回数据; 还可以模拟弱网环境进行测试; 还可以对前端的性能进行分析。"
     },
     {
         "category": "测试工具&框架",
@@ -303,7 +303,7 @@
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "你对JMeter有什么了解?",
-        "answer": ""
+        "answer": "JMeter 是一款开源的性能测试工具,  常用于对软件应用程序进行负载测试、性能测试等。JMeter 可模拟多用户并发访问、支持多种协议（如 HTTP、FTP 等）、能生成详细的测试报告。"
     },
     {
         "category": "测试工具&框架",
@@ -327,79 +327,97 @@
         "category": "编程语言",
         "subcategory": "Python",
         "question": "Python的数据类型你都有哪些了解?",
-        "answer": ""
+        "answer": "有数字类型, 如整型浮点型; 有序列类型, 如字符串、列表、元组; 有集合类型; 映射类型（字典）;布尔类型。"
     },
     {
         "category": "编程语言",
         "subcategory": "Python",
         "question": "Python迭代器了解吗?",
-        "answer": ""
+        "answer": "迭代器会按需生成数据, 只有在用 next() 函数或者通过循环去访问的时候才会生成相应元素, 可以节省内存。"
     },
     {
         "category": "编程语言",
         "subcategory": "Python",
         "question": "Python生成器了解吗?",
-        "answer": ""
+        "answer": "生成器一种特殊的迭代器, 有yield关键字, 执行到它会暂停并返回值, 再次调用会从暂停处继续。"
     },
     {
         "category": "编程语言",
         "subcategory": "Python",
-        "question": "Python闭包了解吗?",
-        "answer": ""
+        "question": "Python闭包了解吗?闭包的意义和使用场景?",
+        "answer": "当一个函数嵌套在另一个函数内部, 并且内部函数引用了外部函数的变量时, 就形成了闭包。即使外部函数已经执行完毕, 闭包仍然可以访问外部函数的变量。所以可以将一些数据封装在闭包内部, 外部无法直接访问, 只能通过闭包提供的方法来操作。"
     },
     {
         "category": "编程语言",
         "subcategory": "Python",
         "question": "Python装饰器了解吗?",
+        "answer": "装饰器给原函数套了一个壳, 在原函数执行前后增加额外操作,可以在不更改原函数的情况下增加功能。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "JavaScript的数据类型你都有哪些了解?",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
-        "question": "数据库的三大范式是什么?",
-        "answer": ""
+        "question": "SQL的范式是什么?",
+        "answer": "第一范式要求数据库中的每一列都是不能再分的基本数据项。第二范式要求非主属性完全依赖于主键。第三, 范式要求任何非主属性都不能依赖于其他非主属性。"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "数据库的事务是什么?",
-        "answer": ""
+        "answer": "数据库的事务是多个语句做一个整体执行, 具有原子性、一致性、隔离性和持久性。"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "数据库主键和外键是什么?",
-        "answer": ""
+        "answer": "主键是表中能够唯一标识每一行记录的一个或多个字段组合。外键是表中的一个或多个字段组合, 它的值和另一个表中的主键相匹配, 这样可以建立表之间的联系   "
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "介绍一下数据库索引。",
-        "answer": ""
+        "answer": "索引是一种特殊的数据结构, 用来快速的定位和访问数据表中的数据。常见的索引有普通索引、唯一索引和组合索引。在存储结构上有哈希索引、B树索引、B+树索引。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "数据库",
+        "question": "介绍一下哈希/B树/B+树索引。",
+        "answer": "哈希索引通过 HASH 函数将索引键值映射到存储位置。等值查询速度快, 但不支持范围查询。B树索引所有节点都存有键值。支持等值查询和范围查询, 但插入和删除的操作比较复杂。B+树索引非叶节点只有键, 叶子节点有值且通过有序链表连接, 适合顺序访问和范围查询。"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "MySQL查询语句谓词的执行顺序是什么?",
-        "answer": ""
+        "answer": "From Where Groupby Having Select Orderby"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "非关系型数据库了解多少？",
-        "answer": ""
+        "answer": "MongoDB是一种面向文档的非关系型数据管理系统。它没有特定的结构, 不需要先定义表, 灵活可扩展。适合存储结构不同的数据, 比如日志。Redis 是一种键值型的的内存数据库, 适合作为缓存、消息队列、分布式锁。"
     },
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "介绍一下计算机网络的分层模型。",
-        "answer": ""
+        "answer": "OSI 七层模型从上到下是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。应用层直接为应用程序提供服务; 表示层用来处理数据的表示和转换; 会话层用来管理会话; 传输层提供主机之间端到端的通信; 网络层处理网络之间的通信，数据链路层保障数据帧的传输和接收，物理层负责物理介质上的信号传输"
     },
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "计算机网络网络层的协议有哪些?",
-        "answer": ""
+        "answer": "IP协议为每个网络设备分配唯一的 IP 地址，负责将数据包从源地址传输到目的地址。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "计算机网络传输层的协议有哪些?",
+        "answer": "TCP传输控制协议提供面向连接可靠的字节流传输; UDP用户数据报协议提供无连接的不可靠的但高效的数据传输服务。"
     },
     {
         "category": "其他基础",
@@ -410,13 +428,31 @@
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
-        "question": "CORS跨域资源共享是什么?",
+        "question": "HTTP协议的请求和响应格式是什么?",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
-        "question": "TCP/IP协议是什么?",
+        "question": "HTTP协议常见的状态码有哪些?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "HTTP协议的请求方法有哪些?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "Socket协议了解吗?",
+        "answer": ""
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "CORS跨域资源共享是什么?",
         "answer": ""
     },
     {
@@ -434,13 +470,13 @@
     {
         "category": "其他基础",
         "subcategory": "Linux",
-        "question": "Shell脚本能写吗?",
+        "question": "Shell脚本方面有哪些了解?",
         "answer": ""
     },
     {
         "category": "其他基础",
         "subcategory": "Git",
-        "question": "Git会用吗? 常用命令有哪些?",
+        "question": "Git的常用命令有哪些?",
         "answer": ""
     },
     {

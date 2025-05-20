@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图像加密工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="imageCrypto.js"></script>
+</head>
+
+<body>
+    <div class="max-w-4xl mx-auto p-4">
+        <h2 class="text-3xl font-bold mb-4">图像加密工具</h2>
+        <div class="mb-4">
+            <label for="imageUpload" class="block text-gray-700 text-sm font-bold mb-2">上传图片</label>
+            <input type="file" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" id="imageUpload" accept="image/*">
+        </div>
+        <div class="mb-4">
+            <label for="keyInput" class="block text-gray-700 text-sm font-bold mb-2">输入六位数字密钥</label>
+            <input type="number" step="1" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500" id="keyInput" min="100000" max="999999">
+        </div>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" id="encryptBtn">加密</button>
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" id="decryptBtn">解密</button>
+        <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2 hidden" id="downloadEncryptedBtn">下载加密图片</button>
+        <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2 hidden" id="downloadDecryptedBtn">下载解密图片</button>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h5 class="text-lg font-semibold mb-2">上传图预览</h5>
+                <img id="originalPreview" class="image-preview w-full h-auto rounded" alt="">
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h5 class="text-lg font-semibold mb-2">加密图预览</h5>
+                <img id="encryptedPreview" class="image-preview w-full h-auto rounded" alt="">
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h5 class="text-lg font-semibold mb-2">解密图预览</h5>
+                <img id="decryptedPreview" class="image-preview w-full h-auto rounded" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', (e) => {
+            document.getElementById('downloadEncryptedBtn').classList.add('hidden');
+            document.getElementById('downloadDecryptedBtn').classList.add('hidden');
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = document.getElementById('originalPreview');
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('encryptBtn').addEventListener('click', async () => {
+            document.getElementById('decryptedPreview').src = '';
+            document.getElementById('encryptedPreview').src = '';
+            document.getElementById('downloadEncryptedBtn').classList.add('hidden');
+            document.getElementById('downloadDecryptedBtn').classList.add('hidden');
+            const file = document.getElementById('imageUpload').files[0];
+            const key = document.getElementById('keyInput').value;
+            if (!file || key.length !== 6) {
+                alert('请选择图片并输入六位数字密钥！');
+                return;
+            }
+            const r = 3.8;
+            const keyValue = parseInt(key) / 1000000;
+
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+            await new Promise(resolve => img.onload = resolve);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            const imageData = ctx.getImageData(0, 0, img.width, img.height);
+
+            const initialValue = 0.1;
+            const encryptedImageData = await encryptImage(imageData, keyValue, r);
+            ctx.putImageData(encryptedImageData, 0, 0);
+
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const encryptedPreview = document.getElementById('encryptedPreview');
+                encryptedPreview.src = url;
+                document.getElementById('downloadEncryptedBtn').dataset.url = url;
+                document.getElementById('downloadEncryptedBtn').classList.remove('hidden');
+            }, 'image/png');
+        });
+
+        document.getElementById('downloadEncryptedBtn').addEventListener('click', () => {
+            const url = document.getElementById('downloadEncryptedBtn').dataset.url;
+            const file = document.getElementById('imageUpload').files[0];
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `encrypted_${file.name}`;
+            a.click();
+            URL.revokeObjectURL(url);
+            document.getElementById('downloadEncryptedBtn').classList.add('hidden');
+        });
+
+        document.getElementById('decryptBtn').addEventListener('click', async () => {
+            document.getElementById('decryptedPreview').src = '';
+            document.getElementById('encryptedPreview').src = '';
+            document.getElementById('downloadEncryptedBtn').classList.add('hidden');
+            document.getElementById('downloadDecryptedBtn').classList.add('hidden');
+            const file = document.getElementById('imageUpload').files[0];
+            const key = document.getElementById('keyInput').value;
+            if (!file || key.length !== 6) {
+                alert('请选择图片并输入六位数字密钥！');
+                return;
+            }
+            const r = 3.8;
+            const keyValue = parseInt(key) / 1000000;
+            
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+            await new Promise(resolve => img.onload = resolve);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            const encryptedImageData = ctx.getImageData(0, 0, img.width, img.height);
+
+            const initialValue = 0.1;
+            const decryptedImageData = await decryptImage(encryptedImageData, keyValue, r);
+            ctx.putImageData(decryptedImageData, 0, 0);
+
+            // 预览解密图
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const decryptedPreview = document.getElementById('decryptedPreview');
+                decryptedPreview.src = url;
+                document.getElementById('downloadDecryptedBtn').dataset.url = url;
+                document.getElementById('downloadDecryptedBtn').classList.remove('hidden');
+            }, 'image/png');
+        });
+        
+        document.getElementById('downloadDecryptedBtn').addEventListener('click', () => {
+            const url = document.getElementById('decryptedPreview').src;
+            const file = document.getElementById('imageUpload').files[0];
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `decrypted_${file.name}`;
+            a.click();
+            URL.revokeObjectURL(url);
+            document.getElementById('downloadDecryptedBtn').classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>
