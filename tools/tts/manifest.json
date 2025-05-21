@@ -1,6 +1,13 @@
 {
   "short_name": "TTS",
   "name": "文本朗读工具",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
   "start_url": "./tts.html",
   "display": "standalone",
   "background_color": "#f8f9fa",
