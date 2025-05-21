@@ -1,0 +1,8 @@
+{
+  "short_name": "TTS",
+  "name": "文本朗读工具",
+  "start_url": "./tts.html",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#28a745"
+}
