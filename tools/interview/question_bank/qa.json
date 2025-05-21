@@ -501,7 +501,7 @@
         "category": "其他基础",
         "subcategory": "Linux",
         "question": "Linux的常用命令有哪些?",
-        "answer": ""
+        "answer": "常用的由文件管理/操作、系统进程管理、网络之类的指令, 比如find搜索文件、cat查看文件、grep过滤内容、tail查看文件末尾; ps查看进程状态、kill杀死进程、top查看进程资源占用、lsof查出占用该文件(比如端口)的进程; ifconfig查看网络接口参数、netstat查看网络连接信息比如端口、curl发送请求。"
     },
     {
         "category": "其他基础",
