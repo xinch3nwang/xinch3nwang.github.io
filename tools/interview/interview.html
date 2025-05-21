@@ -103,13 +103,55 @@
         .alert-warning {
             animation: shake 0.5s ease-in-out 2, blink 0.7s ease-in-out 5 1s;
         }
+
+        #nav {
+            padding: 5px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .mode-selector.row {
+            gap: 5px;
+            flex-wrap: nowrap;
+        }
+        .mode-selector .col-md-6 {
+            padding: 0 1px; 
+        }
+
+        .form-select {
+            border-radius: 6px !important;
+            padding: 0.6rem 1rem;
+            transition: all 0.2s;
+        }
+        .form-select:focus {
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+            border-color: #28a745;
+        }
+
+        #category-nav {
+            gap: 8px; 
+        }
+        #category-nav .list-group-item {
+            border-radius: 6px !important; /* 6px圆角 */
+            padding: 0.5rem 1rem; /* 调整内边距 */
+            border: 1px solid #dee2e6; /* 明确边框 */
+            transition: all 0.2s; /* 过渡动画 */
+        }
+        #category-nav .list-group-item:hover {
+            background-color: #f8f9fa; /* 悬停背景色 */
+            transform: translateY(-1px); /* 轻微上移 */
+        }
+        #category-nav .list-group-item.active {
+            background-color: #28a745; /* 主题色选中背景 */
+            border-color: #28a745; /* 主题色边框 */
+            color: white; /* 白色文字 */
+        }
     </style>
 </head>
 
 <body>
     <div class="container py-4">
-        <h1 class="text-center mb-4"><i class="fas fa-user-tie me-2"></i>面试准备</h1>
-        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        <h1 class="text-center mb-3"><i class="fas fa-user-tie me-2"></i>面试准备</h1>
+        <div class="alert alert-warning alert-dismissible fade show text-center mb-2" role="alert">
             <i class="fas fa-arrow-right me-2"></i>去模拟视频面试&nbsp;
             <a href="mock.html" target="_blank" class="alert-link">点击这里</a>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
@@ -130,7 +172,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row mb-4">
+            <div class="row mb-2">
                 <div class="col-md-12">
                     <div class="list-group list-group-horizontal-md" id="category-nav">
                         <a href="#" class="list-group-item list-group-item-action active" data-category="all">全部</a>
@@ -218,8 +260,8 @@
                 });
                 if (bank === 'qa') {
                     $('#questions-container').prepend(`
-                    <div class="alert alert-info mb-4 alert-dismissible fade show">
-                        <i class="fas fa-lightbulb me-2"></i>
+                    <div class="alert alert-info mb-2 alert-dismissible fade show">
+                        <i class="fas fa-lightbulb me-1"></i>
                         除了基本概念外，还需重点加强&nbsp;<b>测试用例设计方法</b>、<b>测试工具/框架使用</b>、<b>MySQL语句</b>&nbsp;的练习！
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="transform: scale(0.7);"></button>
                     </div>
@@ -237,7 +279,7 @@
                 const showAnswer = mode === 'study' || mode === 'simulate';
 
                 html += `
-                <div class="card mb-3" data-category="${q.category || 'basic'}">
+                <div class="card mb-2" data-category="${q.category || 'basic'}">
                     <div class="card-header" data-bs-toggle="collapse" data-bs-target="#answer-${index}">
                         <h5 class="mb-0">${q.question} <span class="badge bg-primary me-2">${q.subcategory}</span><i class="fas fa-chevron-down float-end" data-bs-toggle="collapse" data-bs-target="#answer-${index}"></i></h5>
                     </div>
