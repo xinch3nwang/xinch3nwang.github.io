@@ -4,55 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>行测</title>
-    <style>
-        .nav-bar a.active {
-            font-weight: bold;
-            color: #ffd700;
-        }
-        body {
-            background-color: #f4e9d2;
-            font-family: 'SimSun', 'KaiTi', serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .nav-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #8b4513;
-            display: flex;
-            justify-content: center;
-            padding: 10px 0;
-            opacity: 1;
-        }
-
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- <script src="js/scripts.js"></script> -->
 </head>
 <body>
     <div class="nav-bar">
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPath = window.location.pathname;
-            const links = document.querySelectorAll('.nav-bar a');
-            links.forEach(link => {
-                if (link.getAttribute('href') === currentPath.split('/').pop()) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
         <a href="index.html">首页</a>
-        <a href="xingce.html">行测</a>
+        <a href="#" class="active">行测</a>
         <a href="shenlun.html">申论</a>
     </div>
     <div></div>
