@@ -219,10 +219,34 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
+                <div class="footer-info" id="footerInfo">
                     <h2 class="footer-name">Xinchen Wang</h2>
                     <p class="footer-title">Just a man...</p>
                 </div>
+                <script>
+                    let clickCount = 0;
+                    document.getElementById('footerInfo').addEventListener('click', function() {
+                        clickCount++;
+                        if(clickCount === 1) {
+                            document.querySelector('.footer-name').textContent += ' 🦋';
+                        }
+                        else if(clickCount === 2) {
+                            document.querySelector('.footer-title').innerHTML = '當這世界已經準備將我遺棄 <br> 像一個傷兵被留在孤獨荒野里 <br> 開始懷疑我存在有沒有意義 <br> 在別人眼裡我似乎變成了隱形 <br> 難道失敗就永遠翻不了身 <br> 誰來輓救墮落的靈魂';
+                        }
+                        else if(clickCount === 3) {
+                            document.querySelector('.footer-title').innerHTML = '生命充滿亂七八糟的問題 <br> 像走在沒有出口的那個迷宮里';
+                        }
+                        else if(clickCount === 4) {
+                            document.querySelector('.footer-title').innerHTML = '他常會嚮往能回到那年他12 <br> 只需要好好上學生活單純沒憂愁 <br> 他就像一朵蓓蕾滿懷希望';
+                        }
+                        else if(clickCount === 5) {
+                            document.querySelector('.footer-title').innerHTML = '人生偶爾會走上一條陌路 <br> 就像是沒有指標的地圖';
+                        }
+                        else if(clickCount === 6) {
+                            document.querySelector('.footer-title').innerHTML = '他常會嚮往能回到那年他12 <br> 只需要好好上學生活單純沒憂愁 <br> 他笑著想過未來 <br> 他應該得到幸福 多麼的簡單的夢 <br> 有沒有實現';
+                        }
+                    });
+                </script>
                 <div class="footer-social" id="social">
                     <h3 class="social-title">社交链接 Social-Links</h3>
                     <div class="social-links">

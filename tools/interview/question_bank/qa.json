@@ -135,7 +135,7 @@
         "category": "测试基础",
         "subcategory": "功能测试",
         "question": "介绍一下边界值分析法?",
-        "answer": "边界值分析法一般和等价类划分法结合使用, 因为很多软件缺陷出现在输入边界上而非内部, 所以边界值分析法重点关注边界值情况, 在划分的等价类的边界（比如上点离点）进行测试。"
+        "answer": "边界值分析法一般和等价类划分法结合使用, 因为很多软件缺陷出现在输入边界上而非内部, 所以边界值分析法重点关注边界值情况, 在划分的等价类的边界(比如上点离点)进行测试。"
     },
     {
         "category": "测试基础",
@@ -202,6 +202,18 @@
         "subcategory": "接口测试",
         "question": "接口测试如果网络不稳定导致响应时间长怎么办?",
         "answer": ""
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "接口测试",
+        "question": "接口测试如果响应时间长怎么办?",
+        "answer": "可以考虑使用异步接口, 比如消息队列, 可以把耗时的操作放到消息队列中, 然后接口直接返回成功, 异步处理。"
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "接口测试",
+        "question": "接口测试如何处理接口依赖（如 Token 动态获取）？",
+        "answer": "可以考虑使用前置条件, 比如先登录获取Token, 然后再调用其他接口。"
     },
     {
         "category": "测试基础",
@@ -303,31 +315,109 @@
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "你对JMeter有什么了解?",
-        "answer": "JMeter 是一款开源的性能测试工具,  常用于对软件应用程序进行负载测试、性能测试等。JMeter 可模拟多用户并发访问、支持多种协议（如 HTTP、FTP 等）、能生成详细的测试报告。"
+        "answer": "JMeter 是一款开源的性能测试工具, 常用于对软件应用程序进行负载测试、性能测试等。JMeter 可模拟多用户并发访问、支持多种协议(如 HTTP、FTP 等)、能生成详细的测试报告。"
     },
     {
         "category": "测试工具&框架",
-        "subcategory": "requests库",
-        "question": "你对requests库有什么了解?",
+        "subcategory": "自动化测试",
+        "question": "用 requests 库发送 POST 请求，如何传递 JSON 数据和文件？",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
-        "subcategory": "pytest库",
-        "question": "你对pytest库有什么了解?",
+        "subcategory": "自动化测试",
+        "question": "unittest 和 pytest 的区别？你更倾向用哪个？为什么？",
+        "answer": "unittest 是 Python 内置标准库，基于类,需继承TestCase，需用特定断言方法，适合轻量场景比如做单元测试；pytest 是第三方框架，语法简洁（用 assert）、夹具灵活、插件丰富（如参数化、并行测试），适合复杂项目。更倾向 pytest，因其开发效率高、生态完善，能显著提升测试体验和代码质量。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "pytest 中如何实现参数化？",
+        "answer": "pytest 中可以通过 parametrize 装饰器实现参数化。第一个参数是字符串，为测试函数的参数名。第二个参数是列表，包含多组测试数据。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "pytest 中如何实现测试用例的依赖/如何用 fixture 管理测试前置/后置条件？？",
+        "answer": "用 @pytest.fixture 装饰器定义，通过 yield 分隔：yield 前的代码为前置操作（如创建资源）。yield 后的值会作为参数注入测试函数。测试结束后（无论成败），执行 yield 后的后置操作（如清理资源）。测试函数通过参数声明依赖的 fixture，支持多 fixture 组合。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "Selenium 如何处理异步加载元素/动态元素等待?",
+        "answer": "使用显式等待（Explicit Wait），结合 WebDriverWait 和 expected_conditions。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "Selenium如何处理弹窗、多窗口和多标签页?",
+        "answer": "使用 switch_to.alert() 或 driver.switch_to.window() 或 driver.switch_to.frame() 方法。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "Selenium如何处理文件上传?",
+        "answer": "使用 send_keys() 方法。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "Selenium如何定位动态元素（动态元素指的是网页在加载后，会随着用户操作、时间推移或数据更新而发生变化的元素）？",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
-        "subcategory": "selenium库",
-        "question": "你对selenium库有什么了解?",
-        "answer": ""
+        "subcategory": "自动化测试",
+        "question": "如何设计 Page Object Model(POM)？​",
+        "answer": "PO模式就是把每个页面看为一个对象，页面元素定位作为属性。页面元素操作作为方法。测试用例执行调用页面对象，实现了业务逻辑和元素定位的分离。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "如何实现自动化测试失败重试？",
+        "answer": "可以使用 pytest 的 pytest-rerunfailures 插件。然后通过命令行或者装饰器设置reruns。"
     },
     {
         "category": "编程语言",
         "subcategory": "Python",
         "question": "Python的数据类型你都有哪些了解?",
-        "answer": "有数字类型, 如整型浮点型; 有序列类型, 如字符串、列表、元组; 有集合类型; 映射类型（字典）;布尔类型。"
+        "answer": "有数字类型, 如整型浮点型; 有序列类型, 如字符串、列表、元组; 有集合类型; 映射类型(字典);布尔类型。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python的可变类型和不可变类型有哪些?",
+        "answer": "可变类型有列表、字典、集合; 不可变类型有字符串、元组、数字。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python ​​列表和元组的区别?",
+        "answer": "列表是可变的, 元组是不可变的。列表用方括号表示, 元组用圆括号表示。列表可以进行增删改查, 元组不能进行修改。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python的字典是什么?如何合并字典？",
+        "answer": "字典是一种键值对的数据结构, 由键和值组成, 键必须是不可变类型, 值可以是任意类型。合并字典可以使用 update() 方法（dict2.update(dict1)）,或者字典推导式，或者解包操作符**。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python的集合是什么?",
+        "answer": "集合是一种无序且不重复的元素集合, 可以进行交集、并集、差集等操作。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python的字符串是什么?",
+        "answer": "字符串是由字符组成的不可变序列, 可以进行切片、拼接、查找等操作。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python如何实现列表去重？",
+        "answer": "可以使用 set 集合去重。"
     },
     {
         "category": "编程语言",
@@ -356,6 +446,54 @@
     {
         "category": "编程语言",
         "subcategory": "Python",
+        "question": "Python中如何实现多进程?多线程?协程?",
+        "answer": "可以使用 multiprocessing 模块来实现多进程。可以使用 threading 模块来实现多线程。可以使用 asyncio 模块来实现协程。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "如何用 Python 模拟高并发请求？​",
+        "answer": "可以使用 threading+requests/ asyncio+aiohttp 来模拟高并发请求。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "解释 Python里 *args 和 **kwargs 的作用？​",
+        "answer": "*args 用于接收任意数量的位置参数, 以元组形式存储。**kwargs 用于接收任意数量的关键字参数, 以字典形式存储。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python 用 with 语句处理文件操作的优点是什么？​",
+        "answer": "with 语句会自动关闭文件, 避免资源泄漏, 还能自动处理异常。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python 如何读取 Excel 测试数据？​",
+        "answer": "可以使用 openpyxl 库(workbook、sheet)来读取 Excel 测试数据。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "单例模式如何用 Python 实现？​",
+        "answer": "可以使用元类来实现单例模式。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "Python 如何用 pdb 或 logging 调试测试脚本？​",
+        "answer": "可以使用 pdb 库来调试测试脚本。可以使用 logging 库来记录日志。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Python",
+        "question": "如何用 Python 实现测试数据工厂（Test Data Factory）？​",
+        "answer": "可以使用 Factory Boy 库来实现测试数据工厂。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
         "question": "JavaScript的数据类型你都有哪些了解?",
         "answer": ""
     },
@@ -477,7 +615,7 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "RESTful API了解吗?",
-        "answer": "RESTful API是一种基于HTTP协议的设计风格, 它使用标准的HTTP方法（GET、POST、PUT、DELETE）来操作资源。" 
+        "answer": "RESTful API是一种基于HTTP协议的设计风格, 它使用标准的HTTP方法(GET、POST、PUT、DELETE)来操作资源。" 
     },
     {
         "category": "其他基础",
@@ -489,7 +627,7 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "Cookie, Session, Token是什么? 有什么关系?",
-        "answer": "Cookie 是存储在客户端（比如浏览器 ）中的一小段数据, session 是服务器端为每个会话用户创建的存储空间, TOKEN 是一种是服务器生成的身份验证凭证。Cookie 可以存储SessionID, 让服务器可以通过该 ID 找到对应的 session 数据；还可以存储 TOKEN, 客户端的请求中会携带 TOKEN,  由服务器来验证。"
+        "answer": "Cookie 是存储在客户端(比如浏览器 )中的一小段数据, session 是服务器端为每个会话用户创建的存储空间, TOKEN 是一种是服务器生成的身份验证凭证。Cookie 可以存储SessionID, 让服务器可以通过该 ID 找到对应的 session 数据；还可以存储 TOKEN, 客户端的请求中会携带 TOKEN,  由服务器来验证。"
     },
     {
         "category": "其他基础",
@@ -507,19 +645,55 @@
         "category": "其他基础",
         "subcategory": "Linux",
         "question": "Shell脚本方面有哪些了解?",
-        "answer": ""
+        "answer": "语法基础​​变量定义与引用($var, ${var})、条件判断(if [ -f file ])、循环(for, while)、函数定义与调用、输入输出重定向(>, >>, 2>&1)。测试中使用Shell脚本的具体场景比如自动化部署、日志分析、批量执行测试用例、结果验证、监控和报告生成等。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "操作系统",
+        "question": "同步和异步是什么?",
+        "answer": "同步任务按顺序执行，简单但低效。异步任务并发执行，复杂但高效，适合高并发场景。CPU 密集型用同步，I/O 密集型用异步。"
     },
     {
         "category": "其他基础",
         "subcategory": "Git",
         "question": "Git的常用命令有哪些?",
-        "answer": ""
+        "answer": "clone（拉取远程仓库）、add（暂存文件）、commit（提交修改）、push（推送至远程）、pull（拉取并合并更新）、branch（管理分支）、checkout（切换分支 / 恢复文件）、merge（合并分支）、status（查看状态）、diff（查看差异）、log（查看提交历史）。"
     },
     {
         "category": "其他基础",
         "subcategory": "Docker",
         "question": "Docker是什么? 和虚拟机有什么区别?",
         "answer": "Docker 是一个应用容器引擎, 可以让开发者将应用程序和环境依赖打包在一个可移植的容器之中, 之后可以在任何机器上搭建相同的环境。和虚拟机的区别主要在于层次不同, Docker共享宿主机的操作系统内核, 而虚拟机需要模拟硬件运行一个完整的操作系统, 所以 Docker 更加轻量化, 速度也更加快。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "Docker",
+        "question": "Docker的镜像和容器是什么?",
+        "answer": "镜像是一个只读的模板, 包含了应用程序和环境依赖。容器是镜像的实例, 可以被启动、停止、删除。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "Docker",
+        "question": "Docker的常用命令有哪些?",
+        "answer": "docker build 构建镜像; docker run 运行容器; docker ps 查看容器状态; docker stop 停止容器; docker start 启动容器; docker rm 删除容器; docker rmi 删除镜像; docker pull 拉取镜像; docker push 推送镜像; docker commit 提交容器为镜像; docker exec 进入容器。"
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "项目",
+        "question": "在过去的项目中，你用 Python 解决了哪些复杂的测试问题？",
+        "answer": ""
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "项目",
+        "question": "你在项目中遇到的最大挑战是什么？",
+        "answer": ""
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "项目",
+        "question": "描述一个你设计的自动化测试框架，核心模块是什么？",
+        "answer": ""
     },
     {
         "category": "开放性问题",

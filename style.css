@@ -101,6 +101,7 @@ section {
     padding-top: 120px;
     border-radius: 16px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 2;
 }
 
 .profile {
