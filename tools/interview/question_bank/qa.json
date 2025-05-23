@@ -320,32 +320,32 @@
     {
         "category": "测试工具&框架",
         "subcategory": "自动化测试",
-        "question": "用 requests 库发送 POST 请求，如何传递 JSON 数据和文件？",
+        "question": "用 requests 库发送 POST 请求, 如何传递 JSON 数据和文件？",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "自动化测试",
         "question": "unittest 和 pytest 的区别？你更倾向用哪个？为什么？",
-        "answer": "unittest 是 Python 内置标准库，基于类,需继承TestCase，需用特定断言方法，适合轻量场景比如做单元测试；pytest 是第三方框架，语法简洁（用 assert）、夹具灵活、插件丰富（如参数化、并行测试），适合复杂项目。更倾向 pytest，因其开发效率高、生态完善，能显著提升测试体验和代码质量。"
+        "answer": "unittest 是 Python 内置标准库, 基于类,需继承TestCase, 需用特定断言方法, 适合轻量场景比如做单元测试；pytest 是第三方框架, 语法简洁（用 assert）、夹具灵活、插件丰富（如参数化、并行测试）, 适合复杂项目。更倾向 pytest, 因其开发效率高、生态完善, 能显著提升测试体验和代码质量。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "自动化测试",
         "question": "pytest 中如何实现参数化？",
-        "answer": "pytest 中可以通过 parametrize 装饰器实现参数化。第一个参数是字符串，为测试函数的参数名。第二个参数是列表，包含多组测试数据。"
+        "answer": "pytest 中可以通过 parametrize 装饰器实现参数化。第一个参数是字符串, 为测试函数的参数名。第二个参数是列表, 包含多组测试数据。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "自动化测试",
         "question": "pytest 中如何实现测试用例的依赖/如何用 fixture 管理测试前置/后置条件？？",
-        "answer": "用 @pytest.fixture 装饰器定义，通过 yield 分隔：yield 前的代码为前置操作（如创建资源）。yield 后的值会作为参数注入测试函数。测试结束后（无论成败），执行 yield 后的后置操作（如清理资源）。测试函数通过参数声明依赖的 fixture，支持多 fixture 组合。"
+        "answer": "用 @pytest.fixture 装饰器定义, 通过 yield 分隔：yield 前的代码为前置操作（如创建资源）。yield 后的值会作为参数注入测试函数。测试结束后（无论成败）, 执行 yield 后的后置操作（如清理资源）。测试函数通过参数声明依赖的 fixture, 支持多 fixture 组合。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "自动化测试",
         "question": "Selenium 如何处理异步加载元素/动态元素等待?",
-        "answer": "使用显式等待（Explicit Wait），结合 WebDriverWait 和 expected_conditions。"
+        "answer": "使用显式等待（Explicit Wait）, 结合 WebDriverWait 和 expected_conditions。"
     },
     {
         "category": "测试工具&框架",
@@ -362,14 +362,20 @@
     {
         "category": "测试工具&框架",
         "subcategory": "自动化测试",
-        "question": "Selenium如何定位动态元素（动态元素指的是网页在加载后，会随着用户操作、时间推移或数据更新而发生变化的元素）？",
+        "question": "Selenium如何定位动态元素（动态元素指的是网页在加载后, 会随着用户操作、时间推移或数据更新而发生变化的元素）？",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "自动化测试",
         "question": "如何设计 Page Object Model(POM)？​",
-        "answer": "PO模式就是把每个页面看为一个对象，页面元素定位作为属性。页面元素操作作为方法。测试用例执行调用页面对象，实现了业务逻辑和元素定位的分离。"
+        "answer": "PO模式就是把每个页面看为一个对象, 页面元素定位作为属性。页面元素操作作为方法。测试用例执行调用页面对象, 实现了业务逻辑和元素定位的分离。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "自动化测试",
+        "question": "什么是数据驱动？？什么是关键字驱动？",
+        "answer": "数据驱动是指测试用例的数据来自外部数据源, 而不是硬编码在测试脚本中。关键字驱动是指测试用例的执行逻辑由关键字组成, 而不是直接执行操作。(关键字驱动+数据驱动)https://www.cnblogs.com/juno3550/p/14431902.html"
     },
     {
         "category": "测试工具&框架",
@@ -399,7 +405,7 @@
         "category": "编程语言",
         "subcategory": "Python",
         "question": "Python的字典是什么?如何合并字典？",
-        "answer": "字典是一种键值对的数据结构, 由键和值组成, 键必须是不可变类型, 值可以是任意类型。合并字典可以使用 update() 方法（dict2.update(dict1)）,或者字典推导式，或者解包操作符**。"
+        "answer": "字典是一种键值对的数据结构, 由键和值组成, 键必须是不可变类型, 值可以是任意类型。合并字典可以使用 update() 方法（dict2.update(dict1)）,或者字典推导式, 或者解包操作符**。"
     },
     {
         "category": "编程语言",
@@ -475,27 +481,117 @@
     },
     {
         "category": "编程语言",
-        "subcategory": "Python",
-        "question": "单例模式如何用 Python 实现？​",
-        "answer": "可以使用元类来实现单例模式。"
-    },
-    {
-        "category": "编程语言",
-        "subcategory": "Python",
-        "question": "Python 如何用 pdb 或 logging 调试测试脚本？​",
-        "answer": "可以使用 pdb 库来调试测试脚本。可以使用 logging 库来记录日志。"
-    },
-    {
-        "category": "编程语言",
-        "subcategory": "Python",
-        "question": "如何用 Python 实现测试数据工厂（Test Data Factory）？​",
-        "answer": "可以使用 Factory Boy 库来实现测试数据工厂。"
+        "subcategory": "前端",
+        "question": "如何用 CSS 实现一个元素的垂直居中？",
+        "answer": "Flex 布局（父容器 `display: flex; align-items: center;`）或绝对定位 + `transform: translateY(-50%)`。  "
     },
     {
         "category": "编程语言",
         "subcategory": "前端",
-        "question": "JavaScript的数据类型你都有哪些了解?",
-        "answer": ""
+        "question": "Flex 布局和 Grid 布局的区别？实际项目中如何选择？",
+        "answer": "Flex 适合一维布局（行或列）, Grid 适合二维布局（复杂网格）；在测试中需关注不同浏览器的兼容性（如 IE 对 Grid 支持较差）。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "什么是 CSS 盒模型？​",
+        "answer": "在 CSS（层叠样式表）中, 将网页中的每个元素都看作是一个矩形的盒子, 这个盒子由内容区域（content）、内边距（padding）、边框（border）和外边距（margin）组成。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "AJAX、XHR、jQuery、fetch、axios、Promise、async/await 都是什么？",
+        "answer": "​​AJAX​​ 是一种技术方案（异步更新网页内容）, 最初通过 ​​XHR​​（底层 API）实现, 后演进为基于 ​​Promise​​ 的 ​​Fetch​​（原生）和功能更强的 ​​axios​​（第三方库）, ​​Promise​​ 是异步编程的基础机制, 表示异步最终操作完成/失败及其结果值; ​​async/await​​ 是基于 Promise 的语法糖, async 用于申明一个函数是异步的, 而 await 用于等待一个异步方法执行完成"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "Vue是什么？有什么优点？​",
+        "answer": "Vue 是一种渐进式 JavaScript 框架, 用于构建用户界面。Vue 的优点包括轻量、灵活、响应式、组件化等。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "Vue的生命周期（钩子）有哪些？​",
+        "answer": "Vue 的生命周期包括创建前/后、挂载前/后、更新前/后、销毁前/后。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "Vuex是什么？状态是什么？如何在组件间共享状态？​",
+        "answer": "Vuex 是 Vue 官方提供的状态管理库, 用于集中管理 Vue 应用的状态。状态是应用程序中存储的数据, 可以是全局状态、组件状态等。可以通过 Vuex 的 store 来管理状态, 然后通过组件的 computed 属性或方法来读取或修改状态。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "Vue（响应式原理）双向绑定是什么？怎么实现？​",
+        "answer": "当数据发生变化时，视图会自动更新；反之，当视图发生变化时，数据也会同步更新。通过 Object.defineProperty () 方法对数据对象的属性进行劫持，当数据变化时，通知订阅者（即视图相关的更新函数）更新视图；同时，视图上的事件（如输入框输入事件）触发时，会更新对应的数据。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "Vue 组件的 Props 和 Events?​",
+        "answer": "Props 是组件的属性，用于父组件向子组件传递数据；Events 是组件的事件，子组件通过触发事件来向父组件传递信息或通知父组件执行某些操作。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "前端",
+        "question": "v-if 和 v-show 的区别？性能影响如何？​",
+        "answer": "v-if 是条件渲染, 当条件为 false 时, 元素不会渲染; v-show 是通过 CSS 的 display 属性来控制元素的显示/隐藏。v-if 有更高的切换开销, 因为它会销毁和重建元素; v-show 有更高的初始渲染开销, 因为它会始终渲染元素, 只是通过 CSS 控制显示/隐藏。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Java",
+        "question": "Java中final关键字的作用？​",
+        "answer": "修饰变量​​：变量值不可变。​​修饰方法​​：方法不可被子类重写。​​修饰类​​：类不可被继承。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Java",
+        "question": "Java中接口和抽象类的区别？​",
+        "answer": "接口是一种约定, 定义了一组方法, 但没有具体实现; 抽象类是一种模板, 包含抽象方法和具体方法, 不能被实例化，只能被继承，子类必须实现抽象方法。不同之处比如接口不能有成员变量（除了静态常量），而抽象类可以有普通成员变量；一个类只能继承一个抽象类，但能实现多个接口等。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Java",
+        "question": "Java中多态是什么？实现方式？​",
+        "answer": "多态是指同一个类型的对象在不同的场景下表现出不同的行为。实现方式包括方法重载（同一个类中，允许存在多个同名方法，但这些方法的参数列表（参数个数、类型或顺序）不同）和方法重写（子类中定义了与父类中方法签名（方法名、参数列表、返回类型）完全相同的方法。当子类对象调用该方法时，实际执行的是子类重写后的方法。）。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Java",
+        "question": "Java中异常处理机制是什么？​",
+        "answer": "Java 中的异常处理机制包括 try-catch-finally 块, 用于捕获和处理异常。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Java",
+        "question": "Java中集合框架有哪些？​",
+        "answer": "Java 中的集合框架包括 List、Set、Map 等接口和它们的实现类。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Java",
+        "question": "Java中反射（Reflection）是什么​？​",
+        "answer": "反射是一种机制, 允许程序在运行时动态地获取类的信息, 并调用类的方法、访问类的属性等。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "Java",
+        "question": "Java中注解（Annotation）是什么​？​",
+        "answer": "注解是一种元数据, 用于为程序元素（类、方法、字段等）添加额外的信息。注解可以用于编译时检查、运行时处理、生成文档等。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "安卓",
+        "question": "Android 四大组件了解吗？​",
+        "answer": "四大组件分别是 Activity活动、Service服务(后台长时间运行)、BroadcastReceiver(接收系统或应用发出的广播消息)、ContentProvider(不同的应用之间共享数据)。"
+    },
+    {
+        "category": "编程语言",
+        "subcategory": "安卓",
+        "question": "解释Intent的作用和使用场景。​",
+        "answer": "Intent是一种用于组件之间通信的机制, 可以启动其他组件、传递数据、启动服务等。"
     },
     {
         "category": "其他基础",
@@ -633,7 +729,7 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "介绍一下浏览器LocalStorage和Cache区别。",
-        "answer": "LocalStorage 的容量比较大，不会过期，不会随请求一起发送。而 Cache 容量小，可设置过期时间，会随着请求一起发送。"
+        "answer": "LocalStorage 的容量比较大, 不会过期, 不会随请求一起发送。而 Cache 容量小, 可设置过期时间, 会随着请求一起发送。"
     },
     {
         "category": "其他基础",
@@ -651,7 +747,7 @@
         "category": "其他基础",
         "subcategory": "操作系统",
         "question": "同步和异步是什么?",
-        "answer": "同步任务按顺序执行，简单但低效。异步任务并发执行，复杂但高效，适合高并发场景。CPU 密集型用同步，I/O 密集型用异步。"
+        "answer": "同步任务按顺序执行, 简单但低效。异步任务并发执行, 复杂但高效, 适合高并发场景。CPU 密集型用同步, I/O 密集型用异步。"
     },
     {
         "category": "其他基础",
@@ -678,21 +774,57 @@
         "answer": "docker build 构建镜像; docker run 运行容器; docker ps 查看容器状态; docker stop 停止容器; docker start 启动容器; docker rm 删除容器; docker rmi 删除镜像; docker pull 拉取镜像; docker push 推送镜像; docker commit 提交容器为镜像; docker exec 进入容器。"
     },
     {
+        "category": "其他基础",
+        "subcategory": "Docker",
+        "question": "Docker的网络有哪些?",
+        "answer": "Docker 提供了三种网络模式: bridge、host、none。bridge 模式是默认模式, 容器和宿主机共享网络, 容器可以访问宿主机的网络; host 模式容器和宿主机共享网络, 容器的网络和宿主机一致; none 模式容器没有网络, 容器的网络和宿主机完全隔离。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "Docker",
+        "question": "Docker的存储有哪些?",
+        "answer": "Docker 提供了三种存储模式: volume、bind、tmpfs。volume 模式是默认模式, 容器和宿主机共享存储, 容器可以访问宿主机的存储; bind 模式容器和宿主机共享存储, 容器的存储和宿主机一致; tmpfs 模式容器的存储在内存中, 容器重启后数据丢失。"
+    },
+    {
         "category": "开放性问题",
-        "subcategory": "项目",
-        "question": "在过去的项目中，你用 Python 解决了哪些复杂的测试问题？",
+        "subcategory": "实战",
+        "question": "如何测试一个搜索框的自动补全功能？",
+        "answer": ""
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "实战",
+        "question": "如何测试页面在弱网环境下的用户体验？",
+        "answer": ""
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "实战",
+        "question": "如何验证页面资源（如图片、JS 文件）是否按预期加载？",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "项目",
-        "question": "你在项目中遇到的最大挑战是什么？",
+        "question": "在过去的项目中, 你用 Python 解决了哪些复杂的测试问题？",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "项目",
-        "question": "描述一个你设计的自动化测试框架，核心模块是什么？",
+        "question": "你在项目中遇到的最大挑战是什么？怎么解决的？",
+        "answer": ""
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "项目",
+        "question": "描述一个你设计的自动化测试框架, 核心模块是什么？",
+        "answer": ""
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "工作",
+        "question": "如果让你测试自己开发过的App，你会重点关注哪些方面？",
         "answer": ""
     },
     {
@@ -710,14 +842,20 @@
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你的职业规划是什么?",
+        "question": "你认为前端技术对测试工程师的重要性是什么？",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你为什么选择测试?",
+        "question": "你的职业规划是什么?未来想深入前端开发还是继续专注测试？",
         "answer": ""
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "个人",
+        "question": "你为什么选择测试岗位而非开发？​",
+        "answer": "测试需要逻辑思维和细致观察，我享受发现隐藏问题并推动解决的过程。开发经验让我能更快定位缺陷根源，例如通过代码逻辑反推测试用例。希望从测试切入，未来向测试开发（SDET）或自动化测试方向发展。"
     },
     {
         "category": "开放性问题",
