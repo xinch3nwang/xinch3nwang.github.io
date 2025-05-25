@@ -188,12 +188,6 @@
     {
         "category": "测试基础",
         "subcategory": "接口测试",
-        "question": "请求的结构是什么?",
-        "answer": "请求一般包括请求行、请求头、请求体, 请求行里是URL、请求方法、协议版本; 请求头里一般常用有content-type; 还有认证的TOKEN之类的。请求体就是要发送的数据。"
-    },
-    {
-        "category": "测试基础",
-        "subcategory": "接口测试",
         "question": "你知道接口文档的结构吗?",
         "answer": "一般有接口名称、接口地址、请求方式、接口描述、请求参数、响应参数等。"
     },
@@ -225,7 +219,7 @@
         "category": "测试基础",
         "subcategory": "接口测试",
         "question": "接口测试如何处理接口依赖（如需要先登录）？",
-        "answer": "两种方案：​​Session保持​​：用requests.Session()自动带cookie（适合简单场景）​​Token传递​​：先调登录接口获取token，后续请求加到headers（如Authorization: Bearer xxxx）"
+        "answer": "1.​​Session保持​​：用requests.Session()自动带cookie（适合简单场景）2.​​Token传递​​：先调登录接口获取token，后续请求加到headers（如Authorization: Bearer xxxx）【3.Mock数据：先mock数据，后续请求使用mock数据。】"
     },
     {
         "category": "测试基础",
@@ -249,7 +243,7 @@
         "category": "测试基础",
         "subcategory": "自动化测试",
         "question": "什么是数据驱动？？什么是关键字驱动？",
-        "answer": "数据驱动是指测试用例的数据来自外部数据源, 而不是硬编码在测试脚本中。关键字驱动是指测试用例的执行逻辑由关键字组成, 而不是直接执行操作。(关键字驱动+数据驱动)https://www.cnblogs.com/juno3550/p/14431902.html"
+        "answer": "数据驱动是指测试用例的数据来自外部数据源, 而不是硬编码在测试脚本中。关键字驱动是指测试用例的执行逻辑由关键字组成, 而不是直接执行操作。[<a href='https://www.cnblogs.com/juno3550/p/14431902.html'>关键字驱动+数据驱动项目示例</a>]"
     },
     {
         "category": "测试基础",
@@ -566,8 +560,44 @@
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
+        "question": "如何用Postman创建一个API请求？",
+        "answer": "选择请求方法（GET/POST等），输入URL；在Headers中添加请求头（如Content-Type: application/json）；在Body中填写参数（如x-www-form-urlencoded或raw JSON）；点击Send发送请求，查看响应结果。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Postman",
         "question": "Postman如何测试一个接收JSON的POST接口？",
-        "answer": ""
+        "answer": "1. 选择POST请求方法，输入目标URL；2. 在Headers中添加Content-Type: application/json；3. 在Body选项卡选择raw → JSON格式，填写请求体JSON数据；4. 点击Send发送请求；5. 在Response区域查看状态码、响应时间和返回的JSON数据；6. 使用Tests脚本添加断言验证响应结果（如状态码、字段值等）。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Postman",
+        "question": "如何在Postman中设置环境变量？",
+        "answer": "点击右上角环境管理图标 → 创建新环境 → 定义变量（如baseUrl=https://api.example.com）；在请求中使用{{variableName}}引用变量（如URL填写{{baseUrl}}/endpoint）；支持多环境切换（如测试环境、预发布环境）。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Postman",
+        "question": "如何在Postman中添加断言验证响应？",
+        "answer": "使用Tests脚本功能，例如：pm.test(\"Status code is 200\", () => { pm.response.to.have.status(200); }); pm.test(\"Response contains userId\", () => { const jsonData = pm.response.json(); pm.expect(jsonData.userId).to.eql(123); });"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Postman",
+        "question": "如何用Postman实现数据驱动测试？",
+        "answer": "在Collection Runner中导入CSV/JSON文件，用{{$csvRow}}或{{$index}}引用数据；示例CSV：username,password\nuser1,pass1\nuser2,pass2；在请求体中通过{{username}}动态传参。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Postman",
+        "question": "如何用Postman调试接口的认证流程（如OAuth 2.0）？",
+        "answer": "手动获取Token：发送认证请求，将响应中的Token保存为全局变量；后续请求在Headers中携带Authorization: Bearer {{token}}；可结合Pre-request Script自动刷新Token。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Postman",
+        "question": "Postman和JMeter的区别是什么？什么时候用Postman？",
+        "answer": "Postman适合轻量级API功能测试、快速验证、团队协作（共享集合）；JMeter适合高性能、并发测试、复杂场景（如分布式压测）；使用Postman的场景：单接口调试、自动化测试脚本编写、Mock Server模拟接口。"
     },
     {
         "category": "测试工具&框架",
@@ -577,8 +607,86 @@
     },
     {
         "category": "测试工具&框架",
+        "subcategory": "JMeter",
+        "question": "JMeter中如何添加一个HTTP请求？",
+        "answer": "右键线程组 → 添加 → 取样器 → HTTP请求，填写协议、服务器名、路径、参数等。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "JMeter",
+        "question": "如何用JMeter实现参数化（登录测试）？",
+        "answer": "使用CSV Data Set Config：添加配置元件 → CSV Data Set Config，指定CSV文件路径；在HTTP请求中通过${username}和${password}引用参数。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "JMeter",
+        "question": "如何在JMeter中添加断言验证响应？",
+        "answer": "右键HTTP请求 → 添加 → 断言 → 响应断言，设置预期结果（如响应码200或包含特定文本）。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "JMeter",
+        "question": "如何用JMeter模拟并发用户？",
+        "answer": "在线程组中设置：线程数（用户数）、Ramp-Up时间（启动间隔）、循环次数；示例：100用户，Ramp-Up 10秒 → 每秒启动10用户，持续10秒完成全部并发。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "JMeter",
+        "question": "如何用JMeter处理动态参数（如登录后的Token）？",
+        "answer": "使用正则表达式提取器或JSON Extractor：右键请求 → 添加 → 后置处理器 → 正则表达式提取器，通过正则匹配响应中的Token；在后续请求中通过${token}引用。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "JMeter",
+        "question": "JMeter如何生成聚合报告？",
+        "answer": "添加监听器 → 查看结果树（调试）、聚合报告（性能指标）；运行测试后，聚合报告显示TPS、平均响应时间、错误率等关键指标。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "JMeter",
+        "question": "如何排查JMeter测试中出现的超时问题？",
+        "answer": "检查网络延迟、服务器性能、接口响应时间；调整JMeter配置：增加超时时间（HTTP请求 → 连接/响应超时）；使用View Results Tree查看失败请求的详细日志。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "requests",
+        "question": "如何用Python+Requests做接口自动化？​",
+        "answer": "​​封装请求​​：用requests.get/post()发送请求，添加headers/params; ​​数据驱动​​：用Excel或JSON存储测试数据（如不同登录账号）; ​​断言验证​​：检查response.status_code和response.json()里的关键字段; ​​报告生成​​：用pytest+Allure生成带请求/响应详情的报告。"
+    },
+    {
+        "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "用 requests 库发送 POST 请求, 如何传递 JSON 数据和文件？",
+        "answer": ""
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "requests",
+        "question": "requests如何处理API的鉴权认证？(Basic Auth/OAuth等)​",
+        "answer": "​​Basic Auth​​：requests.auth.HTTPBasicAuth(username, password);​​OAuth​​：requests_oauthlib.OAuth1(consumer_key, client_secret, resource_owner_key, resource_owner_secret)"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "requests",
+        "question": "requests遇到429 Too Many Requests错误怎么处理？​",
+        "answer": "立即添加延迟：time.sleep(1); 检查API限流规则，调整测试频率; 考虑使用retrying库实现自动重试"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "requests",
+        "question": "requests​如何处理SSL证书验证错误？​",
+        "answer": "​​忽略证书验证​​：verify=False; 安装证书：requests.get(url, verify=‘path/to/cert.crt’)。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "requests",
+        "question": "requests的session对象有什么优势？",
+        "answer": "Session对象可以：保持持久连接，提升性能（特别是多次请求同一主机时）;自动处理cookies，比如登录状态维护;统一配置默认headers/auth等参数"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "requests",
+        "question": "requests如何处理接口依赖？",
         "answer": ""
     },
     {
@@ -732,6 +840,12 @@
         "answer": "HTTP是超文本传输协议, 基于请求与响应模型运作, 端口号80。HTTPS是HTTP的安全版本, 它使用SSL/TLS协议进行加密通信, 端口号443。"
     },
     {
+        "category": "测试基础",
+        "subcategory": "接口测试",
+        "question": "HTTP协议的请求结构是什么?",
+        "answer": "请求一般包括请求行、请求头、请求体, 请求行里是URL、请求方法、协议版本; 请求头里一般常用有content-type; 还有认证的TOKEN之类的。请求体就是要发送的数据。"
+    },
+    {
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "HTTP协议的响应格式是什么?",
@@ -771,7 +885,19 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "RESTful API了解吗?",
-        "answer": "RESTful API是一种基于HTTP协议的设计风格, 它使用标准的HTTP方法(GET、POST、PUT、DELETE)来操作资源。" 
+        "answer": "RESTful API是一种基于HTTP协议的API设计风格, 使用标准的HTTP方法(GET、POST、PUT、DELETE)来操作资源。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "介绍一下SOAP协议?",
+        "answer": "SOAP 是基于 HTTP、以严格 XML 格式实现分布式系统结构化数据交互的协议，适合对稳定性和规范要求高的场景。"
+    },
+    {
+        "category": "其他基础",
+        "subcategory": "计算机网络",
+        "question": "介绍一下跨域问题?",
+        "answer": "跨域是指浏览器从一个域的网页去请求另一个域的资源, 由于浏览器的同源策略, 会阻止这种行为。"
     },
     {
         "category": "其他基础",
@@ -938,6 +1064,12 @@
     {
         "category": "开放性问题",
         "subcategory": "实战",
+        "question": "如果一个接口测试失败了，你会如何进行调试？​",
+        "answer": "回答要点：可以描述从检查请求参数、查看接口返回信息、查看日志、分析错误原因到解决问题的步骤。"
+    },
+    {
+        "category": "开放性问题",
+        "subcategory": "实战",
         "question": "​​支付接口测试要注意什么？​",
         "answer": ""
     },
@@ -976,12 +1108,6 @@
         "subcategory": "项目",
         "question": "描述一个你设计的自动化测试框架, 核心模块是什么？",
         "answer": ""
-    },
-    {
-        "category": "开放性问题",
-        "subcategory": "项目",
-        "question": "如何用Python+Requests做接口自动化？​",
-        "answer": "​​封装请求​​：用requests.get/post()发送请求，添加headers/params; ​​数据驱动​​：用Excel或JSON存储测试数据（如不同登录账号）; ​​断言验证​​：检查response.status_code和response.json()里的关键字段; ​​报告生成​​：用pytest+Allure生成带请求/响应详情的报告。"
     },
     {
         "category": "开放性问题",
