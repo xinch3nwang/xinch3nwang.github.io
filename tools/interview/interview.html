@@ -236,9 +236,10 @@
 
                 // 动态生成分类导航
                 const categories = [...new Set(data.map(q => q.category || 'basic'))];
-                let navHtml = '<a href="#" class="list-group-item list-group-item-action active" data-category="all">全部</a>';
+                let navHtml = '<a href="#" class="list-group-item list-group-item-action active" data-category="all">全部(' + data.length + ')</a>';
                 categories.forEach(cat => {
-                    navHtml += `<a href="#" class="list-group-item list-group-item-action" data-category="${cat}">${cat}</a>`;
+                    const count = data.filter(q => q.category === cat).length;
+                    navHtml += `<a href="#" class="list-group-item list-group-item-action" data-category="${cat}">${cat}(${count})</a>`;
                 });
                 $('#category-nav').html(navHtml);
 
