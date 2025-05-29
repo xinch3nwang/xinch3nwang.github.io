@@ -2,6 +2,12 @@
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
+        "question": "什么是软件测试?​",
+        "answer": "软件测试是通过手动或自动方式验证软件是否满足需求, 并发现缺陷的过程。目的是确保软件质量, 降低风险。"
+    },
+    {
+        "category": "测试基础",
+        "subcategory": "软件生命周期",
         "question": "软件生命周期的定义是什么?",
         "answer": "一个计算机软件从功能确定、设计、开发、测试到投入使用, 并在使用中不断完善的全过程。"
     },
@@ -9,7 +15,7 @@
         "category": "测试基础",
         "subcategory": "软件生命周期",
         "question": "软件生命周期的阶段有哪些?",
-        "answer": "可行性分析-需求分析-总体设计-概要设计-详细设计-编码-测试-维护"
+        "answer": "可行性分析-需求分析-概要设计-详细设计-编码-测试-维护"
     },
     {
         "category": "测试基础",
@@ -21,25 +27,19 @@
         "category": "测试基础",
         "subcategory": "软件生命周期",
         "question": "V模型是什么?",
-        "answer": "V模型是一种开发阶段从左到右依次进行的软件开发模型。流程由需求分析到概要设计到详细设计到编码, 再到单元测试、集成测试、系统测试最后验收测试, 测试开发阶段一一对应呈V字形"
+        "answer": "V模型是一种开发阶段从左到右依次进行的软件开发模型。开发和测试阶段一一对应呈V字形, 流程由开发阶段的需求分析、概要设计、详细设计到编码, 再到测试阶段的单元测试、集成测试、系统测试到验收测试。"
     },
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
         "question": "W模型是什么?",
-        "answer": "W模型又叫双V模型是一种每个开发阶段对应特定测试阶段的一种软件开发模型, 用户需求对应验收测试设计、需求分析对应系统测试设计、概要设计对应集成测试设计、详细设计对应单元测试设计, 编码对应单元测试、集成对应集成测试、实施对应系统测试、交付对应验收测试。更早进行测试能更早发现问题"
+        "answer": "W模型又叫双V模型, 测试伴随着整个软件开发周期, 用户需求对应验收测试设计、需求分析对应系统测试设计、概要设计对应集成测试设计、详细设计对应单元测试设计, 编码对应单元测试、集成对应集成测试、实施对应系统测试、交付对应验收测试。更早进行测试能更早发现问题。"
     },
     {
         "category": "测试基础",
         "subcategory": "软件生命周期",
         "question": "质量模型是什么?",
         "answer": "质量模型用来描述和评估软件质量, 一般从功能、性能、兼容、易用、安全、可靠、可维护和可移植性这几个方面考虑。"
-    },
-    {
-        "category": "测试基础",
-        "subcategory": "软件生命周期",
-        "question": "什么是软件测试？​",
-        "answer": "软件测试是通过手动或自动方式验证软件是否满足需求，并发现缺陷的过程。目的是确保软件质量，降低风险。"
     },
     {
         "category": "测试基础",
@@ -51,7 +51,7 @@
         "category": "测试基础",
         "subcategory": "测试分类",
         "question": "测试的分类有哪些?(按代码可见度划分)",
-        "answer": "按照代码可见度划分, 一般可以分为白盒测试、黑盒测试和灰盒测试。白盒测试是基于程序内部逻辑结构进行测试​​，比如单元测试; 黑盒测试不考虑软件内部结构, 从用户需求出发, 关注软件功能是否正确实现，比如功能测试。灰盒测试在两者之间, 指在知道部分软件内部结构的情况下关注于功能实现, 比如接口测试。"
+        "answer": "按照代码可见度划分, 一般可以分为白盒测试、黑盒测试和灰盒测试。白盒测试是基于程序内部逻辑结构进行测试​​, 比如单元测试; 黑盒测试不考虑软件内部结构, 从用户需求出发, 关注软件功能是否正确实现, 比如功能测试。灰盒测试在两者之间, 指在知道部分软件内部结构的情况下关注于功能实现, 比如接口测试。"
     },
     {
         "category": "测试基础",
@@ -63,18 +63,18 @@
         "category": "测试基础",
         "subcategory": "测试分类",
         "question": "回归测试是什么?",
-        "answer": "回归测试是指在软件发生代码修改(功能新增、系统重构)之后, 重新执行全部或者部分以前的测试用例, 验证程序软件原有功能是否正常、新变更是否引入新错误。"
+        "answer": "回归测试是指在软件发生代码修改(功能新增、缺陷修复...)之后, 重新执行全部或者部分以前的测试用例, 验证程序软件原有功能是否正常、新变更是否引入新错误。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "你了解测试流程吗?",
-        "answer": "测试流程一般有需求分析、测试计划编写、测试用例设计、测试用例执行、缺陷跟踪管理到测试报告生成。"
+        "question": "测试的流程是什么?",
+        "answer": "测试的流程一般有需求分析、测试计划编写、测试用例设计、测试用例执行、缺陷跟踪管理到测试报告生成。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
-        "question": "在需求分析阶段测试人员为什么要参与?",
+        "question": "测试人员为什么要参与需求分析阶段?",
         "answer": "确保各部门之间需求理解一致, 可以查漏补缺。"
     },
     {
@@ -99,7 +99,7 @@
         "category": "测试基础",
         "subcategory": "测试流程",
         "question": "软件缺陷的类型有哪些?",
-        "answer": "软件缺陷类型有功能缺陷、界面缺陷、兼容性、易用性等。"
+        "answer": "软件缺陷类型有功能缺陷、界面缺陷、兼容性、易用性缺陷等等。"
     },
     {
         "category": "测试基础",
@@ -111,13 +111,13 @@
         "category": "测试基础",
         "subcategory": "测试流程",
         "question": "软件缺陷的跟踪流程是什么?",
-        "answer": "一般由测试人员提交缺陷、分派缺陷, 再由开发人员进行确定（看bug是否重复提交、是否确定是bug、是否推迟处理）, 然后进行修复, 测试人员进行验证, 通过后关闭, 未通过重新打开。"
+        "answer": "一般由测试人员提交缺陷、分派缺陷, 再由开发人员进行确定(看bug是否重复提交、是否确定是bug、是否推迟处理), 然后进行修复, 测试人员再次进行验证, 通过后关闭, 未通过重新打开。"
     },
     {
         "category": "测试基础",
         "subcategory": "测试流程",
         "question": "测试报告要有哪些内容?",
-        "answer": "测试报告一般要有测试目标、测试过程、测试范围、测试结果(包括缺陷统计和分析)、测试结论。"
+        "answer": "测试报告一般要有测试目标、测试范围、测试过程、测试结果(包括缺陷统计和分析)、测试结论。"
     },
     {
         "category": "测试基础",
@@ -129,7 +129,7 @@
         "category": "测试基础",
         "subcategory": "功能测试",
         "question": "你知道哪些测试用例的设计方法?",
-        "answer": "一般有等价类划分法将输入数据分类（如有效/无效输入）每类选代表测试、边界值分析法测试输入范围的边界、判定表法、因果图法、错误推断法基于经验测易错点、场景法模拟用户操作流程。"
+        "answer": "一般有等价类划分法[将输入数据分类(如有效/无效输入)每类选代表测试]、边界值分析法[测试输入范围的边界]、判定表法、因果图法、错误推断法[基于经验测易错点]、场景法[模拟用户操作流程]。"
     },
     {
         "category": "测试基础",
@@ -141,7 +141,7 @@
         "category": "测试基础",
         "subcategory": "功能测试",
         "question": "介绍一下边界值分析法?",
-        "answer": "边界值分析法一般和等价类划分法结合使用, 因为很多软件缺陷出现在输入边界上而非内部, 所以边界值分析法重点关注边界值情况, 在划分的等价类的边界(比如上点离点)进行测试。"
+        "answer": "边界值分析法一般和等价类划分法结合使用, 因为很多软件缺陷出现在输入边界上而非内部, 所以边界值分析法重点关注边界值情况, 在划分的等价类边界的上点、离点进行测试。"
     },
     {
         "category": "测试基础",
@@ -153,13 +153,13 @@
         "category": "测试基础",
         "subcategory": "功能测试",
         "question": "介绍一下因果图法?",
-        "answer": "因果图法通过图形符号表示输入条件和输出结果之间关系, 适用于描述多种条件的组合, 并产生多个不同结果的情况, 核心在于考虑输入条件之间的相互制约及组合关系, 以及输出结果对输入条件的依赖关系。"
+        "answer": "因果图法用于描述多种条件的组合, 核心在于考虑输入条件之间的相互制约及组合关系, 以及输出结果对输入条件的依赖关系, 通过图形符号表示输入条件和输出结果之间关系。"
     },
     {
         "category": "测试基础",
         "subcategory": "功能测试",
         "question": "判定表法和因果图法有什么异同?",
-        "answer": "判定表法和因果图法的相同点在于都是为了更全面有效地找出系统在不同输入条件组合下的输出情况。不同点在于判定表法侧重于对输入条件组合的穷举分析, 不强调条件之间的逻辑关系, 适用于输入条件较少、相互关系相对简单的情况, 比如简单的登录功能; 而因果图法则更注重分析输入条件之间的因果关系, 以及输入和输出之间的约束关系, 适用于输入条件较多、相互关系复杂的情况, 比如电商的促销活动。"
+        "answer": "判定表法和因果图法的相同点在于都是为了更全面有效地找出系统在不同输入条件组合下的输出情况。不同点在于判定表法侧重于对输入条件组合的穷举分析, 不强调条件之间的逻辑关系, 适用于输入条件较少、相互关系相对简单的情况, 比如简单的登录功能; 而因果图法则更注重分析输入条件之间的约束关系, 以及输入和输出之间的因果关系, 适用于输入条件较多、相互关系复杂的情况, 比如电商的促销活动。"
     },
     {
         "category": "测试基础",
@@ -171,7 +171,7 @@
         "category": "测试基础",
         "subcategory": "功能测试",
         "question": "介绍一下场景法?",
-        "answer": "场景法针对业务场景, 通过模拟用户在实际使用软件过程中的各种场景来进行测试。可以在编写时弄清业务的流程图, 了解业务的成功条件和失败条件, 以此来编写正向的、反向的用例。"
+        "answer": "场景法针对业务场景, 通过模拟用户在实际使用软件过程中的各种场景来进行测试。可以在编写时画好业务的流程图, 根据业务的成功条件和失败条件来编写正向的、反向的用例。"
     },
     {
         "category": "测试基础",
@@ -182,7 +182,7 @@
     {
         "category": "测试基础",
         "subcategory": "接口测试",
-        "question": "接口测试的目的是什么?为什么要做接口测试？​",
+        "question": "接口测试的目的是什么?为什么要做接口测试?​",
         "answer": "接口测试的目的是验证系统各个组件之间的接口是否正常, 并确保数据的正确传递。不用等前端开发完就能测逻辑, 可以提前发现问题。一个接口bug可能影响多个功能, 可以高效覆盖​​。"
     },
     {
@@ -195,7 +195,7 @@
         "category": "测试基础",
         "subcategory": "接口测试",
         "question": "接口测试的测试用例要有哪些?",
-        "answer": "一般有用例子ID、用例名、模块、优先级、前置条件、URL、请求方法、请求头、请求体、预期结果、实际结果。"
+        "answer": "一般有用例ID、用例标题、模块、优先级、前置条件、URL、请求方法、请求头、请求体、预期结果、实际结果。"
     },
     {
         "category": "测试基础",
@@ -207,49 +207,49 @@
         "category": "测试基础",
         "subcategory": "自动化测试",
         "question": "自动化测试技术的应用场景/测试人员哪些工作环节适合用到自动化技术?",
-        "answer": "1. 回归测试（高频执行相同用例）；2. 冒烟测试（持续集成自动触发）3. 监控报警（生产环境巡检）"
+        "answer": "1. 回归测试(高频执行相同用例);2. 冒烟测试(持续集成自动触发)3. 监控报警(生产环境巡检)"
     },
     {
         "category": "测试基础",
         "subcategory": "自动化测试",
-        "question": "自动化测试覆盖率是什么？​",
-        "answer": "自动化测试覆盖率是指使用自动化测试执行的用例数与手工执行的用例数量的比率。（测试覆盖率是衡量测试用例覆盖整个应用程序代码的百分比，帮助识别测试中的差距）"
+        "question": "自动化测试覆盖率是什么?​",
+        "answer": "自动化测试覆盖率是指使用自动化测试执行的用例数与手工执行的用例数量的比率。(测试覆盖率是衡量测试用例覆盖整个应用程序代码的百分比, 帮助识别测试中的差距)"
     },
     {
         "category": "测试基础",
         "subcategory": "自动化测试",
-        "question": "什么是UI自动化测试？哪些场景适合做UI自动化？",
-        "answer": "UI自动化测试就是用工具（如Selenium）模拟用户操作界面，自动执行测试用例。比较适合核心高频操作的场景，还有大量数据反复测试同一流程，不适合频繁变动的页面。"
+        "question": "什么是UI自动化测试?哪些场景适合做UI自动化?",
+        "answer": "UI自动化测试就是用工具(如Selenium)模拟用户操作界面, 自动执行测试用例。比较适合核心高频操作的场景, 还有大量数据反复测试同一流程, 不适合频繁变动的页面。"
     },
     {
         "category": "测试基础",
         "subcategory": "自动化测试",
-        "question": "如何设计 Page Object Model(POM)？​有什么好处？",
-        "answer": "PO模式就是把每个页面看为一个对象, 页面元素定位作为属性。页面元素操作作为方法。测试用例执行调用页面对象, 实现了业务逻辑和元素定位的分离。代码复用（多个测试脚本共用同一页面的操作）、可读性强、易维护（页面元素变了只需改一个类文件）"
+        "question": "如何设计 Page Object Model(POM)?​有什么好处?",
+        "answer": "PO模式就是把每个页面看为一个对象, 页面元素定位作为属性, 页面元素操作作为方法。测试用例执行调用页面对象, 实现了业务逻辑和元素定位的分离。好处是代码复用(多个测试脚本共用同一页面的操作)、可读性强、易维护(页面元素变了只需改一个类文件)"
     },
     {
         "category": "测试基础",
         "subcategory": "自动化测试",
-        "question": "PO模式中BasePage的作用？​",
+        "question": "PO模式中BasePage的作用?​",
         "answer": "BasePage是所有页面的父类, 主要是封装了一些通用方法, 比如元素定位、元素操作等。"
     },
     {
         "category": "测试基础",
         "subcategory": "自动化测试",
-        "question": "什么是数据驱动？？什么是关键字驱动？",
+        "question": "什么是数据驱动??什么是关键字驱动?",
         "answer": "数据驱动是指测试用例的数据来自外部数据源, 而不是硬编码在测试脚本中。关键字驱动是指测试用例的执行逻辑由关键字组成, 而不是直接执行操作。[<a href='https://www.cnblogs.com/juno3550/p/14431902.html'>关键字驱动+数据驱动项目示例</a>]"
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
         "question": "性能测试的目的是什么?",
-        "answer": "性能测试的目的主要是为了评估当前系统能力; 寻找性能瓶颈, 优化性能; 评估是否满足未来的需要。"
+        "answer": "性能测试的目的主要是为了评估当前系统能力; 寻找性能瓶颈, 优化性能; 评估是否满足未来的需要(可能的高峰)。"
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
         "question": "性能测试和功能测试有什么不同?",
-        "answer": "功能测试验证​​系统能否正常工作；性能测试验证​​系统能否高效稳定工作​​。性能测试关注重点在于时间和资源方面的非功能性需求。"
+        "answer": "功能测试验证​​系统能否正常工作;性能测试验证​​系统能否高效稳定工作​​。性能测试关注重点在于时间和资源方面的非功能性需求。"
     },
     {
         "category": "测试基础",
@@ -260,32 +260,32 @@
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "请介绍一下基准测试",
-        "answer": "基准测试通过基准测试环境下的测试, 可以知晓系统基础性能表现, 为后续性能优化提供原始参照数据。"
+        "question": "请介绍一下基准测试。",
+        "answer": "基准测试通过基准测试环境下的测试, 知晓系统基础性能表现, 为后续性能优化提供原始<strong>参照</strong>数据。"
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "请介绍一下压力测试",
-        "answer": "压力测试在高负载的情况下, 看看系统峰值时的容错能力、可恢复能力。。"
+        "question": "请介绍一下压力测试。",
+        "answer": "压力测试在<strong>高负载</strong>的情况下, 看看系统<strong>峰值</strong>时的容错能力、可恢复能力。"
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "请介绍一下稳定性测试",
-        "answer": "稳定性测试是正常负载下长时间的稳定运行测试。"
+        "question": "请介绍一下稳定性测试。",
+        "answer": "稳定性测试是<strong>正常负载下长时间</strong>的稳定运行测试。"
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "请介绍一下并发测试",
+        "question": "请介绍一下并发测试。",
         "answer": "并发测试是在同一时间发送多个请求, 主要是检查系统有没有并发问题。"
     },
     {
         "category": "测试基础",
         "subcategory": "性能测试",
-        "question": "请介绍一下负载测试",
-        "answer": "负载测试逐步增加系统负载, 寻找满足性能指标情况下的最大负载量"
+        "question": "请介绍一下负载测试。",
+        "answer": "负载测试<strong>逐步增加系统负载</strong>, 寻找满足性能指标情况下的最大负载量"
     },
     {
         "category": "测试基础",
@@ -303,7 +303,7 @@
         "category": "测试基础",
         "subcategory": "性能测试",
         "question": "性能测试的流程是什么?",
-        "answer": "性能测试流程有性能需求分析、性能测试计划设、性能测试用例设计、性能测试执行和调优、测试报告生成。"
+        "answer": "性能测试流程有性能需求分析、性能测试计划设计、性能测试用例设计、性能测试执行和调优、测试报告生成。"
     },
     {
         "category": "测试基础",
@@ -315,7 +315,7 @@
         "category": "编程基础",
         "subcategory": "Python",
         "question": "Python的数据类型你都有哪些了解?",
-        "answer": "有数字类型, 如整型浮点型; 有序列类型, 如字符串、列表、元组; 有集合类型; 映射类型(字典);布尔类型。"
+        "answer": "有数字类型, 如整型、浮点型; 有序列类型, 如字符串、列表、元组; 有集合类型; 映射类型(字典); 布尔类型。"
     },
     {
         "category": "编程基础",
@@ -332,8 +332,8 @@
     {
         "category": "编程基础",
         "subcategory": "Python",
-        "question": "Python的字典是什么?如何合并字典？",
-        "answer": "字典是一种键值对的数据结构, 由键和值组成, 键必须是不可变类型, 值可以是任意类型。合并字典可以使用 update() 方法（dict2.update(dict1)）,或者字典推导式, 或者解包操作符**。"
+        "question": "Python的字典是什么?如何合并字典?",
+        "answer": "字典是一种键值对的数据结构, 由键和值组成, 键必须是不可变类型, 值可以是任意类型。合并字典可以使用 update() 方法 [dict2.update(dict1)] ,或者字典推导式, 或者解包操作符 ** 。"
     },
     {
         "category": "编程基础",
@@ -350,7 +350,7 @@
     {
         "category": "编程基础",
         "subcategory": "Python",
-        "question": "Python如何实现列表去重？",
+        "question": "Python如何实现列表去重?",
         "answer": "可以使用 set 集合去重。"
     },
     {
@@ -363,7 +363,7 @@
         "category": "编程基础",
         "subcategory": "Python",
         "question": "Python生成器了解吗?",
-        "answer": "生成器一种特殊的迭代器, 有yield关键字, 执行到它会暂停并返回值, 再次调用会从暂停处继续。"
+        "answer": "生成器一种特殊的迭代器, 有 yield 关键字, 执行到它会暂停并返回值, 再次调用会从暂停处继续。"
     },
     {
         "category": "编程基础",
@@ -375,7 +375,7 @@
         "category": "编程基础",
         "subcategory": "Python",
         "question": "Python装饰器了解吗?",
-        "answer": "装饰器给原函数套了一个壳, 在原函数执行前后增加额外操作,可以在不更改原函数的情况下增加功能。​比如解决接口的未鉴权问题（普通用户直接访问/admin/delete接口能删数据）。"
+        "answer": "装饰器给原函数套了一个壳, 在原函数执行前后增加额外操作, 可以在不更改原函数的情况下增加功能。​比如解决接口的未鉴权问题(普通用户直接访问/admin/delete接口能删数据)。"
     },
     {
         "category": "编程基础",
@@ -386,175 +386,175 @@
     {
         "category": "编程基础",
         "subcategory": "Python",
-        "question": "如何用 Python 模拟高并发请求？​",
+        "question": "如何用 Python 模拟高并发请求?​",
         "answer": "可以使用 threading+requests/ asyncio+aiohttp 来模拟高并发请求。"
     },
     {
         "category": "编程基础",
         "subcategory": "Python",
-        "question": "解释 Python里 *args 和 **kwargs 的作用？​",
-        "answer": "*args 用于接收任意数量的位置参数, 以元组形式存储。**kwargs 用于接收任意数量的关键字参数, 以字典形式存储。"
+        "question": "解释 Python里 *args 和 **kwargs 的作用?​",
+        "answer": " *args 用于接收任意数量的位置参数, 以元组形式存储。**kwargs 用于接收任意数量的关键字参数, 以字典形式存储。"
     },
     {
         "category": "编程基础",
         "subcategory": "Python",
-        "question": "Python 用 with 语句处理文件操作的优点是什么？​",
+        "question": "Python 用 with 语句处理文件操作的优点是什么?​",
         "answer": "with 语句会自动关闭文件, 避免资源泄漏, 还能自动处理异常。"
     },
     {
         "category": "编程基础",
         "subcategory": "Python",
-        "question": "Python 如何读取 Excel 测试数据？​",
-        "answer": "可以使用 openpyxl 库(workbook、sheet)来读取 Excel 测试数据。"
+        "question": "Python 如何读取 Excel 测试数据?​",
+        "answer": "可以使用 openpyxl 库 (workbook、sheet类) 来读取 Excel 测试数据。"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
-        "question": "var、let、const的区别是什么？如何选择？",
-        "answer": "var存在变量提升和函数作用域，let和const有块级作用域；let用于可变变量，const用于不可变变量（对象/数组内部可修改），优先使用const，其次let，避免使用var。"
+        "question": "var、let、const的区别是什么?如何选择?",
+        "answer": " var 存在变量声明提升和函数作用域, let 和 const 有块级作用域; let 用于可变变量, const 用于不可变变量(对象/数组内部可修改), 优先使用 const , 其次 let , 避免使用 var 。"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
-        "question": "如何判断一个变量的类型？（typeof vs instanceof）",
-        "answer": "typeof用于基本类型（除null外）和函数，返回字符串；instanceof用于检测对象是否为某构造函数的实例，不适用于基本类型。"
+        "question": "如何判断一个变量的类型?(typeof vs instanceof)",
+        "answer": " typeof 用于基本类型(除null外)和函数, 返回字符串; instanceof 用于检测对象是否为某构造函数的实例, 不适用于基本类型。"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
-        "question": "箭头函数和普通函数的区别是什么？",
-        "answer": "箭头函数无自己的this、arguments、super和new.target，不能作为构造函数，没有prototype属性，适合回调和简短函数。"
+        "question": "箭头函数和普通函数的区别是什么?",
+        "answer": "箭头函数无自己的 this 、arguments、super 和 new.target, 不能作为构造函数, 没有 prototype 属性, 适合回调和简短函数。"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
         "question": "解释this的指向规则。",
-        "answer": "this指向调用者：普通函数中指向全局对象（非严格模式）或undefined（严格模式），对象方法中指向对象，构造函数中指向实例，call/apply/bind可显式指定。"
+        "answer": "this指向调用者: 普通函数中指向全局对象(非严格模式)或 undefined (严格模式), 对象方法中指向对象, 构造函数中指向实例, call/apply/bind 可显式指定。"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
-        "question": "Promise、async/await和回调函数的区别？",
-        "answer": "回调函数是将一个函数作为参数传递给另一个函数，当该函数执行完成后，会调用这个作为参数的函数，需手动处理嵌套（太多则回调地狱）和错误；Promise是用于处理异步操作的对象，解决回调地狱，通过then/catch链式调用；async/await是Promise语法糖，使异步代码像同步。"
+        "question": "Promise、async/await和回调函数的区别?",
+        "answer": "回调函数是将一个函数作为参数传递给另一个函数, 当该函数执行完成后, 会调用这个作为参数的函数, 需手动处理嵌套(太多则回调地狱)和错误;Promise是用于处理异步操作的对象, 解决回调地狱, 通过then/catch链式调用;async/await是Promise语法糖, 使异步代码像同步。"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
-        "question": "如何用JS实现一个简单的DOM操作（如点击按钮触发事件）？",
-        "answer": "document.getElementById('btn').addEventListener('click', () => { console.log('Button clicked'); });"
+        "question": "如何用JS实现一个简单的DOM操作(如点击按钮触发事件)?",
+        "answer": "<code>document.getElementById('btn').addEventListener('click', () => { console.log('Button clicked'); });</code>"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
-        "question": "如何通过JS获取页面元素的属性值？",
-        "answer": "const value = document.querySelector('input').value;"
+        "question": "如何通过JS获取页面元素的属性值?",
+        "answer": "<code>const value = document.querySelector('input').value;</code>"
     },
     {
         "category": "编程基础",
         "subcategory": "JavaScript",
-        "question": "AJAX、XHR、jQuery、fetch、axios、Promise、async/await 都是什么？",
-        "answer": "​​AJAX​​ 是一种技术方案（异步更新网页内容）, 最初通过 ​​XHR​​（底层 API）实现, 后演进为基于 ​​Promise​​ 的 ​​Fetch​​（原生）和功能更强的 ​​axios​​（第三方库）, ​​Promise​​ 是异步编程的基础机制, 表示异步最终操作完成/失败及其结果值; ​​async/await​​ 是基于 Promise 的语法糖, async 用于申明一个函数是异步的, 而 await 用于等待一个异步方法执行完成"
+        "question": "AJAX、XHR、jQuery、fetch、axios、Promise、async/await 都是什么?",
+        "answer": "​​AJAX​​ 是一种技术方案(异步更新网页内容), 最初通过 ​​XHR​​(底层 API)实现, 后演进为基于 ​​Promise​​ 的 ​​Fetch​​(原生)和功能更强的 ​​axios​​(第三方库), ​​Promise​​ 是异步编程的基础机制, 表示异步最终操作完成/失败及其结果值; ​​async/await​​ 是基于 Promise 的语法糖, async 用于申明一个函数是异步的, 而 await 用于等待一个异步方法执行完成"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "如何用 CSS 实现一个元素的垂直居中？",
-        "answer": "Flex 布局（父容器 `display: flex; align-items: center;`）或绝对定位 + `transform: translateY(-50%)`。  "
+        "question": "如何用 CSS 实现一个元素的垂直居中?",
+        "answer": "Flex 布局(父容器 `display: flex; align-items: center;`) 或 绝对定位 + `transform: translateY(-50%)`。  "
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "Flex 布局和 Grid 布局的区别？实际项目中如何选择？",
-        "answer": "Flex 适合一维布局（行或列）, Grid 适合二维布局（复杂网格）；在测试中需关注不同浏览器的兼容性（如 IE 对 Grid 支持较差）。"
+        "question": "Flex 布局和 Grid 布局的区别?实际项目中如何选择?",
+        "answer": "Flex 适合一维布局(行或列), Grid 适合二维布局(复杂网格);在测试中需关注不同浏览器的兼容性(如 IE 对 Grid 支持较差)。"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "什么是 CSS 盒模型？​",
-        "answer": "在 CSS（层叠样式表）中, 将网页中的每个元素都看作是一个矩形的盒子, 这个盒子由内容区域（content）、内边距（padding）、边框（border）和外边距（margin）组成。"
+        "question": "什么是 CSS 盒模型?​",
+        "answer": "在 CSS(层叠样式表)中, 将网页中的每个元素都看作是一个矩形的盒子, 这个盒子由内容区域(content)、内边距(padding)、边框(border)和外边距(margin)组成。"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "Vue是什么？有什么优点？​",
+        "question": "Vue是什么?有什么优点?​",
         "answer": "Vue 是一种渐进式 JavaScript 框架, 用于构建用户界面。Vue 的优点包括轻量、灵活、响应式、组件化等。"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "Vue的生命周期（钩子）有哪些？​",
+        "question": "Vue的生命周期(钩子)有哪些?​",
         "answer": "Vue 的生命周期包括创建前/后、挂载前/后、更新前/后、销毁前/后。"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "Vuex是什么？状态是什么？如何在组件间共享状态？​",
+        "question": "Vuex是什么?状态是什么?如何在组件间共享状态?​",
         "answer": "Vuex 是 Vue 官方提供的状态管理库, 用于集中管理 Vue 应用的状态。状态是应用程序中存储的数据, 可以是全局状态、组件状态等。可以通过 Vuex 的 store 来管理状态, 然后通过组件的 computed 属性或方法来读取或修改状态。"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "Vue（响应式原理）双向绑定是什么？怎么实现？​",
-        "answer": "当数据发生变化时，视图会自动更新；反之，当视图发生变化时，数据也会同步更新。通过 Object.defineProperty () 方法对数据对象的属性进行劫持，当数据变化时，通知订阅者（即视图相关的更新函数）更新视图；同时，视图上的事件（如输入框输入事件）触发时，会更新对应的数据。"
+        "question": "Vue(响应式原理)双向绑定是什么?怎么实现?​",
+        "answer": "当数据发生变化时, 视图会自动更新; 反之, 当视图发生变化时, 数据也会同步更新。通过 Object.defineProperty () 方法对数据对象的属性进行劫持, 当数据变化时, 通知订阅者(即视图相关的更新函数)更新视图; 同时, 视图上的事件(如输入框输入事件)触发时, 会更新对应的数据。"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
         "question": "Vue 组件的 Props 和 Events?​",
-        "answer": "Props 是组件的属性，用于父组件向子组件传递数据；Events 是组件的事件，子组件通过触发事件来向父组件传递信息或通知父组件执行某些操作。"
+        "answer": "Props 是组件的属性, 用于父组件向子组件传递数据; Events 是组件的事件, 子组件通过触发事件来向父组件传递信息或通知父组件执行某些操作。"
     },
     {
         "category": "编程基础",
         "subcategory": "前端",
-        "question": "v-if 和 v-show 的区别？性能影响如何？​",
+        "question": "v-if 和 v-show 的区别?性能影响如何?​",
         "answer": "v-if 是条件渲染, 当条件为 false 时, 元素不会渲染; v-show 是通过 CSS 的 display 属性来控制元素的显示/隐藏。v-if 有更高的切换开销, 因为它会销毁和重建元素; v-show 有更高的初始渲染开销, 因为它会始终渲染元素, 只是通过 CSS 控制显示/隐藏。"
     },
     {
         "category": "编程基础",
         "subcategory": "Java",
-        "question": "Java中final关键字的作用？​",
-        "answer": "修饰变量​​：变量值不可变。​​修饰方法​​：方法不可被子类重写。​​修饰类​​：类不可被继承。"
+        "question": "Java中final关键字的作用?​",
+        "answer": "修饰变量​​: 变量值不可变。​​修饰方法​​: 方法不可被子类重写。​​修饰类​​: 类不可被继承。"
     },
     {
         "category": "编程基础",
         "subcategory": "Java",
-        "question": "Java中接口和抽象类的区别？​",
-        "answer": "接口是一种约定, 定义了一组方法, 但没有具体实现; 抽象类是一种模板, 包含抽象方法和具体方法, 不能被实例化，只能被继承，子类必须实现抽象方法。不同之处比如接口不能有成员变量（除了静态常量），而抽象类可以有普通成员变量；一个类只能继承一个抽象类，但能实现多个接口等。"
+        "question": "Java中接口和抽象类的区别?​",
+        "answer": "接口是一种约定, 定义了一组方法, 但没有具体实现; 抽象类是一种模板, 包含抽象方法和具体方法, 不能被实例化, 只能被继承, 子类必须实现抽象方法。不同之处比如接口不能有成员变量(除了静态常量), 而抽象类可以有普通成员变量; 一个类只能继承一个抽象类, 但能实现多个接口等。"
     },
     {
         "category": "编程基础",
         "subcategory": "Java",
-        "question": "Java中多态是什么？实现方式？​",
-        "answer": "多态是指同一个类型的对象在不同的场景下表现出不同的行为。实现方式包括方法重载（同一个类中，允许存在多个同名方法，但这些方法的参数列表（参数个数、类型或顺序）不同）和方法重写（子类中定义了与父类中方法签名（方法名、参数列表、返回类型）完全相同的方法。当子类对象调用该方法时，实际执行的是子类重写后的方法。）。"
+        "question": "Java中多态是什么?实现方式?​",
+        "answer": "多态是指同一个类型的对象在不同的场景下表现出不同的行为。实现方式包括方法重载(同一个类中, 允许存在多个同名方法, 但这些方法的参数列表(参数个数、类型或顺序)不同)和方法重写(子类中定义了与父类中方法签名(方法名、参数列表、返回类型)完全相同的方法。当子类对象调用该方法时, 实际执行的是子类重写后的方法。)。"
     },
     {
         "category": "编程基础",
         "subcategory": "Java",
-        "question": "Java中异常处理机制是什么？​",
+        "question": "Java中异常处理机制是什么?​",
         "answer": "Java 中的异常处理机制包括 try-catch-finally 块, 用于捕获和处理异常。"
     },
     {
         "category": "编程基础",
         "subcategory": "Java",
-        "question": "Java中集合框架有哪些？​",
+        "question": "Java中集合框架有哪些?​",
         "answer": "Java 中的集合框架包括 List、Set、Map 等接口和它们的实现类。"
     },
     {
         "category": "编程基础",
         "subcategory": "Java",
-        "question": "Java中反射（Reflection）是什么​？​",
+        "question": "Java中反射(Reflection)是什么​?​",
         "answer": "反射是一种机制, 允许程序在运行时动态地获取类的信息, 并调用类的方法、访问类的属性等。"
     },
     {
         "category": "编程基础",
         "subcategory": "Java",
-        "question": "Java中注解（Annotation）是什么​？​",
-        "answer": "注解是一种元数据, 用于为程序元素（类、方法、字段等）添加额外的信息。注解可以用于编译时检查、运行时处理、生成文档等。"
+        "question": "Java中注解(Annotation)是什么​?​",
+        "answer": "注解是一种元数据, 用于为程序元素(类、方法、字段等)添加额外的信息。注解可以用于编译时检查、运行时处理、生成文档等。"
     },
     {
         "category": "编程基础",
         "subcategory": "安卓",
-        "question": "Android 四大组件了解吗？​",
+        "question": "Android 四大组件了解吗?​",
         "answer": "四大组件分别是 Activity活动、Service服务(后台长时间运行)、BroadcastReceiver(接收系统或应用发出的广播消息)、ContentProvider(不同的应用之间共享数据)。"
     },
     {
@@ -584,50 +584,50 @@
     {
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
-        "question": "Fiddler如何抓取HTTPS接口的包？",
-        "answer": "1. 打开Fiddler，进入Tools → Options → HTTPS选项卡；2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic；3. 安装证书生成器；点击Actions → Export Root Certificate to Desktop；4. 在PC端浏览器中导入刚才导出的Fiddler根证书。"
+        "question": "Fiddler如何抓取HTTPS接口的包?",
+        "answer": "1. 打开Fiddler, 进入Tools → Options → HTTPS选项卡;2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic;3. 安装证书生成器;点击Actions → Export Root Certificate to Desktop;4. 在PC端浏览器中导入刚才导出的Fiddler根证书。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "Postman如何测试一个接收JSON的POST接口？",
-        "answer": "1. 选择POST请求方法，输入目标URL；2. 在Headers中添加Content-Type: application/json；3. 在Body选项卡选择raw → JSON格式，填写请求体JSON数据；4. 点击Send发送请求；5. 在Response区域查看状态码、响应时间和返回的JSON数据；6. 使用Tests脚本添加断言验证响应结果（如状态码、字段值等）。"
+        "question": "Postman如何测试一个接收JSON的POST接口?",
+        "answer": "1. 选择POST请求方法, 输入目标URL;2. 在Headers中添加Content-Type: application/json;3. 在Body选项卡选择raw → JSON格式, 填写请求体JSON数据;4. 点击Send发送请求;5. 在Response区域查看状态码、响应时间和返回的JSON数据;6. 使用Tests脚本添加断言验证响应结果(如状态码、字段值等)。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "如何在Postman中设置环境变量？",
-        "answer": "点击右上角环境管理图标 → 创建新环境 → 定义变量（如baseUrl=https://api.example.com）；在请求中使用{{variableName}}引用变量（如URL填写{{baseUrl}}/endpoint）；支持多环境切换（如测试环境、预发布环境）。"
+        "question": "如何在Postman中设置环境变量?",
+        "answer": "点击右上角环境管理图标 → 创建新环境 → 定义变量(如baseUrl=https://api.example.com);在请求中使用{{variableName}}引用变量(如URL填写{{baseUrl}}/endpoint);支持多环境切换(如测试环境、预发布环境)。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "如何在Postman中添加断言验证响应？",
-        "answer": "使用Tests脚本功能，例如：pm.test(\"Status code is 200\", () => { pm.response.to.have.status(200); }); pm.test(\"Response contains userId\", () => { const jsonData = pm.response.json(); pm.expect(jsonData.userId).to.eql(123); });"
+        "question": "如何在Postman中添加断言验证响应?",
+        "answer": "使用Tests脚本功能, 例如:pm.test(\"Status code is 200\", () => { pm.response.to.have.status(200); }); pm.test(\"Response contains userId\", () => { const jsonData = pm.response.json(); pm.expect(jsonData.userId).to.eql(123); });"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "Postman如何测试有接口依赖的接口？",
-        "answer": "1. 通过变量管理提取接口A的响应数据并存储为环境变量，在接口B中直接引用该变量，两个放在一个测试集里设置运行顺序。2. 可以使用Pre-request Script脚本，在Pre-request Script中使用pm.sendRequest()发送依赖接口的请求，回调函数提取响应数据并存储为环境变量然后在接口中引用。"
+        "question": "Postman如何测试有接口依赖的接口?",
+        "answer": "1. 通过变量管理提取接口A的响应数据并存储为环境变量, 在接口B中直接引用该变量, 两个放在一个测试集里设置运行顺序。2. 可以使用Pre-request Script脚本, 在Pre-request Script中使用pm.sendRequest()发送依赖接口的请求, 回调函数提取响应数据并存储为环境变量然后在接口中引用。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "如何用Postman实现数据驱动测试？",
-        "answer": "在Collection Runner中导入CSV/JSON文件，请求参数可以通过{{var}}来引用；断言中的数据，由于是在Tests中写入的脚本，并不能直接通过{{var}}来引用，所以需要引用Postman的相关API进行调用，如：pm.variables.get(\"var\")。"
+        "question": "如何用Postman实现数据驱动测试?",
+        "answer": "在Collection Runner中导入CSV/JSON文件, 请求参数可以通过{{var}}来引用;断言中的数据, 由于是在Tests中写入的脚本, 并不能直接通过{{var}}来引用, 所以需要引用Postman的相关API进行调用, 如:pm.variables.get(\"var\")。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "如何用Postman调试接口的认证流程？",
-        "answer": "手动获取Token：发送认证请求，将响应中的Token保存为全局变量；后续请求在Headers中携带Authorization: Bearer {{token}}；可结合Pre-request Script自动刷新Token。"
+        "question": "如何用Postman调试接口的认证流程?",
+        "answer": "手动获取Token:发送认证请求, 将响应中的Token保存为全局变量;后续请求在Headers中携带Authorization: Bearer {{token}};可结合Pre-request Script自动刷新Token。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "Postman和JMeter的区别是什么？什么时候用Postman？",
-        "answer": "Postman适合轻量级API功能测试、快速验证、团队协作（共享集合）；JMeter适合高性能、并发测试、复杂场景（如分布式压测）；使用Postman的场景：单接口调试、自动化测试脚本编写、Mock Server模拟接口。"
+        "question": "Postman和JMeter的区别是什么?什么时候用Postman?",
+        "answer": "Postman适合轻量级API功能测试、快速验证、团队协作(共享集合);JMeter适合高性能、并发测试、复杂场景(如分布式压测);使用Postman的场景:单接口调试、自动化测试脚本编写、Mock Server模拟接口。"
     },
     {
         "category": "测试工具&框架",
@@ -638,146 +638,146 @@
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "JMeter元件是什么？",
+        "question": "JMeter元件是什么?",
         "answer": "JMeter元件是JMeter性能测试的基本构建块, 如线程组、取样器、监听器等。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "如何创建一个简单的JMeter测试计划？",
-        "answer": "1. 打开JMeter, 点击File → New → Test Plan；2. 输入测试计划名称, 选择线程数、循环次数等；3. 右键线程组 → 添加 → 取样器, 配置请求参数；4. 右键线程组 → 添加 → 监听器, 选择查看结果树或聚合报告。"
+        "question": "如何创建一个简单的JMeter测试计划?",
+        "answer": "1. 打开JMeter, 点击File → New → Test Plan;2. 输入测试计划名称, 选择线程数、循环次数等;3. 右键线程组 → 添加 → 取样器, 配置请求参数;4. 右键线程组 → 添加 → 监听器, 选择查看结果树或聚合报告。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "JMeter常用的性能测试组件有哪些？",
-        "answer": "1. 线程组（Thread Group）：定义虚拟用户数量和加载模式；2. 取样器（Sampler）：发送HTTP/FTP/JDBC等请求；3. 监听器（Listener）：查看结果树、聚合报告等结果收集组件；4. 断言（Assertion）：验证响应结果；5. 定时器（Timer）：设置思考时间或固定吞吐量；6. 配置元件（Config Element）：管理测试数据（如CSV Data Set Config）；7. 前置/后置处理器（Pre/Post Processor）：处理请求前后逻辑；8. 逻辑控制器（Logic Controller）：控制测试流程（如循环、条件判断）"
+        "question": "JMeter常用的性能测试组件有哪些?",
+        "answer": "1. 线程组(Thread Group):定义虚拟用户数量和加载模式;2. 取样器(Sampler):发送HTTP/FTP/JDBC等请求;3. 监听器(Listener):查看结果树、聚合报告等结果收集组件;4. 断言(Assertion):验证响应结果;5. 定时器(Timer):设置思考时间或固定吞吐量;6. 配置元件(Config Element):管理测试数据(如CSV Data Set Config);7. 前置/后置处理器(Pre/Post Processor):处理请求前后逻辑;8. 逻辑控制器(Logic Controller):控制测试流程(如循环、条件判断)"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "JMeter中如何添加一个HTTP请求？",
-        "answer": "右键线程组 → 添加 → 取样器 → HTTP请求，填写协议、服务器名、路径、参数等。"
+        "question": "JMeter中如何添加一个HTTP请求?",
+        "answer": "右键线程组 → 添加 → 取样器 → HTTP请求, 填写协议、服务器名、路径、参数等。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "如何用JMeter实现参数化（登录测试）？",
-        "answer": "使用CSV Data Set Config：添加配置元件 → CSV Data Set Config，指定CSV文件路径；在HTTP请求中通过${username}和${password}引用参数。"
+        "question": "如何用JMeter实现参数化(登录测试)?",
+        "answer": "使用CSV Data Set Config:添加配置元件 → CSV Data Set Config, 指定CSV文件路径;在HTTP请求中通过${username}和${password}引用参数。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "如何在JMeter中添加断言验证响应？",
-        "answer": "右键HTTP请求 → 添加 → 断言 → 响应断言，设置预期结果（如响应码200或包含特定文本）。"
+        "question": "如何在JMeter中添加断言验证响应?",
+        "answer": "右键HTTP请求 → 添加 → 断言 → 响应断言, 设置预期结果(如响应码200或包含特定文本)。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "如何用JMeter模拟并发用户？",
-        "answer": "在线程组中设置：线程数（用户数）、Ramp-Up时间（启动间隔）、循环次数；示例：100用户，Ramp-Up 10秒 → 每秒启动10用户，持续10秒完成全部并发。"
+        "question": "如何用JMeter模拟并发用户?",
+        "answer": "在线程组中设置:线程数(用户数)、Ramp-Up时间(启动间隔)、循环次数;示例:100用户, Ramp-Up 10秒 → 每秒启动10用户, 持续10秒完成全部并发。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "如何用JMeter处理动态参数（如登录后的Token）？",
-        "answer": "使用正则表达式提取器或JSON Extractor：右键请求 → 添加 → 后置处理器 → 正则表达式提取器，通过正则匹配响应中的Token；在后续请求中通过${token}引用。"
+        "question": "如何用JMeter处理动态参数(如登录后的Token)?",
+        "answer": "使用正则表达式提取器或JSON Extractor:右键请求 → 添加 → 后置处理器 → 正则表达式提取器, 通过正则匹配响应中的Token;在后续请求中通过${token}引用。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "JMeter如何生成聚合报告？",
-        "answer": "添加监听器 → 查看结果树（调试）、聚合报告（性能指标）；运行测试后，聚合报告显示TPS、平均响应时间、错误率等关键指标。"
+        "question": "JMeter如何生成聚合报告?",
+        "answer": "添加监听器 → 查看结果树(调试)、聚合报告(性能指标);运行测试后, 聚合报告显示TPS、平均响应时间、错误率等关键指标。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "如何排查JMeter测试中出现的超时问题？",
-        "answer": "检查网络延迟、服务器性能、接口响应时间；调整JMeter配置：增加超时时间（HTTP请求 → 连接/响应超时）；使用View Results Tree查看失败请求的详细日志。"
+        "question": "如何排查JMeter测试中出现的超时问题?",
+        "answer": "检查网络延迟、服务器性能、接口响应时间;调整JMeter配置:增加超时时间(HTTP请求 → 连接/响应超时);使用View Results Tree查看失败请求的详细日志。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "什么时候适合用Postman？什么时候适合用requests?​",
-        "answer": "Postman适合：1. 快速调试单接口；2. 可视化操作（无需编码）；3. 团队协作（共享集合）；4. 需要保存历史记录；5. 使用环境变量管理多环境配置。requests适合：1. 集成到Python自动化测试框架；2. 需要复杂逻辑处理（如数据预处理）；3. 结合pytest做参数化测试；4. 需要更高灵活性的场景；5. 持续集成(CI)流程中调用。"
+        "question": "什么时候适合用Postman?什么时候适合用requests?​",
+        "answer": "Postman适合:1. 快速调试单接口;2. 可视化操作(无需编码);3. 团队协作(共享集合);4. 需要保存历史记录;5. 使用环境变量管理多环境配置。requests适合:1. 集成到Python自动化测试框架;2. 需要复杂逻辑处理(如数据预处理);3. 结合pytest做参数化测试;4. 需要更高灵活性的场景;5. 持续集成(CI)流程中调用。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "如何用Python+Requests做接口自动化？​",
-        "answer": "​​封装请求​​：用requests.get/post()发送请求，添加headers/params; ​​数据驱动​​：用Excel或JSON存储测试数据（如不同登录账号）; ​​断言验证​​：检查response.status_code和response.json()里的关键字段; ​​报告生成​​：用pytest+Allure生成带请求/响应详情的报告。"
+        "question": "如何用Python+Requests做接口自动化?​",
+        "answer": "​​封装请求​​:用requests.get/post()发送请求, 添加headers/params; ​​数据驱动​​:用Excel或JSON存储测试数据(如不同登录账号); ​​断言验证​​:检查response.status_code和response.json()里的关键字段; ​​报告生成​​:用pytest+Allure生成带请求/响应详情的报告。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "用 requests 库发送 POST 请求, 如何传递 JSON 数据和文件？",
-        "answer": "传递JSON数据：使用json参数（requests.post(url, json={'key':'value'})）。传递文件：使用files参数（requests.post(url, files={'file': open('test.txt','rb')})）。"
+        "question": "用 requests 库发送 POST 请求, 如何传递 JSON 数据和文件?",
+        "answer": "传递JSON数据:使用json参数(requests.post(url, json={'key':'value'}))。传递文件:使用files参数(requests.post(url, files={'file': open('test.txt','rb')}))。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests库",
-        "question": "requests库的json参数传递的是Python对象还是JSON字符串？",
-        "answer": "json参数接收Python对象（如dict/list），requests会自动将其序列化为JSON字符串并设置Content-Type为application/json。若手动传递JSON字符串，需使用data参数并手动设置headers={'Content-Type':'application/json'}。"
+        "question": "requests库的json参数传递的是Python对象还是JSON字符串?",
+        "answer": "json参数接收Python对象(如dict/list), requests会自动将其序列化为JSON字符串并设置Content-Type为application/json。若手动传递JSON字符串, 需使用data参数并手动设置headers={'Content-Type':'application/json'}。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "requests遇到429 Too Many Requests错误怎么处理？​",
-        "answer": "立即添加延迟：time.sleep(1); 检查API限流规则，调整测试频率; 考虑使用retrying库实现自动重试"
+        "question": "requests遇到429 Too Many Requests错误怎么处理?​",
+        "answer": "立即添加延迟:time.sleep(1); 检查API限流规则, 调整测试频率; 考虑使用retrying库实现自动重试"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "requests​如何处理SSL证书验证错误？​",
-        "answer": "​​忽略证书验证​​：verify=False; 安装证书：requests.get(url, verify=‘path/to/cert.crt’)。"
+        "question": "requests​如何处理SSL证书验证错误?​",
+        "answer": "​​忽略证书验证​​:verify=False; 安装证书:requests.get(url, verify=‘path/to/cert.crt’)。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "requests的session对象有什么优势？",
-        "answer": "Session对象可以：保持持久连接，提升性能（特别是多次请求同一主机时）;自动处理cookies，比如登录状态维护;统一配置默认headers/auth等参数"
+        "question": "requests的session对象有什么优势?",
+        "answer": "Session对象可以:保持持久连接, 提升性能(特别是多次请求同一主机时);自动处理cookies, 比如登录状态维护;统一配置默认headers/auth等参数"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "接口测试requests如何处理接口依赖（如需要先登录）？",
-        "answer": "1.​​Session保持​​：用requests.Session()自动带cookie（适合简单场景）2.​​Token传递​​：先调登录接口获取token，后续请求加到headers（如Authorization: Bearer xxxx）【3.Mock数据：先mock数据，后续请求使用mock数据。】"
+        "question": "接口测试requests如何处理接口依赖(如需要先登录)?",
+        "answer": "1.​​Session保持​​:用requests.Session()自动带cookie(适合简单场景)2.​​Token传递​​:先调登录接口获取token, 后续请求加到headers(如Authorization: Bearer xxxx)【3.Mock数据:先mock数据, 后续请求使用mock数据。】"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "unittest/pytest",
-        "question": "unittest 和 pytest 的区别？你更倾向用哪个？为什么？",
-        "answer": "unittest 是 Python 内置标准库, 基于类,需继承TestCase, 需用特定断言方法, 适合轻量场景比如做单元测试；pytest 是第三方框架, 语法简洁（用 assert）、夹具灵活、插件丰富（如参数化、并行测试）, 适合复杂项目。更倾向 pytest, 因其开发效率高、生态完善, 能显著提升测试体验和代码质量。"
+        "question": "unittest 和 pytest 的区别?你更倾向用哪个?为什么?",
+        "answer": "unittest 是 Python 内置标准库, 基于类,需继承TestCase, 需用特定断言方法, 适合轻量场景比如做单元测试;pytest 是第三方框架, 语法简洁(用 assert)、夹具灵活、插件丰富(如参数化、并行测试), 适合复杂项目。更倾向 pytest, 因其开发效率高、生态完善, 能显著提升测试体验和代码质量。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "unittest/pytest",
-        "question": "pytest 中如何实现参数化？",
+        "question": "pytest 中如何实现参数化?",
         "answer": "pytest 中可以通过 parametrize 装饰器实现参数化。第一个参数是字符串, 为测试函数的参数名。第二个参数是列表, 包含多组测试数据。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "unittest/pytest",
-        "question": "pytest 中如何实现测试用例的依赖/如何用 fixture 管理测试前置/后置条件？？",
-        "answer": "用 @pytest.fixture 装饰器定义, 通过 yield 分隔：yield 前的代码为前置操作（如创建资源）。yield 后的值会作为参数注入测试函数。测试结束后（无论成败）, 执行 yield 后的后置操作（如清理资源）。测试函数通过参数声明依赖的 fixture, 支持多 fixture 组合。"
+        "question": "pytest 中如何实现测试用例的依赖/如何用 fixture 管理测试前置/后置条件??",
+        "answer": "用 @pytest.fixture 装饰器定义, 通过 yield 分隔:yield 前的代码为前置操作(如创建资源)。yield 后的值会作为参数注入测试函数。测试结束后(无论成败), 执行 yield 后的后置操作(如清理资源)。测试函数通过参数声明依赖的 fixture, 支持多 fixture 组合。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "介绍一下Selenium的底层原理。",
-        "answer": "1) 测试脚本发送JSON格式的HTTP请求；2) 浏览器驱动（如ChromeDriver）作为服务端接收并解析这些请求；3) 驱动通过浏览器提供的自动化协议将命令转换为浏览器原生操作；4) 浏览器执行后返回响应，经驱动处理后以HTTP响应形式返回给客户端。​"
+        "answer": "1) 测试脚本发送JSON格式的HTTP请求;2) 浏览器驱动(如ChromeDriver)作为服务端接收并解析这些请求;3) 驱动通过浏览器提供的自动化协议将命令转换为浏览器原生操作;4) 浏览器执行后返回响应, 经驱动处理后以HTTP响应形式返回给客户端。​"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "介绍 Selenium 的几种等待机制。",
-        "answer": "强制等待​​（time.sleep）简单但低效；​​隐式等待​​（driver.implicitly_wait）全局轮询元素；​​显式等待​​（WebDriverWait + EC）针对特定元素/条件，稳定性更好；​​流畅等待​​（自定义轮询/异常）灵活处理复杂场景"
+        "answer": "强制等待​​(time.sleep)简单但低效;​​隐式等待​​(driver.implicitly_wait)全局轮询元素;​​显式等待​​(WebDriverWait + EC)针对特定元素/条件, 稳定性更好;​​流畅等待​​(自定义轮询/异常)灵活处理复杂场景"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "Selenium 如何处理异步加载元素/动态元素等待?",
-        "answer": "使用显式等待（Explicit Wait）, 结合 WebDriverWait 和 expected_conditions。"
+        "answer": "使用显式等待(Explicit Wait), 结合 WebDriverWait 和 expected_conditions。"
     },
     {
         "category": "测试工具&框架",
@@ -788,13 +788,13 @@
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
-        "question": "Selenium如何处理​​下拉框（Select）？",
+        "question": "Selenium如何处理​​下拉框(Select)?",
         "answer": "从support.ui导入Select类。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
-        "question": "Selenium如何处理​动态表格（数据行数不固定）？",
+        "question": "Selenium如何处理​动态表格(数据行数不固定)?",
         "answer": "​​定位整个表格​​, 使用 find_elements() 方法定位所有行, 然后遍历每一行, 使用 find_elements() 方法定位所有单元格。"
     },
     {
@@ -806,13 +806,13 @@
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
-        "question": "Selenium如何定位动态元素（动态元素指的是网页在加载后, 会随着用户操作、时间推移或数据更新而发生变化的元素）？",
+        "question": "Selenium如何定位动态元素(动态元素指的是网页在加载后, 会随着用户操作、时间推移或数据更新而发生变化的元素)?",
         "answer": ""
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
-        "question": "元素明明存在但Selenium找不到，都有哪些可能的原因？",
+        "question": "元素明明存在但Selenium找不到, 都有哪些可能的原因?",
         "answer": "元素定位错误、元素未加载、元素被遮挡、元素被禁用、元素被隐藏、在iframe里等。"
     },
     {
@@ -854,13 +854,13 @@
     {
         "category": "其他基础",
         "subcategory": "数据库",
-        "question": "介绍一下联表查询，并给出不同联表查询区别。",
+        "question": "介绍一下联表查询, 并给出不同联表查询区别。",
         "answer": "联表查询是指将多个表中的数据按照一定的条件关联起来查询。常见的联表查询有内连接、左连接、右连接、全连接。内连接只返回两个表中都存在的记录; 左连接返回左表所有记录, 右连接返回右表所有记录; 全连接返回左右表所有记录。"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
-        "question": "非关系型数据库了解多少？",
+        "question": "非关系型数据库了解多少?",
         "answer": "MongoDB是一种面向文档的非关系型数据管理系统。它没有特定的结构, 不需要先定义表, 灵活可扩展。适合存储结构不同的数据, 比如日志。Redis 是一种键值型的的内存数据库, 适合作为缓存、消息队列、分布式锁。"
     },
     {
@@ -951,7 +951,7 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "介绍一下SOAP协议?",
-        "answer": "SOAP 是基于 HTTP、以严格 XML 格式实现分布式系统结构化数据交互的协议，适合对稳定性和规范要求高的场景。"
+        "answer": "SOAP 是基于 HTTP、以严格 XML 格式实现分布式系统结构化数据交互的协议, 适合对稳定性和规范要求高的场景。"
     },
     {
         "category": "其他基础",
@@ -969,7 +969,7 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "Cookie, Session, Token是什么? 有什么关系?",
-        "answer": "Cookie 是存储在客户端(比如浏览器)中的一小段数据, session 是服务器端为每个会话用户创建的存储空间, TOKEN 是一种是服务器生成的身份验证凭证。Cookie 可以存储SessionID, 客户端通常通过Cookie传递让服务器可以通过该 ID 找到对应的 session 数据；Cookie也可以存储 TOKEN, 客户端的请求头中会携带 TOKEN, 由服务器来验证签名。Session有状态(服务器​​查询SessionID（无意义字符串）​​); Token无状态(服务器​​解密并验证签名（包含用户信息的加密字符串）)"
+        "answer": "Cookie 是存储在客户端(比如浏览器)中的一小段数据, session 是服务器端为每个会话用户创建的存储空间, TOKEN 是一种是服务器生成的身份验证凭证。Cookie 可以存储SessionID, 客户端通常通过Cookie传递让服务器可以通过该 ID 找到对应的 session 数据;Cookie也可以存储 TOKEN, 客户端的请求头中会携带 TOKEN, 由服务器来验证签名。Session有状态(服务器​​查询SessionID(无意义字符串)​​); Token无状态(服务器​​解密并验证签名(包含用户信息的加密字符串))"
     },
     {
         "category": "其他基础",
@@ -999,7 +999,7 @@
         "category": "其他基础",
         "subcategory": "Git",
         "question": "Git的常用命令有哪些?",
-        "answer": "clone（拉取远程仓库）、add（暂存文件）、commit（提交修改）、push（推送至远程）、pull（拉取并合并更新）、branch（管理分支）、checkout（切换分支 / 恢复文件）、merge（合并分支）、status（查看状态）、diff（查看差异）、log（查看提交历史）。"
+        "answer": "clone(拉取远程仓库)、add(暂存文件)、commit(提交修改)、push(推送至远程)、pull(拉取并合并更新)、branch(管理分支)、checkout(切换分支 / 恢复文件)、merge(合并分支)、status(查看状态)、diff(查看差异)、log(查看提交历史)。"
     },
     {
         "category": "其他基础",
@@ -1040,211 +1040,211 @@
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试一个登录功能？",
-        "answer": "1. 功能测试：[正确账号密码登录、错误提示（账号/密码错误）...扩展至测试用例设计】、记住密码功能；2. 安全测试：密码加密传输、防暴力破解（验证码/限频）、SQL注入防护；3. 兼容性测试：多终端（PC/移动端）登录、不同浏览器兼容；4. 性能测试：高并发登录、响应时间；5. 异常测试：网络中断恢复、会话超时处理；6. 第三方登录：微信/支付宝等授权登录；7. 多因素认证：短信/邮箱验证码流程；8. 国际化：多语言错误提示。"
+        "question": "如何测试一个登录功能?",
+        "answer": "1. 功能测试:[正确账号密码登录、错误提示(账号/密码错误)...扩展至测试用例设计】、记住密码功能;2. 安全测试:密码加密传输、防暴力破解(验证码/限频)、SQL注入防护;3. 兼容性测试:多终端(PC/移动端)登录、不同浏览器兼容;4. 性能测试:高并发登录、响应时间;5. 异常测试:网络中断恢复、会话超时处理;6. 第三方登录:微信/支付宝等授权登录;7. 多因素认证:短信/邮箱验证码流程;8. 国际化:多语言错误提示。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试一个分页功能？",
-        "answer": "1. 功能测试：基础操作（首页/末页/上下页跳转、页码输入框）、数据校验（每页数据量正确性、翻页数据连续性）、边界案例（整数页/零数据/单条数据）；2. 性能测试：大数据量（10万+）响应时间、高频操作防重复请求；3. 兼容性测试：多设备UI适配、浏览器参数处理；4. 异常测试：非法参数（page=-1）、网络中断降级处理。"
+        "question": "如何测试一个分页功能?",
+        "answer": "1. 功能测试:基础操作(首页/末页/上下页跳转、页码输入框)、数据校验(每页数据量正确性、翻页数据连续性)、边界案例(整数页/零数据/单条数据);2. 性能测试:大数据量(10万+)响应时间、高频操作防重复请求;3. 兼容性测试:多设备UI适配、浏览器参数处理;4. 异常测试:非法参数(page=-1)、网络中断降级处理。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试一个排序功能？",
-        "answer": "1. 功能测试：基础排序（升序/降序）、多列组合排序、默认排序规则；2. 数据校验：排序字段准确性（数值/日期/字符串）、空值/null值处理；3. 边界测试：单条数据/重复数据/超大数值排序；4. 性能测试：大数据量（10万+）排序响应时间、内存占用；5. 兼容性测试：不同浏览器/设备排序结果一致性；6. 异常测试：非法字段排序、网络中断恢复；7. 联动测试：排序后分页/搜索/筛选功能保持。"
+        "question": "如何测试一个排序功能?",
+        "answer": "1. 功能测试:基础排序(升序/降序)、多列组合排序、默认排序规则;2. 数据校验:排序字段准确性(数值/日期/字符串)、空值/null值处理;3. 边界测试:单条数据/重复数据/超大数值排序;4. 性能测试:大数据量(10万+)排序响应时间、内存占用;5. 兼容性测试:不同浏览器/设备排序结果一致性;6. 异常测试:非法字段排序、网络中断恢复;7. 联动测试:排序后分页/搜索/筛选功能保持。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试一个筛选功能？",
-        "answer": "1. 功能测试：单条件筛选（如价格区间）、多条件组合筛选（品牌+价格）、默认筛选状态；2. 数据校验：筛选结果准确性、边界值处理（如日期范围极限值）；3. 性能测试：大数据量（10万+）筛选响应时间、高并发筛选；4. 兼容性测试：不同设备/浏览器筛选控件交互；5. 异常测试：非法输入（如文本输入数值字段）、空条件提交；6. 联动测试：筛选后排序/分页功能保持；7. 状态保持：页面刷新/返回时筛选条件记忆；8. 重置功能：清除筛选后数据恢复完整集合。"
+        "question": "如何测试一个筛选功能?",
+        "answer": "1. 功能测试:单条件筛选(如价格区间)、多条件组合筛选(品牌+价格)、默认筛选状态;2. 数据校验:筛选结果准确性、边界值处理(如日期范围极限值);3. 性能测试:大数据量(10万+)筛选响应时间、高并发筛选;4. 兼容性测试:不同设备/浏览器筛选控件交互;5. 异常测试:非法输入(如文本输入数值字段)、空条件提交;6. 联动测试:筛选后排序/分页功能保持;7. 状态保持:页面刷新/返回时筛选条件记忆;8. 重置功能:清除筛选后数据恢复完整集合。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试一个购物车功能？",
-        "answer": "1. 核心功能：商品添加（单品/多品/SKU切换）/删除/批量操作、数量修改（0、库存+1）、库存实时校验；2. 数据关联：价格计算（含优惠券/满减）、跨店商品合并；3. 状态测试：登录态（同步云端购物车）和游客态（本地存储）；4. 并发测试：高并发下单时库存抢占处理；5. 异常测试：失效商品自动清理、网络中断恢复；6. 性能测试：百级SKU加载速度；7. 兼容性：多端（APP/PC/小程序）数据同步；8. 安全测试：XSS注入攻击防护。"
+        "question": "如何测试一个购物车功能?",
+        "answer": "1. 核心功能:商品添加(单品/多品/SKU切换)/删除/批量操作、数量修改(0、库存+1)、库存实时校验;2. 数据关联:价格计算(含优惠券/满减)、跨店商品合并;3. 状态测试:登录态(同步云端购物车)和游客态(本地存储);4. 并发测试:高并发下单时库存抢占处理;5. 异常测试:失效商品自动清理、网络中断恢复;6. 性能测试:百级SKU加载速度;7. 兼容性:多端(APP/PC/小程序)数据同步;8. 安全测试:XSS注入攻击防护。"
     },
     {
         "category": "接口测试",
         "subcategory": "文件上传",
-        "question": "如何测试文件上传接口？",
-        "answer": "1. 基础功能：验证常见文件类型（图片/文档/视频）上传；2. 异常文件：测试超大文件（超过限制）、空文件、损坏文件；3. 并发测试：多用户同时上传文件；4. 安全测试：检查病毒文件拦截、文件名注入防护；5. 性能测试：大文件上传速度和稳定性；6. 断点续传：网络中断后恢复上传；7. 进度显示：验证上传进度条准确性；8. 结果验证：检查服务器文件存储完整性和权限设置。"
+        "question": "如何测试文件上传接口?",
+        "answer": "1. 基础功能:验证常见文件类型(图片/文档/视频)上传;2. 异常文件:测试超大文件(超过限制)、空文件、损坏文件;3. 并发测试:多用户同时上传文件;4. 安全测试:检查病毒文件拦截、文件名注入防护;5. 性能测试:大文件上传速度和稳定性;6. 断点续传:网络中断后恢复上传;7. 进度显示:验证上传进度条准确性;8. 结果验证:检查服务器文件存储完整性和权限设置。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "​如何测试微信的“发送消息”功能？​​",
-        "answer": "在测试微信「发送消息」功能时，我会全面验证基础功能、异常场景、兼容性、性能、安全和用户体验六大维度。首先测试基础功能，包括发送文本（中英文、表情符号）、各类附件（图片/视频/文件/语音），验证消息状态显示（发送中/已送达/已读）、撤回功能（2分钟内）和跨设备同步。其次模拟异常场景，如弱网环境、存储不足、超长文本、特殊字符输入和频繁发送等情况。兼容性方面覆盖不同手机品牌、系统版本、微信版本和屏幕尺寸的组合测试。性能测试重点关注连续消息发送耗时、大文件传输速度和消息延迟。安全测试包括XSS防护、传输加密和防篡改机制验证。最后从用户体验角度检查发送按钮响应速度、失败提示、加载动画和消息显示效果、消息提醒（锁屏/后台/勿扰模式）,确保功能稳定性和使用流畅度。"
+        "question": "​如何测试微信的“发送消息”功能?​​",
+        "answer": "在测试微信「发送消息」功能时, 我会全面验证基础功能、异常场景、兼容性、性能、安全和用户体验六大维度。首先测试基础功能, 包括发送文本(中英文、表情符号)、各类附件(图片/视频/文件/语音), 验证消息状态显示(发送中/已送达/已读)、撤回功能(2分钟内)和跨设备同步。其次模拟异常场景, 如弱网环境、存储不足、超长文本、特殊字符输入和频繁发送等情况。兼容性方面覆盖不同手机品牌、系统版本、微信版本和屏幕尺寸的组合测试。性能测试重点关注连续消息发送耗时、大文件传输速度和消息延迟。安全测试包括XSS防护、传输加密和防篡改机制验证。最后从用户体验角度检查发送按钮响应速度、失败提示、加载动画和消息显示效果、消息提醒(锁屏/后台/勿扰模式),确保功能稳定性和使用流畅度。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "现在要求你对抖音点赞功能设计测试方案，请：划分等价类（考虑网络/用户状态/视频属性）设计自动化测试框架（选型+关键难点）",
-        "answer": "首先，网络方面，可能要考虑不同的网络类型（如WiFi、4G、5G）、网络延迟、丢包率以及弱网情况。用户状态方面，需要考虑已登录和未登录用户，是否已点赞过该视频，用户权限（比如被封禁的用户），以及多设备登录的情况。视频属性方面，可能包括视频类型（普通、直播、广告）、视频状态（正常、已删除、作者被封禁）、隐私设置（公开、好友可见、私密）、热度（高热度、低热度）等。除此之外还要测试数据一致性，还有防抖策略。"
+        "question": "现在要求你对抖音点赞功能设计测试方案, 请:划分等价类(考虑网络/用户状态/视频属性)设计自动化测试框架(选型+关键难点)",
+        "answer": "首先, 网络方面, 可能要考虑不同的网络类型(如WiFi、4G、5G)、网络延迟、丢包率以及弱网情况。用户状态方面, 需要考虑已登录和未登录用户, 是否已点赞过该视频, 用户权限(比如被封禁的用户), 以及多设备登录的情况。视频属性方面, 可能包括视频类型(普通、直播、广告)、视频状态(正常、已删除、作者被封禁)、隐私设置(公开、好友可见、私密)、热度(高热度、低热度)等。除此之外还要测试数据一致性, 还有防抖策略。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试页面在弱网环境下的用户体验？",
-        "answer": "1. Chrome DevTools：F12打开Network面板 → 选择Slow 3G预设或自定义带宽/延迟 → 观察资源加载瀑布图；2. Fiddler：Rules → Customize Rules添加延迟代码（如500ms）→ Tools启用『Simulate Modem Speeds』→ 用AutoResponder模拟请求失败。两者可配合使用：Fiddler做全局限制，DevTools分析具体资源加载问题。"
+        "question": "如何测试页面在弱网环境下的用户体验?",
+        "answer": "1. Chrome DevTools:F12打开Network面板 → 选择Slow 3G预设或自定义带宽/延迟 → 观察资源加载瀑布图;2. Fiddler:Rules → Customize Rules添加延迟代码(如500ms)→ Tools启用『Simulate Modem Speeds』→ 用AutoResponder模拟请求失败。两者可配合使用:Fiddler做全局限制, DevTools分析具体资源加载问题。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何验证页面资源（如图片、JS 文件）是否按预期加载？",
-        "answer": "1. 使用浏览器开发者工具Network面板查看各资源HTTP状态码（200为成功）；2. 检查资源加载耗时（通常JS/CSS应<500ms，图片<1s）可以使用Lighthouse；3. 验证资源完整性：JS/CSS无语法错误，图片显示完整。"
+        "question": "如何验证页面资源(如图片、JS 文件)是否按预期加载?",
+        "answer": "1. 使用浏览器开发者工具Network面板查看各资源HTTP状态码(200为成功);2. 检查资源加载耗时(通常JS/CSS应<500ms, 图片<1s)可以使用Lighthouse;3. 验证资源完整性:JS/CSS无语法错误, 图片显示完整。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试一个复杂的表单提交流程？",
-        "answer": "在测试复杂表单提交流程时，我会采用​​分层验证策略​​：首先通过单元测试确保每个字段的独立校验逻辑【长度/类型/规则】（如手机号格式），再用集成测试验证联动逻辑（如省市区级联），最后通过端到端测试覆盖完整流程（从填写到数据库写入）。同时重点检查​​异常场景​​（如并发提交、第三方API超时）、​​边界数据​​（超长文本、特殊字符）和​​用户体验​​（加载状态、无障碍兼容），并通过自动化断言和埋点监控确保全链路可靠性。"
+        "question": "如何测试一个复杂的表单提交流程?",
+        "answer": "在测试复杂表单提交流程时, 我会采用​​分层验证策略​​:首先通过单元测试确保每个字段的独立校验逻辑【长度/类型/规则】(如手机号格式), 再用集成测试验证联动逻辑(如省市区级联), 最后通过端到端测试覆盖完整流程(从填写到数据库写入)。同时重点检查​​异常场景​​(如并发提交、第三方API超时)、​​边界数据​​(超长文本、特殊字符)和​​用户体验​​(加载状态、无障碍兼容), 并通过自动化断言和埋点监控确保全链路可靠性。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如何测试一个包含多个模块的系统？",
-        "answer": "1. 模块测试：先独立测试每个模块的功能和接口；2. 集成测试：验证模块间的交互和数据传递；3. 系统测试：测试整个系统的功能和性能；4. 端到端测试：模拟用户完整业务流程；5. 数据流测试：检查数据在各模块间的处理和存储；6. 接口测试：验证模块间的API调用；7. 兼容性测试：检查不同模块版本的兼容性；8. 性能测试：评估多模块协同工作的性能表现；9. 回归测试：确保修改不影响其他模块功能。"
+        "question": "如何测试一个包含多个模块的系统?",
+        "answer": "1. 模块测试:先独立测试每个模块的功能和接口;2. 集成测试:验证模块间的交互和数据传递;3. 系统测试:测试整个系统的功能和性能;4. 端到端测试:模拟用户完整业务流程;5. 数据流测试:检查数据在各模块间的处理和存储;6. 接口测试:验证模块间的API调用;7. 兼容性测试:检查不同模块版本的兼容性;8. 性能测试:评估多模块协同工作的性能表现;9. 回归测试:确保修改不影响其他模块功能。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如果一个接口测试失败了，你会如何进行调试？​",
-        "answer": "【回答要点：可以描述从检查请求参数、查看接口返回信息、查看日志、分析错误原因到解决问题的步骤。】1. 查看响应状态码（如500服务端错误/400参数错误...）；2. 检查请求头和请求体数据是否符合接口规范；3. 对比成功和失败的请求差异（参数/headers/环境变量）；4. 查看服务端日志定位具体报错信息；5. 使用Postman的Console或JMeter的Debug Sampler输出中间变量；6. 检查关联参数（如token是否过期）；7. 简化测试用例进行最小化复现；8. 使用Fiddler等抓包工具确认实际传输数据；9. 检查测试环境配置（如URL/端口/测试数据）。"
+        "question": "如果一个接口测试失败了, 你会如何进行调试?​",
+        "answer": "【回答要点:可以描述从检查请求参数、查看接口返回信息、查看日志、分析错误原因到解决问题的步骤。】1. 查看响应状态码(如500服务端错误/400参数错误...);2. 检查请求头和请求体数据是否符合接口规范;3. 对比成功和失败的请求差异(参数/headers/环境变量);4. 查看服务端日志定位具体报错信息;5. 使用Postman的Console或JMeter的Debug Sampler输出中间变量;6. 检查关联参数(如token是否过期);7. 简化测试用例进行最小化复现;8. 使用Fiddler等抓包工具确认实际传输数据;9. 检查测试环境配置(如URL/端口/测试数据)。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
         "question": "接口测试如果响应时间长怎么办?",
-        "answer": "【定位问题】1.检查测试脚本：是否未复用连接？是否串行请求？使用固定sleep？2.对比生产/测试环境：相同请求在不同环境的响应时间差异。3.检查依赖服务：数据库、第三方API是否超时？4.分析日志：资源利用率？后端异常？"
+        "answer": "【定位问题】1.检查测试脚本:是否未复用连接?是否串行请求?使用固定sleep?2.对比生产/测试环境:相同请求在不同环境的响应时间差异。3.检查依赖服务:数据库、第三方API是否超时?4.分析日志:资源利用率?后端异常?"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
         "question": "接口测试没有接口文档的情况下怎么办?",
-        "answer": "通过抓包工具（如Charles/Fiddler）或浏览器开发者工具捕获前端操作触发的HTTP请求，记录URL、方法、请求头、参数及响应结构/在测试过程中逐步整理接口信息；还可以使用各个工具的脚本录制功能,可以录制操作自动捕获接口请求并生成可复用的测试脚本。"
+        "answer": "通过抓包工具(如Charles/Fiddler)或浏览器开发者工具捕获前端操作触发的HTTP请求, 记录URL、方法、请求头、参数及响应结构/在测试过程中逐步整理接口信息;还可以使用各个工具的脚本录制功能,可以录制操作自动捕获接口请求并生成可复用的测试脚本。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "​​支付接口测试要注意什么？​",
-        "answer": "1. 安全性测试：检查HTTPS加密、敏感信息脱敏、防SQL注入；2. 幂等性测试：重复支付请求是否产生多笔交易；3. 金额边界值：测试0元支付、超大金额、小数位处理；4. 状态一致性：支付成功/失败后订单状态同步；5. 异步通知：验证回调机制和重试策略；6. 并发测试：模拟高并发支付防止重复扣款；7. 渠道验证：测试不同支付方式（微信/支付宝/银联）；8. 对账测试：支付记录与财务系统一致性；9. 异常流程：网络中断/支付超时/银行退票等场景处理。"
+        "question": "​​支付接口测试要注意什么?​",
+        "answer": "1. 安全性测试:检查HTTPS加密、敏感信息脱敏、防SQL注入;2. 幂等性测试:重复支付请求是否产生多笔交易;3. 金额边界值:测试0元支付、超大金额、小数位处理;4. 状态一致性:支付成功/失败后订单状态同步;5. 异步通知:验证回调机制和重试策略;6. 并发测试:模拟高并发支付防止重复扣款;7. 渠道验证:测试不同支付方式(微信/支付宝/银联);8. 对账测试:支付记录与财务系统一致性;9. 异常流程:网络中断/支付超时/银行退票等场景处理。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "​​​如何处理验证码？​",
-        "answer": "分场景：​​测试环境​​让开发提供万能验证码（如‘666666’）/禁用验证码功能; ​​生产环境​​使用第三方OCR服务/先手动登录获取cookie绕过验证。"
+        "question": "​​​如何处理验证码?​",
+        "answer": "分场景:​​测试环境​​让开发提供万能验证码(如‘666666’)/禁用验证码功能; ​​生产环境​​使用第三方OCR服务/先手动登录获取cookie绕过验证。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "页面元素频繁变化，如何让脚本更健壮？​​",
-        "answer": "优先用稳定的id; 避免绝对XPath，用利用稳定的邻近元素相对定位;​​容错设计try-except​​+重新查找; 不要依赖单一参考元素而是组合多个条件,使用or多重验证; 用​隐式等待​等。"
+        "question": "页面元素频繁变化, 如何让脚本更健壮?​​",
+        "answer": "优先用稳定的id; 避免绝对XPath, 用利用稳定的邻近元素相对定位;​​容错设计try-except​​+重新查找; 不要依赖单一参考元素而是组合多个条件,使用or多重验证; 用​隐式等待​等。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "自动化测试中因为网络抖动导致的测试失败怎么办？（如何实现自动化测试失败重试）",
+        "question": "自动化测试中因为网络抖动导致的测试失败怎么办?(如何实现自动化测试失败重试)",
         "answer": "可以使用 pytest 的 pytest-rerunfailures 插件。然后通过命令行或者装饰器设置reruns。或者使用retrying 库的retry作为装饰器。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "​UI自动化脚本跑得时快时慢，怎么优化？​",
-        "answer": "从三个层面优化：首先，在脚本层面，用显式等待替代固定等待，减少重复定位，优先使用高效选择器（如ID）；其次，在环境层面，通过无头模式、禁用非必要资源（如图片/CSS）提升执行速度，并确保测试数据隔离；最后，在执行策略上，引入并行测试和优化调度机制：优先执行短用例（用pytest-order标记优先）隔离不稳定用例（标记@flaky单独重试）。"
+        "question": "​UI自动化脚本跑得时快时慢, 怎么优化?​",
+        "answer": "从三个层面优化:首先, 在脚本层面, 用显式等待替代固定等待, 减少重复定位, 优先使用高效选择器(如ID);其次, 在环境层面, 通过无头模式、禁用非必要资源(如图片/CSS)提升执行速度, 并确保测试数据隔离;最后, 在执行策略上, 引入并行测试和优化调度机制:优先执行短用例(用pytest-order标记优先)隔离不稳定用例(标记@flaky单独重试)。"
     },
     {
         "category": "开放性问题",
         "subcategory": "实战",
-        "question": "如果给你一个全新的项目，你会如何开展测试？​",
-        "answer": "对于新项目测试，我会遵循 “提前介入、分层验证、全程闭环” 的原则，分阶段推进测试工作。首先在需求阶段，我会参与需求评审，与产品、开发共同拆解业务流程，标记核心功能（如电商的支付链路）和高风险点（如多系统对接的接口），同步制定测试计划，明确各阶段目标（如集成测试侧重接口联调，系统测试覆盖全场景）和资源分配（工具选择 Jira 管理缺陷、Postman 做接口测试）。进入开发阶段，先推动开发完成单元测试，确保模块逻辑正确；接着开展集成测试，重点验证模块间接口的参数传递与数据交互，例如模拟前端请求测试后端接口返回格式，同时按业务流程串联模块（如 “用户注册→实名认证→绑定银行卡”），提前暴露跨模块缺陷。系统测试阶段是核心环节：先通过冒烟测试验证主流程可用，避免基础功能阻塞后续测试；然后基于需求编写功能用例，覆盖正常 / 异常场景（如输入非法字符、断网操作），同时结合项目特性补充非功能测试 —— 例如高并发系统需用 Jmeter 做性能测试，模拟千级用户并发下单，监控响应时间和服务器资源；移动端项目则需测试多机型兼容（如 Android 13 与 iOS 16 的界面适配）。测试中发现的缺陷会按优先级跟踪闭环，例如 P0 级缺陷（如支付失败）要求 24 小时内修复，修复后通过回归测试确保无连锁问题。验收阶段，我会配合用户完成 UAT 测试，从实际业务场景验证功能（如银行柜员的客户建档流程），收集体验反馈并推动优化；最终在预发布环境完成上线前冒烟，确认版本稳定后同步更新生产环境，并持续监控线上日志。整个过程中，我会注重测试左移（需求阶段即介入设计用例）和自动化提效（对高频流程如登录、搜索实现 Selenium 自动化），同时通过周会同步进度，与团队协作解决环境、需求变更等风险，确保测试按计划高质量完成，为项目上线保驾护航。"
+        "question": "如果给你一个全新的项目, 你会如何开展测试?​",
+        "answer": "对于新项目测试, 我会遵循 “提前介入、分层验证、全程闭环” 的原则, 分阶段推进测试工作。首先在需求阶段, 我会参与需求评审, 与产品、开发共同拆解业务流程, 标记核心功能(如电商的支付链路)和高风险点(如多系统对接的接口), 同步制定测试计划, 明确各阶段目标(如集成测试侧重接口联调, 系统测试覆盖全场景)和资源分配(工具选择 Jira 管理缺陷、Postman 做接口测试)。进入开发阶段, 先推动开发完成单元测试, 确保模块逻辑正确;接着开展集成测试, 重点验证模块间接口的参数传递与数据交互, 例如模拟前端请求测试后端接口返回格式, 同时按业务流程串联模块(如 “用户注册→实名认证→绑定银行卡”), 提前暴露跨模块缺陷。系统测试阶段是核心环节:先通过冒烟测试验证主流程可用, 避免基础功能阻塞后续测试;然后基于需求编写功能用例, 覆盖正常 / 异常场景(如输入非法字符、断网操作), 同时结合项目特性补充非功能测试 —— 例如高并发系统需用 Jmeter 做性能测试, 模拟千级用户并发下单, 监控响应时间和服务器资源;移动端项目则需测试多机型兼容(如 Android 13 与 iOS 16 的界面适配)。测试中发现的缺陷会按优先级跟踪闭环, 例如 P0 级缺陷(如支付失败)要求 24 小时内修复, 修复后通过回归测试确保无连锁问题。验收阶段, 我会配合用户完成 UAT 测试, 从实际业务场景验证功能(如银行柜员的客户建档流程), 收集体验反馈并推动优化;最终在预发布环境完成上线前冒烟, 确认版本稳定后同步更新生产环境, 并持续监控线上日志。整个过程中, 我会注重测试左移(需求阶段即介入设计用例)和自动化提效(对高频流程如登录、搜索实现 Selenium 自动化), 同时通过周会同步进度, 与团队协作解决环境、需求变更等风险, 确保测试按计划高质量完成, 为项目上线保驾护航。"
     },
     {
         "category": "开放性问题",
         "subcategory": "项目",
-        "question": "你在项目中遇到了什么问题/难点？是怎么解决的？",
-        "answer": "【仅作参考】可能因为一些网络加载原因，测试每次结果都不一致/误报 -> ​使用​显式等待​解决/超时​重试机制​解决..."
+        "question": "你在项目中遇到了什么问题/难点?是怎么解决的?",
+        "answer": "【仅作参考】可能因为一些网络加载原因, 测试每次结果都不一致/误报 -> ​使用​显式等待​解决/超时​重试机制​解决..."
     },
     {
         "category": "开放性问题",
         "subcategory": "项目",
-        "question": "手工测试发现的印象最深/最复杂的缺陷是什么？如何复现和定位的？",
-        "answer": "【仅供参考】在测试商城时，我通过接口测试发现了一个参数校验漏洞——前端虽然限制了库存数量，但直接调用后端API时，输入超大数值仍能成功提交订单。例如，我构造了一个包含999件商品的请求，后端未做合法性校验就直接处理，导致库存数据异常。这验证了仅依赖前端校验是不够的，后端必须做参数防护。为什么做这种前端已拦截的测试？​​因为：攻击者可通过抓包绕过前端、第三方系统集成时无前端校验。"
+        "question": "手工测试发现的印象最深/最复杂的缺陷是什么?如何复现和定位的?",
+        "answer": "【仅供参考】在测试商城时, 我通过接口测试发现了一个参数校验漏洞——前端虽然限制了库存数量, 但直接调用后端API时, 输入超大数值仍能成功提交订单。例如, 我构造了一个包含999件商品的请求, 后端未做合法性校验就直接处理, 导致库存数据异常。这验证了仅依赖前端校验是不够的, 后端必须做参数防护。为什么做这种前端已拦截的测试?​​因为:攻击者可通过抓包绕过前端、第三方系统集成时无前端校验。"
     },
     {
         "category": "开放性问题",
         "subcategory": "项目",
-        "question": "在过去的项目中, 你用 Python 解决了哪些复杂的测试问题？/描述一个你设计的自动化测试框架, 核心模块是什么？",
-        "answer": "我设计的自动化测试框架以Pytest为核心，采用JSON文件存储测试用例数据，通过Page Object模式封装Selenium操作，实现了测试代码与页面元素解耦；利用pytest-order控制用例执行顺序，pytest-rerunfailures实现失败自动重试，并集成Allure生成可视化报告，包含截图和日志附件；通过pytest.ini统一管理配置参数，最终在电商项目中完成登录、下单等核心长流程自动化测试。"
+        "question": "在过去的项目中, 你用 Python 解决了哪些复杂的测试问题?/描述一个你设计的自动化测试框架, 核心模块是什么?",
+        "answer": "我设计的自动化测试框架以Pytest为核心, 采用JSON文件存储测试用例数据, 通过Page Object模式封装Selenium操作, 实现了测试代码与页面元素解耦;利用pytest-order控制用例执行顺序, pytest-rerunfailures实现失败自动重试, 并集成Allure生成可视化报告, 包含截图和日志附件;通过pytest.ini统一管理配置参数, 最终在电商项目中完成登录、下单等核心长流程自动化测试。"
     },
     {
         "category": "开放性问题",
         "subcategory": "项目",
-        "question": "如果让你测试自己开发过的App，你会重点关注哪些方面？",
+        "question": "如果让你测试自己开发过的App, 你会重点关注哪些方面?",
         "answer": ""
     },
     {
         "category": "开放性问题",
         "subcategory": "工作",
-        "question": "给你一个全新功能，怎么开始测试？​",
-        "answer": "先看需求文档，明确功能范围和验收标准; 找产品经理确认模糊点（比如‘用户超时’具体是几分钟？）; 把大功能拆成小点（如注册功能拆为短信验证、密码规则等）; 优先级​​：先测核心流程（如注册→登录），再测边缘情况。"
+        "question": "给你一个全新功能, 怎么开始测试?​",
+        "answer": "先看需求文档, 明确功能范围和验收标准; 找产品经理确认模糊点(比如‘用户超时’具体是几分钟?); 把大功能拆成小点(如注册功能拆为短信验证、密码规则等); 优先级​​:先测核心流程(如注册→登录), 再测边缘情况。"
     },
     {
         "category": "开放性问题",
         "subcategory": "工作",
-        "question": "​​​如果需求文档不完整，你怎么测试？​​",
-        "answer": "我会​​主动沟通​​：拉会议和产品/开发对齐缺失细节; ​​参考竞品​​：看看类似功能怎么设计的; ​​记录风险​​：在测试报告里注明‘因需求不明确，XX功能未覆盖’。"
+        "question": "​​​如果需求文档不完整, 你怎么测试?​​",
+        "answer": "我会​​主动沟通​​:拉会议和产品/开发对齐缺失细节; ​​参考竞品​​:看看类似功能怎么设计的; ​​记录风险​​:在测试报告里注明‘因需求不明确, XX功能未覆盖’。"
     },
     {
         "category": "开放性问题",
         "subcategory": "工作",
         "question": "如果你提交了缺陷, 开发说这不是BUG怎么办?",
-        "answer": "我会提供完整复现步骤和证据​​（如截图、日志）；​​对照需求文档​​确认是否确实不符合，如果是需求理解差异，补充测试用例；​​必要时​​沟通协商, 请项目经理或测试组长评估。"
+        "answer": "我会提供完整复现步骤和证据​​(如截图、日志);​​对照需求文档​​确认是否确实不符合, 如果是需求理解差异, 补充测试用例;​​必要时​​沟通协商, 请项目经理或测试组长评估。"
     },
     {
         "category": "开放性问题",
         "subcategory": "工作",
-        "question": "​​测试环境发现Bug但生产环境没有，如何排查？​",
-        "answer": "我会对比环境配置、代码版本，尝试在测试环境稳定复现，并检查部署流程是否规范。"
+        "question": "​​测试环境发现Bug但生产环境没有, 如何排查?​",
+        "answer": "我会对比环境配置、代码版本, 尝试在测试环境稳定复现, 并检查部署流程是否规范。"
     },
     {
         "category": "开放性问题",
         "subcategory": "工作",
-        "question": "发现一个偶现性bug但无法稳定复现，你会如何推进？需要哪些团队协作？",
-        "answer": "​​​记录操作步骤、环境、时间等上下文​尽量复现；​让开发配合检查报错时的系统日志；在测试环境部署日志工具，等Bug再次出现时抓取现场数据。"
+        "question": "发现一个偶现性bug但无法稳定复现, 你会如何推进?需要哪些团队协作?",
+        "answer": "​​​记录操作步骤、环境、时间等上下文​尽量复现;​让开发配合检查报错时的系统日志;在测试环境部署日志工具, 等Bug再次出现时抓取现场数据。"
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
         "question": "你觉得你有什么优缺点?",
-        "answer": "我的优点是学习能力强，能快速掌握一些新的工具。同时我比较细心，比较耐得住性子，能对着枯燥的测试用例反复执行。缺点是测试经验尚浅，没有实际工作经验，目前只是主要通过开源/自己开发的进行测试的练手。"
+        "answer": "我的优点是学习能力强, 能快速掌握一些新的工具。同时我比较细心, 比较耐得住性子, 能对着枯燥的测试用例反复执行。缺点是测试经验尚浅, 没有实际工作经验, 目前只是主要通过开源/自己开发的进行测试的练手。"
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你认为前端技术对测试工程师的重要性是什么？",
-        "answer": "了解前端技术，有助于更深入理解软件的用户界面部分，从而更精准地发现界面相关的问题。同时，能够更好地与前端开发人员沟通协作，提高问题定位和解决的效率，保证软件产品的用户体验和质量。 "
+        "question": "你认为前端技术对测试工程师的重要性是什么?",
+        "answer": "了解前端技术, 有助于更深入理解软件的用户界面部分, 从而更精准地发现界面相关的问题。同时, 能够更好地与前端开发人员沟通协作, 提高问题定位和解决的效率, 保证软件产品的用户体验和质量。 "
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你的职业规划是什么?未来想深入前端开发还是继续专注测试？",
-        "answer": "说实话，我现在对于测试岗的工作实际是什么样的不是很了解，我想看看自己到底适合哪个方向。​目前可能希望像自动化测试/测试开发方向发展。"
+        "question": "你的职业规划是什么?未来想深入前端开发还是继续专注测试?",
+        "answer": "说实话, 我现在对于测试岗的工作实际是什么样的不是很了解, 我想看看自己到底适合哪个方向。​目前可能希望像自动化测试/测试开发方向发展。"
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
-        "question": "你为什么选择测试岗位而非开发？​",
-        "answer": "我在之前接触了很广泛开发方面的知识（前后端、安卓甚至游戏、嵌入式方面），也做了一些小的项目，但是感觉不是很深，不能达到工作的要求。但我觉得这些经验能够帮助我在测试方面理解更深。而且我不喜欢刷纯算法题，更想实际解决问题。"
+        "question": "你为什么选择测试岗位而非开发?​",
+        "answer": "我在之前接触了很广泛开发方面的知识(前后端、安卓甚至游戏、嵌入式方面), 也做了一些小的项目, 但是感觉不是很深, 不能达到工作的要求。但我觉得这些经验能够帮助我在测试方面理解更深。而且我不喜欢刷纯算法题, 更想实际解决问题。"
     },
     {
         "category": "开放性问题",
         "subcategory": "个人",
         "question": "你有什么想问我的吗?",
-        "answer": "1.测试团队一般是参与什么类型的测试工作？比如功能测试为主还是也会接触自动化？一般是测产品还是公司内部平台？2.测试团队大概的人员构成是什么样的？3.测试团队一般会用什么测试工具？"
+        "answer": "1.测试团队一般是参与什么类型的测试工作?比如功能测试为主还是也会接触自动化?一般是测产品还是公司内部平台?2.测试团队大概的人员构成是什么样的?3.测试团队一般会用什么测试工具?"
     }
 ]
