@@ -26,5 +26,26 @@
       "date": "2024-01-15",
       "link": "./frag/linux.md",
       "author": "汪欣晨"
+    },
+    {
+      "title": "最详细的测试分类",
+      "content": "详细的软件测试分类，涵盖不同维度（测试阶段、测试目标、测试方法等），并附示例说明。",
+      "date": "2024-01-25",
+      "link": "./frag/test_classification.md",
+      "author": "汪欣晨"
+    },
+    {
+      "title": "测试辨析",
+      "content": "验收测试? 灰度测试? 都是什么? 都有什么关系?",
+      "date": "2024-01-20",
+      "link": "./frag/qa_test.md",
+      "author": "汪欣晨"
+    },
+    {
+      "title": "钩子函数",
+      "content": "从 Vue 的生命周期钩子函数开始看钩子函数是什么?为什么叫钩子函数?",
+      "date": "2024-01-30",
+      "link": "./frag/hook.md",
+      "author": "汪欣晨"
     }
   ]
