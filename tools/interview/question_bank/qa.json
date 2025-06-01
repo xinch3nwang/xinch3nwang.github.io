@@ -93,7 +93,7 @@
         "category": "测试基础",
         "subcategory": "测试分类",
         "question": "灰度测试是什么?",
-        "answer": "灰度测试（Gray Testing）是灰度发布（Gray Release）过程中的测试环节, 指在<strong>渐进式发布</strong>新版本时, 通过<strong>小范围暴露给真实用户</strong>或流量, 结合监控和反馈, 验证新功能的稳定性、兼容性和用户体验。其核心目标是在<strong>生产环境</strong>中以最小风险完成质量验证。"
+        "answer": "灰度测试(Gray Testing)是灰度发布(Gray Release)过程中的测试环节, 指在<strong>渐进式发布</strong>新版本时, 通过<strong>小范围暴露给真实用户</strong>或流量, 结合监控和反馈, 验证新功能的稳定性、兼容性和用户体验。其核心目标是在<strong>生产环境</strong>中以最小风险完成质量验证。"
     },
     {
         "category": "测试基础",
@@ -609,85 +609,85 @@
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
         "question": "Fiddler与F12有什么区别?",
-        "answer": "F12是浏览器内置工具, 仅针对当前网页, 强在前端调试, 操作更轻量, 适合快速定位页面问题; Fiddler是独立抓包工具, 能捕获所有设备/应用的HTTP请求, 功能更强大。"
+        "answer": "F12是浏览器内置工具, 仅针对当前网页, 主要用于前端调试, 操作更轻量, 适合快速定位页面问题; <br> Fiddler是独立抓包工具, 能捕获所有设备/应用的HTTP请求, 功能更强大。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
         "question": "Fiddler的典型应用场景有哪些?",
-        "answer": "可以用来辅助定位前后端的 bug; 可以构建模拟测试场景, 比如模拟发送请求进行接口测试, 比如 mock 接口返回数据; 还可以模拟弱网环境进行测试; 还可以对前端的性能进行分析。"
+        "answer": "可以用来辅助定位前后端的 bug; 可以构建模拟测试场景, 比如模拟发送请求进行接口测试/mock接口返回数据/断点(请求前/响应后拦截暂停)    ; 还可以模拟弱网环境进行测试; 还可以对前端的性能进行分析。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
         "question": "Fiddler如何抓取HTTPS接口的包?",
-        "answer": "1. 打开Fiddler, 进入Tools → Options → HTTPS选项卡;2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic;3. 安装证书生成器;点击Actions → Export Root Certificate to Desktop;4. 在PC端浏览器中导入刚才导出的Fiddler根证书。"
+        "answer": "1. 打开Fiddler, 进入Tools → Options → HTTPS选项卡; 2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic; 3. 安装证书: 点击Actions → Export Root Certificate to Desktop。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "Postman如何测试一个接收JSON的POST接口?",
-        "answer": "1. 选择POST请求方法, 输入目标URL;2. 在Headers中添加Content-Type: application/json;3. 在Body选项卡选择raw → JSON格式, 填写请求体JSON数据;4. 点击Send发送请求;5. 在Response区域查看状态码、响应时间和返回的JSON数据;6. 使用Tests脚本添加断言验证响应结果(如状态码、字段值等)。"
+        "answer": "1. 选择POST请求方法, 输入目标URL; 2. 在Headers中添加Content-Type: application/json; 3. 在Body选项卡选择raw → JSON格式, 填写请求体JSON数据; 4. 点击Send发送请求; 5. 在Response区域查看状态码、响应时间和返回的JSON数据; 6. 使用 Test/Scripts>Post-response 添加断言验证响应结果(如状态码、字段值等)。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "如何在Postman中设置环境变量?",
-        "answer": "点击右上角环境管理图标 → 创建新环境 → 定义变量(如baseUrl=https://api.example.com);在请求中使用{{variableName}}引用变量(如URL填写{{baseUrl}}/endpoint);支持多环境切换(如测试环境、预发布环境)。"
+        "question": "如何在Postman中设置使用环境变量?",
+        "answer": "点击环境管理图标 → 创建新环境 → 定义变量(如baseUrl=https://api.example.com); 在请求中使用 {{variableName}} 引用变量(如URL填写{{baseUrl}}/endpoint)/脚本中var value = pm.enviroment.get('variableName'); 支持多环境切换(如测试环境、预发布环境)。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "如何在Postman中添加断言验证响应?",
-        "answer": "使用Tests脚本功能, 例如:pm.test(\"Status code is 200\", () => { pm.response.to.have.status(200); }); pm.test(\"Response contains userId\", () => { const jsonData = pm.response.json(); pm.expect(jsonData.userId).to.eql(123); });"
+        "answer": "使用Tests脚本功能, 例如:pm.test('Status code is 200', () => { pm.response.to.have.status(200); }); pm.test('Response contains userId', () => { const jsonData = pm.response.json(); pm.expect(jsonData.userId).to.eql(123); });"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "Postman如何测试有接口依赖的接口?",
-        "answer": "1. 通过变量管理提取接口A的响应数据并存储为环境变量, 在接口B中直接引用该变量, 两个放在一个测试集里设置运行顺序。2. 可以使用Pre-request Script脚本, 在Pre-request Script中使用pm.sendRequest()发送依赖接口的请求, 回调函数提取响应数据并存储为环境变量然后在接口中引用。"
+        "answer": "1. 通过变量管理提取接口A的响应数据并存储为环境变量, 在接口B中直接引用该变量, 两个放在一个测试集里设置运行顺序。2. 可以使用Pre-request Script脚本, 在Pre-request Script中使用 pm.sendRequest() 发送依赖接口的请求, 回调函数提取响应数据并存储为环境变量然后在接口中引用。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
-        "question": "如何用Postman实现数据驱动测试?",
-        "answer": "在Collection Runner中导入CSV/JSON文件, 请求参数可以通过{{var}}来引用;断言中的数据, 由于是在Tests中写入的脚本, 并不能直接通过{{var}}来引用, 所以需要引用Postman的相关API进行调用, 如:pm.variables.get(\"var\")。"
+        "question": "如何用Postman实现数据驱动测试/参数化?",
+        "answer": "在Collection Runner中导入CSV/JSON文件, 请求参数可以通过{{var}}来引用; 断言中的数据, 由于是在Tests中写入的脚本, 并不能直接通过{{var}}来引用, 所以需要引用Postman的相关API进行调用, 如:pm.variables.get('var')。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "如何用Postman调试接口的认证流程?",
-        "answer": "手动获取Token:发送认证请求, 将响应中的Token保存为全局变量;后续请求在Headers中携带Authorization: Bearer {{token}};可结合Pre-request Script自动刷新Token。"
+        "answer": "手动获取Token: 发送认证请求, 将响应中的Token保存为全局变量; 后续请求在Headers中携带Authorization: Bearer {{token}}; 可结合Pre-request Script自动刷新Token。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "Postman和JMeter的区别是什么?什么时候用Postman?",
-        "answer": "Postman适合轻量级API功能测试、快速验证、团队协作(共享集合);JMeter适合高性能、并发测试、复杂场景(如分布式压测);使用Postman的场景:单接口调试、自动化测试脚本编写、Mock Server模拟接口。"
+        "answer": "Postman适合轻量级API功能测试、快速验证、团队协作(共享集合); <br> JMeter适合高性能、并发测试、复杂场景(如分布式压测); <br> 使用Postman的场景: 单接口调试、自动化测试脚本编写、Mock Server模拟接口。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "你对JMeter有什么了解?",
-        "answer": "JMeter 是一款开源的性能测试工具, 常用于对软件应用程序进行负载测试、性能测试等。JMeter 可模拟多用户并发访问、支持多种协议(如 HTTP、FTP 等)、能生成详细的测试报告。"
+        "answer": "JMeter 是一款开源的性能测试工具, 常用于对软件应用程序进行接口测试、性能测试。JMeter 可模拟多用户并发访问、支持多种协议(如 HTTP、FTP 等)、能生成详细的测试报告。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "JMeter元件是什么?",
-        "answer": "JMeter元件是JMeter性能测试的基本构建块, 如线程组、取样器、监听器等。"
+        "answer": "JMeter元件是JMeter构成测试计划的各种功能模块。比如取样器元件向服务器发送请求; 配置元件能对测试环境、参数等进行设定; 断言元件可用于判断服务器返回的结果是否符合预期。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "如何创建一个简单的JMeter测试计划?",
-        "answer": "1. 打开JMeter, 点击File → New → Test Plan;2. 输入测试计划名称, 选择线程数、循环次数等;3. 右键线程组 → 添加 → 取样器, 配置请求参数;4. 右键线程组 → 添加 → 监听器, 选择查看结果树或聚合报告。"
+        "answer": "1. 打开JMeter, 点击File → New → Test Plan; 2. 输入测试计划名称, 选择线程数、循环次数等; 3. 右键线程组 → 添加 → 取样器, 配置请求参数; 4. 右键线程组 → 添加 → 监听器, 选择查看结果树或聚合报告。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "JMeter常用的性能测试组件有哪些?",
-        "answer": "1. 线程组(Thread Group):定义虚拟用户数量和加载模式;2. 取样器(Sampler):发送HTTP/FTP/JDBC等请求;3. 监听器(Listener):查看结果树、聚合报告等结果收集组件;4. 断言(Assertion):验证响应结果;5. 定时器(Timer):设置思考时间或固定吞吐量;6. 配置元件(Config Element):管理测试数据(如CSV Data Set Config);7. 前置/后置处理器(Pre/Post Processor):处理请求前后逻辑;8. 逻辑控制器(Logic Controller):控制测试流程(如循环、条件判断)"
+        "answer": "1. 线程组(Thread Group):定义虚拟用户数量和加载模式; 2. 取样器(Sampler):发送HTTP/FTP/JDBC等请求; 3. 监听器(Listener):查看结果树、聚合报告等结果收集组件; 4. 断言(Assertion):验证响应结果; 5. jmeter定时器(Timer):设置等待时间; 6. 配置元件(Config Element):管理测试数据(如CSV Data Set Config); 7. 前置/后置处理器(Pre/Post Processor):处理请求前后逻辑; 8. 逻辑控制器(Logic Controller):控制测试流程(如循环、条件判断)"
     },
     {
         "category": "测试工具&框架",
@@ -698,8 +698,8 @@
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
-        "question": "如何用JMeter实现参数化(登录测试)?",
-        "answer": "使用CSV Data Set Config:添加配置元件 → CSV Data Set Config, 指定CSV文件路径;在HTTP请求中通过${username}和${password}引用参数。"
+        "question": "如何用JMeter实现参数化?",
+        "answer": "添加配置元件 → CSV Data Set Config, 指定CSV文件路径; 在HTTP请求中通过 ${username} 和 ${password} 引用参数。"
     },
     {
         "category": "测试工具&框架",
@@ -711,49 +711,49 @@
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "如何用JMeter模拟并发用户?",
-        "answer": "在线程组中设置:线程数(用户数)、Ramp-Up时间(启动间隔)、循环次数;示例:100用户, Ramp-Up 10秒 → 每秒启动10用户, 持续10秒完成全部并发。"
+        "answer": "在线程组中设置: 线程数(用户数)、Ramp-Up时间(启动间隔)、循环次数; 示例: 线程数100, Ramp-Up10秒 → 每秒启动10用户, 持续10秒逐步增加到设定的100个线程完成全部并发。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "如何用JMeter处理动态参数(如登录后的Token)?",
-        "answer": "使用正则表达式提取器或JSON Extractor:右键请求 → 添加 → 后置处理器 → 正则表达式提取器, 通过正则匹配响应中的Token;在后续请求中通过${token}引用。"
+        "answer": "使用 正则表达式提取器 或 JSON Extractor: 右键请求 → 添加 → 后置处理器 → 正则表达式提取器/JSON Extractor, 通过 正则('token'\\s*:\\s*'([^']*)')/JSONPath($.user.token) 匹配响应中的Token; 在后续请求中通过 ${token} 引用。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "JMeter如何生成聚合报告?",
-        "answer": "添加监听器 → 查看结果树(调试)、聚合报告(性能指标);运行测试后, 聚合报告显示TPS、平均响应时间、错误率等关键指标。"
+        "answer": "添加监听器 → 查看结果树(调试)、聚合报告(性能指标); 运行测试后, 聚合报告显示TPS、平均响应时间、错误率等关键指标。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "如何排查JMeter测试中出现的超时问题?",
-        "answer": "检查网络延迟、服务器性能、接口响应时间;调整JMeter配置:增加超时时间(HTTP请求 → 连接/响应超时);使用View Results Tree查看失败请求的详细日志。"
+        "answer": "检查网络延迟、服务器性能、接口响应时间; 调整JMeter配置:增加超时时间(HTTP请求 → 连接/响应超时); 使用View Results Tree查看失败请求的详细日志。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "什么时候适合用Postman?什么时候适合用requests?​",
-        "answer": "Postman适合:1. 快速调试单接口;2. 可视化操作(无需编码);3. 团队协作(共享集合);4. 需要保存历史记录;5. 使用环境变量管理多环境配置。requests适合:1. 集成到Python自动化测试框架;2. 需要复杂逻辑处理(如数据预处理);3. 结合pytest做参数化测试;4. 需要更高灵活性的场景;5. 持续集成(CI)流程中调用。"
+        "answer": "Postman适合: 1. 快速调试单接口; 2. 可视化操作(无需编码); 3. 团队协作(共享集合); 4. 需要保存历史记录; 5. 使用环境变量管理多环境配置。 <br> requests适合: 1. 集成到Python自动化测试框架; 2. 需要复杂逻辑处理(如数据预处理); 3. 结合pytest做参数化测试; 4. 需要更高灵活性的场景; 5. 持续集成(CI)流程中调用。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
-        "question": "如何用Python+Requests做接口自动化?​",
-        "answer": "​​封装请求​​:用requests.get/post()发送请求, 添加headers/params; ​​数据驱动​​:用Excel或JSON存储测试数据(如不同登录账号); ​​断言验证​​:检查response.status_code和response.json()里的关键字段; ​​报告生成​​:用pytest+Allure生成带请求/响应详情的报告。"
+        "question": "如何用 Python+Requests 做接口自动化?​",
+        "answer": "​​封装请求​​: 用 requests.get/post() 发送请求, 添加 headers/params; ​​数据驱动​​: 用Excel或JSON存储测试数据(如不同登录账号); ​​断言验证​​: 检查response.status_code和response.json()里的关键字段; ​​报告生成​​: 用pytest+Allure生成带请求/响应详情的报告。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "用 requests 库发送 POST 请求, 如何传递 JSON 数据和文件?",
-        "answer": "传递JSON数据:使用json参数(requests.post(url, json={'key':'value'}))。传递文件:使用files参数(requests.post(url, files={'file': open('test.txt','rb')}))。"
+        "answer": "传递JSON数据: 使用json参数(requests.post(url, json={'key':'value'}))。[<a href='https://zhuanlan.zhihu.com/p/202978890'>推荐阅读</>] <br> 传递文件:使用files参数(requests.post(url, files={'file': open('test.txt','rb')}))。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests库",
         "question": "requests库的json参数传递的是Python对象还是JSON字符串?",
-        "answer": "json参数接收Python对象(如dict/list), requests会自动将其序列化为JSON字符串并设置Content-Type为application/json。若手动传递JSON字符串, 需使用data参数并手动设置headers={'Content-Type':'application/json'}。"
+        "answer": "json参数接收Python对象(如dict/list), requests会自动将其序列化为JSON字符串并设置Content-Type为application/json。若手动传递JSON字符串, 需使用data参数并手动设置headers={'Content-Type':'application/json'}。[<a href='https://zhuanlan.zhihu.com/p/202978890'>推荐阅读</>]"
     },
     {
         "category": "测试工具&框架",
@@ -765,49 +765,55 @@
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "requests​如何处理SSL证书验证错误?​",
-        "answer": "​​忽略证书验证​​:verify=False; 安装证书:requests.get(url, verify=‘path/to/cert.crt’)。"
+        "answer": "​1.​忽略证书验证​(建议测试环境)​: verify=False / 2.安装证书: requests.get(url, verify=‘path/to/cert.crt’)"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "requests的session对象有什么优势?",
-        "answer": "Session对象可以:保持持久连接, 提升性能(特别是多次请求同一主机时);自动处理cookies, 比如登录状态维护;统一配置默认headers/auth等参数"
+        "answer": "Session对象可以:保持持久连接, 提升性能(特别是多次请求同一主机时); 自动处理cookies, 比如登录状态维护; 统一配置默认headers/auth等参数。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "接口测试requests如何处理接口依赖(如需要先登录)?",
-        "answer": "1.​​Session保持​​:用requests.Session()自动带cookie(适合简单场景)2.​​Token传递​​:先调登录接口获取token, 后续请求加到headers(如Authorization: Bearer xxxx)【3.Mock数据:先mock数据, 后续请求使用mock数据。】"
+        "answer": "1.​​Session保持​​:用requests.Session()自动带cookie(适合简单场景)。 / 2.​​Token传递​​:先调登录接口获取token, 后续请求加到headers(如Authorization: Bearer xxxx) 【3.Mock数据:先mock数据, 后续请求使用mock数据。】"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "unittest/pytest",
         "question": "unittest 和 pytest 的区别?你更倾向用哪个?为什么?",
-        "answer": "unittest 是 Python 内置标准库, 基于类,需继承TestCase, 需用特定断言方法, 适合轻量场景比如做单元测试;pytest 是第三方框架, 语法简洁(用 assert)、夹具灵活、插件丰富(如参数化、并行测试), 适合复杂项目。更倾向 pytest, 因其开发效率高、生态完善, 能显著提升测试体验和代码质量。"
+        "answer": "unittest 是 Python 内置标准库, 基于类, 需继承TestCase, 需用特定断言方法, 适合轻量场景比如做单元测试; <br> pytest 是第三方框架, 语法简洁(用assert)、夹具灵活、插件丰富(如参数化、并行测试), 适合复杂项目。 <br> 更倾向 pytest, 因其开发效率高、生态完善, 能显著提升测试体验和代码质量。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "unittest/pytest",
+        "question": "pytest夹具fixture有什么意义?",
+        "answer": "夹具(Fixture)是 pytest 框架中用于管理测试环境、提供共享资源和测试数据的机制, 它通过将 setup/teardown 逻辑封装为可复用的函数, 使测试代码更加简洁、隔离和可维护。夹具支持参数化测试场景、控制资源生命周期(如 session/module/function 级作用域)、处理复杂依赖(如数据库连接、Mock 对象), 并能与 pytest 的其他特性(如标记、插件)无缝协作, 从而显著提升测试代码的质量和可扩展性。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "unittest/pytest",
         "question": "pytest 中如何实现参数化?",
-        "answer": "pytest 中可以通过 parametrize 装饰器实现参数化。第一个参数是字符串, 为测试函数的参数名。第二个参数是列表, 包含多组测试数据。"
+        "answer": "pytest 中可以通过 parametrize 装饰器实现参数化。装饰器一般使用前两个参数, 第一个参数是字符串, 为测试函数的参数名。第二个参数是列表/函数, 包含/返回多组测试数据。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "unittest/pytest",
-        "question": "pytest 中如何实现测试用例的依赖/如何用 fixture 管理测试前置/后置条件??",
-        "answer": "用 @pytest.fixture 装饰器定义, 通过 yield 分隔:yield 前的代码为前置操作(如创建资源)。yield 后的值会作为参数注入测试函数。测试结束后(无论成败), 执行 yield 后的后置操作(如清理资源)。测试函数通过参数声明依赖的 fixture, 支持多 fixture 组合。"
+        "question": "pytest 中如何实现测试用例的依赖/如何用 fixture 管理测试前置/后置条件?",
+        "answer": "用 @pytest.fixture 装饰器定义, 通过 yield 分隔: yield 前的代码为前置操作(如创建资源)。yield 后的值会作为参数注入测试函数。测试结束后(无论成败), 执行 yield 后的后置操作(如清理资源)。测试函数通过参数声明依赖的 fixture, 支持多 fixture 组合。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "介绍一下Selenium的底层原理。",
-        "answer": "1) 测试脚本发送JSON格式的HTTP请求;2) 浏览器驱动(如ChromeDriver)作为服务端接收并解析这些请求;3) 驱动通过浏览器提供的自动化协议将命令转换为浏览器原生操作;4) 浏览器执行后返回响应, 经驱动处理后以HTTP响应形式返回给客户端。​"
+        "answer": "1)测试脚本发送JSON格式的HTTP请求; 2)浏览器驱动(如ChromeDriver)作为服务端接收并解析这些请求; 3)驱动通过浏览器提供的自动化协议将命令转换为浏览器原生操作; 4)浏览器执行后返回响应, 经驱动处理后以HTTP响应形式返回给客户端。​"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "介绍 Selenium 的几种等待机制。",
-        "answer": "强制等待​​(time.sleep)简单但低效;​​隐式等待​​(driver.implicitly_wait)全局轮询元素;​​显式等待​​(WebDriverWait + EC)针对特定元素/条件, 稳定性更好;​​流畅等待​​(自定义轮询/异常)灵活处理复杂场景"
+        "answer": "强制等待​​(time.sleep)简单但低效;​ <br> ​隐式等待​​(driver.implicitly_wait)全局轮询元素;​ <br> ​显式等待​​(WebDriverWait + EC)针对特定元素/条件, 稳定性更好; ​<br> ​流畅等待​​(自定义轮询/异常)灵活处理复杂场景"
     },
     {
         "category": "测试工具&框架",
@@ -819,7 +825,7 @@
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "Selenium如何处理弹窗、多窗口和多标签页?",
-        "answer": "使用 switch_to.alert() 或 driver.switch_to.window() 或 driver.switch_to.frame() 方法。"
+        "answer": "使用 switch_to.alert()、 driver.switch_to.window()、 driver.switch_to.frame() 方法。"
     },
     {
         "category": "测试工具&框架",
@@ -831,7 +837,7 @@
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "Selenium如何处理​动态表格(数据行数不固定)?",
-        "answer": "​​定位整个表格​​, 使用 find_elements() 方法定位所有行, 然后遍历每一行, 使用 find_elements() 方法定位所有单元格。"
+        "answer": "​​定位整个表格​​, 使用 find_elements() 方法定位所有行, 然后遍历每一行, 使用 find_elements() 方法定位所有单元格, 然后遍历每一格进行处理。"
     },
     {
         "category": "测试工具&框架",
@@ -843,7 +849,7 @@
         "category": "测试工具&框架",
         "subcategory": "Selenium",
         "question": "Selenium如何定位动态元素(动态元素指的是网页在加载后, 会随着用户操作、时间推移或数据更新而发生变化的元素)?",
-        "answer": ""
+        "answer": "对动态 ID/Class 元素使用部分匹配（如 contains）或结合稳定属性; 对异步加载的元素用 WebDriverWait 等待状态（如可见、可点击）; 对随时间变化的元素通过轮询或条件判断处理; 遵循最佳实践（优先 CSS/XPath 相对路径、处理元素刷新异常）。"
     },
     {
         "category": "测试工具&框架",
@@ -855,19 +861,19 @@
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "SQL的范式是什么?",
-        "answer": "第一范式要求数据库中的每一列都是不能再分的基本数据项。第二范式要求非主属性完全依赖于主键。第三, 范式要求任何非主属性都不能依赖于其他非主属性。"
+        "answer": "第一范式要求数据库中的每一列都是不能再分的基本数据项。 <br> 第二范式要求非主属性完全依赖于主键。 <br> 第三范式要求任何非主属性都不能依赖于其他非主属性。"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "数据库的事务是什么?",
-        "answer": "数据库的事务是多个语句做一个整体执行, 具有原子性、一致性、隔离性和持久性。"
+        "answer": "数据库的事务是多个语句做一个整体执行, 具有原子性、一致性、隔离性和持久性(ACID)。"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "数据库主键和外键是什么?",
-        "answer": "主键是表中能够唯一标识每一行记录的一个或多个字段组合。外键是表中的一个或多个字段组合, 它的值和另一个表中的主键相匹配, 这样可以建立表之间的联系   "
+        "answer": "主键是表中能够唯一标识每一行记录的一个或多个字段组合。 <br> 外键是表中的一个或多个字段组合, 它的值和另一个表中的主键相匹配, 这样可以建立表之间的联系。"
     },
     {
         "category": "其他基础",
@@ -879,7 +885,7 @@
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "介绍一下哈希/B树/B+树索引。",
-        "answer": "哈希索引通过 HASH 函数将索引键值映射到存储位置。等值查询速度快, 但不支持范围查询。B树索引所有节点都存有键值。支持等值查询和范围查询, 但插入和删除的操作比较复杂。B+树索引非叶节点只有键, 叶子节点有值且通过有序链表连接, 适合顺序访问和范围查询。"
+        "answer": "哈希索引通过 HASH 函数将索引键值映射到存储位置。等值查询速度快, 但不支持范围查询。 <br> B树索引所有节点都存有键值。支持等值查询和范围查询, 但插入和删除的操作比较复杂。 <br> B+树索引非叶节点只有键, 叶子节点有值且通过有序链表连接, 适合顺序访问和范围查询。"
     },
     {
         "category": "其他基础",
@@ -891,19 +897,19 @@
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "介绍一下联表查询, 并给出不同联表查询区别。",
-        "answer": "联表查询是指将多个表中的数据按照一定的条件关联起来查询。常见的联表查询有内连接、左连接、右连接、全连接。内连接只返回两个表中都存在的记录; 左连接返回左表所有记录, 右连接返回右表所有记录; 全连接返回左右表所有记录。"
+        "answer": "联表查询是指将多个表中的数据按照一定的条件关联起来查询。常见的联表查询有内连接、左连接、右连接、全连接。 <br> 内连接只返回两个表中都存在的记录; 左连接返回左表所有记录, 右连接返回右表所有记录; 全连接返回左右表所有记录。"
     },
     {
         "category": "其他基础",
         "subcategory": "数据库",
         "question": "非关系型数据库了解多少?",
-        "answer": "MongoDB是一种面向文档的非关系型数据管理系统。它没有特定的结构, 不需要先定义表, 灵活可扩展。适合存储结构不同的数据, 比如日志。Redis 是一种键值型的的内存数据库, 适合作为缓存、消息队列、分布式锁。"
+        "answer": "MongoDB是一种面向文档的非关系型数据管理系统。它没有特定的结构, 不需要先定义表, 灵活可扩展。适合存储结构不同的数据, 比如日志。 <br> Redis 是一种键值型的的内存数据库, 适合作为缓存、消息队列、分布式锁。"
     },
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "介绍一下计算机网络的分层模型。",
-        "answer": "OSI 七层模型从上到下是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。应用层直接为应用程序提供服务; 表示层用来处理数据的表示和转换; 会话层用来管理会话; 传输层提供主机之间端到端的通信; 网络层处理网络之间的通信, 数据链路层保障数据帧的传输和接收, 物理层负责物理介质上的信号传输"
+        "answer": "OSI 七层模型从上到下是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。 <br> 应用层直接为应用程序提供服务, 表示层用来处理数据的表示和转换, 会话层用来管理会话, 传输层提供主机之间端到端的通信, 网络层处理网络之间的通信, 数据链路层保障数据帧的传输和接收, 物理层负责物理介质上的信号传输。 <br> 还有 TCP/IP 四层模型，它将网络分为网络接口层、网际层、传输层和应用层。"
     },
     {
         "category": "其他基础",
@@ -921,13 +927,13 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "TCP协议的三次握手?",
-        "answer": "TCP 协议的三次握手是在连接建立的时候使用的。第一次握手客户端向服务器发送一个同步报文段表示想和服务器建立连接, 包含一个客户端初始序列号。第二次握手是服务器接收到客户端的同步报文段之后会发送同步和确认报文段, 同步报文段包含服务器的初始序列号, 确认报文段是对客户端同步报文段的确认, 确认号是客户端序列号加一。第三次握手是客户端收到服务器的同步和确认报文段之后会发送一个确认报文段, 确认号是服务器序列号加一, 表示收到了服务器的同步报文段, 就此就建立了连接。"
+        "answer": "TCP 协议的三次握手是在连接建立的时候使用的。 <br> 第一次握手客户端向服务器发送一个同步报文段表示想和服务器建立连接, 包含一个客户端初始序列号。 <br> 第二次握手是服务器接收到客户端的同步报文段之后会发送同步和确认报文段, 同步报文段包含服务器的初始序列号, 确认报文段是对客户端同步报文段的确认, 确认号是客户端序列号加一。 <br> 第三次握手是客户端收到服务器的同步和确认报文段之后会发送一个确认报文段, 确认号是服务器序列号加一, 表示收到了服务器的同步报文段, 就此就建立了连接。"
     },
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "TCP协议的四次挥手?",
-        "answer": "TCP 协议的四次挥手是在连接断开的四个阶段。第一次挥手, 主动关闭方会发送一个结束报文段, 告知对方自己没有数据要发送。第二次挥手, 被动关闭方收到结束报文段会发送一个确认报文段作为应答, 这个时候被动关闭方知道主动关闭方要关闭连接, 但是被动关闭方可能还有数据要发送。第三次挥手, 等到所有数据发送完毕之后, 被动关闭方会发送一个结束报文段。第四次挥手, 主动关闭方接收到结束报文段会发送一个确认报文段作为应答, 然后等待两倍最长报文段寿命后关闭连接, 被动关闭方收到确认报文段后关闭连接。"
+        "answer": "TCP 协议的四次挥手是在连接断开的四个阶段。 <br> 第一次挥手, 主动关闭方会发送一个结束报文段, 告知对方自己没有数据要发送。 <br> 第二次挥手, 被动关闭方收到结束报文段会发送一个确认报文段作为应答, 这个时候被动关闭方知道主动关闭方要关闭连接, 但是被动关闭方可能还有数据要发送。 <br> 第三次挥手, 等到所有数据发送完毕之后, 被动关闭方会发送一个结束报文段。 <br> 第四次挥手, 主动关闭方接收到结束报文段会发送一个确认报文段作为应答, 然后等待两倍最长报文段寿命后关闭连接, 被动关闭方收到确认报文段后关闭连接。"
     },
     {
         "category": "其他基础",
@@ -939,7 +945,7 @@
         "category": "测试基础",
         "subcategory": "接口测试",
         "question": "HTTP协议的请求结构是什么?",
-        "answer": "请求一般包括请求行、请求头、请求体, 请求行里是URL、请求方法、协议版本; 请求头里一般常用有content-type; 还有认证的TOKEN之类的。请求体就是要发送的数据。"
+        "answer": "请求一般包括请求行、请求头、请求体, 请求行里是URL、请求方法、协议版本; 请求头里一般常用有content-type, 还有认证的TOKEN之类的参数; 请求体就是要发送的数据。"
     },
     {
         "category": "其他基础",
@@ -951,13 +957,13 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "HTTP协议常见的状态码有哪些?",
-        "answer": "常见的状态吗码: 2开头是成功。3开头是重定向, 5开头是服务器错误, 4开头是客户端错误, 其中402身份未验证, 403是请求被拒绝, 404是资源未找到。"
+        "answer": "常见的状态吗码: 2xx是成功; 3xx是重定向; 5xx是服务器错误; 最常见的4xx是客户端错误, 其中402身份未验证, 403是请求被拒绝, 404是资源未找到。"
     },
     {
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "HTTP协议的请求方法有哪些?",
-        "answer": "常见的有 GET 用来获取资源, POST 用来提交数据, PUT 用来更新资源, DELETE 用来删除指定资源, HEAD 用来获取资源的头部信息, OPTIONS 做一些预检操作, 比如跨源资源共享。"
+        "answer": "常见的有 GET 用来获取资源, POST 用来提交数据, PUT 用来更新资源, DELETE 用来删除指定资源, HEAD 用来获取资源的头部信息, OPTIONS 做一些预检操作比如跨源资源共享。"
     },
     {
         "category": "其他基础",
@@ -1071,7 +1077,7 @@
         "category": "其他基础",
         "subcategory": "正则表达式",
         "question": "正则表达式的常用符号有哪些?",
-        "answer": "常用的有: ^ 匹配字符串的开头; $ 匹配字符串的结尾; . 匹配任意字符; * 匹配前面的字符零次或多次; + 匹配前面的字符一次或多次; ? 匹配前面的字符零次或一次; [] 匹配方括号中的任意字符; () 用于分组; | 用于匹配多个表达式中的任意一个; \\d 匹配数字; \\w 匹配字母、数字、下划线; \\s 匹配空白字符; \\b 匹配单词边界。"
+        "answer": "常用的有: ^ 匹配字符串的xx; $ 匹配字符串的结尾; . 匹配任意字符; * 匹配前面的字符零次或多次; + 匹配前面的字符一次或多次; ? 匹配前面的字符零次或一次; [] 匹配方括号中的任意字符; () 用于分捕获组, group(0) 表示整个匹配的字符串, group(1) 是第一个捕获组的内容; | 用于匹配多个表达式中的任意一个; \\d 匹配数字; \\w 匹配字母、数字、下划线; \\s 匹配空白字符; \\b 匹配单词边界。"
     },
     {
         "category": "开放性问题",
