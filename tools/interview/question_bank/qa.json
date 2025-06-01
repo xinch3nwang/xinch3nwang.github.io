@@ -303,7 +303,7 @@
         "category": "测试基础",
         "subcategory": "性能测试",
         "question": "请介绍一下压力测试。",
-        "answer": "压力测试在<strong>高负载</strong>的情况下, 看看系统<strong>峰值时<strong>的容错能力、可恢复能力。"
+        "answer": "压力测试在<strong>高负载</strong>的情况下, 看看系统<strong>峰值时</strong>的容错能力、可恢复能力。"
     },
     {
         "category": "测试基础",
@@ -747,13 +747,13 @@
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "用 requests 库发送 POST 请求, 如何传递 JSON 数据和文件?",
-        "answer": "传递JSON数据: 使用json参数(requests.post(url, json={'key':'value'}))。[<a href='https://zhuanlan.zhihu.com/p/202978890'>推荐阅读</>] <br> 传递文件:使用files参数(requests.post(url, files={'file': open('test.txt','rb')}))。"
+        "answer": "传递JSON数据: 使用json参数(requests.post(url, json={'key':'value'}))。[<a href='https://zhuanlan.zhihu.com/p/202978890'>推荐阅读</a>] <br> 传递文件:使用files参数(requests.post(url, files={'file': open('test.txt','rb')}))。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests库",
         "question": "requests库的json参数传递的是Python对象还是JSON字符串?",
-        "answer": "json参数接收Python对象(如dict/list), requests会自动将其序列化为JSON字符串并设置Content-Type为application/json。若手动传递JSON字符串, 需使用data参数并手动设置headers={'Content-Type':'application/json'}。[<a href='https://zhuanlan.zhihu.com/p/202978890'>推荐阅读</>]"
+        "answer": "json参数接收Python对象(如dict/list), requests会自动将其序列化为JSON字符串并设置Content-Type为application/json。若手动传递JSON字符串, 需使用data参数并手动设置headers={'Content-Type':'application/json'}。[<a href='https://zhuanlan.zhihu.com/p/202978890'>推荐阅读</a>]"
     },
     {
         "category": "测试工具&框架",
