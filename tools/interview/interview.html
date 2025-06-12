@@ -29,13 +29,13 @@
             margin-bottom: 5px;
         }
 
-        .col-md-6:first-child {
+        /* .col-md-6:first-child {
             padding-right: 1px;
         }
 
         .col-md-6:last-child {
             padding-left: 1px;
-        }
+        } */
 
         .row {
             border-radius: 0 !important;
@@ -109,12 +109,13 @@
             border-bottom: 1px solid #e9ecef;
         }
 
-        .mode-selector.row {
+        /* .mode-selector.row {
             gap: 5px;
             flex-wrap: nowrap;
-        }
+        } */
+        
         .mode-selector .col-md-6 {
-            padding: 0 1px; 
+            padding: 0 1px;
         }
 
         .form-select {
@@ -122,28 +123,41 @@
             padding: 0.6rem 1rem;
             transition: all 0.2s;
         }
+
         .form-select:focus {
             box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
             border-color: #28a745;
         }
 
         #category-nav {
-            gap: 8px; 
+            gap: 8px;
         }
+
         #category-nav .list-group-item {
-            border-radius: 6px !important; /* 6px圆角 */
-            padding: 0.5rem 1rem; /* 调整内边距 */
-            border: 1px solid #dee2e6; /* 明确边框 */
-            transition: all 0.2s; /* 过渡动画 */
+            border-radius: 6px !important;
+            /* 6px圆角 */
+            padding: 0.5rem 1rem;
+            /* 调整内边距 */
+            border: 1px solid #dee2e6;
+            /* 明确边框 */
+            transition: all 0.2s;
+            /* 过渡动画 */
         }
+
         #category-nav .list-group-item:hover {
-            background-color: #f8f9fa; /* 悬停背景色 */
-            transform: translateY(-1px); /* 轻微上移 */
+            background-color: #f8f9fa;
+            /* 悬停背景色 */
+            transform: translateY(-1px);
+            /* 轻微上移 */
         }
+
         #category-nav .list-group-item.active {
-            background-color: #28a745; /* 主题色选中背景 */
-            border-color: #28a745; /* 主题色边框 */
-            color: white; /* 白色文字 */
+            background-color: #28a745;
+            /* 主题色选中背景 */
+            border-color: #28a745;
+            /* 主题色边框 */
+            color: white;
+            /* 白色文字 */
         }
     </style>
 </head>
