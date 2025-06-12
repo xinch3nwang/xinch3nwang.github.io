@@ -621,7 +621,13 @@
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
         "question": "Fiddler如何抓取HTTPS接口的包?",
-        "answer": "1. 打开Fiddler, 进入Tools → Options → HTTPS选项卡; 2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic; 3. 安装证书: 点击Actions → Export Root Certificate to Desktop。"
+        "answer": "1. 打开Fiddler, 进入Tools → Options → HTTPS选项卡; 2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic; 3. 安装证书: 点击Actions → Export Root Certificate to Desktop → 双击安装。"
+    },
+    {
+        "category": "测试工具&框架",
+        "subcategory": "Fiddler",
+        "question": "为什么抓包工具不直接解密HTTPS流量, 而要安装证书?",
+        "answer": "因为 SSL/TLS 的设计目标就是防止中间人攻击​​。如果抓包工具直接解密流量而不让客户端感知, 就违背了 HTTPS 的安全原则。抓包工具​​充当中间人, 需要通过安装自签名根证书, 先与客户端建立 HTTPS 连接（用自己的证书）, 再与服务器建立 HTTPS 连接（用服务器的证书）, 这样抓包工具才能解密并查看明文流量。"
     },
     {
         "category": "测试工具&框架",
@@ -759,13 +765,13 @@
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "requests遇到429 Too Many Requests错误怎么处理?​",
-        "answer": "立即添加延迟:time.sleep(1); 检查API限流规则, 调整测试频率; 考虑使用retrying库实现自动重试"
+        "answer": "立即添加延迟:time.sleep(1); 检查API限流规则, 调整测试频率; 考虑使用 retrying 库实现自动重试"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "requests",
         "question": "requests​如何处理SSL证书验证错误?​",
-        "answer": "​1.​忽略证书验证​(建议测试环境)​: verify=False / 2.安装证书: requests.get(url, verify=‘path/to/cert.crt’)"
+        "answer": "​1.​忽略证书验证​(建议测试环境)​: verify=False <br> 2.指定服务器的自签名证书文件: requests.get(url, verify=‘path/to/cert.crt’)"
     },
     {
         "category": "测试工具&框架",
@@ -921,7 +927,7 @@
         "category": "其他基础",
         "subcategory": "计算机网络",
         "question": "介绍一下计算机网络的分层模型。",
-        "answer": "OSI 七层模型从上到下是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。 <br> 应用层直接为应用程序提供服务, 表示层用来处理数据的表示和转换, 会话层用来管理会话, 传输层提供主机之间端到端的通信, 网络层处理网络之间的通信, 数据链路层保障数据帧的传输和接收, 物理层负责物理介质上的信号传输。 <br> 还有 TCP/IP 四层模型，它将网络分为网络接口层、网际层、传输层和应用层。"
+        "answer": "OSI 七层模型从上到下是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。 <br> 应用层直接为应用程序提供服务, 表示层用来处理数据的表示和转换, 会话层用来管理会话, 传输层提供主机之间端到端的通信, 网络层处理网络之间的通信, 数据链路层保障数据帧的传输和接收, 物理层负责物理介质上的信号传输。 <br> 还有 TCP/IP 四层模型, 它将网络分为网络接口层、网际层、传输层和应用层。"
     },
     {
         "category": "其他基础",
@@ -1227,7 +1233,7 @@
         "category": "开放性问题",
         "subcategory": "实战",
         "question": "​如何进行界面交互测试?",
-        "answer": "在界面交互测试中，我会重点关注​​用户直接可见的交互细节​​，比如: ​1.元素交互, 比如按钮状态(悬停/激活/停用)、输入框(表单验证提示)、下拉、弹窗层级; 2.响应式设计​: 在不同分辨率下检查页面布局是否自适应，特别是表单、按钮等关键元素是否错位; 3.​交互效果, 比如页面跳转、数据加载、动画效果等。​"
+        "answer": "在界面交互测试中, 我会重点关注​​用户直接可见的交互细节​​, 比如: ​1.元素交互, 比如按钮状态(悬停/激活/停用)、输入框(表单验证提示)、下拉、弹窗层级; 2.响应式设计​: 在不同分辨率下检查页面布局是否自适应, 特别是表单、按钮等关键元素是否错位; 3.​交互效果, 比如页面跳转、数据加载、动画效果等。​"
     },
     {
         "category": "开放性问题",

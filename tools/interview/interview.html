@@ -46,13 +46,13 @@
         }
 
         #nav {
-            position: sticky;
+            /* position: sticky;
             top: 0;
             left: 0;
             right: 0;
-            background: white;
             z-index: 1000;
-            box-shadow: none;
+            box-shadow: none; */
+            background: white;
             border-bottom: 1px solid #dee2e6;
         }
 
@@ -113,7 +113,7 @@
             gap: 5px;
             flex-wrap: nowrap;
         } */
-        
+
         .mode-selector .col-md-6 {
             padding: 0 1px;
         }
@@ -135,29 +135,20 @@
 
         #category-nav .list-group-item {
             border-radius: 6px !important;
-            /* 6px圆角 */
             padding: 0.5rem 1rem;
-            /* 调整内边距 */
             border: 1px solid #dee2e6;
-            /* 明确边框 */
             transition: all 0.2s;
-            /* 过渡动画 */
         }
 
         #category-nav .list-group-item:hover {
             background-color: #f8f9fa;
-            /* 悬停背景色 */
             transform: translateY(-1px);
-            /* 轻微上移 */
         }
 
         #category-nav .list-group-item.active {
             background-color: #28a745;
-            /* 主题色选中背景 */
             border-color: #28a745;
-            /* 主题色边框 */
             color: white;
-            /* 白色文字 */
         }
     </style>
 </head>
