@@ -7,7 +7,7 @@
     max-width: 80%;
     text-align: center;
     animation: fadeOut 4s forwards;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -54,7 +54,7 @@
     clear: both;
     background-color: #F0EFE2;
     overflow: hidden;
-    margin-top: 70px;
+    /* margin-top: 10px; */
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -66,7 +66,32 @@
     margin: 20px;
     overflow: hidden;
     border-radius: 8px;
+    background-color: #e4e3d4;
     box-shadow: 0px 1px 1px #d7d5bc;
+}
+
+.sons .exam-content {
+    background-color: #e4e3d4;
+    padding: 20px;
+    line-height: 1.8;
+}
+
+.section-title {
+    text-align: center;
+    margin: 20px 0 30px;
+    font-size: 24px;
+    color: #8b4513;
+    border-bottom: 2px solid #d7d5bc;
+    padding-bottom: 10px;
+}
+
+.exam-type-title {
+    color: #8b4513;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-left: 4px solid #8b4513;
+    padding-left: 10px;
 }
 
 .sons .contImg img {
