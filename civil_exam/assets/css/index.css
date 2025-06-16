@@ -142,32 +142,43 @@ a {
     margin-bottom: 25px;
 }
 
-.sons .content .card {
-    border: 2px solid #c0bfbf;
+.sons .card {
     float: left;
     width: 30%;
-    margin: 5px;
-    padding: 10px;
-    /* background-color: #d0d1ca; */
+    margin: 20px;
+    overflow: hidden;
+    padding: 20px;
+    background-color: #e4e3d4;
     border-radius: 8px;
     display: block;
     text-decoration: none;
     color: inherit;
 }
 
-.sons .content .card:hover {
+.sons .card:hover {
     text-decoration: none;
     background-color: #c7c8c2;
 }
 
-.sons .content .card h3 {
-    font-size: 23px;
-    font-weight: bold;
+.sons .card h3 {
+    color: #8b4513;
     margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.sons .card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.sons .content .sourceimg a {
+    color: #999999;
+    font-size: 14px;
 }
 
 .site-footer {
-    padding: 20px 0;
+    padding: 5px 0;
     text-align: center;
     margin-top: 30px;
     border-top: 1px solid #d7d5bc;
@@ -189,21 +200,4 @@ a {
 footer a {
     color: #676767;
     text-decoration: none;
-}
-
-.sons .card h3 {
-    color: #8b4513;
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-.sons .card p {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.sons .content .sourceimg a {
-    color: #999999;
-    font-size: 14px;
 }
