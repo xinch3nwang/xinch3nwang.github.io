@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium 元素定位挑战</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        section { margin-bottom: 30px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        h2 { color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .item { display: inline-block; margin: 10px; padding: 10px; border: 1px solid #ccc; }
+        #hover-menu { background: #f8f9fa; padding: 10px; }
+        #hover-menu:hover .submenu { display: block; }
+        .submenu { display: none; margin-top: 10px; }
+        .price::after { content: "¥99.00"; color: red; margin-left: 5px; }
+        .hidden-upload { opacity: 0; position: absolute; }
+        .modal { display: none; position: fixed; z-index: 100; background: white; padding: 20px; border: 1px solid #333; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .modal.active { display: block; }
+        .high-z { z-index: 101; }
+        #scroll-container { height: 150px; overflow-y: scroll; border: 1px solid #ddd; }
+        .scroll-item { height: 50px; padding: 10px; border-bottom: 1px solid #eee; }
+        #drag-source { width: 100px; height: 100px; background: #3498db; color: white; text-align: center; line-height: 100px; }
+        #drop-target { width: 200px; height: 200px; border: 2px dashed #7f8c8d; margin-top: 20px; }
+        #canvas-container { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Selenium 元素定位挑战</h1>
+    
+    <!-- 1. 动态ID按钮 -->
+    <section id="dynamic-id">
+        <h2>1. 动态ID按钮</h2>
+        <p>按钮ID每次刷新都会变化，但文本不变</p>
+        <button id="btn-{{random_number}}">加入购物车</button>
+    </section>
+    
+    <!-- 2. 多层嵌套iframe -->
+    <section id="nested-iframes">
+        <h2>2. 多层嵌套iframe</h2>
+        <iframe id="outer-iframe" src="about:blank" width="100%" height="200"></iframe>
+        <script>
+            const iframeContent = `
+            <!DOCTYPE html>
+            <html><body>
+                <iframe id="middle-iframe" src="about:blank" width="90%" height="150"></iframe>
+            </body></html>`;
+            
+            const innerIframeContent = `
+            <!DOCTYPE html>
+            <html><body>
+                <h3>表单在最内层iframe</h3>
+                <form id="deep-form">
+                    <input type="text" id="username" placeholder="用户名">
+                    <button type="submit">提交</button>
+                </form>
+            </body></html>`;
+            
+            const outerIframe = document.getElementById('outer-iframe');
+            outerIframe.contentDocument.open();
+            outerIframe.contentDocument.write(iframeContent);
+            outerIframe.contentDocument.close();
+            
+            setTimeout(() => {
+                const middleIframe = outerIframe.contentDocument.getElementById('middle-iframe');
+                middleIframe.contentDocument.open();
+                middleIframe.contentDocument.write(innerIframeContent);
+                middleIframe.contentDocument.close();
+            }, 100);
+        </script>
+    </section>
+    
+    <!-- 3. 动态生成的下拉选项 -->
+    <section id="dynamic-dropdown">
+        <h2>3. 动态生成的下拉选项</h2>
+        <select id="country-select">
+            <option>请选择国家</option>
+            <!-- 选项将通过AJAX动态加载 -->
+        </select>
+        <script>
+            setTimeout(() => {
+                const countries = ['中国', '美国', '日本', '英国', '德国'];
+                const select = document.getElementById('country-select');
+                countries.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country.toLowerCase();
+                    option.textContent = country;
+                    select.appendChild(option);
+                });
+            }, 2000);
+        </script>
+    </section>
+    
+    <!-- 4. 悬浮菜单定位 -->
+    <section id="hover-menu">
+        <h2>4. 悬浮菜单定位</h2>
+        <p>鼠标悬停在此区域显示子菜单</p>
+        <div class="submenu">
+            <a href="#">子菜单项1</a>
+            <a href="#">子菜单项2</a>
+            <a href="#">子菜单项3</a>
+        </div>
+    </section>
+    
+    <!-- 5. 同class元素组 -->
+    <section id="same-class-items">
+        <h2>5. 同class元素组</h2>
+        <p>所有商品项使用相同的class</p>
+        <div class="item">商品1 <button class="add-to-cart">加入购物车</button></div>
+        <div class="item">商品2 <button class="add-to-cart">加入购物车</button></div>
+        <div class="item">商品3 <button class="add-to-cart">加入购物车</button></div>
+    </section>
+    
+    <!-- 6. 伪元素内容验证 -->
+    <section id="pseudo-element">
+        <h2>6. 伪元素内容验证</h2>
+        <p>价格通过::after伪元素显示</p>
+        <div class="price">价格:</div>
+    </section>
+    
+    <!-- 7. SVG图形按钮 -->
+    <section id="svg-button">
+        <h2>7. SVG图形按钮</h2>
+        <p>播放按钮是SVG实现</p>
+        <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="#3498db"/>
+            <path id="play-icon" fill="red" d="M35,25 L35,75 L75,50 Z"/>
+        </svg>
+    </section>
+    
+    <!-- 8. Canvas绘图交互 -->
+    <section id="canvas-challenge">
+        <h2>8. Canvas绘图交互</h2>
+        <p>验证码是Canvas绘制</p>
+        <div id="canvas-container">
+            <canvas id="captcha-canvas" width="200" height="80"></canvas>
+            <input type="text" id="captcha-input" placeholder="输入验证码">
+            <button id="verify-captcha">验证</button>
+        </div>
+        <script>
+            const canvas = document.getElementById('captcha-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 绘制验证码
+            ctx.fillStyle = '#f1f1f1';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '30px Arial';
+            ctx.fillStyle = '#333';
+            const captchaText = Math.random().toString(36).substr(2, 5).toUpperCase();
+            ctx.fillText(captchaText, 30, 50);
+            
+            // 添加一些干扰线
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.strokeStyle = `rgba(0, 0, 0, ${Math.random() * 0.5})`;
+                ctx.stroke();
+            }
+            
+            // 验证逻辑
+            document.getElementById('verify-captcha').addEventListener('click', () => {
+                const input = document.getElementById('captcha-input').value;
+                if (input === captchaText) {
+                    alert('验证码正确！');
+                } else {
+                    alert('验证码错误！');
+                }
+            });
+        </script>
+    </section>
+    
+    <!-- 9. 动态表格行 -->
+    <section id="dynamic-table">
+        <h2>9. 动态表格行</h2>
+        <p>表格行无固定属性，数据排序会变</p>
+        <button id="sort-table">排序</button>
+        <table border="1" style="width: 100%; margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>价格</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <td>1001</td>
+                    <td>商品A</td>
+                    <td>¥120</td>
+                </tr>
+                <tr>
+                    <td>1002</td>
+                    <td>商品B</td>
+                    <td>¥80</td>
+                </tr>
+                <tr>
+                    <td>1003</td>
+                    <td>商品C</td>
+                    <td>¥200</td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            document.getElementById('sort-table').addEventListener('click', () => {
+                const tbody = document.getElementById('table-body');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                
+                // 随机排序
+                rows.sort(() => Math.random() - 0.5);
+                
+                // 清空并重新添加行
+                tbody.innerHTML = '';
+                rows.forEach(row => tbody.appendChild(row));
+            });
+        </script>
+    </section>
+    
+    <!-- 10. Shadow DOM组件 -->
+    <section id="shadow-dom">
+        <h2>10. Shadow DOM组件</h2>
+        <p>使用Web Components的自定义元素</p>
+        <div id="shadow-host"></div>
+        <script>
+            const host = document.getElementById('shadow-host');
+            const shadowRoot = host.attachShadow({ mode: 'open' });
+            shadowRoot.innerHTML = `
+                <style>
+                    .shadow-button {
+                        background: #9b59b6;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                </style>
+                <button class="shadow-button">Shadow DOM中的按钮</button>
+            `;
+        </script>
+    </section>
+    
+    <!-- 11. 响应式布局差异 -->
+    <section id="responsive-layout">
+        <h2>11. 响应式布局差异</h2>
+        <p>PC/Mobile端相同功能不同DOM结构</p>
+        <div class="desktop-view">
+            <button id="desktop-btn">桌面版按钮</button>
+        </div>
+        <div class="mobile-view">
+            <a href="#" id="mobile-btn">移动版按钮链接</a>
+        </div>
+        <style>
+            .mobile-view { display: none; }
+            @media (max-width: 600px) {
+                .desktop-view { display: none; }
+                .mobile-view { display: block; }
+            }
+        </style>
+    </section>
+    
+    <!-- 12. 异步加载分页 -->
+    <section id="infinite-scroll">
+        <h2>12. 异步加载分页</h2>
+        <p>滚动到底部才加载下一页</p>
+        <div id="scroll-container">
+            <div class="scroll-item">项目1</div>
+            <div class="scroll-item">项目2</div>
+            <div class="scroll-item">项目3</div>
+        </div>
+        <script>
+            const container1 = document.getElementById('scroll-container');
+            let itemCount = 3;
+            
+            container1.addEventListener('scroll', () => {
+                if (container1.scrollTop + container1.clientHeight >= container1.scrollHeight - 10) {
+                    // 模拟异步加载
+                    setTimeout(() => {
+                        for (let i = 1; i <= 3; i++) {
+                            const item = document.createElement('div');
+                            item.className = 'scroll-item';
+                            item.textContent = `项目${++itemCount}`;
+                            container1.appendChild(item);
+                        }
+                    }, 500);
+                }
+            });
+        </script>
+    </section>
+    
+    <!-- 13. 文件上传隐藏input -->
+    <section id="file-upload">
+        <h2>13. 文件上传隐藏input</h2>
+        <p>文件上传控件被样式隐藏</p>
+        <button id="upload-button">选择文件</button>
+        <input type="file" id="file-input" class="hidden-upload">
+        <script>
+            document.getElementById('upload-button').addEventListener('click', () => {
+                document.getElementById('file-input').click();
+            });
+        </script>
+    </section>
+    
+    <!-- 14. 日期选择器 -->
+    <section id="date-picker">
+        <h2>14. 日期选择器</h2>
+        <p>第三方日期组件无标准input</p>
+        <div id="custom-datepicker">
+            <div class="datepicker-header">
+                <button class="prev-month">‹</button>
+                <span class="month-year">2023年10月</span>
+                <button class="next-month">›</button>
+            </div>
+            <div class="datepicker-grid">
+                <div class="datepicker-cell">日</div>
+                <div class="datepicker-cell">一</div>
+                <div class="datepicker-cell">二</div>
+                <div class="datepicker-cell">三</div>
+                <div class="datepicker-cell">四</div>
+                <div class="datepicker-cell">五</div>
+                <div class="datepicker-cell">六</div>
+                
+                <!-- 日期单元格 -->
+                <div class="datepicker-cell disabled">29</div>
+                <div class="datepicker-cell disabled">30</div>
+                <div class="datepicker-cell">1</div>
+                <div class="datepicker-cell">2</div>
+                <div class="datepicker-cell">3</div>
+                <div class="datepicker-cell">4</div>
+                <div class="datepicker-cell">5</div>
+                
+                <div class="datepicker-cell">6</div>
+                <div class="datepicker-cell">7</div>
+                <div class="datepicker-cell">8</div>
+                <div class="datepicker-cell">9</div>
+                <div class="datepicker-cell">10</div>
+                <div class="datepicker-cell">11</div>
+                <div class="datepicker-cell">12</div>
+                
+                <div class="datepicker-cell">13</div>
+                <div class="datepicker-cell">14</div>
+                <div class="datepicker-cell">15</div>
+                <div class="datepicker-cell">16</div>
+                <div class="datepicker-cell">17</div>
+                <div class="datepicker-cell">18</div>
+                <div class="datepicker-cell">19</div>
+                
+                <div class="datepicker-cell">20</div>
+                <div class="datepicker-cell">21</div>
+                <div class="datepicker-cell">22</div>
+                <div class="datepicker-cell">23</div>
+                <div class="datepicker-cell">24</div>
+                <div class="datepicker-cell">25</div>
+                <div class="datepicker-cell">26</div>
+                
+                <div class="datepicker-cell">27</div>
+                <div class="datepicker-cell">28</div>
+                <div class="datepicker-cell">29</div>
+                <div class="datepicker-cell">30</div>
+                <div class="datepicker-cell">31</div>
+                <div class="datepicker-cell disabled">1</div>
+                <div class="datepicker-cell disabled">2</div>
+            </div>
+        </div>
+        <style>
+            #custom-datepicker {
+                width: 300px;
+                border: 1px solid #ddd;
+                padding: 10px;
+                font-family: Arial, sans-serif;
+            }
+            .datepicker-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .datepicker-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+            }
+            .datepicker-cell {
+                text-align: center;
+                padding: 5px;
+                cursor: pointer;
+            }
+            .datepicker-cell:hover {
+                background: #eee;
+            }
+            .datepicker-cell.disabled {
+                color: #ccc;
+                cursor: not-allowed;
+            }
+        </style>
+    </section>
+    
+    <!-- 15. 富文本编辑器 -->
+    <section id="rich-text-editor">
+        <h2>15. 富文本编辑器</h2>
+        <p>iframe内的contenteditable区域</p>
+        <iframe id="editor-iframe" src="about:blank" width="100%" height="200"></iframe>
+        <script>
+            const editorContent = `
+            <!DOCTYPE html>
+            <html><body style="margin:0">
+                <div id="editor" contenteditable="true" style="height:100%; padding:10px; border:1px solid #ddd;">
+                    在这里输入文本...
+                </div>
+            </body></html>`;
+            
+            const editorIframe = document.getElementById('editor-iframe');
+            editorIframe.contentDocument.open();
+            editorIframe.contentDocument.write(editorContent);
+            editorIframe.contentDocument.close();
+        </script>
+    </section>
+    
+    <!-- 16. 拖放操作验证 -->
+    <section id="drag-and-drop">
+        <h2>16. 拖放操作验证</h2>
+        <p>验证拖放后元素位置变化</p>
+        <div id="drag-source" draggable="true">拖拽我</div>
+        <div id="drop-target">拖放到这里</div>
+        <script>
+            const dragSource = document.getElementById('drag-source');
+            const dropTarget = document.getElementById('drop-target');
+            
+            dragSource.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', 'dragged-item');
+            });
+            
+            dropTarget.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+            
+            dropTarget.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const data = e.dataTransfer.getData('text/plain');
+                if (data === 'dragged-item') {
+                    dragSource.style.display = 'none';
+                    dropTarget.textContent = '拖放成功！';
+                    dropTarget.style.border = '2px solid #2ecc71';
+                }
+            });
+        </script>
+    </section>
+    
+    <!-- 17. 虚拟滚动列表 -->
+    <section id="virtual-scroll">
+        <h2>17. 虚拟滚动列表</h2>
+        <p>只渲染可视区域的列表项</p>
+        <div id="virtual-container" style="height: 200px; overflow-y: scroll; border: 1px solid #ddd;">
+            <div id="virtual-content" style="height: 10000px; position: relative;">
+                <!-- 动态渲染的内容将在这里 -->
+            </div>
+        </div>
+        <script>
+            const container = document.getElementById('virtual-container');
+            const content = document.getElementById('virtual-content');
+            const itemHeight = 30;
+            const totalItems = 1000;
+            
+            function renderItems() {
+                const scrollTop = container.scrollTop;
+                const startIdx = Math.floor(scrollTop / itemHeight);
+                const endIdx = Math.min(startIdx + Math.ceil(container.clientHeight / itemHeight) + 2, totalItems);
+                
+                // 清空并重新渲染可见项
+                content.innerHTML = '';
+                
+                for (let i = startIdx; i <= endIdx; i++) {
+                    const item = document.createElement('div');
+                    item.style.position = 'absolute';
+                    item.style.top = `${i * itemHeight}px`;
+                    item.style.height = `${itemHeight}px`;
+                    item.style.width = '100%';
+                    item.style.lineHeight = `${itemHeight}px`;
+                    item.style.paddingLeft = '10px';
+                    item.style.borderBottom = '1px solid #eee';
+                    item.textContent = `虚拟列表项 ${i + 1}`;
+                    content.appendChild(item);
+                }
+            }
+            
+            container.addEventListener('scroll', renderItems);
+            renderItems();
+        </script>
+    </section>
+    
+    <!-- 18. 同页多弹窗 -->
+    <section id="multiple-modals">
+        <h2>18. 同页多弹窗</h2>
+        <p>多个modal共用相同class</p>
+        <button class="open-modal" data-modal="modal1">打开弹窗1</button>
+        <button class="open-modal" data-modal="modal2">打开弹窗2</button>
+        
+        <div class="modal" id="modal1">
+            <h3>弹窗1</h3>
+            <p>这是第一个弹窗的内容</p>
+            <button class="close-modal">关闭</button>
+        </div>
+        
+        <div class="modal" id="modal2">
+            <h3>弹窗2</h3>
+            <p>这是第二个弹窗的内容</p>
+            <button class="close-modal">关闭</button>
+        </div>
+        
+        <script>
+            document.querySelectorAll('.open-modal').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const modalId = btn.getAttribute('data-modal');
+                    document.getElementById(modalId).classList.add('active');
+                });
+            });
+            
+            document.querySelectorAll('.close-modal').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.closest('.modal').classList.remove('active');
+                });
+            });
+        </script>
+    </section>
+    
+    <!-- 19. 图形验证码 -->
+    <section id="image-captcha">
+        <h2>19. 图形验证码</h2>
+        <p>需要识别验证码图片内容</p>
+        <div id="captcha-container">
+            <img id="captcha-image" src="about:blank" alt="验证码">
+            <input type="text" id="captcha-text" placeholder="输入验证码">
+            <button id="refresh-captcha">刷新</button>
+            <button id="submit-captcha">提交</button>
+        </div>
+        <script>
+            function generateCaptcha() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 120;
+                canvas.height = 40;
+                const ctx = canvas.getContext('2d');
+                
+                // 生成随机验证码文本
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                let captchaText = '';
+                for (let i = 0; i < 5; i++) {
+                    captchaText += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                
+                // 绘制验证码
+                ctx.fillStyle = '#f5f5f5';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.font = '24px Arial';
+                
+                // 每个字符使用不同的颜色和位置
+                for (let i = 0; i < captchaText.length; i++) {
+                    ctx.fillStyle = `hsl(${Math.random() * 360}, 70%, 50%)`;
+                    ctx.fillText(
+                        captchaText.charAt(i),
+                        20 + i * 20,
+                        25 + Math.random() * 10 - 5
+                    );
+                }
+                
+                // 添加干扰线
+                for (let i = 0; i < 5; i++) {
+                    ctx.strokeStyle = `rgba(0, 0, 0, ${Math.random() * 0.3})`;
+                    ctx.beginPath();
+                    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                    ctx.stroke();
+                }
+                
+                // 更新图片
+                document.getElementById('captcha-image').src = canvas.toDataURL();
+                return captchaText;
+            }
+            
+            let currentCaptcha = generateCaptcha();
+            
+            document.getElementById('refresh-captcha').addEventListener('click', () => {
+                currentCaptcha = generateCaptcha();
+            });
+            
+            document.getElementById('submit-captcha').addEventListener('click', () => {
+                const input = document.getElementById('captcha-text').value;
+                if (input === currentCaptcha) {
+                    alert('验证码正确！');
+                } else {
+                    alert('验证码错误！');
+                    currentCaptcha = generateCaptcha();
+                }
+            });
+        </script>
+    </section>
+    
+    <!-- 20. 移动端手势操作 -->
+    <section id="touch-gestures">
+        <h2>20. 移动端手势操作</h2>
+        <p>测试swipe/touch等手势</p>
+        <div id="touch-area" style="width: 100%; height: 150px; background: #f1f1f1; text-align: center; line-height: 150px;">
+            在此区域进行手势操作
+        </div>
+        <div id="gesture-result" style="margin-top: 10px;"></div>
+        <script>
+            const touchArea = document.getElementById('touch-area');
+            const resultDiv = document.getElementById('gesture-result');
+            
+            let startX, startY, endX, endY;
+            
+            touchArea.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+            
+            touchArea.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                endX = e.touches[0].clientX;
+                endY = e.touches[0].clientY;
+            });
+            
+            touchArea.addEventListener('touchend', () => {
+                const diffX = endX - startX;
+                const diffY = endY - startY;
+                
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX > 0) {
+                        resultDiv.textContent = '向右滑动';
+                    } else {
+                        resultDiv.textContent = '向左滑动';
+                    }
+                } else {
+                    if (diffY > 0) {
+                        resultDiv.textContent = '向下滑动';
+                    } else {
+                        resultDiv.textContent = '向上滑动';
+                    }
+                }
+            });
+        </script>
+    </section>
+    
+    <script>
+        // 为动态ID按钮生成随机ID
+        document.addEventListener('DOMContentLoaded', () => {
+            const randomId = Math.floor(Math.random() * 1000);
+            const dynamicBtn = document.querySelector('#dynamic-id button');
+            dynamicBtn.id = dynamicBtn.id.replace('{{random_number}}', randomId);
+        });
+    </script>
+</body>
+</html>

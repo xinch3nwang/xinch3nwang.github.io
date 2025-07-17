@@ -101,7 +101,7 @@
         }
 
         .alert-warning {
-            animation: shake 0.5s ease-in-out 2, blink 0.7s ease-in-out 5 1s;
+            animation: shake 0.5s ease-in-out 2, blink 0.6s ease-in-out 5 1s;
         }
 
         #nav {
@@ -168,12 +168,13 @@
                     <select class="form-select" id="mode-select">
                         <option value="study">学习模式</option>
                         <option value="recite">背诵模式</option>
-                        <option value="random">随机抽查(10题)</option>
+                        <option value="random">随机抽查(20题)</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <select class="form-select" id="bank-select">
-                        <option value="qa">软件测试题库</option>
+                        <option value="qa">软件测试基础问题</option>
+                        <option value="qa_special">软件测试专项练习</option>
                     </select>
                 </div>
             </div>
@@ -235,8 +236,8 @@
                 let questions = data;
 
                 if (mode === 'random') {
-                    // 随机抽取10题
-                    questions = shuffleArray(data).slice(0, 10);
+                    // 随机抽取20题
+                    questions = shuffleArray(data).slice(0, 20);
                 }
 
                 // 动态生成分类导航

@@ -1,0 +1,500 @@
+[
+    {
+        "category": "测试用例设计",
+        "subcategory": "测试点",
+        "question": "微信视频的测试点有哪些？",
+        "answer": "视频连接成功、单人视频、多人 视频、画面声音是否同步、对方正在视频通话、对方正在手机语音、对方息屏和亮屏状态、视频被拒绝、挂断、网络中断、切换摄像头、扬声器、耳机的录音和收音、蓝牙耳机有线耳机兼容、关闭摄像头、长时间视频、前后台切换、不同网络切换、不同机型和系统、电脑端手机端、系统提示。"
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "测试点",
+        "question": "登录页面如何设计测试用例？",
+        "answer": "功能测试：（1）正确输入（2）为空输入（3）字符类型校验（4）长度校验（5）密码是否加密显示（6）大写提示（7）跳转页面是否成功（8）登录后刷新（9）登出后用另一账号登录<br>界面测试：（1）界面交互与原型设计一致（2）错别字<br>性能测试：（1）打开登录页面的时间（2）跳转到首页的时间（3）多次点击（4）多人点击<br>安全性测试：（1）用户名密码是否加密发送给服务器（2）错误登录的次数限制（3）一台机器登录多个用户（4）一个用户在多方登录（5）控制台检查元素是否能看到密码<br>兼容性测试：不同浏览器、不同移动设备、不同操作系统能否正常工作<br>易用性测试：（1）输入框tab键可切换（2）回车可登录"
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "使用等价类划分法设计登录功能的用户名/密码测试用例",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "用边界值分析法测试输入框允许的字符长度（如6-12位密码）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "设计因果图测试电梯按钮的楼层选择功能（如同时按上下键）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "为微信红包功能设计测试用例（金额、数量、过期时间等维度）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "使用决策表法测试自动售货机（投币、找零、缺货场景）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "设计多语言切换功能的测试用例（语言兼容性、布局适配）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "为文件上传功能设计测试用例（文件类型、大小、网络中断）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "测试搜索功能的结果排序（关键词、分类、分页）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "用正交试验法简化电商商品筛选条件组合（品牌+价格+颜色）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "设计支付功能的异常场景测试（余额不足、重复支付、断网）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "测试注册页面的手机号验证逻辑（格式、重复注册、国际区号）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "为航班查询系统设计测试用例（出发地、目的地、日期组合）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "测试日期选择器的边界值（闰年、跨月、格式错误）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "设计购物车商品增删改查的测试用例（库存变化、价格计算）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "测试APP权限管理（拒绝权限后功能降级）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "为API接口设计输入参数的等价类（如分页参数page_size）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "测试短信验证码功能（重发间隔、过期失效、错误次数限制）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "设计多选项卡切换的测试用例（如浏览器多标签页）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "测试滑动验证码的交互逻辑（拖动精度、失败重试）",
+        "answer": ""
+    },
+    {
+        "category": "测试用例设计",
+        "subcategory": "黑盒测试方法",
+        "question": "为配置系统设计参数组合测试（如开关A开启时开关B禁用）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "<a href='./selenium_challenges.html'>元素定位练习网站</a>",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "用XPath定位动态生成的表格中的特定行（如包含'订单号=123'的行）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "使用CSS Selector定位嵌套在多层div中的按钮",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "通过XPath轴定位父元素下的第二个子元素（如following-sibling）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位模态框（Modal）中的输入框并输入文本",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "使用相对XPath定位登录表单的用户名输入框（避免绝对路径）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "通过CSS Selector定位带有特定class和属性的元素（如[data-testid='submit']）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位下拉菜单并选择某一选项（非Select标签）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "处理iframe内的元素定位（需切换frame）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位动态加载的Ajax元素（如通过WebDriverWait）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "使用XPath定位部分匹配文本的链接（如contains(text(),'确认')）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位悬浮菜单（Hover）后的子选项",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "通过XPath定位表格中特定列的所有单元格",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位复选框并验证选中状态（isSelected()）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "处理Shadow DOM内的元素定位",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位并操作浏览器本地存储（LocalStorage）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "通过XPath定位兄弟元素中的最后一个",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "使用CSS Selector定位伪元素（如::before）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位并拖拽滑块验证码",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "处理动态ID元素的定位（如ID包含随机前缀）",
+        "answer": ""
+    },
+    {
+        "category": "Web自动化",
+        "subcategory": "Selenium元素定位",
+        "question": "定位并截图验证页面特定区域的UI渲染",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "测试GET接口的查询参数组合（如分页+过滤）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "使用Postman自动化断言响应时间（如<500ms）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "设计OAuth2.0授权接口的测试用例（token过期、刷新）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "用Charles抓包分析HTTPS请求的加密内容",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "测试POST接口的JSON body参数必填项校验",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "模拟接口超时场景（如服务器无响应）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "设计文件上传接口的测试用例（多部分表单）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "使用Postman的Tests脚本验证响应JSON结构",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "测试接口的并发请求（如秒杀场景）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "设计RESTful API的PUT/DELETE方法测试用例",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "用Charles模拟弱网测试接口超时处理",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "测试接口的幂等性（如重复提交订单）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "验证接口返回的HTTP状态码（如404、503）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "设计批量查询接口的性能测试（如1000条数据分页）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "测试接口的敏感数据加密（如密码字段脱敏）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "用Postman模拟文件下载接口并校验文件完整性",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "测试接口的版本兼容性（如v1与v2共存）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "设计GraphQL接口的查询语句测试",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "验证接口的限流策略（如每秒10次请求）",
+        "answer": ""
+    },
+    {
+        "category": "接口测试",
+        "subcategory": "Postman/Charles",
+        "question": "测试WebSocket接口的消息推送机制",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "查询订单表中金额大于1000元且未付款的用户",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "统计每个商品类别的月销售额及环比增长率",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "使用子查询找出购买过A商品又购买B商品的用户",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "多表联查用户信息+订单详情+物流状态",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "用窗口函数计算每个用户的消费排名",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "查询最近30天活跃但本周未登录的用户",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "使用EXISTS子查询验证有订单但无支付的记录",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "统计各地区的订单退单率（退单数/总订单数）",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "用WITH RECURSIVE查询层级结构（如部门树）",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "联查用户表+行为日志表分析转化漏斗",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "使用CASE WHEN统计订单金额分段分布",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "查询重复注册的用户（相同手机号不同邮箱）",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "使用LEFT JOIN找出未下单的新注册用户",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "计算用户留存率（次日/7日/30日留存）",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "联查库存表+销售表预警低库存商品",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "使用GROUPING SETS多维度聚合销售数据",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "查询同一IP短时间内注册的多个账号",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "用HAVING筛选出投诉率高于5%的客服",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "联查订单表+优惠券表计算实际抵扣金额",
+        "answer": ""
+    },
+    {
+        "category": "数据库验证",
+        "subcategory": "复杂SQL",
+        "question": "使用PARTITION BY分析用户消费频率分布",
+        "answer": ""
+    }
+]

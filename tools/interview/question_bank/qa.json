@@ -99,7 +99,7 @@
         "category": "测试基础",
         "subcategory": "测试流程",
         "question": "测试的流程是什么?",
-        "answer": "软件测试的流程通常包括以下几个阶段。首先是<strong>需求分析和评审</strong>阶段, 对需求进行理解和分析, 并编写测试计划; 其次是<strong>测试用例设计</strong>阶段, 根据需求编写相应的测试用例; 然后是<strong>测试执行</strong>阶段, 按照测试用例进行测试并记录测试结果; 接着是<strong>缺陷管理</strong>阶段, 对发现的 Bug 进行跟踪和管理; 最后是<strong>测试报告和总结</strong>阶段, 对整个测试过程和结果进行总结和汇报。"
+        "answer": "软件测试的流程通常包括以下几个阶段: 首先是<strong>需求分析和评审</strong>阶段, 对需求进行理解和分析, 并编写测试计划; <br> 其次是<strong>测试用例设计</strong>阶段, 根据需求编写相应的测试用例; <br> 然后是<strong>测试执行</strong>阶段, 按照测试用例进行测试并记录测试结果; <br> 接着是<strong>缺陷管理</strong>阶段, 对发现的 Bug 进行跟踪和管理; <br> 最后是<strong>测试报告和总结</strong>阶段, 对整个测试过程和结果进行总结和汇报。"
     },
     {
         "category": "测试基础",
@@ -165,7 +165,7 @@
         "category": "测试基础",
         "subcategory": "功能测试",
         "question": "你知道哪些测试用例的设计方法?",
-        "answer": "一般有等价类划分法[将输入数据分类(如有效/无效输入)每类选代表进行测试]、边界值分析法[测试输入范围的边界]、判定表法、因果图法、正交表法、错误推断法[基于经验测易错点]、场景法[模拟用户操作流程]。"
+        "answer": "等价类划分法[将输入数据分类(如有效/无效输入)每类选代表进行测试]、 <br> 边界值分析法[测试输入范围的边界]、 <br> 判定表法、 <br> 因果图法、 <br> 正交表法、 <br> 错误推断法[基于经验测易错点]、 <br> 场景法[模拟用户操作流程]。"
     },
     {
         "category": "测试基础",
@@ -243,7 +243,7 @@
         "category": "测试基础",
         "subcategory": "自动化测试",
         "question": "自动化测试技术的应用场景/测试人员哪些工作环节适合用到自动化技术?",
-        "answer": "1. 回归测试(持续集成自动触发); 2. 性能测试(模拟大量用户同时访问); 3. 监控报警(生产环境巡检)"
+        "answer": "1. 回归测试(持续集成自动触发); <br> 2. 性能测试(模拟大量用户同时访问); <br> 3. 监控报警(生产环境巡检)"
     },
     {
         "category": "测试基础",
@@ -351,7 +351,7 @@
         "category": "编程基础",
         "subcategory": "Python",
         "question": "Python的数据类型你都有哪些了解?",
-        "answer": "有数字类型, 如整型、浮点型; 有序列类型, 如字符串、列表、元组; 有集合类型; 映射类型(字典); 布尔类型。"
+        "answer": "数字类型, 如整型、浮点型; <br> 序列类型, 如字符串、列表、元组; <br> 集合类型; <br> 映射类型(字典); <br> 布尔类型。"
     },
     {
         "category": "编程基础",
@@ -369,7 +369,7 @@
         "category": "编程基础",
         "subcategory": "Python",
         "question": "Python的字典是什么?如何合并字典?",
-        "answer": "字典是一种键值对的数据结构, 由键和值组成, 键必须是不可变类型, 值可以是任意类型。合并字典可以使用 update() 方法 [如: dict2.update(dict1)] , 或者字典推导式, 或者解包操作符 ** 。"
+        "answer": "字典是一种键值对的数据结构, 由键和值组成, 键必须是不可变类型, 值可以是任意类型。 <br> 合并字典可以使用 update() 方法 [如: dict2.update(dict1)] , 或者字典推导式, 或者解包操作符 ** 。"
     },
     {
         "category": "编程基础",
@@ -429,7 +429,7 @@
         "category": "编程基础",
         "subcategory": "Python",
         "question": "解释 Python里 *args 和 **kwargs 的作用?​",
-        "answer": " *args 用于接收任意数量的位置参数, 以元组形式存储。**kwargs 用于接收任意数量的关键字参数, 以字典形式存储。"
+        "answer": " *args 用于接收任意数量的位置参数, 以元组形式存储。 <br> **kwargs 用于接收任意数量的关键字参数, 以字典形式存储。"
     },
     {
         "category": "编程基础",
@@ -615,13 +615,13 @@
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
         "question": "Fiddler的典型应用场景有哪些?",
-        "answer": "可以用来辅助定位前后端的 bug; 可以构建模拟测试场景, 比如模拟发送请求进行接口测试/mock接口返回数据/断点(请求前/响应后拦截暂停)    ; 还可以模拟弱网环境进行测试; 还可以对前端的性能进行分析。"
+        "answer": "可以用来辅助定位前后端的 bug; <br> 可以构建模拟测试场景, 比如模拟发送请求进行接口测试/mock接口返回数据/断点(请求前/响应后拦截暂停); <br> 可以模拟弱网环境进行测试; <br> 还可以对前端的性能进行分析。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Fiddler",
         "question": "Fiddler如何抓取HTTPS接口的包?",
-        "answer": "1. 打开Fiddler, 进入Tools → Options → HTTPS选项卡; 2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic; 3. 安装证书: 点击Actions → Export Root Certificate to Desktop → 双击安装。"
+        "answer": "1. 打开Fiddler, 进入Tools → Options → HTTPS选项卡; <br> 2. 勾选Capture HTTPS CONNECTs和Decrypt HTTPS traffic; <br> 3. 安装证书: 点击Actions → Export Root Certificate to Desktop → 双击安装。"
     },
     {
         "category": "测试工具&框架",
@@ -633,7 +633,8 @@
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "Postman如何测试一个接收JSON的POST接口?",
-        "answer": "1. 选择POST请求方法, 输入目标URL; 2. 在Headers中添加Content-Type: application/json; 3. 在Body选项卡选择raw → JSON格式, 填写请求体JSON数据; 4. 点击Send发送请求; 5. 在Response区域查看状态码、响应时间和返回的JSON数据; 6. 使用 Test/Scripts>Post-response 添加断言验证响应结果(如状态码、字段值等)。"
+        "answer": "1. 选择POST请求方法, 输入目标URL; <br> 2. 在Headers中添加Content-Type: application/json; <br> 3. 在Body选项卡选择raw → JSON格式, 填写请求体JSON数据; <br> 4. 点击Send发送请求; <br> 5. 在Response区域查看状态码、响应时间和返回的JSON数据; <br> 6. 使用 Test/Scripts>Post-response 添加断言验证响应结果(如状态码、字段值等)。"
+
     },
     {
         "category": "测试工具&框架",
@@ -645,19 +646,19 @@
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "如何在Postman中添加断言验证响应?",
-        "answer": "使用Tests脚本功能, 例如:pm.test('Status code is 200', () => { pm.response.to.have.status(200); }); pm.test('Response contains userId', () => { const jsonData = pm.response.json(); pm.expect(jsonData.userId).to.eql(123); });"
+        "answer": "使用Tests脚本功能, 例如:<code>pm.test('Status code is 200', () => { pm.response.to.have.status(200); }); pm.test('Response contains userId', () => { const jsonData = pm.response.json(); pm.expect(jsonData.userId).to.eql(123); });</code>"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "Postman如何测试有接口依赖的接口?",
-        "answer": "1. 通过变量管理提取接口A的响应数据并存储为环境变量, 在接口B中直接引用该变量, 两个放在一个测试集里设置运行顺序。2. 可以使用Pre-request Script脚本, 在Pre-request Script中使用 pm.sendRequest() 发送依赖接口的请求, 回调函数提取响应数据并存储为环境变量然后在接口中引用。"
+        "answer": "1. 通过变量管理提取接口A的响应数据并存储为环境变量, 在接口B中直接引用该变量, 两个放在一个测试集里设置运行顺序。 <br> 2. 可以使用Pre-request Script脚本, 在Pre-request Script中使用 pm.sendRequest() 发送依赖接口的请求, 回调函数提取响应数据并存储为环境变量然后在接口中引用。"
     },
     {
         "category": "测试工具&框架",
         "subcategory": "Postman",
         "question": "如何用Postman实现数据驱动测试/参数化?",
-        "answer": "在Collection Runner中导入CSV/JSON文件, 请求参数可以通过{{var}}来引用; 断言中的数据, 由于是在Tests中写入的脚本, 并不能直接通过{{var}}来引用, 所以需要引用Postman的相关API进行调用, 如:pm.variables.get('var')。"
+        "answer": "在Collection Runner中导入CSV/JSON文件, 请求参数可以通过{{var}}来引用; <br> 断言中的数据, 由于是在Tests中写入的脚本, 并不能直接通过{{var}}来引用, 所以需要引用Postman的相关API进行调用, 如:pm.variables.get('var')。"
     },
     {
         "category": "测试工具&框架",
@@ -687,13 +688,14 @@
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "如何创建一个简单的JMeter测试计划?",
-        "answer": "1. 打开JMeter, 点击File → New → Test Plan; 2. 输入测试计划名称, 选择线程数、循环次数等; 3. 右键线程组 → 添加 → 取样器, 配置请求参数; 4. 右键线程组 → 添加 → 监听器, 选择查看结果树或聚合报告。"
+        "answer": "1. 打开JMeter, 点击File → New → Test Plan; <br> 2. 输入测试计划名称, 选择线程数、循环次数等; <br> 3. 右键线程组 → 添加 → 取样器, 配置请求参数; 4. 右键线程组 → 添加 → 监听器, 选择查看结果树或聚合报告。"
+
     },
     {
         "category": "测试工具&框架",
         "subcategory": "JMeter",
         "question": "JMeter常用的性能测试组件有哪些?",
-        "answer": "1. 线程组(Thread Group):定义虚拟用户数量和加载模式; 2. 取样器(Sampler):发送HTTP/FTP/JDBC等请求; 3. 监听器(Listener):查看结果树、聚合报告等结果收集组件; 4. 断言(Assertion):验证响应结果; 5. jmeter定时器(Timer):设置等待时间; 6. 配置元件(Config Element):管理测试数据(如CSV Data Set Config); 7. 前置/后置处理器(Pre/Post Processor):处理请求前后逻辑; 8. 逻辑控制器(Logic Controller):控制测试流程(如循环、条件判断)"
+        "answer": "1. 线程组(Thread Group):定义虚拟用户数量和加载模式; <br> 2. 取样器(Sampler):发送HTTP/FTP/JDBC等请求; <br> 3. 监听器(Listener):查看结果树、聚合报告等结果收集组件; <br> 4. 断言(Assertion):验证响应结果; <br> 5. jmeter定时器(Timer):设置等待时间; <br> 6. 配置元件(Config Element):管理测试数据(如CSV Data Set Config); <br> 7. 前置/后置处理器(Pre/Post Processor):处理请求前后逻辑; <br> 8. 逻辑控制器(Logic Controller):控制测试流程(如循环、条件判断)"
     },
     {
         "category": "测试工具&框架",
