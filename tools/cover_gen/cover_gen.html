@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书封面生成器</title>
+    <style>
+        :root {
+            --primary: #ff2442;
+            --primary-light: #ff4d6d;
+            --primary-dark: #e01a36;
+            --secondary: #7209b7;
+            --accent: #3a86ff;
+            --success: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fef6f8 0%, #f0f4ff 100%);
+            padding: 20px;
+            min-height: 100vh;
+            color: var(--dark);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin: 30px 0 40px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .app-wrapper {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .control-panel {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 20px;
+            transition: var(--transition);
+        }
+
+        .control-panel:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-title svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary);
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .control-hint {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+            display: block;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 36, 66, 0.1);
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            padding: 14px 15px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(255, 36, 66, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 36, 66, 0.3);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .preview-section {
+            background: white;
+            padding: 35px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .preview-section:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .preview-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .device-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .device-option {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: var(--light-gray);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray);
+        }
+
+        .device-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .preview-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+
+        #preview {
+            position: relative;
+            background-color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            max-width: 100%;
+        }
+
+        #preview:hover {
+            transform: scale(1.01);
+        }
+
+        .text-element {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: move;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            user-select: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: box-shadow 0.2s ease;
+            white-space: nowrap;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .text-element:hover {
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+        }
+
+        /* 辅助线样式 */
+        .guide-line {
+            position: absolute;
+            background-color: rgba(255, 36, 66, 0.5);
+            z-index: 50;
+        }
+
+        .guide-line.horizontal {
+            width: 100%;
+            height: 1px;
+            left: 0;
+        }
+
+        .guide-line.vertical {
+            width: 1px;
+            height: 100%;
+            top: 0;
+        }
+
+        .text-element.selected {
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        /* 悬浮工具栏样式 */
+        .text-toolbar {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            gap: 8px;
+            padding: 6px;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .text-element.selected .text-toolbar {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .toolbar-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: var(--light-gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: none;
+            transition: var(--transition);
+        }
+
+        .toolbar-btn:hover {
+            background: var(--primary-light);
+            color: white;
+            transform: translateY(0);
+        }
+
+        .toolbar-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* 样式编辑弹窗 */
+        .style-editor {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 25px;
+            width: 400px;
+            max-width: 90%;
+            z-index: 500;
+            display: none;
+        }
+
+        .style-editor.active {
+            display: block;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .editor-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--gray);
+            width: auto;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .editor-group {
+            margin-bottom: 20px;
+        }
+
+        .border-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .border-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .border-option.selected {
+            border: 2px solid var(--primary);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 400;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--light-gray), #e0e0e0);
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #downloadBtn {
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(58, 134, 255, 0.25);
+        }
+
+        .credit {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .app-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .control-panel {
+                position: static;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .device-selector {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .control-panel, .preview-section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .style-editor {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+        
+        :root {
+            --primary: #ff2442;
+            --primary-light: #ff4d6d;
+            --primary-dark: #e01a36;
+            --secondary: #7209b7;
+            --accent: #3a86ff;
+            --success: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fef6f8 0%, #f0f4ff 100%);
+            padding: 20px;
+            min-height: 100vh;
+            color: var(--dark);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin: 30px 0 40px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .app-wrapper {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .control-panel {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 20px;
+            transition: var(--transition);
+        }
+
+        .control-panel:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-title svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary);
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .control-hint {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+            display: block;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 36, 66, 0.1);
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            padding: 14px 15px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(255, 36, 66, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 36, 66, 0.3);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .preview-section {
+            background: white;
+            padding: 35px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .preview-section:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .preview-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .device-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .device-option {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: var(--light-gray);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray);
+        }
+
+        .device-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .preview-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+
+        #preview {
+            position: relative;
+            background-color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            max-width: 100%;
+        }
+
+        #preview:hover {
+            transform: scale(1.01);
+        }
+
+        .text-element {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: move;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            user-select: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: box-shadow 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .text-element:hover {
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+        }
+
+        .text-element.selected {
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--light-gray), #e0e0e0);
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #downloadBtn {
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            min-width: 200px;
+            box-shadow: 0 8px 20px rgba(58, 134, 255, 0.25);
+        }
+
+        .credit {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .app-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .control-panel {
+                position: static;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .device-selector {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .control-panel, .preview-section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 样式编辑弹窗 -->
+    <div class="overlay"></div>
+    <div class="style-editor">
+        <div class="editor-header">
+            <h3 class="editor-title">编辑文本框样式</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="editor-group">
+            <label for="borderStyle">边框样式</label>
+            <div class="border-options">
+                <div class="border-option selected" data-style="none" style="border: none;"></div>
+                <div class="border-option" data-style="solid" style="border: 2px solid #000;"></div>
+                <div class="border-option" data-style="dashed" style="border: 2px dashed #000;"></div>
+                <div class="border-option" data-style="dotted" style="border: 2px dotted #000;"></div>
+            </div>
+        </div>
+        <div class="editor-group">
+            <label for="borderColor">边框颜色</label>
+            <input type="color" id="borderColor" value="#000000">
+        </div>
+        <div class="editor-group">
+            <label for="borderWidth">边框宽度 (px)</label>
+            <input type="number" id="borderWidth" min="1" max="10" value="2">
+        </div>
+        <div class="editor-group">
+            <label for="bgColorEdit">背景颜色</label>
+            <input type="color" id="bgColorEdit" value="rgba(0,0,0,0.3)">
+        </div>
+        <div class="editor-group">
+            <label for="textSizeEdit">文字大小 (px)</label>
+            <input type="number" id="textSizeEdit" min="12" max="100" value="24">
+        </div>
+        <div class="editor-group">
+            <label for="textColorEdit">文字颜色</label>
+            <input type="color" id="textColorEdit" value="#ffffff">
+        </div>
+        <div class="action-buttons">
+            <button id="applyStyleBtn">应用样式</button>
+            <button id="cancelStyleBtn" class="btn-secondary">取消</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>小红书封面生成器</h1>
+            <p>拖拽文字调整位置，自定义你的专属封面</p>
+        </header>
+
+        <div class="app-wrapper">
+            <div class="control-panel">
+                <h2 class="panel-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-4v-4H7v-4h4V7h4v4h4v4z"/></svg>
+                    设计工具
+                </h2>
+
+                <div class="control-group">
+                    <label for="coverSize">封面尺寸</label>
+                    <select id="coverSize">
+                        <option value="1:1">正方形 (1:1)</option>
+                        <option value="3:4" selected>竖版 (3:4)</option>
+                        <option value="9:16">全屏 (9:16)</option>
+                        <option value="4:5">标准比例 (4:5)</option>
+                        <option value="16:9">横版宽屏 (16:9)</option>
+                        <option value="2:3">经典比例 (2:3)</option>
+                    </select>
+                    <span class="control-hint">选择适合的小红书封面比例</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="bgColor">背景颜色</label>
+                    <input type="color" id="bgColor" value="#f5f5dc">
+                    <div class="color-options">
+                        <div class="color-option selected" style="background-color: #f5f5dc;" data-color="#f5f5dc"></div>
+                        <div class="color-option" style="background-color: #7209b7;" data-color="#7209b7"></div>
+                        <div class="color-option" style="background-color: #3a86ff;" data-color="#3a86ff"></div>
+                        <div class="color-option" style="background-color: #4cc9f0;" data-color="#4cc9f0"></div>
+                        <div class="color-option" style="background-color: #f72585;" data-color="#f72585"></div>
+                        <div class="color-option" style="background-color: #4361ee;" data-color="#4361ee"></div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="textContent">文字内容</label>
+                    <input type="text" id="textContent" placeholder="输入封面文字" value="小红书封面">
+                    <span class="control-hint">输入吸引人的封面标题</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="textSize">文字大小</label>
+                    <input type="number" id="textSize" min="12" max="100" value="24">
+                    <span class="control-hint">建议标题文字24-36px</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="textColor">文字颜色</label>
+                    <input type="color" id="textColor" value="#ffffff">
+                    <div class="color-options">
+                        <div class="color-option selected" style="background-color: #ffffff;" data-color="#ffffff"></div>
+                        <div class="color-option" style="background-color: #000000;" data-color="#000000"></div>
+                        <div class="color-option" style="background-color: #ffdf00;" data-color="#ffdf00"></div>
+                        <div class="color-option" style="background-color: #ff6b6b;" data-color="#ff6b6b"></div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="addTextBtn">添加文本框</button>
+                    <button id="clearBtn" class="btn-secondary">清空画布</button>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-header">
+                    <h2 class="preview-title">实时预览</h2>
+                    <p>双击文字以编辑</p>
+                    <div class="device-selector">
+                        <div class="device-option" data-ratio="1:1">正方形</div>
+                        <div class="device-option active" data-ratio="3:4">竖版</div>
+                        <div class="device-option" data-ratio="9:16">全屏</div>
+                        <div class="device-option" data-ratio="4:5">标准比例</div>
+                        <div class="device-option" data-ratio="16:9">横版宽屏</div>
+                        <div class="device-option" data-ratio="2:3">经典比例</div>
+                    </div>
+                </div>
+
+                <div class="preview-container">
+                    <div id="preview"></div>
+                </div>
+
+                <div class="download-section">
+                    <button id="downloadBtn">下载封面</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="credit">
+            小红书封面生成器 © <script>
+        const preview = document.getElementById('preview');
+        const coverSizeSelect = document.getElementById('coverSize');
+        const textContentInput = document.getElementById('textContent');
+        const textSizeInput = document.getElementById('textSize');
+        const textColorInput = document.getElementById('textColor');
+        const bgColorInput = document.getElementById('bgColor');
+        const addTextBtn = document.getElementById('addTextBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const styleEditor = document.querySelector('.style-editor');
+        const overlay = document.querySelector('.overlay');
+        const closeBtn = document.querySelector('.close-btn');
+        const applyStyleBtn = document.getElementById('applyStyleBtn');
+        const cancelStyleBtn = document.getElementById('cancelStyleBtn');
+        const borderStyleOptions = document.querySelectorAll('.border-option');
+        const borderColorInput = document.getElementById('borderColor');
+        const borderWidthInput = document.getElementById('borderWidth');
+        const bgColorEditInput = document.getElementById('bgColorEdit');
+        const textSizeEditInput = document.getElementById('textSizeEdit');
+        const textColorEditInput = document.getElementById('textColorEdit');
+
+        let width = 600;
+        let height = 800;
+        let selectedTextElement = null;
+
+        // 更新预览区域尺寸
+        function updatePreviewSize() {
+            const ratio = coverSizeSelect.value;
+            if (ratio === '1:1') {
+                width = 600;
+                height = 600;
+            } else if (ratio === '3:4') {
+                width = 600;
+                height = 800;
+            } else if (ratio === '9:16') {
+                width = 450;
+                height = 800;
+            } else if (ratio === '4:5') {
+                width = 600;
+                height = 750;
+            } else if (ratio === '16:9') {
+                width = 800;
+                height = 450;
+            } else if (ratio === '2:3') {
+                width = 600;
+                height = 900;
+            }
+            preview.style.width = `${width}px`;
+            preview.style.height = `${height}px`;
+        }
+
+        // 创建辅助线函数
+        function createGuideLines() {
+            // 移除已有的辅助线
+            removeGuideLines();
+
+            // 创建水平辅助线（中轴线）
+            const horizontalLine = document.createElement('div');
+            horizontalLine.className = 'guide-line horizontal';
+            horizontalLine.style.top = `${height / 2}px`;
+            preview.appendChild(horizontalLine);
+
+            // 创建垂直辅助线（中轴线）
+            const verticalLine = document.createElement('div');
+            verticalLine.className = 'guide-line vertical';
+            verticalLine.style.left = `${width / 2}px`;
+            preview.appendChild(verticalLine);
+        }
+
+        // 移除辅助线函数
+        function removeGuideLines() {
+            const guideLines = preview.querySelectorAll('.guide-line');
+            guideLines.forEach(line => line.remove());
+        }
+
+        // 初始化预览区域
+        updatePreviewSize();
+        preview.style.backgroundColor = bgColorInput.value;
+
+        // 添加文字元素
+        function addTextElement() {
+            const textElement = document.createElement('div');
+            textElement.className = 'text-element';
+            textElement.textContent = textContentInput.value;
+            textElement.style.fontSize = `${textSizeInput.value}px`;
+            textElement.style.color = textColorInput.value;
+            textElement.style.top = `${height / 2 - textSizeInput.value/2}px`;
+            textElement.style.left = `${width / 2 - (textContentInput.value.length * textSizeInput.value / 4)}px`;
+            textElement.style.backgroundColor = 'rgba(0,0,0,0.3)';
+            textElement.style.border = 'none';
+
+            // 创建悬浮工具栏
+            const toolbar = document.createElement('div');
+            toolbar.className = 'text-toolbar';
+            toolbar.innerHTML = `
+                <button class="toolbar-btn edit-style-btn" title="编辑样式">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                </button>
+                <button class="toolbar-btn delete-btn" title="删除文字">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </button>
+            `;
+            textElement.appendChild(toolbar);
+
+            // 添加淡入动画
+            textElement.style.opacity = '0';
+            textElement.style.transform = 'translateY(10px)';
+            textElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+            // 拖拽功能
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            textElement.addEventListener('mousedown', (e) => {
+                // 防止点击工具栏时触发拖拽
+                if (e.target.closest('.toolbar-btn')) return;
+
+                // 选中效果
+                document.querySelectorAll('.text-element').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                textElement.classList.add('selected');
+                selectedTextElement = textElement;
+
+                isDragging = true;
+                const rect = textElement.getBoundingClientRect();
+                offsetX = e.clientX - rect.left;
+                offsetY = e.clientY - rect.top;
+                textElement.style.zIndex = '100';
+                textElement.style.cursor = 'grabbing';
+
+                // 创建并添加辅助线
+                createGuideLines();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const previewRect = preview.getBoundingClientRect();
+                let x = e.clientX - previewRect.left - offsetX;
+                let y = e.clientY - previewRect.top - offsetY;
+
+                // 吸附到中轴线功能
+                const centerX = width / 2 - textElement.offsetWidth / 2;
+                const centerY = height / 2 - textElement.offsetHeight / 2;
+                const snapThreshold = 20; // 吸附阈值，单位px
+
+                if (Math.abs(x - centerX) < snapThreshold) {
+                    x = centerX;
+                }
+
+                if (Math.abs(y - centerY) < snapThreshold) {
+                    y = centerY;
+                }
+
+                // 限制在预览区域内
+                textElement.style.left = `${Math.max(0, Math.min(x, width - textElement.offsetWidth))}px`;
+                textElement.style.top = `${Math.max(0, Math.min(y, height - textElement.offsetHeight))}px`;
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    textElement.style.zIndex = '10';
+                    textElement.style.cursor = 'move';
+
+                    // 移除辅助线
+                    removeGuideLines();
+                }
+            });
+
+            // 双击编辑功能
+            textElement.addEventListener('dblclick', (e) => {
+                // 防止点击工具栏时触发编辑
+                if (e.target.closest('.toolbar-btn')) return;
+
+                // 获取当前文本内容和选中的文本（如果有）
+                const selection = window.getSelection();
+                const selectedText = selection.toString();
+                const fullText = textElement.textContent;
+                const cursorPosition = selection.anchorOffset;
+
+                // 创建文本区域用于编辑
+                const textarea = document.createElement('textarea');
+                textarea.value = fullText;
+                textarea.style.position = 'absolute';
+                textarea.style.left = '0';
+                textarea.style.top = '0';
+                textarea.style.width = '100%';
+                textarea.style.height = '100%';
+                
+                // 获取当前文本颜色和背景颜色
+                const textColor = textElement.style.color || '#000000';
+                const bgColor = textElement.style.backgroundColor || 'rgba(0,0,0,0.3)';
+                
+                // 设置编辑框的背景颜色为文字颜色的反色
+                textarea.style.backgroundColor = textColor;
+                // 设置编辑框的文字颜色为原背景颜色或白色（如果原背景太暗）
+                textarea.style.color = isColorDark(textColor) ? '#ffffff' : bgColor;
+                
+                textarea.style.fontSize = textElement.style.fontSize;
+                textarea.style.fontWeight = 'bold';
+                textarea.style.border = 'none';
+                textarea.style.textAlign = 'center';
+                textarea.style.outline = '2px solid var(--primary)';
+                textarea.style.borderRadius = '12px';
+                textarea.style.padding = '12px 20px';
+                textarea.style.boxSizing = 'border-box';
+                textarea.style.zIndex = '200';
+                textarea.style.resize = 'none';
+                textarea.style.overflow = 'hidden';
+                textarea.style.lineHeight = '1.5';
+
+                // 辅助函数：判断颜色是否为深色
+                function isColorDark(color) {
+                    // 移除可能的透明度信息
+                    color = color.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/, 'rgb($1,$2,$3)');
+                     
+                    // 处理hex颜色
+                    if (color.startsWith('#')) {
+                        let hex = color.replace('#', '');
+                        // 处理简写hex
+                        if (hex.length === 3) {
+                            hex = hex.split('').map(c => c + c).join('');
+                        }
+                        const r = parseInt(hex.substring(0, 2), 16);
+                        const g = parseInt(hex.substring(2, 4), 16);
+                        const b = parseInt(hex.substring(4, 6), 16);
+                        // 计算亮度（使用标准公式）
+                        return (0.299 * r + 0.587 * g + 0.114 * b) < 128;
+                    }
+                    // 处理rgb颜色
+                    else if (color.startsWith('rgb')) {
+                        const rgb = color.match(/\d+/g);
+                        if (rgb && rgb.length >= 3) {
+                            const r = parseInt(rgb[0]);
+                            const g = parseInt(rgb[1]);
+                            const b = parseInt(rgb[2]);
+                            return (0.299 * r + 0.587 * g + 0.114 * b) < 128;
+                        }
+                    }
+                    // 默认返回深色
+                    return true;
+                }
+
+                // 替换文字元素为文本区域
+                const originalHTML = textElement.innerHTML;
+                textElement.innerHTML = '';
+                textElement.appendChild(textarea);
+
+                // 如果有选中的文本，设置文本区域的选择范围
+                if (selectedText) {
+                    const startPos = fullText.indexOf(selectedText);
+                    if (startPos !== -1) {
+                        textarea.setSelectionRange(startPos, startPos + selectedText.length);
+                    }
+                } else if (cursorPosition >= 0) {
+                    // 否则将光标放在双击的位置
+                    textarea.setSelectionRange(cursorPosition, cursorPosition);
+                }
+
+                textarea.focus();
+
+                // 失去焦点或按下Ctrl+Enter键时保存编辑
+                function saveEdit() {
+                    textElement.textContent = textarea.value;
+                    textElement.removeChild(textarea);
+                }
+
+                textarea.addEventListener('blur', saveEdit);
+                textarea.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && e.ctrlKey) {
+                        saveEdit();
+                    }
+                });
+            });
+
+            // 编辑样式按钮点击事件
+            textElement.querySelector('.edit-style-btn').addEventListener('click', () => {
+                // 显示样式编辑弹窗
+                styleEditor.classList.add('active');
+                overlay.classList.add('active');
+                selectedTextElement = textElement;
+
+                // 填充当前样式到编辑表单
+                const borderStyle = textElement.style.borderStyle || 'none';
+                borderStyleOptions.forEach(option => {
+                    if (option.getAttribute('data-style') === borderStyle) {
+                        option.classList.add('selected');
+                    } else {
+                        option.classList.remove('selected');
+                    }
+                });
+
+                borderColorInput.value = textElement.style.borderColor || '#000000';
+                borderWidthInput.value = textElement.style.borderWidth ? parseInt(textElement.style.borderWidth) : 2;
+                bgColorEditInput.value = textElement.style.backgroundColor || 'rgba(0,0,0,0.3)';
+                textSizeEditInput.value = parseInt(textElement.style.fontSize);
+                textColorEditInput.value = textElement.style.color;
+            });
+
+            // 删除按钮点击事件
+            textElement.querySelector('.delete-btn').addEventListener('click', () => {
+                // 添加淡出动画
+                textElement.style.opacity = '0';
+                textElement.style.transform = 'translateY(10px)';
+                setTimeout(() => textElement.remove(), 300);
+            });
+
+            preview.appendChild(textElement);
+
+            // 触发动画
+            setTimeout(() => {
+                textElement.style.opacity = '1';
+                textElement.style.transform = 'translateY(0)';
+            }, 10);
+        }
+
+        // 清空画布
+        function clearCanvas() {
+            const textElements = preview.querySelectorAll('.text-element');
+            textElements.forEach(el => {
+                // 添加淡出动画
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                setTimeout(() => el.remove(), 300);
+            });
+        }
+
+        // 应用样式
+        function applyStyle() {
+            if (!selectedTextElement) return;
+
+            // 获取选中的边框样式
+            let borderStyle = 'none';
+            borderStyleOptions.forEach(option => {
+                if (option.classList.contains('selected')) {
+                    borderStyle = option.getAttribute('data-style');
+                }
+            });
+
+            // 应用边框样式
+            if (borderStyle === 'none') {
+                selectedTextElement.style.border = 'none';
+            } else {
+                selectedTextElement.style.border = `${borderWidthInput.value}px ${borderStyle} ${borderColorInput.value}`;
+            }
+
+            // 应用其他样式
+            selectedTextElement.style.backgroundColor = bgColorEditInput.value;
+            selectedTextElement.style.fontSize = `${textSizeEditInput.value}px`;
+            selectedTextElement.style.color = textColorEditInput.value;
+
+            // 关闭弹窗
+            styleEditor.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        // 颜色选择器功能
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const color = option.getAttribute('data-color');
+                const colorGroup = option.parentElement;
+                const inputId = colorGroup.previousElementSibling.id;
+
+                // 更新输入框颜色
+                document.getElementById(inputId).value = color;
+
+                // 更新选中状态
+                colorGroup.querySelectorAll('.color-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                option.classList.add('selected');
+
+                // 如果是背景色，立即更新
+                if (inputId === 'bgColor') {
+                    preview.style.backgroundColor = color;
+                }
+            });
+        });
+
+        // 边框样式选择
+        borderStyleOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                borderStyleOptions.forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                option.classList.add('selected');
+            });
+        });
+
+        // 设备选择器点击事件
+        document.querySelectorAll('.device-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const ratio = option.getAttribute('data-ratio');
+                coverSizeSelect.value = ratio;
+                updatePreviewSize();
+
+                document.querySelectorAll('.device-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+            });
+        });
+
+        // 下载封面
+        function downloadCover() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+
+            // 绘制背景
+            ctx.fillStyle = bgColorInput.value;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制文字元素
+            const textElements = preview.querySelectorAll('.text-element');
+            textElements.forEach(element => {
+                const left = parseInt(element.style.left);
+                const top = parseInt(element.style.top);
+                const fontSize = element.style.fontSize;
+                const color = element.style.color;
+                const text = element.textContent;
+                const bgColor = element.style.backgroundColor;
+                const border = element.style.border;
+                const padding = 12; // 与CSS中的padding一致
+                const borderRadius = 12; // 与CSS中的border-radius一致
+
+                // 计算文字尺寸
+                ctx.font = `bold ${fontSize} Arial`;
+                const textWidth = ctx.measureText(text).width;
+                const textHeight = parseInt(fontSize);
+                const elementWidth = textWidth + padding * 2;
+                const elementHeight = textHeight + padding * 2;
+
+                // 绘制背景（带圆角）
+                if (bgColor && bgColor !== 'transparent') {
+                    ctx.fillStyle = bgColor;
+                    ctx.beginPath();
+                    ctx.roundRect(left, top, elementWidth, elementHeight, borderRadius);
+                    ctx.fill();
+                }
+
+                // 绘制边框（带圆角）
+                if (border && border !== 'none') {
+                    const borderParts = border.split(' ');
+                    const borderWidth = parseInt(borderParts[0]);
+                    const borderStyle = borderParts[1];
+                    const borderColor = borderParts[2];
+
+                    if (borderStyle !== 'none') {
+                        ctx.strokeStyle = borderColor;
+                        ctx.lineWidth = borderWidth;
+                        ctx.beginPath();
+                        // 调整位置以确保边框完全可见
+                        ctx.roundRect(
+                            left + borderWidth / 2,
+                            top + borderWidth / 2,
+                            elementWidth - borderWidth,
+                            elementHeight - borderWidth,
+                            borderRadius
+                        );
+                        ctx.stroke();
+                    }
+                }
+
+                // 绘制文字
+                ctx.font = `bold ${fontSize} Arial`;
+                ctx.fillStyle = color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(text, left + elementWidth / 2, top + elementHeight / 2);
+            });
+
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.download = 'xiaohongshu_cover.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // 点击空白处取消选中
+        preview.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('text-element') && !e.target.closest('.text-element')) {
+                document.querySelectorAll('.text-element').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                selectedTextElement = null;
+            }
+        });
+
+        // 事件监听
+        coverSizeSelect.addEventListener('change', updatePreviewSize);
+        bgColorInput.addEventListener('input', () => {
+            preview.style.backgroundColor = bgColorInput.value;
+        });
+        addTextBtn.addEventListener('click', addTextElement);
+        downloadBtn.addEventListener('click', downloadCover);
+        clearBtn.addEventListener('click', clearCanvas);
+        closeBtn.addEventListener('click', () => {
+            styleEditor.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        applyStyleBtn.addEventListener('click', applyStyle);
+        cancelStyleBtn.addEventListener('click', () => {
+            styleEditor.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        overlay.addEventListener('click', () => {
+            styleEditor.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // 初始添加一个文字元素
+        addTextElement();
+        document.write(new Date().getFullYear())</script> | 拖拽文字可自由调整位置
+        </div>
+    </div>
+
+    <script>
+        const preview = document.getElementById('preview');
+        const coverSizeSelect = document.getElementById('coverSize');
+        const textContentInput = document.getElementById('textContent');
+        const textSizeInput = document.getElementById('textSize');
+        const textColorInput = document.getElementById('textColor');
+        const bgColorInput = document.getElementById('bgColor');
+        const addTextBtn = document.getElementById('addTextBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // 设置默认尺寸
+        let width = 600;
+        let height = 800;
+
+        // 更新预览区域尺寸
+        function updatePreviewSize() {
+            const ratio = coverSizeSelect.value;
+            if (ratio === '1:1') {
+                width = 600;
+                height = 600;
+            } else if (ratio === '3:4') {
+                width = 600;
+                height = 800;
+            } else if (ratio === '9:16') {
+                width = 450;
+                height = 800;
+            } else if (ratio === '4:5') {
+                width = 600;
+                height = 750;
+            } else if (ratio === '16:9') {
+                width = 800;
+                height = 450;
+            } else if (ratio === '2:3') {
+                width = 600;
+                height = 900;
+            }
+            preview.style.width = `${width}px`;
+            preview.style.height = `${height}px`;
+        }
+
+        // 初始化预览区域
+        updatePreviewSize();
+        preview.style.backgroundColor = bgColorInput.value;
+
+        // 添加文字元素
+        function addTextElement() {
+            const textElement = document.createElement('div');
+            textElement.className = 'text-element';
+            textElement.textContent = textContentInput.value;
+            textElement.style.fontSize = `${textSizeInput.value}px`;
+            textElement.style.color = textColorInput.value;
+            textElement.style.top = `${height / 2 - textSizeInput.value/2}px`;
+            textElement.style.left = `${width / 2 - (textContentInput.value.length * textSizeInput.value / 3)}px`;
+            textElement.style.backgroundColor = 'rgba(0,0,0,0.3)';
+
+            // 添加淡入动画
+            textElement.style.opacity = '0';
+            textElement.style.transform = 'translateY(10px)';
+            textElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+            // 拖拽功能
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            textElement.addEventListener('mousedown', (e) => {
+                // 选中效果
+                document.querySelectorAll('.text-element').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                textElement.classList.add('selected');
+
+                isDragging = true;
+                const rect = textElement.getBoundingClientRect();
+                offsetX = e.clientX - rect.left;
+                offsetY = e.clientY - rect.top;
+                textElement.style.zIndex = '100';
+                textElement.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const previewRect = preview.getBoundingClientRect();
+                const x = e.clientX - previewRect.left - offsetX;
+                const y = e.clientY - previewRect.top - offsetY;
+
+                // 限制在预览区域内
+                textElement.style.left = `${Math.max(0, Math.min(x, width - textElement.offsetWidth))}px`;
+                textElement.style.top = `${Math.max(0, Math.min(y, height - textElement.offsetHeight))}px`;
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    textElement.style.zIndex = '10';
+                    textElement.style.cursor = 'move';
+                }
+            });
+
+            // 双击编辑功能
+            textElement.addEventListener('dblclick', () => {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = textElement.textContent;
+                input.style.position = 'absolute';
+                input.style.left = '0';
+                input.style.top = '0';
+                input.style.width = '100%';
+                input.style.height = '100%';
+                input.style.backgroundColor = 'transparent';
+                input.style.color = textElement.style.color;
+                input.style.fontSize = textElement.style.fontSize;
+                input.style.fontWeight = 'bold';
+                input.style.border = 'none';
+                input.style.textAlign = 'center';
+                input.style.outline = '2px solid var(--primary)';
+                input.style.borderRadius = '12px';
+                input.style.padding = '12px 20px';
+                input.style.boxSizing = 'border-box';
+                input.style.zIndex = '200';
+
+                // 替换文字元素为输入框
+                textElement.textContent = '';
+                textElement.appendChild(input);
+                input.focus();
+
+                // 失去焦点或按下Enter键时保存编辑
+                function saveEdit() {
+                    textElement.textContent = input.value;
+                    textElement.removeChild(input);
+                }
+
+                input.addEventListener('blur', saveEdit);
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        saveEdit();
+                    }
+                });
+            });
+
+            preview.appendChild(textElement);
+
+            // 触发动画
+            setTimeout(() => {
+                textElement.style.opacity = '1';
+                textElement.style.transform = 'translateY(0)';
+            }, 10);
+        }
+
+        // 清空画布
+        function clearCanvas() {
+            const textElements = preview.querySelectorAll('.text-element');
+            textElements.forEach(el => {
+                // 添加淡出动画
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                setTimeout(() => el.remove(), 300);
+            });
+        }
+
+        // 颜色选择器功能
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const color = option.getAttribute('data-color');
+                const colorGroup = option.parentElement;
+                const inputId = colorGroup.previousElementSibling.id;
+
+                // 更新输入框颜色
+                document.getElementById(inputId).value = color;
+
+                // 更新选中状态
+                colorGroup.querySelectorAll('.color-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                option.classList.add('selected');
+
+                // 如果是背景色，立即更新
+                if (inputId === 'bgColor') {
+                    preview.style.backgroundColor = color;
+                }
+            });
+        })
+
+        // 设备选择器点击事件
+        document.querySelectorAll('.device-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const ratio = option.getAttribute('data-ratio');
+                coverSizeSelect.value = ratio;
+                updatePreviewSize();
+
+                document.querySelectorAll('.device-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+            });
+        })
+
+        // 下载封面
+        function downloadCover() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+
+            // 绘制背景
+            ctx.fillStyle = bgColorInput.value;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制文字元素
+            const textElements = preview.querySelectorAll('.text-element');
+            textElements.forEach(element => {
+                const x = parseInt(element.style.left);
+                const y = parseInt(element.style.top) + parseInt(element.style.fontSize);
+                const fontSize = element.style.fontSize;
+                const color = element.style.color;
+                const text = element.textContent;
+
+                ctx.font = `${fontSize} Arial bold`;
+                ctx.fillStyle = color;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText(text, x + width/2, y);
+            });
+
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.download = 'xiaohongshu_cover.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // 事件监听
+        coverSizeSelect.addEventListener('change', updatePreviewSize);
+        bgColorInput.addEventListener('input', () => {
+            preview.style.backgroundColor = bgColorInput.value;
+        });
+        addTextBtn.addEventListener('click', addTextElement);
+        downloadBtn.addEventListener('click', downloadCover);
+
+        // 初始添加一个文字元素
+        addTextElement();
+    </script>
+</body>
+</html>
