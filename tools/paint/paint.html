@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>涂鸦板</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 11px;
+            background: #008080;
+            overflow: hidden;
+        }
+        
+        .paint-window {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            background: #c0c0c0;
+            border: 2px outset #c0c0c0;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title-bar {
+            background: linear-gradient(90deg, #0000ff 0%, #000080 100%);
+            color: white;
+            padding: 2px 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: move;
+            user-select: none;
+        }
+        
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .control-btn {
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 1px outset #c0c0c0;
+            font-size: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+        }
+        
+        .control-btn:active {
+            border: 1px inset #c0c0c0;
+        }
+        
+        .menu-bar {
+            background: #c0c0c0;
+            padding: 4px 8px;
+            border-bottom: 1px solid #808080;
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #c0c0c0;
+            border: 1px solid #000;
+            box-shadow: 2px 2px 0 #000;
+            min-width: 120px;
+            z-index: 100;
+            display: none;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 2px 8px;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background: #0000ff;
+            color: white;
+        }
+        
+        .menu-item {
+            display: inline-block;
+            padding: 2px 8px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            background: #0000ff;
+            color: white;
+        }
+
+        .menu-item.active {
+            background: #0000ff;
+            color: white;
+        }
+        
+        .main-content {
+            display: flex;
+            height: 500px;
+        }
+        
+        .toolbox {
+            width: 58px;
+            background: #c0c0c0;
+            border-right: 1px solid #808080;
+            padding: 4px;
+            display: grid;
+            grid-template-columns: 24px 24px;
+            gap: 2px;
+        }
+        
+        .tool-btn {
+            width: 24px;
+            height: 24px;
+            background: #c0c0c0;
+            border: 1px outset #c0c0c0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .tool-btn.active {
+            border: 1px inset #c0c0c0;
+            background: #a0a0a0;
+        }
+        
+        .canvas-container {
+            flex: 1;
+            background: #c0c0c0;
+            padding: 4px;
+            overflow: auto;
+        }
+        
+        .canvas-wrapper {
+            background: white;
+            border: 1px inset #c0c0c0;
+            display: inline-block;
+        }
+        
+        canvas {
+            display: block;
+            cursor: crosshair;
+        }
+        
+        .color-palette {
+            background: #c0c0c0;
+            padding: 4px;
+            border-top: 1px solid #808080;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+        }
+        
+        .color-btn {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        
+        .color-btn.active {
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 1px #000;
+        }
+        
+        .status-bar {
+            background: #c0c0c0;
+            padding: 2px 8px;
+            border-top: 1px solid #808080;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="paint-window" ref="paintWindow" @mousedown="startDrag" @mousemove="drag" @mouseup="stopDrag">
+            <div class="title-bar">
+                <span>untitled - Paint</span>
+                <div class="window-controls">
+                    <div class="control-btn">_</div>
+                    <div class="control-btn">□</div>
+                    <div class="control-btn">×</div>
+                </div>
+            </div>
+            
+            <div class="menu-bar">
+                <div class="menu-item" @click="toggleMenu('file')">
+                    File
+                    <div class="dropdown" :class="{ active: activeMenu === 'file' }">
+                        <div class="dropdown-item" @click="newFile">New</div>
+                        <div class="dropdown-item" @click="openFile">Open</div>
+                        <div class="dropdown-item" @click="saveFile">Save</div>
+                        <div class="dropdown-item" @click="saveAsFile">Save As</div>
+                        <div class="dropdown-item" @click="exitApp">Exit</div>
+                    </div>
+                </div>
+                <div class="menu-item" @click="toggleMenu('edit')">
+                    Edit
+                    <div class="dropdown" :class="{ active: activeMenu === 'edit' }">
+                        <div class="dropdown-item" @click="undo">Undo</div>
+                        <div class="dropdown-item" @click="redo">Redo</div>
+                        <div class="dropdown-item" @click="cut">Cut</div>
+                        <div class="dropdown-item" @click="copy">Copy</div>
+                        <div class="dropdown-item" @click="paste">Paste</div>
+                    </div>
+                </div>
+                <div class="menu-item" @click="toggleMenu('view')">
+                    View
+                    <div class="dropdown" :class="{ active: activeMenu === 'view' }">
+                        <div class="dropdown-item" @click="zoomIn">Zoom In</div>
+                        <div class="dropdown-item" @click="zoomOut">Zoom Out</div>
+                        <div class="dropdown-item" @click="fullScreen">Full Screen</div>
+                    </div>
+                </div>
+                <div class="menu-item" @click="toggleMenu('image')">
+                    Image
+                    <div class="dropdown" :class="{ active: activeMenu === 'image' }">
+                        <div class="dropdown-item" @click="resizeImage">Resize</div>
+                        <div class="dropdown-item" @click="rotateImage">Rotate</div>
+                        <div class="dropdown-item" @click="flipImage">Flip</div>
+                    </div>
+                </div>
+                <div class="menu-item" @click="toggleMenu('options')">
+                    Options
+                    <div class="dropdown" :class="{ active: activeMenu === 'options' }">
+                        <div class="dropdown-item" @click="toolSettings">Tool Settings</div>
+                        <div class="dropdown-item" @click="colorSettings">Color Settings</div>
+                    </div>
+                </div>
+                <div class="menu-item" @click="toggleMenu('help')">
+                    Help
+                    <div class="dropdown" :class="{ active: activeMenu === 'help' }">
+                        <div class="dropdown-item" @click="about">About</div>
+                        <div class="dropdown-item" @click="tutorial">Tutorial</div>
+                        <div class="dropdown-item" @click="keyboardShortcuts">Keyboard Shortcuts</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="toolbox">
+                    <div class="tool-btn" :class="{ active: currentTool === 'brush' }" @click="setTool('brush')" title="Brush">🖌</div>
+                    <div class="tool-btn" :class="{ active: currentTool === 'pencil' }" @click="setTool('pencil')" title="Pencil">✏</div>
+                    <div class="tool-btn" :class="{ active: currentTool === 'eraser' }" @click="setTool('eraser')" title="Eraser">🧽</div>
+                    <div class="tool-btn" :class="{ active: currentTool === 'fill' }" @click="setTool('fill')" title="Fill">🪣</div>
+                    <div class="tool-btn" :class="{ active: currentTool === 'line' }" @click="setTool('line')" title="Line">📏</div>
+                    <div class="tool-btn" :class="{ active: currentTool === 'rectangle' }" @click="setTool('rectangle')" title="Rectangle">▭</div>
+                    <div class="tool-btn" :class="{ active: currentTool === 'circle' }" @click="setTool('circle')" title="Circle">○</div>
+                    <div class="tool-btn" :class="{ active: currentTool === 'spray' }" @click="setTool('spray')" title="Spray">💨</div>
+                </div>
+                
+                <div class="canvas-container">
+                    <div class="canvas-wrapper">
+                        <canvas 
+                            ref="canvas" 
+                            width="600" 
+                            height="400"
+                            @mousedown="startDrawing"
+                            @mousemove="draw"
+                            @mouseup="stopDrawing"
+                            @mouseleave="stopDrawing"
+                        ></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="color-palette">
+                <div 
+                    v-for="color in colors" 
+                    :key="color"
+                    class="color-btn"
+                    :class="{ active: currentColor === color }"
+                    :style="{ backgroundColor: color }"
+                    @click="setColor(color)"
+                ></div>
+            </div>
+            
+            <div class="status-bar">
+                For Help, click Help Topics on the Help Menu.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted, nextTick } = Vue;
+
+        createApp({
+            setup() {
+                const canvas = ref(null);
+                const paintWindow = ref(null);
+                const currentTool = ref('brush');
+                const currentColor = ref('#000000');
+                const isDrawing = ref(false);
+                const isDragging = ref(false);
+                const dragOffset = ref({ x: 0, y: 0 });
+                const lastPos = ref({ x: 0, y: 0 });
+                const startPos = ref({ x: 0, y: 0 });
+
+                const colors = [
+                    '#000000', '#808080', '#800000', '#808000', '#008000', '#008080', '#000080', '#800080',
+                    '#808040', '#004040', '#0080FF', '#004080', '#8000FF', '#804000', '#FFFFFF', '#C0C0C0',
+                    '#FF0000', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#FF00FF', '#FFFF80', '#00FF80',
+                    '#80FFFF', '#8080FF', '#FF0080', '#FF8040'
+                ];
+
+                let ctx = null;
+
+                onMounted(() => {
+                    ctx = canvas.value.getContext('2d');
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+
+                    const handleClickOutside = (e) => {
+                        if (!e.target.closest('.menu-item')) {
+                            closeMenu();
+                        }
+                    };
+
+                    document.addEventListener('click', handleClickOutside);
+
+                    return () => {
+                        document.removeEventListener('click', handleClickOutside);
+                    };
+                });
+
+                const setTool = (tool) => {
+                    currentTool.value = tool;
+                };
+
+                const setColor = (color) => {
+                    currentColor.value = color;
+                };
+
+                const getMousePos = (e) => {
+                    const rect = canvas.value.getBoundingClientRect();
+                    return {
+                        x: e.clientX - rect.left,
+                        y: e.clientY - rect.top
+                    };
+                };
+
+                const startDrawing = (e) => {
+                    if (isDragging.value) return;
+                    
+                    isDrawing.value = true;
+                    const pos = getMousePos(e);
+                    lastPos.value = pos;
+                    startPos.value = pos;
+
+                    if (currentTool.value === 'brush' || currentTool.value === 'pencil') {
+                        ctx.beginPath();
+                        ctx.moveTo(pos.x, pos.y);
+                    }
+                };
+
+                const draw = (e) => {
+                    if (!isDrawing.value || isDragging.value) return;
+
+                    const pos = getMousePos(e);
+                    
+                    switch (currentTool.value) {
+                        case 'brush':
+                            ctx.strokeStyle = currentColor.value;
+                            ctx.lineWidth = 3;
+                            ctx.lineTo(pos.x, pos.y);
+                            ctx.stroke();
+                            break;
+                            
+                        case 'pencil':
+                            ctx.strokeStyle = currentColor.value;
+                            ctx.lineWidth = 1;
+                            ctx.lineTo(pos.x, pos.y);
+                            ctx.stroke();
+                            break;
+                            
+                        case 'eraser':
+                            ctx.globalCompositeOperation = 'destination-out';
+                            ctx.beginPath();
+                            ctx.arc(pos.x, pos.y, 10, 0, 2 * Math.PI);
+                            ctx.fill();
+                            ctx.globalCompositeOperation = 'source-over';
+                            break;
+                            
+                        case 'spray':
+                            for (let i = 0; i < 20; i++) {
+                                const offsetX = (Math.random() - 0.5) * 20;
+                                const offsetY = (Math.random() - 0.5) * 20;
+                                ctx.fillStyle = currentColor.value;
+                                ctx.fillRect(pos.x + offsetX, pos.y + offsetY, 1, 1);
+                            }
+                            break;
+                    }
+                    
+                    lastPos.value = pos;
+                };
+
+                const stopDrawing = (e) => {
+                    if (!isDrawing.value) return;
+                    
+                    const pos = getMousePos(e);
+                    
+                    switch (currentTool.value) {
+                        case 'line':
+                            ctx.strokeStyle = currentColor.value;
+                            ctx.lineWidth = 2;
+                            ctx.beginPath();
+                            ctx.moveTo(startPos.value.x, startPos.value.y);
+                            ctx.lineTo(pos.x, pos.y);
+                            ctx.stroke();
+                            break;
+                            
+                        case 'rectangle':
+                            ctx.strokeStyle = currentColor.value;
+                            ctx.lineWidth = 2;
+                            ctx.strokeRect(
+                                startPos.value.x,
+                                startPos.value.y,
+                                pos.x - startPos.value.x,
+                                pos.y - startPos.value.y
+                            );
+                            break;
+                            
+                        case 'circle':
+                            ctx.strokeStyle = currentColor.value;
+                            ctx.lineWidth = 2;
+                            const radius = Math.sqrt(
+                                Math.pow(pos.x - startPos.value.x, 2) + 
+                                Math.pow(pos.y - startPos.value.y, 2)
+                            );
+                            ctx.beginPath();
+                            ctx.arc(startPos.value.x, startPos.value.y, radius, 0, 2 * Math.PI);
+                            ctx.stroke();
+                            break;
+                            
+                        case 'fill':
+                            floodFill(startPos.value.x, startPos.value.y, currentColor.value);
+                            break;
+                    }
+                    
+                    isDrawing.value = false;
+                };
+
+                const floodFill = (x, y, fillColor) => {
+                    // Simple flood fill implementation
+                    const imageData = ctx.getImageData(0, 0, canvas.value.width, canvas.value.height);
+                    const targetColor = getPixelColor(imageData, x, y);
+                    
+                    if (colorMatch(targetColor, hexToRgb(fillColor))) return;
+                    
+                    const stack = [{x, y}];
+                    const fillColorRgb = hexToRgb(fillColor);
+                    
+                    while (stack.length > 0) {
+                        const {x: px, y: py} = stack.pop();
+                        
+                        if (px < 0 || px >= canvas.value.width || py < 0 || py >= canvas.value.height) continue;
+                        
+                        const currentColor = getPixelColor(imageData, px, py);
+                        if (!colorMatch(currentColor, targetColor)) continue;
+                        
+                        setPixelColor(imageData, px, py, fillColorRgb);
+                        
+                        stack.push({x: px + 1, y: py});
+                        stack.push({x: px - 1, y: py});
+                        stack.push({x: px, y: py + 1});
+                        stack.push({x: px, y: py - 1});
+                    }
+                    
+                    ctx.putImageData(imageData, 0, 0);
+                };
+
+                const getPixelColor = (imageData, x, y) => {
+                    const index = (y * imageData.width + x) * 4;
+                    return {
+                        r: imageData.data[index],
+                        g: imageData.data[index + 1],
+                        b: imageData.data[index + 2],
+                        a: imageData.data[index + 3]
+                    };
+                };
+
+                const setPixelColor = (imageData, x, y, color) => {
+                    const index = (y * imageData.width + x) * 4;
+                    imageData.data[index] = color.r;
+                    imageData.data[index + 1] = color.g;
+                    imageData.data[index + 2] = color.b;
+                    imageData.data[index + 3] = 255;
+                };
+
+                const colorMatch = (a, b) => {
+                    return a.r === b.r && a.g === b.g && a.b === b.b && a.a === b.a;
+                };
+
+                const hexToRgb = (hex) => {
+                    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                    return result ? {
+                        r: parseInt(result[1], 16),
+                        g: parseInt(result[2], 16),
+                        b: parseInt(result[3], 16),
+                        a: 255
+                    } : null;
+                };
+
+                // Window dragging functionality
+                const startDrag = (e) => {
+                    if (e.target.closest('.title-bar')) {
+                        isDragging.value = true;
+                        const rect = paintWindow.value.getBoundingClientRect();
+                        dragOffset.value = {
+                            x: e.clientX - rect.left,
+                            y: e.clientY - rect.top
+                        };
+                    }
+                };
+
+                const drag = (e) => {
+                    if (isDragging.value) {
+                        const x = e.clientX - dragOffset.value.x;
+                        const y = e.clientY - dragOffset.value.y;
+                        paintWindow.value.style.left = x + 'px';
+                        paintWindow.value.style.top = y + 'px';
+                        paintWindow.value.style.transform = 'none';
+                    }
+                };
+
+                const stopDrag = () => {
+                    isDragging.value = false;
+                };
+
+                const activeMenu = ref(null);
+
+                const toggleMenu = (menu) => {
+                    activeMenu.value = activeMenu.value === menu ? null : menu;
+                };
+
+                const closeMenu = () => {
+                    activeMenu.value = null;
+                };
+
+                const newFile = () => {
+                    // 创建自定义确认对话框
+                    if (confirm('是否保存当前内容？')) {
+                        saveFile();
+                    }
+                    
+                    // 确保ctx已初始化
+                    if (ctx) {
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
+                        // 更新状态栏信息
+                        console.log('Canvas cleared for new file');
+                    } else {
+                        alert('Error: Canvas context not initialized');
+                    }
+                    closeMenu();
+                };
+
+                const openFile = () => {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.onchange = (e) => {
+                        const img = new Image();
+                        img.onload = () => {
+                            ctx.fillStyle = '#FFFFFF';
+                            ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
+                            ctx.drawImage(img, 0, 0);
+                        };
+                        img.src = URL.createObjectURL(e.target.files[0]);
+                    };
+                    input.click();
+                    closeMenu();
+                };
+
+                const saveFile = () => {
+                    const dataURL = canvas.value.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.download = 'untitled.png';
+                    link.href = dataURL;
+                    link.click();
+                    closeMenu();
+                };
+
+                const saveAsFile = () => {
+                    saveFile();
+                };
+
+                const exitApp = () => {
+                    if (confirm('Exit Paint?')) {
+                        window.close();
+                    }
+                    closeMenu();
+                };
+
+                const undo = () => {
+                    alert('Undo functionality coming soon!');
+                    closeMenu();
+                };
+
+                const redo = () => {
+                    alert('Redo functionality coming soon!');
+                    closeMenu();
+                };
+
+                const cut = () => {
+                    alert('Cut functionality coming soon!');
+                    closeMenu();
+                };
+
+                const copy = () => {
+                    alert('Copy functionality coming soon!');
+                    closeMenu();
+                };
+
+                const paste = () => {
+                    alert('Paste functionality coming soon!');
+                    closeMenu();
+                };
+
+                const zoomIn = () => {
+                    alert('Zoom In functionality coming soon!');
+                    closeMenu();
+                };
+
+                const zoomOut = () => {
+                    alert('Zoom Out functionality coming soon!');
+                    closeMenu();
+                };
+
+                const fullScreen = () => {
+                    if (!document.fullscreenElement) {
+                        canvas.value.requestFullscreen().catch(err => {
+                            alert(`Error attempting to enable full-screen mode: ${err.message}`);
+                        });
+                    } else {
+                        document.exitFullscreen();
+                    }
+                    closeMenu();
+                };
+
+                const resizeImage = () => {
+                    alert('Resize functionality coming soon!');
+                    closeMenu();
+                };
+
+                const rotateImage = () => {
+                    alert('Rotate functionality coming soon!');
+                    closeMenu();
+                };
+
+                const flipImage = () => {
+                    alert('Flip functionality coming soon!');
+                    closeMenu();
+                };
+
+                const toolSettings = () => {
+                    alert('Tool Settings functionality coming soon!');
+                    closeMenu();
+                };
+
+                const colorSettings = () => {
+                    alert('Color Settings functionality coming soon!');
+                    closeMenu();
+                };
+
+                const about = () => {
+                    alert('MS Paint Clone v1.0\nA simple web-based painting application.');
+                    closeMenu();
+                };
+
+                const tutorial = () => {
+                    alert('Tutorial coming soon!');
+                    closeMenu();
+                };
+
+                const keyboardShortcuts = () => {
+                    alert('Keyboard Shortcuts:\nCtrl+N: New\nCtrl+O: Open\nCtrl+S: Save\nCtrl+Z: Undo\nCtrl+Y: Redo');
+                    closeMenu();
+                };
+
+                    return {
+                        canvas,
+                        paintWindow,
+                        currentTool,
+                        currentColor,
+                        colors,
+                        setTool,
+                        setColor,
+                        startDrawing,
+                        draw,
+                        stopDrawing,
+                        startDrag,
+                        drag,
+                        stopDrag,
+                        activeMenu,
+                        toggleMenu,
+                        closeMenu,
+                        newFile,
+                        openFile,
+                        saveFile,
+                        saveAsFile,
+                        exitApp,
+                        undo,
+                        redo,
+                        cut,
+                        copy,
+                        paste,
+                        zoomIn,
+                        zoomOut,
+                        fullScreen,
+                        resizeImage,
+                        rotateImage,
+                        flipImage,
+                        toolSettings,
+                        colorSettings,
+                        about,
+                        tutorial,
+                        keyboardShortcuts
+                    };
+                }
+
+
+        }).mount('#app');
+
+    </script>
+</body>
+</html>
