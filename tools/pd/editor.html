@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档编辑器 - ProductDev</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <i class="fas fa-target"></i>
+                    <span>ProductDev</span>
+                </div>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i>
+                        返回首页
+                    </a>
+                    <button id="preview-btn" class="btn btn-outline">
+                        <i class="fas fa-eye"></i>
+                        预览模式
+                    </button>
+                    <button id="save-btn" class="btn btn-outline">
+                        <i class="fas fa-save"></i>
+                        保存
+                    </button>
+                    <button id="export-btn" class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        导出
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="margin-top: 80px; padding: 2rem 0;">
+        <div class="container">
+            <div id="main-container" style="display: grid; grid-template-columns: 1fr 3fr; gap: 2rem;">
+                <!-- Sidebar -->
+                <div>
+                    <div class="card" style="position: sticky; top: 100px;">
+                        <div class="card-header">
+                            <h2 class="card-title">文档结构</h2>
+                            <p class="card-description">点击切换编辑模块</p>
+                        </div>
+                        <div class="card-content" style="padding: 0;">
+                            <div class="tabs" style="border-bottom: none;">
+                                <div id="tab-list" style="display: flex; flex-direction: column; gap: 0;">
+                                    <button class="tab-button active" data-tab="1" style="text-align: left; padding: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="background: #3b82f6; color: white; padding: 0.25rem; border-radius: 0.25rem; font-size: 0.75rem;">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                            <span style="font-size: 0.875rem; font-weight: 500;">需求分析</span>
+                                        </div>
+                                    </button>
+                                    <button class="tab-button" data-tab="2" style="text-align: left; padding: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="background: #10b981; color: white; padding: 0.25rem; border-radius: 0.25rem; font-size: 0.75rem;">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </div>
+                                            <span style="font-size: 0.875rem; font-weight: 500;">商业化分析</span>
+                                        </div>
+                                    </button>
+                                    <button class="tab-button" data-tab="3" style="text-align: left; padding: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="background: #8b5cf6; color: white; padding: 0.25rem; border-radius: 0.25rem; font-size: 0.75rem;">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                            <span style="font-size: 0.875rem; font-weight: 500;">产品设计</span>
+                                        </div>
+                                    </button>
+                                    <button class="tab-button" data-tab="4" style="text-align: left; padding: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="background: #f59e0b; color: white; padding: 0.25rem; border-radius: 0.25rem; font-size: 0.75rem;">
+                                                <i class="fas fa-rocket"></i>
+                                            </div>
+                                            <span style="font-size: 0.875rem; font-weight: 500;">运营方案</span>
+                                        </div>
+                                    </button>
+                                    <button class="tab-button" data-tab="5" style="text-align: left; padding: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="background: #ef4444; color: white; padding: 0.25rem; border-radius: 0.25rem; font-size: 0.75rem;">
+                                                <i class="fas fa-cogs"></i>
+                                            </div>
+                                            <span style="font-size: 0.875rem; font-weight: 500;">项目管理与执行</span>
+                                        </div>
+                                    </button>
+                                    <button class="tab-button" data-tab="6" style="text-align: left; padding: 1rem;">
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="background: #6b7280; color: white; padding: 0.25rem; border-radius: 0.25rem; font-size: 0.75rem;">
+                                                <i class="fas fa-book-open"></i>
+                                            </div>
+                                            <span style="font-size: 0.875rem; font-weight: 500;">附录</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title" id="section-title">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div id="section-icon" style="background: #3b82f6; color: white; padding: 0.5rem; border-radius: 0.5rem;">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <span>1. 需求分析</span>
+                                </div>
+                            </h2>
+                            <p class="card-description" id="mode-description">编辑模式 - 填写文档内容</p>
+                        </div>
+                        <div class="card-content">
+                            <div id="editor-content">
+                                <!-- 动态内容将在这里生成 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress -->
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-line" style="color: #10b981; margin-right: 0.5rem;"></i>
+                                填写进度
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="progress-container" class="progress-container">
+                                <!-- 进度条将在这里生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="editor.js"></script>
+</body>
+</html>

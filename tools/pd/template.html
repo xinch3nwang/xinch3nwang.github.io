@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档模板 - ProductDev</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <i class="fas fa-target"></i>
+                    <span>ProductDev</span>
+                </div>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i>
+                        返回首页
+                    </a>
+                    <a href="editor.html" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        开始编辑
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="margin-top: 80px; padding: 2rem 0;">
+        <div class="container">
+            <!-- Introduction -->
+            <div class="card" style="margin-bottom: 2rem;">
+                <div class="card-header">
+                    <h1 class="card-title">
+                        <i class="fas fa-file-text" style="color: #2563eb; margin-right: 0.5rem;"></i>
+                        产品经理产品开发完整文档模板
+                    </h1>
+                    <p class="card-description">
+                        此模板已覆盖产品从需求到上线再到迭代的全生命周期，您可根据实际需求调整模块顺序或增删内容。
+                        填写方式：每个模块中的 [ ] 为需填写的内容，可直接替换为具体信息。
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="badge">需求分析</span>
+                        <span class="badge">商业化分析</span>
+                        <span class="badge">产品设计</span>
+                        <span class="badge">运营方案</span>
+                        <span class="badge">项目管理</span>
+                        <span class="badge">文档沉淀</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template Sections -->
+            <div id="template-sections">
+                <!-- 需求分析 -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header" style="background: linear-gradient(to right, #f8fafc, #f1f5f9);">
+                        <h2 class="card-title">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="background: #3b82f6; color: white; padding: 0.5rem; border-radius: 0.5rem;">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <span>1. 需求分析</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">1.1 用户分析</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>用户划分：[填写目标用户群体的分类标准（如按行业、年龄、行为等）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>用户痛点：[列举用户在当前场景中的核心问题（如效率低、成本高、体验差等）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>核心需求场景：[描述用户使用产品的典型场景（如"用户在XX场景下需要XX功能"）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>用户画像：[构建目标用户的年龄、职业、行为习惯等详细画像]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>用户旅程图：[绘制用户使用产品过程中的关键触点、痛点和机会点]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>需求优先级：[通过KANO模型、MoSCoW法则等工具对需求排序]</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+                        
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">1.2 市场分析</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>市场空间：[分析目标市场的规模、增长潜力及用户基数]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>合作机构意愿：[评估潜在合作伙伴（如渠道、技术供应商）的合作可能性]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>技术成熟度：[判断当前技术能否支持产品需求（如AI、云计算等）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>市场需求文档（MRD）：[明确市场需求、目标用户、市场规模及产品定位]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>技术可行性评估：[结合技术团队能力，评估需求的技术实现难度和成本]</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+                        
+                        <div>
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">1.3 竞品分析</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>竞品列表：[列出核心竞品名称及定位]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>差异化服务能力：[分析竞品在功能、用户体验、定价等方面的差异]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>竞品功能对比表</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>差异化策略：[基于竞品分析提出产品的差异化能力（如功能创新、用户体验优化等）]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商业化分析 -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header" style="background: linear-gradient(to right, #f8fafc, #f1f5f9);">
+                        <h2 class="card-title">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="background: #10b981; color: white; padding: 0.5rem; border-radius: 0.5rem;">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <span>2. 商业化分析</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">2.1 商业模式设计</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>产品定位：[明确产品在市场中的定位（如"解决XX问题的工具型产品"）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>盈利模式：[选择收入来源（订阅制、广告、交易分成等）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>成本结构：[估算产品开发、运营和维护的成本（如人力、服务器、市场费用）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>财务模型：[预测产品各阶段的收入、成本和利润（如LTV/CAC模型）]</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+                        
+                        <div>
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">2.2 商业化策略</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>定价策略：[设计产品定价（如基础版¥0/高级版¥XX/企业版¥XX）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>渠道策略：[规划产品推广和销售的渠道（线上/线下、自有渠道/合作渠道）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>合作伙伴计划：[设计与第三方合作的模式（如API开放、联合运营等）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>阶段化策略：[制定产品不同阶段的商业化目标（如冷启动期、增长期、成熟期）]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 产品设计 -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header" style="background: linear-gradient(to right, #f8fafc, #f1f5f9);">
+                        <h2 class="card-title">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="background: #3b82f6; color: white; padding: 0.5rem; border-radius: 0.5rem;">
+                                    <i class="fas fa-pencil-ruler"></i>
+                                </div>
+                                <span>3. 产品设计</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">3.1 核心功能设计</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>功能流程图：[绘制核心功能的业务流程图（可用Visio、ProcessOn等工具）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>简单原型：[输出低保真原型（Axure、Figma等工具）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>产品需求文档（PRD）：[详细描述功能需求、用户角色、业务流程、交互设计等]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>用户故事（User Story）：[以用户视角描述功能需求（如"作为用户，我希望..."）]</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+
+                        <div>
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">3.2 产品方案设计</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>产品路线图（Product Roadmap）：[明确产品各阶段的目标、功能规划和时间节点（甘特图形式）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>技术方案设计：[与技术团队协作，设计系统架构、接口规范等]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>原型设计：[输出高保真原型（Axure、Figma等工具），用于用户测试和团队对齐]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 运营方案 -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header" style="background: linear-gradient(to right, #f8fafc, #f1f5f9);">
+                        <h2 class="card-title">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="background: #8b5cf6; color: white; padding: 0.5rem; border-radius: 0.5rem;">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <span>4. 运营方案</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">4.1 前期推广策略</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>冷启动计划：[设计种子用户获取策略（如内测、邀请制、KOL合作）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>传播策略：[规划内容营销、社交媒体运营、活动策划等传播方式]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>渠道合作计划：[与外部渠道（如应用商店、电商平台）的资源整合方案]</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+
+                        <div>
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">4.2 运营支持材料</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>用户教育材料：[制作产品使用指南、FAQ、视频教程等]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>销售支持文档：[为销售团队提供产品介绍手册、销售话术、案例库等]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>数据监控方案：[设计关键指标（如DAU、转化率）的监控体系和看板]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目管理与执行 -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header" style="background: linear-gradient(to right, #f8fafc, #f1f5f9);">
+                        <h2 class="card-title">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="background: #f59e0b; color: white; padding: 0.5rem; border-radius: 0.5rem;">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <span>5. 项目管理与执行</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">5.1 项目管理与资源协调</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>开发计划：[制定详细的研发计划（甘特图、里程碑节点）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>资源协调文档：[明确各团队（研发、设计、测试）的职责分工和协作流程]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>风险预案：[识别潜在风险（如技术瓶颈、市场变化）并制定应对方案]</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">5.2 产品验收与上线</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>测试计划：[包括功能测试、性能测试、兼容性测试等方案]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>上线检查清单：[确保产品符合上线标准（如代码质量、安全合规）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>发布计划：[明确发布时间、发布版本、发布渠道及宣传节奏]</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">5.3 产品运营与迭代</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>数据分析报告：[定期输出产品核心指标分析（如用户留存、功能使用率）]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>用户反馈报告：[收集并整理用户反馈，形成改进建议]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>迭代计划：[根据数据反馈制定产品优化和新功能开发计划]</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0;">
+
+                        <div>
+                            <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">5.4 文档与知识沉淀</h3>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>产品知识库：[整理产品设计、开发、运营等过程中的经验教训]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>团队培训材料：[为团队提供产品背景、功能说明和运营策略的培训资料]</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                    <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                    <span>其他补充说明：[可根据实际需求添加未涵盖的内容]</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 附录 -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header" style="background: linear-gradient(to right, #f8fafc, #f1f5f9);">
+                        <h2 class="card-title">
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div style="background: #6b7280; color: white; padding: 0.5rem; border-radius: 0.5rem;">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <span>6. 附录</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content">
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                <span>术语表：[定义文档中涉及的专业术语或缩写]</span>
+                            </li>
+                            <li style="margin-bottom: 0.5rem; display: flex; align-items: flex-start;">
+                                <span style="color: #9ca3af; margin-right: 0.5rem;">•</span>
+                                <span>参考资料：[引用市场调研报告、竞品分析资料、技术文档等]</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="card" style="margin-top: 2rem; background: linear-gradient(to right, #dbeafe, #e0e7ff); border: 1px solid #bfdbfe;">
+                <div class="card-content" style="text-align: center; padding: 3rem;">
+                    <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">准备开始您的产品开发文档？</h3>
+                    <p style="color: #6b7280; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        使用我们的在线编辑器，基于这个完整的模板创建您的产品开发文档
+                    </p>
+                    <a href="editor.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-edit"></i>
+                        开始编辑文档
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

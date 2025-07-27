@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品经理工作平台 - 产品开发文档系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .dark-mode {
+            --primary-color: #3b82f6;
+            --secondary-color: #60a5fa;
+            --accent-color: #93c5fd;
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            min-height: 100vh;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 26px;
+            border-radius: 13px;
+            background: var(--border-color);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--text-color);
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .theme-toggle::before {
+            transform: translateX(24px);
+            background: var(--accent-color);
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 12px;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 8px;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 8px 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .nav-links a.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Main content styles */
+        .content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-color);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .document-section {
+            margin-bottom: 30px;
+        }
+
+        .document-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .input-group textarea,
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .input-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .placeholder-hint {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 6px;
+        }
+
+        .btn-add {
+            background: transparent;
+            color: var(--success-color);
+            border: 1px dashed var(--success-color);
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn-add:hover {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .preview-container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .preview-container h1,
+        .preview-container h2,
+        .preview-container h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .preview-container h1 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .preview-container h2 {
+            font-size: 1.5rem;
+        }
+
+        .preview-container h3 {
+            font-size: 1.3rem;
+        }
+
+        .preview-container p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .preview-container ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .preview-container ul li {
+            margin-bottom: 8px;
+        }
+
+        .preview-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .preview-container th,
+        .preview-container td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .preview-container th {
+            background-color: #f5f7fa;
+            font-weight: 600;
+        }
+
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                text-align: center;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--success-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-file-alt"></i>
+                <span>产品经理工作平台</span>
+            </div>
+            <div class="actions">
+                <button id="newDocBtn"><i class="fas fa-plus"></i> 新建文档</button>
+                <button id="exportBtn"><i class="fas fa-download"></i> 导出文档</button>
+                <button class="btn-outline" id="shareBtn"><i class="fas fa-share-alt"></i> 分享</button>
+                <div class="theme-toggle" id="themeToggle"></div>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="搜索文档内容...">
+            </div>
+
+            <div class="section">
+                <div class="section-title">文档结构导航</div>
+                <ul class="nav-links">
+                    <li><a href="#req-analysis" class="active"><i class="fas fa-chart-line"></i> 需求分析</a></li>
+                    <li><a href="#user-analysis"><i class="fas fa-users"></i> 用户分析</a></li>
+                    <li><a href="#market-analysis"><i class="fas fa-globe-asia"></i> 市场分析</a></li>
+                    <li><a href="#competitor-analysis"><i class="fas fa-chart-bar"></i> 竞品分析</a></li>
+                    <li><a href="#commercial-analysis"><i class="fas fa-money-bill-wave"></i> 商业化分析</a></li>
+                    <li><a href="#product-design"><i class="fas fa-drafting-compass"></i> 产品设计</a></li>
+                    <li><a href="#operation-plan"><i class="fas fa-tasks"></i> 运营方案</a></li>
+                    <li><a href="#new-modules"><i class="fas fa-plus-circle"></i> 新增模块</a></li>
+                    <li><a href="#appendix"><i class="fas fa-book"></i> 附录</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="section-header">
+                <h2>产品开发文档模板</h2>
+                <p>根据以下结构，开发一个产品开发文档，请根据实际需求填写具体信息</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" data-tab="edit">编辑文档</div>
+                <div class="tab" data-tab="preview">预览效果</div>
+                <div class="tab" data-tab="guide">使用指南</div>
+            </div>
+
+            <div class="tab-content active" id="edit-tab">
+                <!-- 需求分析部分 -->
+                <div class="document-section fade-in" id="req-analysis">
+                    <h3><i class="fas fa-chart-line"></i> 需求分析</h3>
+
+                    <div class="input-group">
+                        <label for="overall-goal">产品总体目标</label>
+                        <textarea id="overall-goal"
+                            placeholder="请在此处填写产品的总体目标和预期收益..."></textarea>
+                        <p class="placeholder-hint">提示：简要说明产品要解决的核心问题以及目标用户群体</p>
+                    </div>
+                </div>
+
+                <div class="document-section" id="user-analysis">
+                    <h3><i class="fas fa-users"></i> 1.1 用户分析</h3>
+
+                    <div class="input-group">
+                        <label for="user-segmentation">用户划分</label>
+                        <textarea id="user-segmentation" placeholder="[填写目标用户群体的分类标准（如按行业、年龄、行为等）]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="user-pain-points">用户痛点</label>
+                        <textarea id="user-pain-points" placeholder="[列举用户在当前场景中的核心问题（如效率低、成本高、体验差等）]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="user-journey">用户旅程图</label>
+                        <textarea id="user-journey" placeholder="[绘制用户使用产品过程中的关键触点、痛点和机会点]"></textarea>
+                    </div>
+
+                    <button class="btn-add"><i class="fas fa-plus"></i> 添加更多用户分析内容</button>
+                </div>
+
+                <div class="document-section" id="market-analysis">
+                    <h3><i class="fas fa-globe-asia"></i> 1.2 市场分析</h3>
+
+                    <div class="input-group">
+                        <label for="market-size">市场空间</label>
+                        <textarea id="market-size"
+                            placeholder="[分析目标市场的规模、增长潜力及用户基数]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tech-feasibility">技术可行性评估</label>
+                        <textarea id="tech-feasibility" placeholder="[结合技术团队能力，评估需求的技术实现难度和成本]"></textarea>
+                    </div>
+                </div>
+
+                <div class="document-section" id="competitor-analysis">
+                    <h3><i class="fas fa-chart-bar"></i> 1.3 竞品分析</h3>
+
+                    <div class="input-group">
+                        <label for="competitor-list">竞品列表</label>
+                        <textarea id="competitor-list" placeholder="[列出核心竞品名称及定位]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label>竞品功能对比表</label>
+                        <p class="placeholder-hint">在预览模式下查看表格效果</p>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="differentiation">差异化策略</label>
+                        <textarea id="differentiation" placeholder="[基于竞品分析提出产品的差异化能力（如功能创新、用户体验优化等）]"></textarea>
+                    </div>
+                </div>
+
+                <!-- 商业化分析部分 -->
+                <div class="document-section" id="commercial-analysis">
+                    <h3><i class="fas fa-money-bill-wave"></i> 2. 商业化分析</h3>
+
+                    <div class="input-group">
+                        <label for="business-model">商业模式设计</label>
+                        <textarea id="business-model" placeholder="[明确产品在市场中的定位和盈利模式]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="pricing-strategy">定价策略</label>
+                        <textarea id="pricing-strategy" placeholder="[设计产品定价体系]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="financial-model">财务模型</label>
+                        <textarea id="financial-model" placeholder="[预测产品各阶段的收入、成本和利润]"></textarea>
+                    </div>
+                </div>
+
+                <!-- 产品设计部分 -->
+                <div class="document-section" id="product-design">
+                    <h3><i class="fas fa-drafting-compass"></i> 3. 产品设计</h3>
+
+                    <div class="input-group">
+                        <label for="core-features">核心功能设计</label>
+                        <textarea id="core-features" placeholder="[描述核心功能及其业务流程]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="product-roadmap">产品路线图</label>
+                        <textarea id="product-roadmap" placeholder="[明确产品各阶段的目标和时间节点]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="user-stories">用户故事</label>
+                        <textarea id="user-stories" placeholder="[以用户视角描述功能需求]"></textarea>
+                    </div>
+                </div>
+
+                <!-- 运营方案部分 -->
+                <div class="document-section" id="operation-plan">
+                    <h3><i class="fas fa-tasks"></i> 4. 运营方案</h3>
+
+                    <div class="input-group">
+                        <label for="launch-strategy">前期推广策略</label>
+                        <textarea id="launch-strategy" placeholder="[设计种子用户获取策略]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="user-education">用户教育材料</label>
+                        <textarea id="user-education" placeholder="[制作产品使用指南等支持材料]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="data-monitoring">数据监控方案</label>
+                        <textarea id="data-monitoring" placeholder="[设计关键指标监控体系]"></textarea>
+                    </div>
+                </div>
+
+                <!-- 新增模块部分 -->
+                <div class="document-section" id="new-modules">
+                    <h3><i class="fas fa-plus-circle"></i> 5. 新增模块</h3>
+
+                    <div class="input-group">
+                        <label for="project-plan">开发计划</label>
+                        <textarea id="project-plan" placeholder="[制定详细的研发计划]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="risk-management">风险预案</label>
+                        <textarea id="risk-management" placeholder="[识别潜在风险并制定应对方案]"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="launch-checklist">上线检查清单</label>
+                        <textarea id="launch-checklist" placeholder="[确保产品符合上线标准]"></textarea>
+                    </div>
+                </div>
+
+                <!-- 附录部分 -->
+                <div class="document-section" id="appendix">
+                    <h3><i class="fas fa-book"></i> 6. 附录</h3>
+
+                    <div class="input-group">
+                        <label for="glossary">术语表</label>
+                        <textarea id="glossary" placeholder="[定义文档中涉及的专业术语]">DAU：日活跃用户数
+MAU：月活跃用户数
+NPS：净推荐值
+MVP：最小可行产品
+KPI：关键绩效指标</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="references">参考资料</label>
+                        <textarea id="references" placeholder="[引用市场调研报告等参考资料]"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="preview-tab">
+                <div class="preview-container">
+                    <h1>产品开发文档</h1>
+
+                    <!-- 预览模式下的完整文档内容 -->
+                    <h2>1. 需求分析</h2>
+                    <p>本产品旨在解决用户在使用同类产品时遇到的核心痛点，提供更高效、更便捷的服务体验，从而在细分市场中占据领先地位。</p>
+
+                    <h3>1.1 用户分析</h3>
+                    <p><strong>用户划分：</strong></p>
+                    <ul>
+                        <li>按职业划分：学生、职场新人、中级管理者、高级管理者</li>
+                        <li>按使用频率：低频用户（每月&lt;3次）、中频用户（每周1-2次）、高频用户（每周3次以上）</li>
+                        <li>按购买力：预算有限型、普通消费者、高端消费者</li>
+                    </ul>
+
+                    <p><strong>用户痛点：</strong></p>
+                    <ul>
+                        <li>操作流程复杂，完成一个核心任务需要多次点击</li>
+                        <li>功能分散，寻找所需功能需要花费大量时间</li>
+                        <li>个性化推荐不够精准，无法满足用户实际需求</li>
+                        <li>客户服务响应不及时，解决问题效率低下</li>
+                    </ul>
+
+                    <p><strong>用户旅程图：</strong></p>
+                    <ul>
+                        <li>认知阶段：用户通过广告了解产品 → 痛点：广告不够精准无法激发兴趣</li>
+                        <li>考虑阶段：用户访问网站/应用商店查看详情 → 痛点：介绍信息不清晰</li>
+                        <li>使用阶段：用户尝试核心功能 → 痛点：注册流程复杂，功能学习成本高</li>
+                        <li>保留阶段：用户决定是否继续使用 → 痛点：缺乏持续激励措施</li>
+                    </ul>
+
+                    <h3>1.2 市场分析</h3>
+                    <p><strong>市场空间：</strong></p>
+                    <p>根据行业报告显示，目标市场在2023年整体规模达到250亿元，年增长率约18.5%，预计到2025年市场规模将达到350亿元。目标用户基数为5000万，其中活跃用户约1200万。</p>
+
+                    <p><strong>竞品功能对比表：</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>功能维度</th>
+                                <th>竞品A</th>
+                                <th>竞品B</th>
+                                <th>本产品</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>核心功能X</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td>创新功能Y</td>
+                                <td>❌</td>
+                                <td>部分支持</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td>多平台支持</td>
+                                <td>桌面版</td>
+                                <td>移动版</td>
+                                <td>全平台</td>
+                            </tr>
+                            <tr>
+                                <td>定价</td>
+                                <td>¥199/月</td>
+                                <td>¥99/月</td>
+                                <td>¥149/月</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>1.3 竞品分析</h3>
+                    <p><strong>竞品列表：</strong></p>
+                    <ul>
+                        <li>产品A：市场领导者，功能全面但价格较高（高端市场）</li>
+                        <li>产品B：专注于特定功能，用户体验出色（中端市场）</li>
+                        <li>产品C：基础功能免费，通过增值服务盈利（大众市场）</li>
+                    </ul>
+
+                    <p><strong>差异化策略：</strong></p>
+                    <ul>
+                        <li>推出行业首创的"智能场景识别"功能</li>
+                        <li>实施更具弹性的定价策略，包含免费增值模式</li>
+                        <li>建立用户体验优先的产品文化，提供24小时VIP客服支持</li>
+                        <li>开发多设备无缝切换体验，满足移动办公需求</li>
+                    </ul>
+
+                    <h2>2. 商业化分析</h2>
+                    <h3>2.1 商业模式设计</h3>
+                    <p>产品定位：解决中小企业在项目管理中的效率问题</p>
+                    <p>盈利模式：基础功能免费 + 高级功能订阅制（¥99/月）</p>
+                    <p>成本结构：开发团队5人，服务器月均¥5000，市场推广预算¥20000/月</p>
+
+                    <h3>2.2 商业化策略</h3>
+                    <p><strong>定价策略：</strong></p>
+                    <ul>
+                        <li>免费版：基础功能，最多3个项目</li>
+                        <li>专业版：¥99/月，高级功能，最多50个项目</li>
+                        <li>企业版：¥499/月，定制功能，无限项目</li>
+                    </ul>
+
+                    <p><strong>财务模型：</strong></p>
+                    <p>预计第一年：</p>
+                    <ul>
+                        <li>用户增长：免费用户10000，付费用户500</li>
+                        <li>收入：¥500,000</li>
+                        <li>成本：¥800,000</li>
+                        <li>利润：-¥300,000（预计第二年实现盈利）</li>
+                    </ul>
+
+                    <h2>3. 产品设计</h2>
+                    <h3>3.1 核心功能设计</h3>
+                    <ul>
+                        <li>项目管理：创建、分配、跟踪项目任务</li>
+                        <li>团队协作：实时聊天、文件共享、评论功能</li>
+                        <li>数据分析：项目进度、团队效率、资源利用率统计</li>
+                    </ul>
+
+                    <h3>3.2 产品路线图</h3>
+                    <ul>
+                        <li>Q1：MVP版本上线（核心项目管理功能）</li>
+                        <li>Q2：增加团队协作功能</li>
+                        <li>Q3：推出数据分析模块</li>
+                        <li>Q4：移动端APP发布</li>
+                    </ul>
+
+                    <h3>3.3 用户故事</h3>
+                    <ul>
+                        <li>作为项目经理，我希望能够快速分配任务给团队成员，以便提高工作效率</li>
+                        <li>作为团队成员，我希望能够实时查看任务进度，以便及时调整工作安排</li>
+                        <li>作为企业管理者，我希望能够查看团队整体效率报告，以便优化资源配置</li>
+                    </ul>
+
+                    <h2>4. 运营方案</h2>
+                    <h3>4.1 前期推广策略</h3>
+                    <ul>
+                        <li>邀请制内测：邀请100位行业KOL参与内测</li>
+                        <li>内容营销：发布行业解决方案白皮书</li>
+                        <li>社交媒体：LinkedIn定向广告投放</li>
+                    </ul>
+
+                    <h3>4.2 用户教育材料</h3>
+                    <ul>
+                        <li>视频教程：核心功能操作指南（5分钟/集）</li>
+                        <li>FAQ文档：常见问题解答</li>
+                        <li>在线客服：实时解答用户疑问</li>
+                    </ul>
+
+                    <h3>4.3 数据监控方案</h3>
+                    <p>核心指标：</p>
+                    <ul>
+                        <li>DAU/MAU：日活跃用户/月活跃用户</li>
+                        <li>转化率：免费用户转付费比例</li>
+                        <li>留存率：7日/30日留存率</li>
+                        <li>NPS：用户推荐指数</li>
+                    </ul>
+
+                    <h2>5. 新增模块</h2>
+                    <h3>5.1 开发计划</h3>
+                    <ul>
+                        <li>阶段1（1-2月）：需求分析与原型设计</li>
+                        <li>阶段2（3-4月）：核心功能开发</li>
+                        <li>阶段3（5-6月）：测试与优化</li>
+                        <li>阶段4（7月）：正式上线</li>
+                    </ul>
+
+                    <h3>5.2 风险预案</h3>
+                    <ul>
+                        <li>技术风险：关键技术依赖第三方服务 → 预案：准备替代方案</li>
+                        <li>市场风险：竞争加剧 → 预案：加强差异化功能开发</li>
+                        <li>资金风险：融资延迟 → 预案：控制成本，分阶段开发</li>
+                    </ul>
+
+                    <h3>5.3 上线检查清单</h3>
+                    <ul>
+                        <li>功能测试：所有核心功能通过测试</li>
+                        <li>性能测试：支持1000并发用户</li>
+                        <li>安全测试：通过OWASP安全标准</li>
+                        <li>文档齐全：用户手册、API文档完整</li>
+                    </ul>
+
+                    <h2>6. 附录</h2>
+                    <h3>6.1 术语表</h3>
+                    <ul>
+                        <li>DAU：日活跃用户数</li>
+                        <li>MAU：月活跃用户数</li>
+                        <li>NPS：净推荐值</li>
+                        <li>MVP：最小可行产品</li>
+                        <li>KPI：关键绩效指标</li>
+                    </ul>
+
+                    <h3>6.2 参考资料</h3>
+                    <ul>
+                        <li>《2023年项目管理软件市场报告》- Gartner</li>
+                        <li>《中小企业数字化转型白皮书》- IDC</li>
+                        <li>《用户体验设计指南》- Nielsen Norman Group</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab-content" id="guide-tab">
+                <h3>使用指南</h3>
+                <div class="input-group">
+                    <p><strong>1. 文档编写建议</strong></p>
+                    <p>• 每个模块中的 `[ ]` 或 `______` 为需填写的内容，可直接替换为具体信息。<br>
+                        • 可使用右侧导航快速定位到不同章节<br>
+                        • 灰色提示文本会在生成正式文档时自动移除</p>
+                </div>
+
+                <div class="input-group">
+                    <p><strong>2. 内容填写灵活性</strong></p>
+                    <p>• 可根据产品阶段选择性填写部分内容（如冷启动期无需详细财务模型）<br>
+                        • 不必严格按照顺序填写，优先完成重要部分<br>
+                        • 红色标注的章节为产品设计核心内容</p>
+                </div>
+
+                <div class="input-group">
+                    <p><strong>3. 团队协作建议</strong></p>
+                    <p>• 与团队共享文档，确保各模块负责人（如技术、运营）同步更新相关内容<br>
+                        • 使用"分享"按钮生成分享链接或邀请团队成员协作<br>
+                        • 使用评论功能对文档提出修改建议</p>
+                </div>
+
+                <div class="input-group">
+                    <p><strong>4. 文档维护</strong></p>
+                    <p>• 每完成一个重要里程碑后更新文档内容<br>
+                        • 产品每次迭代后同步更新文档中的功能说明<br>
+                        • 每月审查一次整体文档的时效性</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span>操作成功！文档内容已保存</span>
+    </div>
+
+    <script>
+        // 文档数据模型
+        let documentData = {
+            requirementAnalysis: {
+                userAnalysis: '',
+                marketAnalysis: '',
+                competitorAnalysis: ''
+            },
+            commercialAnalysis: {
+                businessModel: '',
+                pricingStrategy: '',
+                financialModel: ''
+            },
+            productDesign: {
+                coreFeatures: '',
+                roadmap: '',
+                userStories: ''
+            },
+            operationPlan: {
+                promotionStrategy: '',
+                userEducation: '',
+                dataMonitoring: ''
+            },
+            newModules: {
+                developmentPlan: '',
+                riskPlan: '',
+                launchChecklist: ''
+            },
+            appendix: {
+                glossary: '',
+                references: ''
+            }
+        };
+
+        // 从localStorage加载数据
+        function loadFromLocalStorage() {
+            const savedData = localStorage.getItem('documentData');
+            if (savedData) {
+                try {
+                    documentData = JSON.parse(savedData);
+                    updateFormFields();
+                } catch (e) {
+                    console.error('Failed to parse saved data:', e);
+                }
+            }
+        }
+
+        // 更新表单字段
+        function updateFormFields() {
+            // 映射表单字段到数据模型
+            document.getElementById('userAnalysis')?.value = documentData.requirementAnalysis.userAnalysis || '';
+            document.getElementById('marketAnalysis')?.value = documentData.requirementAnalysis.marketAnalysis || '';
+            document.getElementById('competitorAnalysis')?.value = documentData.requirementAnalysis.competitorAnalysis || '';
+            
+            document.getElementById('businessModel')?.value = documentData.commercialAnalysis.businessModel || '';
+            document.getElementById('pricingStrategy')?.value = documentData.commercialAnalysis.pricingStrategy || '';
+            document.getElementById('financialModel')?.value = documentData.commercialAnalysis.financialModel || '';
+            
+            document.getElementById('coreFeatures')?.value = documentData.productDesign.coreFeatures || '';
+            document.getElementById('roadmap')?.value = documentData.productDesign.roadmap || '';
+            document.getElementById('userStories')?.value = documentData.productDesign.userStories || '';
+            
+            document.getElementById('promotionStrategy')?.value = documentData.operationPlan.promotionStrategy || '';
+            document.getElementById('userEducation')?.value = documentData.operationPlan.userEducation || '';
+            document.getElementById('dataMonitoring')?.value = documentData.operationPlan.dataMonitoring || '';
+            
+            document.getElementById('developmentPlan')?.value = documentData.newModules.developmentPlan || '';
+            document.getElementById('riskPlan')?.value = documentData.newModules.riskPlan || '';
+            document.getElementById('launchChecklist')?.value = documentData.newModules.launchChecklist || '';
+            
+            document.getElementById('glossary')?.value = documentData.appendix.glossary || '';
+            document.getElementById('references')?.value = documentData.appendix.references || '';
+        }
+
+        // 保存数据到localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('documentData', JSON.stringify(documentData));
+        }
+
+        // 渲染预览内容
+        function renderPreview() {
+            const previewContent = document.querySelector('#preview-tab');
+            if (!previewContent) return;
+
+            // 生成预览HTML
+            let html = `
+                <h2>1. 需求分析</h2>
+                <p>${documentData.requirementAnalysis.userAnalysis || '本产品旨在解决用户在使用同类产品时遇到的核心痛点，提供更高效、更便捷的服务体验，从而在细分市场中占据领先地位。'}</p>
+
+                <h3>1.1 用户分析</h3>
+                <p><strong>用户划分：</strong></p>
+                <ul>
+                    <li>按职业划分：学生、职场新人、中级管理者、高级管理者</li>
+                    <li>按使用频率：低频用户（每月&lt;3次）、中频用户（每周1-2次）、高频用户（每周3次以上）</li>
+                    <li>按购买力：预算有限型、普通消费者、高端消费者</li>
+                </ul>
+
+                <p><strong>用户痛点：</strong></p>
+                <ul>
+                    <li>操作流程复杂，完成一个核心任务需要多次点击</li>
+                    <li>功能分散，寻找所需功能需要花费大量时间</li>
+                    <li>个性化推荐不够精准，无法满足用户实际需求</li>
+                    <li>客户服务响应不及时，解决问题效率低下</li>
+                </ul>
+
+                <h3>1.2 市场分析</h3>
+                <p>${documentData.requirementAnalysis.marketAnalysis || '根据行业报告显示，目标市场在2023年整体规模达到250亿元，年增长率约18.5%，预计到2025年市场规模将达到350亿元。目标用户基数为5000万，其中活跃用户约1200万。'}</p>
+
+                <h3>1.3 竞品分析</h3>
+                <p>${documentData.requirementAnalysis.competitorAnalysis || '产品A：市场领导者，功能全面但价格较高（高端市场）；产品B：专注于特定功能，用户体验出色（中端市场）；产品C：基础功能免费，通过增值服务盈利（大众市场）。'}</p>
+
+                <h2>2. 商业化分析</h2>
+                <h3>2.1 商业模式设计</h3>
+                <p>${documentData.commercialAnalysis.businessModel || '产品定位：解决中小企业在项目管理中的效率问题；盈利模式：基础功能免费 + 高级功能订阅制（¥99/月）；成本结构：开发团队5人，服务器月均¥5000，市场推广预算¥20000/月。'}</p>
+
+                <h3>2.2 定价策略</h3>
+                <p>${documentData.commercialAnalysis.pricingStrategy || '免费版：基础功能，最多3个项目；专业版：¥99/月，高级功能，最多50个项目；企业版：¥499/月，定制功能，无限项目。'}</p>
+
+                <h3>2.3 财务模型</h3>
+                <p>${documentData.commercialAnalysis.financialModel || '预计第一年：用户增长：免费用户10000，付费用户500；收入：¥500,000；成本：¥800,000；利润：-¥300,000（预计第二年实现盈利）。'}</p>
+
+                <h2>3. 产品设计</h2>
+                <h3>3.1 核心功能设计</h3>
+                <p>${documentData.productDesign.coreFeatures || '项目管理：创建、分配、跟踪项目任务；团队协作：实时聊天、文件共享、评论功能；数据分析：项目进度、团队效率、资源利用率统计。'}</p>
+
+                <h3>3.2 产品路线图</h3>
+                <p>${documentData.productDesign.roadmap || 'Q1：MVP版本上线（核心项目管理功能）；Q2：增加团队协作功能；Q3：推出数据分析模块；Q4：移动端APP发布。'}</p>
+
+                <h3>3.3 用户故事</h3>
+                <p>${documentData.productDesign.userStories || '作为项目经理，我希望能够快速分配任务给团队成员，以便提高工作效率；作为团队成员，我希望能够实时查看任务进度，以便及时调整工作安排；作为企业管理者，我希望能够查看团队整体效率报告，以便优化资源配置。'}</p>
+
+                <h2>4. 运营方案</h2>
+                <h3>4.1 前期推广策略</h3>
+                <p>${documentData.operationPlan.promotionStrategy || '邀请制内测：邀请100位行业KOL参与内测；内容营销：发布行业解决方案白皮书；社交媒体：LinkedIn定向广告投放。'}</p>
+
+                <h3>4.2 用户教育材料</h3>
+                <p>${documentData.operationPlan.userEducation || '视频教程：核心功能操作指南（5分钟/集）；FAQ文档：常见问题解答；在线客服：实时解答用户疑问。'}</p>
+
+                <h3>4.3 数据监控方案</h3>
+                <p>${documentData.operationPlan.dataMonitoring || '核心指标：DAU/MAU：日活跃用户/月活跃用户；转化率：免费用户转付费比例；留存率：7日/30日留存率；NPS：用户推荐指数。'}</p>
+
+                <h2>5. 新增模块</h2>
+                <h3>5.1 开发计划</h3>
+                <p>${documentData.newModules.developmentPlan || '阶段1（1-2月）：需求分析与原型设计；阶段2（3-4月）：核心功能开发；阶段3（5-6月）：测试与优化；阶段4（7月）：正式上线。'}</p>
+
+                <h3>5.2 风险预案</h3>
+                <p>${documentData.newModules.riskPlan || '技术风险：关键技术依赖第三方服务 → 预案：准备替代方案；市场风险：竞争加剧 → 预案：加强差异化功能开发；资金风险：融资延迟 → 预案：控制成本，分阶段开发。'}</p>
+
+                <h3>5.3 上线检查清单</h3>
+                <p>${documentData.newModules.launchChecklist || '功能测试：所有核心功能通过测试；性能测试：支持1000并发用户；安全测试：通过OWASP安全标准；文档齐全：用户手册、API文档完整。'}</p>
+
+                <h2>6. 附录</h2>
+                <h3>6.1 术语表</h3>
+                <p>${documentData.appendix.glossary || 'DAU：日活跃用户数；MAU：月活跃用户数；NPS：净推荐值；MVP：最小可行产品；KPI：关键绩效指标。'}</p>
+
+                <h3>6.2 参考资料</h3>
+                <p>${documentData.appendix.references || '《2023年项目管理软件市场报告》- Gartner；《中小企业数字化转型白皮书》- IDC；《用户体验设计指南》- Nielsen Norman Group。'}</p>
+            `;
+
+            previewContent.innerHTML = html;
+        }
+
+        // Tab切换功能
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有活动标签
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // 添加活动类
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab') + '-tab';
+                document.getElementById(tabId).classList.add('active');
+
+                // 如果切换到预览标签，渲染预览内容
+                if (tabId === 'preview-tab') {
+                    renderPreview();
+                }
+            });
+        });
+
+        // 设置表单字段事件监听器
+        function setupFormListeners() {
+            // 辅助函数：更新数据并保存
+            function updateDataAndSave(dataPath, value) {
+                // 更新数据
+                const keys = dataPath.split('.');
+                let current = documentData;
+                for (let i = 0; i < keys.length - 1; i++) {
+                    if (!current[keys[i]]) {
+                        current[keys[i]] = {};
+                    }
+                    current = current[keys[i]];
+                }
+                current[keys[keys.length - 1]] = value;
+                
+                // 保存数据
+                saveToLocalStorage();
+                
+                // 如果当前正在查看预览标签，更新预览
+                const activeTab = document.querySelector('.tab.active');
+                if (activeTab && activeTab.getAttribute('data-tab') === 'preview') {
+                    renderPreview();
+                }
+            }
+
+            // 需求分析部分
+            document.getElementById('userAnalysis')?.addEventListener('input', function() {
+                updateDataAndSave('requirementAnalysis.userAnalysis', this.value);
+            });
+            
+            document.getElementById('marketAnalysis')?.addEventListener('input', function() {
+                updateDataAndSave('requirementAnalysis.marketAnalysis', this.value);
+            });
+            
+            document.getElementById('competitorAnalysis')?.addEventListener('input', function() {
+                updateDataAndSave('requirementAnalysis.competitorAnalysis', this.value);
+            });
+            
+            // 商业化分析部分
+            document.getElementById('businessModel')?.addEventListener('input', function() {
+                updateDataAndSave('commercialAnalysis.businessModel', this.value);
+            });
+            
+            document.getElementById('pricingStrategy')?.addEventListener('input', function() {
+                updateDataAndSave('commercialAnalysis.pricingStrategy', this.value);
+            });
+            
+            document.getElementById('financialModel')?.addEventListener('input', function() {
+                updateDataAndSave('commercialAnalysis.financialModel', this.value);
+            });
+            
+            // 产品设计部分
+            document.getElementById('coreFeatures')?.addEventListener('input', function() {
+                updateDataAndSave('productDesign.coreFeatures', this.value);
+            });
+            
+            document.getElementById('roadmap')?.addEventListener('input', function() {
+                updateDataAndSave('productDesign.roadmap', this.value);
+            });
+            
+            document.getElementById('userStories')?.addEventListener('input', function() {
+                updateDataAndSave('productDesign.userStories', this.value);
+            });
+            
+            // 运营方案部分
+            document.getElementById('promotionStrategy')?.addEventListener('input', function() {
+                updateDataAndSave('operationPlan.promotionStrategy', this.value);
+            });
+            
+            document.getElementById('userEducation')?.addEventListener('input', function() {
+                updateDataAndSave('operationPlan.userEducation', this.value);
+            });
+            
+            document.getElementById('dataMonitoring')?.addEventListener('input', function() {
+                updateDataAndSave('operationPlan.dataMonitoring', this.value);
+            });
+            
+            // 新增模块部分
+            document.getElementById('developmentPlan')?.addEventListener('input', function() {
+                updateDataAndSave('newModules.developmentPlan', this.value);
+            });
+            
+            document.getElementById('riskPlan')?.addEventListener('input', function() {
+                updateDataAndSave('newModules.riskPlan', this.value);
+            });
+            
+            document.getElementById('launchChecklist')?.addEventListener('input', function() {
+                updateDataAndSave('newModules.launchChecklist', this.value);
+            });
+            
+            // 附录部分
+            document.getElementById('glossary')?.addEventListener('input', function() {
+                updateDataAndSave('appendix.glossary', this.value);
+            });
+            
+            document.getElementById('references')?.addEventListener('input', function() {
+                updateDataAndSave('appendix.references', this.value);
+            });
+            // 需求分析部分
+            document.getElementById('userAnalysis')?.addEventListener('input', function() {
+                documentData.requirementAnalysis.userAnalysis = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('marketAnalysis')?.addEventListener('input', function() {
+                documentData.requirementAnalysis.marketAnalysis = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('competitorAnalysis')?.addEventListener('input', function() {
+                documentData.requirementAnalysis.competitorAnalysis = this.value;
+                saveToLocalStorage();
+            });
+            
+            // 商业化分析部分
+            document.getElementById('businessModel')?.addEventListener('input', function() {
+                documentData.commercialAnalysis.businessModel = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('pricingStrategy')?.addEventListener('input', function() {
+                documentData.commercialAnalysis.pricingStrategy = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('financialModel')?.addEventListener('input', function() {
+                documentData.commercialAnalysis.financialModel = this.value;
+                saveToLocalStorage();
+            });
+            
+            // 产品设计部分
+            document.getElementById('coreFeatures')?.addEventListener('input', function() {
+                documentData.productDesign.coreFeatures = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('roadmap')?.addEventListener('input', function() {
+                documentData.productDesign.roadmap = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('userStories')?.addEventListener('input', function() {
+                documentData.productDesign.userStories = this.value;
+                saveToLocalStorage();
+            });
+            
+            // 运营方案部分
+            document.getElementById('promotionStrategy')?.addEventListener('input', function() {
+                documentData.operationPlan.promotionStrategy = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('userEducation')?.addEventListener('input', function() {
+                documentData.operationPlan.userEducation = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('dataMonitoring')?.addEventListener('input', function() {
+                documentData.operationPlan.dataMonitoring = this.value;
+                saveToLocalStorage();
+            });
+            
+            // 新增模块部分
+            document.getElementById('developmentPlan')?.addEventListener('input', function() {
+                documentData.newModules.developmentPlan = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('riskPlan')?.addEventListener('input', function() {
+                documentData.newModules.riskPlan = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('launchChecklist')?.addEventListener('input', function() {
+                documentData.newModules.launchChecklist = this.value;
+                saveToLocalStorage();
+            });
+            
+            // 附录部分
+            document.getElementById('glossary')?.addEventListener('input', function() {
+                documentData.appendix.glossary = this.value;
+                saveToLocalStorage();
+            });
+            
+            document.getElementById('references')?.addEventListener('input', function() {
+                documentData.appendix.references = this.value;
+                saveToLocalStorage();
+            });
+        }
+
+        // 导航链接点击
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                const targetSection = this.getAttribute('href');
+                const sectionElement = document.querySelector(targetSection);
+                sectionElement.scrollIntoView({ behavior: 'smooth' });
+
+                // 切换到编辑模式
+                tabs[0].click();
+            });
+        });
+
+        // 主题切换
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+
+            // 保存主题偏好
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        // 加载保存的主题
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // 模拟保存操作
+        document.querySelectorAll('textarea, input').forEach(input => {
+            input.addEventListener('blur', function () {
+                // 在实际应用中，这里会有保存逻辑
+                showToast('内容已自动保存');
+            });
+        });
+
+        // 按钮事件
+        document.getElementById('newDocBtn').addEventListener('click', () => {
+            if (confirm('确定要创建新文档吗？当前文档内容将自动保存。')) {
+                // 清除所有文本区域内容
+                document.querySelectorAll('textarea').forEach(textarea => {
+                    textarea.value = '';
+                    localStorage.removeItem(textarea.id);
+                });
+                showToast('已创建新文档');
+            }
+        });
+
+        // 导出文档功能
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            showToast('正在导出文档...');
+            
+            // 生成导出内容
+            let exportContent = `# 产品开发文档\n\n`;
+            exportContent += `## 1. 需求分析\n`;
+            exportContent += `### 1.1 用户分析\n`;
+            exportContent += `${documentData.requirementAnalysis.userAnalysis || '本产品旨在解决用户在使用同类产品时遇到的核心痛点，提供更高效、更便捷的服务体验，从而在细分市场中占据领先地位。'}\n\n`;
+            exportContent += `### 1.2 市场分析\n`;
+            exportContent += `${documentData.requirementAnalysis.marketAnalysis || '根据行业报告显示，目标市场在2023年整体规模达到250亿元，年增长率约18.5%，预计到2025年市场规模将达到350亿元。目标用户基数为5000万，其中活跃用户约1200万。'}\n\n`;
+            exportContent += `### 1.3 竞品分析\n`;
+            exportContent += `${documentData.requirementAnalysis.competitorAnalysis || '产品A：市场领导者，功能全面但价格较高（高端市场）；产品B：专注于特定功能，用户体验出色（中端市场）；产品C：基础功能免费，通过增值服务盈利（大众市场）。'}\n\n`;
+            
+            exportContent += `## 2. 商业化分析\n`;
+            exportContent += `### 2.1 商业模式设计\n`;
+            exportContent += `${documentData.commercialAnalysis.businessModel || '产品定位：解决中小企业在项目管理中的效率问题；盈利模式：基础功能免费 + 高级功能订阅制（¥99/月）；成本结构：开发团队5人，服务器月均¥5000，市场推广预算¥20000/月。'}\n\n`;
+            exportContent += `### 2.2 定价策略\n`;
+            exportContent += `${documentData.commercialAnalysis.pricingStrategy || '免费版：基础功能，最多3个项目；专业版：¥99/月，高级功能，最多50个项目；企业版：¥499/月，定制功能，无限项目。'}\n\n`;
+            exportContent += `### 2.3 财务模型\n`;
+            exportContent += `${documentData.commercialAnalysis.financialModel || '预计第一年：用户增长：免费用户10000，付费用户500；收入：¥500,000；成本：¥800,000；利润：-¥300,000（预计第二年实现盈利）。'}\n\n`;
+            
+            exportContent += `## 3. 产品设计\n`;
+            exportContent += `### 3.1 核心功能设计\n`;
+            exportContent += `${documentData.productDesign.coreFeatures || '项目管理：创建、分配、跟踪项目任务；团队协作：实时聊天、文件共享、评论功能；数据分析：项目进度、团队效率、资源利用率统计。'}\n\n`;
+            exportContent += `### 3.2 产品路线图\n`;
+            exportContent += `${documentData.productDesign.roadmap || 'Q1：MVP版本上线（核心项目管理功能）；Q2：增加团队协作功能；Q3：推出数据分析模块；Q4：移动端APP发布。'}\n\n`;
+            exportContent += `### 3.3 用户故事\n`;
+            exportContent += `${documentData.productDesign.userStories || '作为项目经理，我希望能够快速分配任务给团队成员，以便提高工作效率；作为团队成员，我希望能够实时查看任务进度，以便及时调整工作安排；作为企业管理者，我希望能够查看团队整体效率报告，以便优化资源配置。'}\n\n`;
+            
+            exportContent += `## 4. 运营方案\n`;
+            exportContent += `### 4.1 前期推广策略\n`;
+            exportContent += `${documentData.operationPlan.promotionStrategy || '邀请制内测：邀请100位行业KOL参与内测；内容营销：发布行业解决方案白皮书；社交媒体：LinkedIn定向广告投放。'}\n\n`;
+            exportContent += `### 4.2 用户教育材料\n`;
+            exportContent += `${documentData.operationPlan.userEducation || '视频教程：核心功能操作指南（5分钟/集）；FAQ文档：常见问题解答；在线客服：实时解答用户疑问。'}\n\n`;
+            exportContent += `### 4.3 数据监控方案\n`;
+            exportContent += `${documentData.operationPlan.dataMonitoring || '核心指标：DAU/MAU：日活跃用户/月活跃用户；转化率：免费用户转付费比例；留存率：7日/30日留存率；NPS：用户推荐指数。'}\n\n`;
+            
+            exportContent += `## 5. 新增模块\n`;
+            exportContent += `### 5.1 开发计划\n`;
+            exportContent += `${documentData.newModules.developmentPlan || '阶段1（1-2月）：需求分析与原型设计；阶段2（3-4月）：核心功能开发；阶段3（5-6月）：测试与优化；阶段4（7月）：正式上线。'}\n\n`;
+            exportContent += `### 5.2 风险预案\n`;
+            exportContent += `${documentData.newModules.riskPlan || '技术风险：关键技术依赖第三方服务 → 预案：准备替代方案；市场风险：竞争加剧 → 预案：加强差异化功能开发；资金风险：融资延迟 → 预案：控制成本，分阶段开发。'}\n\n`;
+            exportContent += `### 5.3 上线检查清单\n`;
+            exportContent += `${documentData.newModules.launchChecklist || '功能测试：所有核心功能通过测试；性能测试：支持1000并发用户；安全测试：通过OWASP安全标准；文档齐全：用户手册、API文档完整。'}\n\n`;
+            
+            exportContent += `## 6. 附录\n`;
+            exportContent += `### 6.1 术语表\n`;
+            exportContent += `${documentData.appendix.glossary || 'DAU：日活跃用户数；MAU：月活跃用户数；NPS：净推荐值；MVP：最小可行产品；KPI：关键绩效指标。'}\n\n`;
+            exportContent += `### 6.2 参考资料\n`;
+            exportContent += `${documentData.appendix.references || '《2023年项目管理软件市场报告》- Gartner；《中小企业数字化转型白皮书》- IDC；《用户体验设计指南》- Nielsen Norman Group。'}`;
+            
+            // 创建下载链接
+            const blob = new Blob([exportContent], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '产品开发文档.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('文档导出成功！已下载为Markdown格式');
+        });
+
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            showToast('已生成分享链接');
+        });
+
+        // 显示Toast通知
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('span').textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // 初始化应用
+        function initApp() {
+            loadFromLocalStorage();
+            setupFormListeners();
+            document.querySelector('.section-header').scrollIntoView();
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+
+</html>

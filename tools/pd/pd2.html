@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品开发文档工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36CFC9',
+                        accent: '#722ED1',
+                        neutral: '#86909C',
+                        'neutral-light': '#F2F3F5',
+                        'neutral-dark': '#1D2129',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-neutral-dark">
+    <div id="app" class="flex h-screen overflow-hidden">
+        <!-- 侧边导航 -->
+        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10 transition-all duration-300" :class="isSidebarCollapsed ? 'w-20' : 'w-64'">
+            <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                <h1 class="text-xl font-bold text-primary flex items-center" :class="isSidebarCollapsed ? 'hidden' : 'flex'">
+                    <i class="fa fa-cubes mr-2"></i>产品开发助手
+                </h1>
+                <i class="fa fa-cubes text-primary text-xl" :class="!isSidebarCollapsed ? 'hidden' : 'flex'"></i>
+                <button @click="isSidebarCollapsed = !isSidebarCollapsed" class="text-gray-500 hover:text-primary transition-colors">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <nav class="flex-1 overflow-y-auto scrollbar-hide p-2">
+                <ul class="space-y-1">
+                    <li>
+                        <button @click="activeSection = 'intro'" class="w-full flex items-center p-3 rounded-lg transition-all-300" :class="activeSection === 'intro' ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'">
+                            <i class="fa fa-home w-6 text-center"></i>
+                            <span :class="isSidebarCollapsed ? 'hidden' : 'ml-2'">{{ isSidebarCollapsed ? '' : '首页' }}</span>
+                        </button>
+                    </li>
+                    <li class="mt-4" :class="isSidebarCollapsed ? 'hidden' : 'block'"><span class="text-xs font-semibold text-gray-500 uppercase tracking-wider ml-3">文档内容</span></li>
+                    <li>
+                        <button @click="activeSection = 'requirements'" class="w-full flex items-center p-3 rounded-lg transition-all-300" :class="activeSection === 'requirements' ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'">
+                            <i class="fa fa-list-ul w-6 text-center"></i>
+                            <span :class="isSidebarCollapsed ? 'hidden' : 'ml-2'">{{ isSidebarCollapsed ? '' : '需求分析' }}</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="activeSection = 'commercial'" class="w-full flex items-center p-3 rounded-lg transition-all-300" :class="activeSection === 'commercial' ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'">
+                            <i class="fa fa-line-chart w-6 text-center"></i>
+                            <span :class="isSidebarCollapsed ? 'hidden' : 'ml-2'">{{ isSidebarCollapsed ? '' : '商业化分析' }}</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="activeSection = 'design'" class="w-full flex items-center p-3 rounded-lg transition-all-300" :class="activeSection === 'design' ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'">
+                            <i class="fa fa-paint-brush w-6 text-center"></i>
+                            <span :class="isSidebarCollapsed ? 'hidden' : 'ml-2'">{{ isSidebarCollapsed ? '' : '产品设计' }}</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="activeSection = 'operation'" class="w-full flex items-center p-3 rounded-lg transition-all-300" :class="activeSection === 'operation' ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'">
+                            <i class="fa fa-cog w-6 text-center"></i>
+                            <span :class="isSidebarCollapsed ? 'hidden' : 'ml-2'">{{ isSidebarCollapsed ? '' : '运营方案' }}</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="activeSection = 'additional'" class="w-full flex items-center p-3 rounded-lg transition-all-300" :class="activeSection === 'additional' ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'">
+                            <i class="fa fa-plus-square w-6 text-center"></i>
+                            <span :class="isSidebarCollapsed ? 'hidden' : 'ml-2'">{{ isSidebarCollapsed ? '' : '新增模块' }}</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button @click="activeSection = 'appendix'" class="w-full flex items-center p-3 rounded-lg transition-all-300" :class="activeSection === 'appendix' ? 'bg-primary/10 text-primary' : 'hover:bg-gray-100'">
+                            <i class="fa fa-file-text-o w-6 text-center"></i>
+                            <span :class="isSidebarCollapsed ? 'hidden' : 'ml-2'">{{ isSidebarCollapsed ? '' : '附录' }}</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="p-4 border-t border-gray-200">
+                <button @click="exportDocument" class="w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-all-300 flex items-center justify-center">
+                    <i class="fa fa-download mr-2"></i>
+                    <span :class="isSidebarCollapsed ? 'hidden' : 'inline'">{{ isSidebarCollapsed ? '' : '导出文档' }}</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="flex-1 overflow-y-auto bg-gray-50 p-6">
+            <!-- 顶部工具栏 -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800" v-text="sectionTitles[activeSection]"></h2>
+                    <p class="text-gray-500" v-text="sectionDescriptions[activeSection]"></p>
+                </div>
+                <div class="flex space-x-3">
+                    <button @click="saveDocument" class="px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow transition-all-300 flex items-center text-gray-700">
+                        <i class="fa fa-save mr-2"></i>保存
+                    </button>
+                    <button @click="resetDocument" class="px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow transition-all-300 flex items-center text-gray-700">
+                        <i class="fa fa-refresh mr-2"></i>重置
+                    </button>
+                </div>
+            </div>
+
+            <!-- 介绍部分 -->
+            <div v-if="activeSection === 'intro'" class="bg-white rounded-xl shadow-sm p-6 mb-6 transition-all duration-500 transform hover:shadow-md">
+                <div class="max-w-3xl mx-auto text-center mb-8">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-cubes text-2xl text-primary"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">产品经理产品开发完整文档工具</h2>
+                    <p class="text-gray-600 mb-6">一个帮助您系统化规划和管理产品开发全流程的工具，从需求分析到产品上线，一站式完成所有文档工作。</p>
+                    <button @click="activeSection = 'requirements'" class="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg shadow-sm hover:shadow transition-all-300 inline-flex items-center">
+                        开始使用 <i class="fa fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mt-12">
+                    <div class="bg-gray-50 p-5 rounded-lg transition-all-300 hover:shadow-md">
+                        <div class="text-primary text-2xl mb-3"><i class="fa fa-list-alt"></i></div>
+                        <h3 class="font-semibold text-lg mb-2">结构化模板</h3>
+                        <p class="text-gray-600">提供完整的产品开发文档模板，覆盖从需求分析到产品上线的全流程。</p>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-lg transition-all-300 hover:shadow-md">
+                        <div class="text-primary text-2xl mb-3"><i class="fa fa-pencil-square-o"></i></div>
+                        <h3 class="font-semibold text-lg mb-2">便捷编辑</h3>
+                        <p class="text-gray-600">直观的编辑界面，让您轻松填写和管理产品文档的各个部分。</p>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-lg transition-all-300 hover:shadow-md">
+                        <div class="text-primary text-2xl mb-3"><i class="fa fa-download"></i></div>
+                        <h3 class="font-semibold text-lg mb-2">文档导出</h3>
+                        <p class="text-gray-600">支持导出为Markdown格式，方便您在其他平台分享和使用。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 需求分析部分 -->
+            <div v-if="activeSection === 'requirements'" class="space-y-6">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-primary/5 border-l-4 border-primary p-4">
+                        <h3 class="text-lg font-semibold text-primary flex items-center">
+                            <i class="fa fa-user-circle mr-2"></i>1.1 用户分析
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">用户划分</label>
+                            <p class="text-sm text-gray-500 mb-2">填写目标用户群体的分类标准（如按行业、年龄、行为等）</p>
+                            <textarea v-model="documentData.requirements.userAnalysis.userSegmentation" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="3"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">用户痛点</label>
+                            <p class="text-sm text-gray-500 mb-2">列举用户在当前场景中的核心问题（如效率低、成本高、体验差等）</p>
+                            <div class="space-y-3">
+                                <div v-for="(painPoint, index) in documentData.requirements.userAnalysis.userPainPoints" :key="index" class="flex items-start">
+                                    <div class="flex items-center mt-1 mr-3 text-primary">•</div>
+                                    <textarea v-model="painPoint" @input="updatePainPoint(index, $event)" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="2"></textarea>
+                                    <button @click="removePainPoint(index)" class="ml-3 text-gray-400 hover:text-red-500 transition-colors mt-1">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                                <button @click="addPainPoint" class="w-full mt-2 p-2 border border-dashed border-gray-300 rounded-lg text-gray-500 hover:text-primary hover:border-primary transition-all flex items-center justify-center">
+                                    <i class="fa fa-plus mr-1"></i> 添加用户痛点
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">核心需求场景</label>
+                            <p class="text-sm text-gray-500 mb-2">描述用户使用产品的典型场景（如"用户在XX场景下需要XX功能"）</p>
+                            <div class="space-y-3">
+                                <div v-for="(scenario, index) in documentData.requirements.userAnalysis.coreScenarios" :key="index" class="flex items-start">
+                                    <div class="flex items-center mt-1 mr-3 text-primary">•</div>
+                                    <textarea v-model="scenario" @input="updateScenario(index, $event)" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="2"></textarea>
+                                    <button @click="removeScenario(index)" class="ml-3 text-gray-400 hover:text-red-500 transition-colors mt-1">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                                <button @click="addScenario" class="w-full mt-2 p-2 border border-dashed border-gray-300 rounded-lg text-gray-500 hover:text-primary hover:border-primary transition-all flex items-center justify-center">
+                                    <i class="fa fa-plus mr-1"></i> 添加需求场景
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">用户画像</label>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">年龄范围</label>
+                                    <input v-model="documentData.requirements.userAnalysis.userProfile.ageRange" type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">职业分布</label>
+                                    <input v-model="documentData.requirements.userAnalysis.userProfile.occupation" type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">收入水平</label>
+                                    <input v-model="documentData.requirements.userAnalysis.userProfile.incomeLevel" type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">教育背景</label>
+                                    <input v-model="documentData.requirements.userAnalysis.userProfile.education" type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-xs text-gray-500 mb-1">行为习惯</label>
+                                <textarea v-model="documentData.requirements.userAnalysis.userProfile.behavior" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none text-sm" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-primary/5 border-l-4 border-primary p-4">
+                        <h3 class="text-lg font-semibold text-primary flex items-center">
+                            <i class="fa fa-line-chart mr-2"></i>1.2 市场分析
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">市场空间</label>
+                            <p class="text-sm text-gray-500 mb-2">分析目标市场的规模、增长潜力及用户基数</p>
+                            <textarea v-model="documentData.requirements.marketAnalysis.marketSize" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="3"></textarea>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">合作机构意愿</label>
+                                <p class="text-sm text-gray-500 mb-2">评估潜在合作伙伴的合作可能性</p>
+                                <textarea v-model="documentData.requirements.marketAnalysis.partnerWillingness" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">技术成熟度</label>
+                                <p class="text-sm text-gray-500 mb-2">判断当前技术能否支持产品需求</p>
+                                <textarea v-model="documentData.requirements.marketAnalysis.techMaturity" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-primary/5 border-l-4 border-primary p-4">
+                        <h3 class="text-lg font-semibold text-primary flex items-center">
+                            <i class="fa fa-users mr-2"></i>1.3 竞品分析
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">竞品列表</label>
+                            <p class="text-sm text-gray-500 mb-2">列出核心竞品名称及定位</p>
+                            <div class="space-y-3">
+                                <div v-for="(competitor, index) in documentData.requirements.competitorAnalysis.competitors" :key="index" class="flex items-start">
+                                    <div class="flex items-center mt-1 mr-3 text-primary">•</div>
+                                    <textarea v-model="competitor" @input="updateCompetitor(index, $event)" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="1"></textarea>
+                                    <button @click="removeCompetitor(index)" class="ml-3 text-gray-400 hover:text-red-500 transition-colors mt-1">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                                <button @click="addCompetitor" class="w-full mt-2 p-2 border border-dashed border-gray-300 rounded-lg text-gray-500 hover:text-primary hover:border-primary transition-all flex items-center justify-center">
+                                    <i class="fa fa-plus mr-1"></i> 添加竞品
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">差异化服务能力</label>
+                            <p class="text-sm text-gray-500 mb-2">分析竞品在功能、用户体验、定价等方面的差异</p>
+                            <textarea v-model="documentData.requirements.competitorAnalysis.differentiation" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" rows="3"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">竞品功能对比表</label>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">功能维度</th>
+                                            <th v-for="(competitor, index) in documentData.requirements.competitorAnalysis.competitors.slice(0, 2)" :key="index" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                {{ competitor.substring(0, 10) }}
+                                                <button @click="removeCompetitorFromTable(index)" class="ml-1 text-gray-400 hover:text-red-500 text-xs"><i class="fa fa-times"></i></button>
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-primary uppercase tracking-wider">本产品</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr v-for="(feature, index) in documentData.requirements.competitorAnalysis.features" :key="index">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{{ feature.name }}</td>
+                                            <td v-for="(competitor, cIndex) in [0, 1]" :key="cIndex" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <input type="checkbox" v-model="feature.competitors[cIndex]" class="rounded text-primary focus:ring-primary h-4 w-4">
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <input type="checkbox" v-model="feature.ourProduct" class="rounded text-primary focus:ring-primary h-4 w-4">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-[1px] flex justify-between items-center">
+                                <button @click="addFeatureToComparison" class="mt-3 p-2 text-sm text-primary hover:text-primary/80 flex items-center">
+                                    <i class="fa fa-plus-circle mr-1"></i> 添加功能维度
+                                </button>
+                                <button @click="addCompetitorToTable" class="mt-3 p-2 text-sm text-primary hover:text-primary/80 flex items-center" :disabled="documentData.requirements.competitorAnalysis.competitors.length < 3">
+                                    <i class="fa fa-plus-circle mr-1"></i> 添加竞品到对比
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商业化分析部分 -->
+            <div v-if="activeSection === 'commercial'" class="space-y-6">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-secondary/10 border-l-4 border-secondary p-4">
+                        <h3 class="text-lg font-semibold text-secondary flex items-center">
+                            <i class="fa fa-briefcase mr-2"></i>2.1 商业模式设计
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">产品定位</label>
+                            <p class="text-sm text-gray-500 mb-2">明确产品在市场中的定位（如"解决XX问题的工具型产品"）</p>
+                            <textarea v-model="documentData.commercial.businessModel.productPositioning" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none" rows="3"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">盈利模式</label>
+                            <p class="text-sm text-gray-500 mb-2">选择收入来源（订阅制、广告、交易分成等）</p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="revenue-subscription" v-model="revenueModels.subscription" class="rounded text-secondary focus:ring-secondary h-4 w-4">
+                                    <label for="revenue-subscription" class="ml-2 text-sm text-gray-700">订阅制</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="revenue-advertising" v-model="revenueModels.advertising" class="rounded text-secondary focus:ring-secondary h-4 w-4">
+                                    <label for="revenue-advertising" class="ml-2 text-sm text-gray-700">广告</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="revenue-transaction" v-model="revenueModels.transaction" class="rounded text-secondary focus:ring-secondary h-4 w-4">
+                                    <label for="revenue-transaction" class="ml-2 text-sm text-gray-700">交易分成</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="revenue-other" v-model="revenueModels.other" class="rounded text-secondary focus:ring-secondary h-4 w-4">
+                                    <label for="revenue-other" class="ml-2 text-sm text-gray-700">其他</label>
+                                </div>
+                            </div>
+                            <textarea v-model="documentData.commercial.businessModel.revenueModel" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none mt-3" rows="2"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">成本结构</label>
+                            <p class="text-sm text-gray-500 mb-2">估算产品开发、运营和维护的成本（如人力、服务器、市场费用）</p>
+                            <textarea v-model="documentData.commercial.businessModel.costStructure" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-secondary/10 border-l-4 border-secondary p-4">
+                        <h3 class="text-lg font-semibold text-secondary flex items-center">
+                            <i class="fa fa-line-chart mr-2"></i>2.2 商业化策略
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">定价策略</label>
+                            <p class="text-sm text-gray-500 mb-2">设计产品定价（如基础版¥0/高级版¥XX/企业版¥XX）</p>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="border border-gray-200 rounded-lg p-4 hover:border-secondary transition-colors">
+                                    <h4 class="font-medium mb-2">基础版</h4>
+                                    <input v-model="pricing.basic.price" type="text" placeholder="¥0" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm mb-2">
+                                    <textarea v-model="pricing.basic.features" placeholder="功能描述..." class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm resize-none" rows="3"></textarea>
+                                </div>
+                                <div class="border border-gray-200 rounded-lg p-4 hover:border-secondary transition-colors">
+                                    <h4 class="font-medium mb-2">高级版</h4>
+                                    <input v-model="pricing.premium.price" type="text" placeholder="¥XX" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm mb-2">
+                                    <textarea v-model="pricing.premium.features" placeholder="功能描述..." class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm resize-none" rows="3"></textarea>
+                                </div>
+                                <div class="border border-gray-200 rounded-lg p-4 hover:border-secondary transition-colors">
+                                    <h4 class="font-medium mb-2">企业版</h4>
+                                    <input v-model="pricing.enterprise.price" type="text" placeholder="¥XX" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm mb-2">
+                                    <textarea v-model="pricing.enterprise.features" placeholder="功能描述..." class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm resize-none" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <textarea v-model="documentData.commercial.monetizationStrategy.pricingStrategy" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none mt-4" rows="2"></textarea>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">渠道策略</label>
+                                <p class="text-sm text-gray-500 mb-2">规划产品推广和销售的渠道（线上/线下、自有渠道/合作渠道）</p>
+                                <textarea v-model="documentData.commercial.monetizationStrategy.channelStrategy" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">阶段化策略</label>
+                                <p class="text-sm text-gray-500 mb-2">制定产品不同阶段的商业化目标（如冷启动期、增长期、成熟期）</p>
+                                <div class="space-y-3">
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <h5 class="font-medium text-sm mb-1">冷启动期</h5>
+                                        <textarea v-model="stageStrategies.coldStart" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm resize-none" rows="2"></textarea>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <h5 class="font-medium text-sm mb-1">增长期</h5>
+                                        <textarea v-model="stageStrategies.growth" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm resize-none" rows="2"></textarea>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded-lg">
+                                        <h5 class="font-medium text-sm mb-1">成熟期</h5>
+                                        <textarea v-model="stageStrategies.maturity" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all text-sm resize-none" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品设计部分 -->
+            <div v-if="activeSection === 'design'" class="space-y-6">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-accent/10 border-l-4 border-accent p-4">
+                        <h3 class="text-lg font-semibold text-accent flex items-center">
+                            <i class="fa fa-paint-brush mr-2"></i>3.1 核心功能设计
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">功能流程图</label>
+                            <p class="text-sm text-gray-500 mb-2">绘制核心功能的业务流程图（可用Visio、ProcessOn等工具）</p>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-accent transition-colors cursor-pointer bg-gray-50">
+                                <i class="fa fa-upload text-3xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-500">点击上传流程图图片或粘贴图片地址</p>
+                                <input type="text" v-model="documentData.productDesign.coreFunctionality.featureFlowchart" placeholder="流程图URL地址" class="w-full mt-3 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">简单原型</label>
+                            <p class="text-sm text-gray-500 mb-2">输出低保真原型（Axure、Figma等工具）</p>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-accent transition-colors cursor-pointer bg-gray-50">
+                                <i class="fa fa-upload text-3xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-500">点击上传原型图片或粘贴原型链接</p>
+                                <input type="text" v-model="documentData.productDesign.coreFunctionality.simplePrototype" placeholder="原型URL地址" class="w-full mt-3 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">产品需求文档（PRD）</label>
+                            <p class="text-sm text-gray-500 mb-2">详细描述功能需求、用户角色、业务流程、交互设计等</p>
+                            <textarea v-model="documentData.productDesign.coreFunctionality.prd" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-accent/10 border-l-4 border-accent p-4">
+                        <h3 class="text-lg font-semibold text-accent flex items-center">
+                            <i class="fa fa-sitemap mr-2"></i>3.2 产品方案设计
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">产品路线图（Product Roadmap）</label>
+                            <p class="text-sm text-gray-500 mb-2">明确产品各阶段的目标、功能规划和时间节点（甘特图形式）</p>
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium mb-3 flex items-center">
+                                        <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>冷启动期（0-3个月）
+                                    </h4>
+                                    <textarea v-model="roadmap.coldStart" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all text-sm resize-none" rows="2"></textarea>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium mb-3 flex items-center">
+                                        <span class="w-2 h-2 rounded-full bg-blue-500 mr-2"></span>增长期（4-12个月）
+                                    </h4>
+                                    <textarea v-model="roadmap.growth" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all text-sm resize-none" rows="2"></textarea>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-medium mb-3 flex items-center">
+                                        <span class="w-2 h-2 rounded-full bg-purple-500 mr-2"></span>成熟期（13+个月）
+                                    </h4>
+                                    <textarea v-model="roadmap.maturity" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all text-sm resize-none" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <textarea v-model="documentData.productDesign.productSolution.productRoadmap" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none mt-4" rows="2"></textarea>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">技术方案设计</label>
+                                <p class="text-sm text-gray-500 mb-2">与技术团队协作，设计系统架构、接口规范等</p>
+                                <textarea v-model="documentData.productDesign.productSolution.technicalSolution" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none" rows="4"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">原型设计</label>
+                                <p class="text-sm text-gray-500 mb-2">输出高保真原型（Axure、Figma等工具），用于用户测试和团队对齐</p>
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-accent transition-colors cursor-pointer bg-gray-50">
+                                    <i class="fa fa-upload text-3xl text-gray-400 mb-2"></i>
+                                    <p class="text-gray-500">点击上传高保真原型图片或粘贴链接</p>
+                                    <input type="text" v-model="documentData.productDesign.productSolution.prototypeDesign" placeholder="原型URL地址" class="w-full mt-3 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all text-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 运营方案部分 -->
+            <div v-if="activeSection === 'operation'" class="space-y-6">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-tertiary/10 border-l-4 border-tertiary p-4">
+                        <h3 class="text-lg font-semibold text-tertiary flex items-center">
+                            <i class="fa fa-bullhorn mr-2"></i>4.1 前期推广策略
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">冷启动计划</label>
+                            <p class="text-sm text-gray-500 mb-2">设计种子用户获取策略（如内测、邀请制、KOL合作）</p>
+                            <textarea v-model="documentData.operationPlan.promotionStrategy.coldStartPlan" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tertiary/50 focus:border-tertiary transition-all resize-none" rows="3"></textarea>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">传播策略</label>
+                                <p class="text-sm text-gray-500 mb-2">规划内容营销、社交媒体运营、活动策划等传播方式</p>
+                                <textarea v-model="documentData.operationPlan.promotionStrategy.communicationStrategy" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tertiary/50 focus:border-tertiary transition-all resize-none" rows="4"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">渠道合作计划</label>
+                                <p class="text-sm text-gray-500 mb-2">与外部渠道（如应用商店、电商平台）的资源整合方案</p>
+                                <textarea v-model="documentData.operationPlan.promotionStrategy.channelCooperation" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tertiary/50 focus:border-tertiary transition-all resize-none" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-tertiary/10 border-l-4 border-tertiary p-4">
+                        <h3 class="text-lg font-semibold text-tertiary flex items-center">
+                            <i class="fa fa-cogs mr-2"></i>4.2 运营支持材料
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">用户教育材料</label>
+                                <p class="text-sm text-gray-500 mb-2">制作产品使用指南、FAQ、视频教程等</p>
+                                <textarea v-model="documentData.operationPlan.operationSupport.userEducation" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tertiary/50 focus:border-tertiary transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">销售支持文档</label>
+                                <p class="text-sm text-gray-500 mb-2">为销售团队提供产品介绍手册、销售话术、案例库等</p>
+                                <textarea v-model="documentData.operationPlan.operationSupport.salesSupport" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tertiary/50 focus:border-tertiary transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">数据监控方案</label>
+                                <p class="text-sm text-gray-500 mb-2">设计关键指标（如DAU、转化率）的监控体系和看板</p>
+                                <textarea v-model="documentData.operationPlan.operationSupport.dataMonitoring" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-tertiary/50 focus:border-tertiary transition-all resize-none" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新增模块部分 -->
+            <div v-if="activeSection === 'additional'" class="space-y-6">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-warning/10 border-l-4 border-warning p-4">
+                        <h3 class="text-lg font-semibold text-warning flex items-center">
+                            <i class="fa fa-tasks mr-2"></i>5.1 项目管理与资源协调
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">开发计划</label>
+                            <p class="text-sm text-gray-500 mb-2">制定详细的研发计划（甘特图、里程碑节点）</p>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-warning transition-colors cursor-pointer bg-gray-50">
+                                <i class="fa fa-upload text-3xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-500">点击上传甘特图或项目计划文档</p>
+                                <input type="text" v-model="documentData.additionalModules.projectManagement.developmentPlan" placeholder="文档URL地址" class="w-full mt-3 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">资源协调文档</label>
+                                <p class="text-sm text-gray-500 mb-2">明确各团队（研发、设计、测试）的职责分工和协作流程</p>
+                                <textarea v-model="documentData.additionalModules.projectManagement.resourceCoordination" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="4"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">风险预案</label>
+                                <p class="text-sm text-gray-500 mb-2">识别潜在风险（如技术瓶颈、市场变化）并制定应对方案</p>
+                                <textarea v-model="documentData.additionalModules.projectManagement.riskManagement" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-warning/10 border-l-4 border-warning p-4">
+                        <h3 class="text-lg font-semibold text-warning flex items-center">
+                            <i class="fa fa-check-square-o mr-2"></i>5.2 产品验收与上线
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">测试计划</label>
+                                <p class="text-sm text-gray-500 mb-2">包括功能测试、性能测试、兼容性测试等方案</p>
+                                <textarea v-model="documentData.additionalModules.productAcceptance.testPlan" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">上线检查清单</label>
+                                <p class="text-sm text-gray-500 mb-2">确保产品符合上线标准（如代码质量、安全合规）</p>
+                                <textarea v-model="documentData.additionalModules.productAcceptance.launchChecklist" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">发布计划</label>
+                                <p class="text-sm text-gray-500 mb-2">明确发布时间、发布版本、发布渠道及宣传节奏</p>
+                                <textarea v-model="documentData.additionalModules.productAcceptance.releasePlan" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-warning/10 border-l-4 border-warning p-4">
+                        <h3 class="text-lg font-semibold text-warning flex items-center">
+                            <i class="fa fa-refresh mr-2"></i>5.3 产品运营与迭代
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">数据分析报告</label>
+                                <p class="text-sm text-gray-500 mb-2">定期输出产品核心指标分析（如用户留存、功能使用率）</p>
+                                <textarea v-model="documentData.additionalModules.productIteration.dataAnalysis" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">用户反馈报告</label>
+                                <p class="text-sm text-gray-500 mb-2">收集并整理用户反馈，形成改进建议</p>
+                                <textarea v-model="documentData.additionalModules.productIteration.userFeedback" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">迭代计划</label>
+                                <p class="text-sm text-gray-500 mb-2">根据数据反馈制定产品优化和新功能开发计划</p>
+                                <textarea v-model="documentData.additionalModules.productIteration.iterationPlan" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-warning/10 border-l-4 border-warning p-4">
+                        <h3 class="text-lg font-semibold text-warning flex items-center">
+                            <i class="fa fa-book mr-2"></i>5.4 文档与知识沉淀
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">产品知识库</label>
+                                <p class="text-sm text-gray-500 mb-2">整理产品设计、开发、运营等过程中的经验教训</p>
+                                <textarea v-model="documentData.additionalModules.knowledgeManagement.knowledgeBase" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">团队培训材料</label>
+                                <p class="text-sm text-gray-500 mb-2">为团队提供产品背景、功能说明和运营策略的培训资料</p>
+                                <textarea v-model="documentData.additionalModules.knowledgeManagement.trainingMaterials" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">其他补充说明</label>
+                                <p class="text-sm text-gray-500 mb-2">可根据实际需求添加未涵盖的内容</p>
+                                <textarea v-model="documentData.additionalModules.knowledgeManagement.supplementaryNotes" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warning/50 focus:border-warning transition-all resize-none" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 附录部分 -->
+            <div v-if="activeSection === 'appendix'" class="space-y-6">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-info/10 border-l-4 border-info p-4">
+                        <h3 class="text-lg font-semibold text-info flex items-center">
+                            <i class="fa fa-list mr-2"></i>6.1 术语表
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">定义文档中涉及的专业术语或缩写</p>
+                        <textarea v-model="documentData.appendix.glossary" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-info/50 focus:border-info transition-all resize-none" rows="8"></textarea>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-500 transform hover:shadow-md">
+                    <div class="bg-info/10 border-l-4 border-info p-4">
+                        <h3 class="text-lg font-semibold text-info flex items-center">
+                            <i class="fa fa-bookmark mr-2"></i>6.2 参考资料
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-4">引用市场调研报告、竞品分析资料、技术文档等</p>
+                        <textarea v-model="documentData.appendix.references" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-info/50 focus:border-info transition-all resize-none" rows="8"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他部分内容将通过类似方式实现 -->
+            <div v-else class="bg-white rounded-xl shadow-sm p-10 text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
+                    <i class="fa fa-pencil text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2" v-text="sectionTitles[activeSection]"></h3>
+                <p class="text-gray-500 mb-6" v-text="sectionDescriptions[activeSection]"></p>
+                <p class="text-gray-400">请在此处填写相关内容...</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const { createApp, ref, reactive, computed } = Vue;
+
+        createApp({
+            setup() {
+                // 状态管理
+                const activeSection = ref('intro');
+                const isSidebarCollapsed = ref(false);
+
+                // 状态管理
+                const revenueModels = reactive({
+                    subscription: false,
+                    advertising: false,
+                    transaction: false,
+                    other: false
+                });
+
+                const pricing = reactive({
+                    basic: {
+                        price: '',
+                        features: ''
+                    },
+                    premium: {
+                        price: '',
+                        features: ''
+                    },
+                    enterprise: {
+                        price: '',
+                        features: ''
+                    }
+                });
+
+                const stageStrategies = reactive({
+                    coldStart: '',
+                    growth: '',
+                    maturity: ''
+                });
+
+                const roadmap = reactive({
+                    coldStart: '',
+                    growth: '',
+                    maturity: ''
+                });
+
+                // 文档数据
+                const documentData = reactive({
+                    requirements: {
+                        userAnalysis: {
+                            userSegmentation: '',
+                            userPainPoints: [''],
+                            coreScenarios: [''],
+                            userProfile: {
+                                ageRange: '',
+                                occupation: '',
+                                incomeLevel: '',
+                                education: '',
+                                behavior: ''
+                            },
+                        },
+                        marketAnalysis: {
+                            marketSize: '',
+                            partnerWillingness: '',
+                            techMaturity: ''
+                        },
+                        competitorAnalysis: {
+                            competitors: [''],
+                            differentiation: '',
+                            features: [
+                                { name: '核心功能', competitors: [false, false], ourProduct: false },
+                                { name: '用户体验', competitors: [false, false], ourProduct: false },
+                                { name: '价格优势', competitors: [false, false], ourProduct: false },
+                                { name: '技术创新', competitors: [false, false], ourProduct: false }
+                            ]
+                        }
+                    },
+                    // 其他部分数据结构将在这里继续定义
+                commercial: {
+                    businessModel: {
+                        productPositioning: '',
+                        revenueModel: '',
+                        costStructure: ''
+                    },
+                    monetizationStrategy: {
+                        pricingStrategy: '',
+                        channelStrategy: '',
+                        partnershipProgram: '',
+                        phasedStrategy: ''
+                    }
+                },
+                productDesign: {
+                    coreFunctionality: {
+                        featureFlowchart: '',
+                        simplePrototype: '',
+                        prd: ''
+                    },
+                    productSolution: {
+                        productRoadmap: '',
+                        technicalSolution: '',
+                        prototypeDesign: ''
+                    }
+                },
+                operationPlan: {
+                    promotionStrategy: {
+                        coldStartPlan: '',
+                        communicationStrategy: '',
+                        channelCooperation: ''
+                    },
+                    operationSupport: {
+                        userEducation: '',
+                        salesSupport: '',
+                        dataMonitoring: ''
+                    }
+                },
+                additionalModules: {
+                    projectManagement: {
+                        developmentPlan: '',
+                        resourceCoordination: '',
+                        riskManagement: ''
+                    },
+                    productAcceptance: {
+                        testPlan: '',
+                        launchChecklist: '',
+                        releasePlan: ''
+                    },
+                    productIteration: {
+                        dataAnalysis: '',
+                        userFeedback: '',
+                        iterationPlan: ''
+                    },
+                    knowledgeManagement: {
+                        knowledgeBase: '',
+                        trainingMaterials: '',
+                        supplementaryNotes: ''
+                    }
+                },
+                appendix: {
+                    glossary: '',
+                    references: ''
+                }
+            });
+
+                // 部分标题和描述
+                const sectionTitles = {
+                    intro: '产品开发文档助手',
+                    requirements: '1. 需求分析',
+                    commercial: '2. 商业化分析',
+                    design: '3. 产品设计',
+                    operation: '4. 运营方案',
+                    additional: '5. 新增模块',
+                    appendix: '6. 附录'
+                };
+
+                const sectionDescriptions = {
+                    intro: '欢迎使用产品开发文档助手，系统化规划您的产品开发流程',
+                    requirements: '分析用户需求、市场情况和竞争格局，为产品开发提供依据',
+                    commercial: '设计商业模式和盈利策略，确保产品的商业可行性',
+                    design: '定义产品功能和交互设计，创建产品原型和规格文档',
+                    operation: '制定产品推广和运营策略，确保产品成功上线和运营',
+                    additional: '补充项目管理、资源协调和产品迭代等额外内容',
+                    appendix: '提供术语表和参考资料，辅助理解和使用产品文档'
+                };
+
+                // 用户痛点管理
+                const addPainPoint = () => {
+                    documentData.requirements.userAnalysis.userPainPoints.push('');
+                };
+
+                const removePainPoint = (index) => {
+                    if (documentData.requirements.userAnalysis.userPainPoints.length > 1) {
+                        documentData.requirements.userAnalysis.userPainPoints.splice(index, 1);
+                    }
+                };
+
+                const updatePainPoint = (index, event) => {
+                    documentData.requirements.userAnalysis.userPainPoints[index] = event.target.value;
+                };
+
+                // 需求场景管理
+                const addScenario = () => {
+                    documentData.requirements.userAnalysis.coreScenarios.push('');
+                };
+
+                const removeScenario = (index) => {
+                    if (documentData.requirements.userAnalysis.coreScenarios.length > 1) {
+                        documentData.requirements.userAnalysis.coreScenarios.splice(index, 1);
+                    }
+                };
+
+                const updateScenario = (index, event) => {
+                    documentData.requirements.userAnalysis.coreScenarios[index] = event.target.value;
+                };
+
+                // 竞品管理
+                const addCompetitor = () => {
+                    documentData.requirements.competitorAnalysis.competitors.push('');
+                };
+
+                const removeCompetitor = (index) => {
+                    if (documentData.requirements.competitorAnalysis.competitors.length > 1) {
+                        documentData.requirements.competitorAnalysis.competitors.splice(index, 1);
+                    }
+                };
+
+                const updateCompetitor = (index, event) => {
+                    documentData.requirements.competitorAnalysis.competitors[index] = event.target.value;
+                };
+
+                // 竞品功能对比
+                const addFeatureToComparison = () => {
+                    documentData.requirements.competitorAnalysis.features.push({
+                        name: '新功能',
+                        competitors: [false, false],
+                        ourProduct: false
+                    });
+                };
+
+                const removeCompetitorFromTable = (index) => {
+                    // 简化实现，仅移除显示
+                };
+
+                const addCompetitorToTable = () => {
+                    // 简化实现
+                };
+
+                // 文档操作
+                const saveDocument = () => {
+                    localStorage.setItem('productDocData', JSON.stringify(documentData));
+                    alert('文档已保存到本地！');
+                };
+
+                const resetDocument = () => {
+                    if (confirm('确定要重置文档吗？所有已填写内容将丢失。')) {
+                        localStorage.removeItem('productDocData');
+                        window.location.reload();
+                    }
+                };
+
+                const exportDocument = () => {
+                    // 生成Markdown文档
+                    let markdown = '# 产品开发文档\n\n';
+                     
+                    // 添加产品概述
+                    markdown += '## 1. 产品概述\n';
+                    markdown += `### 1.1 产品名称\n${documentData.productOverview.name}\n\n`;
+                    markdown += `### 1.2 产品定位\n${documentData.productOverview.positioning}\n\n`;
+                    markdown += `### 1.3 核心目标\n${documentData.productOverview.coreObjectives}\n\n`;
+                     
+                    // 添加需求分析
+                    markdown += '## 2. 需求分析\n';
+                    markdown += `### 2.1 用户痛点\n${documentData.requirementsAnalysis.userProblems}\n\n`;
+                    markdown += '### 2.2 目标用户\n';
+                    documentData.requirementsAnalysis.targetUsers.forEach(user => {
+                        markdown += `- ${user}\n`;
+                    });
+                    markdown += '\n';
+                    markdown += `### 2.3 核心功能需求\n${documentData.requirementsAnalysis.coreFeatures}\n\n`;
+                     
+                    // 添加商业化分析
+                    markdown += '## 3. 商业化分析\n';
+                    markdown += '### 3.1 商业模式设计\n';
+                    markdown += '#### 3.1.1 产品定位\n';
+                    markdown += `${documentData.commercialAnalysis.businessModel.productPositioning}\n\n`;
+                    markdown += '#### 3.1.2 盈利模式\n';
+                    documentData.commercialAnalysis.businessModel.revenueModels.forEach(model => {
+                        if (model.selected) {
+                            markdown += `- ${model.name}\n`;
+                        }
+                    });
+                    markdown += '\n';
+                    markdown += '#### 3.1.3 成本结构\n';
+                    markdown += `${documentData.commercialAnalysis.businessModel.costStructure}\n\n`;
+                     
+                    // 添加更多章节...
+                    markdown += '## 4. 产品设计\n';
+                    markdown += '## 5. 运营方案\n';
+                    markdown += '## 6. 项目管理\n';
+                    markdown += '## 7. 附录\n';
+                     
+                    // 创建下载链接
+                    const blob = new Blob([markdown], { type: 'text/markdown' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = '产品开发文档.md';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                };
+
+                // 初始化时从本地存储加载数据
+                Vue.onMounted(() => {
+                    const savedData = localStorage.getItem('productDocData');
+                    if (savedData) {
+                        try {
+                            const parsedData = JSON.parse(savedData);
+                            Object.assign(documentData, parsedData);
+                        } catch (e) {
+                            console.error('Failed to load saved data', e);
+                        }
+                    }
+                });
+
+                return {
+                    activeSection,
+                    isSidebarCollapsed: false,
+                    documentData,
+                    sectionTitles,
+                    sectionDescriptions,
+                    revenueModels,
+                    pricing,
+                    stageStrategies,
+                    roadmap,
+                    addPainPoint,
+                    removePainPoint,
+                    updatePainPoint,
+                    addScenario,
+                    removeScenario,
+                    updateScenario,
+                    addCompetitor,
+                    removeCompetitor,
+                    updateCompetitor,
+                    addFeatureToComparison,
+                    removeCompetitorFromTable,
+                    addCompetitorToTable,
+                    saveDocument,
+                    resetDocument,
+                    exportDocument
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
