@@ -230,27 +230,95 @@ class DocumentEditor {
     container.innerHTML = section.fields
       .map(
         (field) => `
-            <div class="form-group">
-                <label class="form-label" for="${field.id}">${field.label}</label>
-                <textarea 
-                    class="form-textarea" 
-                    id="${field.id}" 
-                    placeholder="${field.placeholder}"
-                    rows="4"
-                >${this.documentData[field.id] || ""}</textarea>
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label class="form-label" style="font-weight: 600; margin-bottom: 0.5rem; color: #374151;">${field.label}</label>
+                <div class="editor-container" style="border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden;">
+                    <div id="editor-${field.id}" style="min-height: 200px;"></div>
+                </div>
+                <div class="editor-toolbar" style="margin-top: 0.5rem; font-size: 0.875rem; color: #6b7280;">
+                    <span>${field.placeholder}</span>
+                </div>
             </div>
         `,
       )
       .join("")
 
-    // 绑定输入事件
+    // 初始化富文本编辑器
     section.fields.forEach((field) => {
-      const textarea = document.getElementById(field.id)
-      textarea.addEventListener("input", (e) => {
-        this.documentData[field.id] = e.target.value
+      const quill = new Quill(`#editor-${field.id}`, {
+        theme: 'snow',
+        placeholder: field.placeholder,
+        modules: this.getEditorConfig(field.id)
+      })
+
+      // 设置初始内容
+      if (this.documentData[field.id]) {
+        quill.root.innerHTML = this.documentData[field.id]
+      }
+
+      // 绑定内容变化事件
+      quill.on('text-change', () => {
+        this.documentData[field.id] = quill.root.innerHTML
         this.updateProgress()
       })
+
+      // 保存编辑器实例
+      if (!this.editors) this.editors = {}
+      this.editors[field.id] = quill
     })
+  }
+
+  getEditorConfig(fieldId) {
+    // 根据字段类型返回不同的编辑器配置
+    const configs = {
+      // 需要表格的字段
+      'user_journey': {
+        toolbar: [
+          [{ 'header': [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'color': [] }, { 'background': [] }],
+          ['link', 'image'],
+          ['clean']
+        ]
+      },
+      'competitor_comparison': {
+        toolbar: [
+          [{ 'header': [1, 2, 3, false] }],
+          ['bold', 'italic'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'align': [] }],
+          ['link', 'image'],
+          ['clean']
+        ]
+      },
+      // 需要更多格式的字段
+      'prd': {
+        toolbar: [
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'script': 'sub'}, { 'script': 'super' }],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'align': [] }],
+          ['link', 'image', 'video'],
+          ['clean']
+        ]
+      },
+      // 默认配置
+      'default': {
+        toolbar: [
+          [{ 'header': [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'color': [] }, { 'background': [] }],
+          ['link', 'image'],
+          ['clean']
+        ]
+      }
+    }
+
+    return configs[fieldId] || configs['default']
   }
 
   renderPreview(container, section) {
@@ -260,14 +328,16 @@ class DocumentEditor {
       return
     }
 
-    // 原有的单模块预览逻辑保持不变
+    // 原有的单模块预览逻辑保持不变，但支持HTML内容
     container.innerHTML = section.fields
       .map(
         (field) => `
             <div class="form-group">
                 <label class="form-label">${field.label}</label>
                 <div style="min-height: 100px; padding: 0.75rem; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
-                    <p style="color: #374151; white-space: pre-wrap;">${this.documentData[field.id] || "暂未填写"}</p>
+                    <div style="color: #374151; white-space: pre-wrap;">
+                        ${this.documentData[field.id] || "<span style='color: #9ca3af; font-style: italic;'>暂未填写</span>"}
+                    </div>
                 </div>
             </div>
         `,
@@ -287,9 +357,9 @@ class DocumentEditor {
             <div style="margin-bottom: 1.5rem;">
                 <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: #374151;">${field.label}</h4>
                 <div style="padding: 0.75rem; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.5rem; min-height: 80px;">
-                    <p style="color: #374151; white-space: pre-wrap; margin: 0; line-height: 1.5;">
+                    <div style="color: #374151; white-space: pre-wrap; margin: 0; line-height: 1.5;">
                         ${this.documentData[field.id] || '<span style="color: #9ca3af; font-style: italic;">暂未填写</span>'}
-                    </p>
+                    </div>
                 </div>
             </div>
         `,
@@ -421,34 +491,369 @@ class DocumentEditor {
 
   loadData() {
     const saved = localStorage.getItem("productDocumentData")
-    return saved ? JSON.parse(saved) : {}
+    const data = saved ? JSON.parse(saved) : {}
+    this.fileData = data.fileData || {}
+    return data.documentData || {}
   }
 
   saveData() {
-    localStorage.setItem("productDocumentData", JSON.stringify(this.documentData))
+    const data = {
+      documentData: this.documentData,
+      fileData: this.fileData || {}
+    }
+    localStorage.setItem("productDocumentData", JSON.stringify(data))
     this.showNotification("保存成功", "文档已保存到本地存储")
   }
 
   exportData() {
+    // 创建导出选项弹窗
+    this.showExportModal()
+  }
+
+  showExportModal() {
+    // 创建模态框
+    const modal = document.createElement("div")
+    modal.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+  `
+
+    const modalContent = document.createElement("div")
+    modalContent.style.cssText = `
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    animation: modalSlideIn 0.3s ease-out;
+  `
+
+    // 添加动画样式
+    const style = document.createElement("style")
+    style.textContent = `
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  `
+    document.head.appendChild(style)
+
+    modalContent.innerHTML = `
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div style="width: 4rem; height: 4rem; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+        <i class="fas fa-download" style="color: white; font-size: 1.5rem;"></i>
+      </div>
+      <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #1f2937;">选择导出格式</h3>
+      <p style="color: #6b7280;">请选择您希望导出的文件格式</p>
+    </div>
+    
+    <div style="display: grid; gap: 1rem; margin-bottom: 2rem;">
+      <button class="export-option" data-format="json" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.75rem; background: white; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+        <div style="width: 3rem; height: 3rem; background: #fbbf24; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-code" style="color: white; font-size: 1.25rem;"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; color: #1f2937;">JSON 格式</div>
+          <div style="font-size: 0.875rem; color: #6b7280;">结构化数据，便于程序处理</div>
+        </div>
+      </button>
+      
+      <button class="export-option" data-format="markdown" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.75rem; background: white; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+        <div style="width: 3rem; height: 3rem; background: #10b981; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+          <i class="fab fa-markdown" style="color: white; font-size: 1.25rem;"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; color: #1f2937;">Markdown 格式</div>
+          <div style="font-size: 0.875rem; color: #6b7280;">易读的文本格式，支持格式化</div>
+        </div>
+      </button>
+      
+      <button class="export-option" data-format="html" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.75rem; background: white; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+        <div style="width: 3rem; height: 3rem; background: #ef4444; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+          <i class="fab fa-html5" style="color: white; font-size: 1.25rem;"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; color: #1f2937;">HTML 格式</div>
+          <div style="font-size: 0.875rem; color: #6b7280;">网页格式，可在浏览器中查看</div>
+        </div>
+      </button>
+      
+      <button class="export-option" data-format="txt" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.75rem; background: white; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+        <div style="width: 3rem; height: 3rem; background: #6b7280; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-file-alt" style="color: white; font-size: 1.25rem;"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; color: #1f2937;">纯文本格式</div>
+          <div style="font-size: 0.875rem; color: #6b7280;">简单的文本文件，兼容性最好</div>
+        </div>
+      </button>
+      
+      <button class="export-option" data-format="csv" style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 0.75rem; background: white; cursor: pointer; transition: all 0.2s ease; text-align: left;">
+        <div style="width: 3rem; height: 3rem; background: #059669; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-table" style="color: white; font-size: 1.25rem;"></i>
+        </div>
+        <div>
+          <div style="font-weight: 600; color: #1f2937;">CSV 格式</div>
+          <div style="font-size: 0.875rem; color: #6b7280;">表格数据，可用Excel打开</div>
+        </div>
+      </button>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+      <button id="cancel-export" style="padding: 0.75rem 1.5rem; border: 1px solid #d1d5db; border-radius: 0.5rem; background: white; color: #374151; font-weight: 500; cursor: pointer; transition: all 0.2s ease;">
+        取消
+      </button>
+    </div>
+  `
+
+    modal.appendChild(modalContent)
+    document.body.appendChild(modal)
+
+    // 添加样式
+    const exportStyle = document.createElement("style")
+    exportStyle.textContent = `
+    .export-option:hover {
+      border-color: #3b82f6 !important;
+      background: #f8fafc !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .export-option:active {
+      transform: translateY(0);
+    }
+  `
+    document.head.appendChild(exportStyle)
+
+    // 绑定事件
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        this.closeModal(modal)
+      }
+    })
+
+    document.getElementById("cancel-export").addEventListener("click", () => {
+      this.closeModal(modal)
+    })
+
+    document.querySelectorAll(".export-option").forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const format = e.currentTarget.dataset.format
+        this.closeModal(modal)
+        this.performExport(format)
+      })
+    })
+  }
+
+  closeModal(modal) {
+    modal.style.animation = "modalSlideOut 0.3s ease-in forwards"
+    const style = document.createElement("style")
+    style.textContent = `
+    @keyframes modalSlideOut {
+      from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+      }
+    }
+  `
+    document.head.appendChild(style)
+
+    setTimeout(() => {
+      document.body.removeChild(modal)
+    }, 300)
+  }
+
+  performExport(format) {
+    const timestamp = new Date().toISOString().split("T")[0]
+    const filename = `product-document-${timestamp}`
+
+    let content, mimeType, extension
+
+    switch (format) {
+      case "json":
+        content = this.generateJSON()
+        mimeType = "application/json"
+        extension = "json"
+        break
+      case "markdown":
+        content = this.generateMarkdown()
+        mimeType = "text/markdown"
+        extension = "md"
+        break
+      case "html":
+        content = this.generateHTML()
+        mimeType = "text/html"
+        extension = "html"
+        break
+      case "txt":
+        content = this.generateText()
+        mimeType = "text/plain"
+        extension = "txt"
+        break
+      case "csv":
+        content = this.generateCSV()
+        mimeType = "text/csv"
+        extension = "csv"
+        break
+      default:
+        content = this.generateJSON()
+        mimeType = "application/json"
+        extension = "json"
+    }
+
+    this.downloadFile(content, `${filename}.${extension}`, mimeType)
+    this.showNotification("导出成功", `文档已导出为 ${extension.toUpperCase()} 格式`)
+  }
+
+  generateJSON() {
     const exportData = {
       title: "产品开发完整文档",
       timestamp: new Date().toISOString(),
+      version: "1.0",
       data: this.documentData,
+      sections: Object.keys(this.sections).map((id) => ({
+        id,
+        title: this.sections[id].title,
+        fields: this.sections[id].fields.map((field) => ({
+          id: field.id,
+          label: field.label,
+          value: this.documentData[field.id] || "",
+        })),
+      })),
     }
+    return JSON.stringify(exportData, null, 2)
+  }
 
-    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" })
+  generateMarkdown() {
+    let markdown = `# 产品开发完整文档\n\n`
+    markdown += `**生成时间**: ${new Date().toLocaleString("zh-CN")}\n\n`
+    markdown += `---\n\n`
+
+    Object.keys(this.sections).forEach((sectionId) => {
+      const section = this.sections[sectionId]
+      markdown += `## ${sectionId}. ${section.title}\n\n`
+
+      section.fields.forEach((field) => {
+        const value = this.documentData[field.id] || "*暂未填写*"
+        markdown += `### ${field.label}\n\n`
+        markdown += `${value}\n\n`
+      })
+
+      markdown += `---\n\n`
+    })
+
+    return markdown
+  }
+
+  generateHTML() {
+    let html = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品开发完整文档</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        h1 { color: #2563eb; border-bottom: 3px solid #2563eb; padding-bottom: 0.5rem; }
+        h2 { color: #1f2937; margin-top: 2rem; padding: 1rem; background: #f8fafc; border-left: 4px solid #3b82f6; }
+        h3 { color: #374151; margin-top: 1.5rem; }
+        .content { background: #f9fafb; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; min-height: 3rem; }
+        .empty { color: #9ca3af; font-style: italic; }
+        .timestamp { color: #6b7280; font-size: 0.9rem; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+    <h1>产品开发完整文档</h1>
+    <div class="timestamp">生成时间: ${new Date().toLocaleString("zh-CN")}</div>
+`
+
+    Object.keys(this.sections).forEach((sectionId) => {
+      const section = this.sections[sectionId]
+      html += `    <h2>${sectionId}. ${section.title}</h2>\n`
+
+      section.fields.forEach((field) => {
+        const value = this.documentData[field.id]
+        html += `    <h3>${field.label}</h3>\n`
+        if (value && value.trim()) {
+          html += `    <div class="content">${value.replace(/\n/g, "<br>")}</div>\n`
+        } else {
+          html += `    <div class="content empty">暂未填写</div>\n`
+        }
+      })
+    })
+
+    html += `</body>\n</html>`
+    return html
+  }
+
+  generateText() {
+    let text = `产品开发完整文档\n`
+    text += `${"=".repeat(20)}\n\n`
+    text += `生成时间: ${new Date().toLocaleString("zh-CN")}\n\n`
+
+    Object.keys(this.sections).forEach((sectionId) => {
+      const section = this.sections[sectionId]
+      text += `${sectionId}. ${section.title}\n`
+      text += `${"-".repeat(section.title.length + 3)}\n\n`
+
+      section.fields.forEach((field) => {
+        const value = this.documentData[field.id] || "暂未填写"
+        text += `${field.label}:\n${value}\n\n`
+      })
+
+      text += `\n`
+    })
+
+    return text
+  }
+
+  generateCSV() {
+    let csv = "模块,字段,内容\n"
+
+    Object.keys(this.sections).forEach((sectionId) => {
+      const section = this.sections[sectionId]
+
+      section.fields.forEach((field) => {
+        const value = this.documentData[field.id] || "暂未填写"
+        // 处理CSV中的特殊字符
+        const escapedValue = `"${value.replace(/"/g, '""').replace(/\n/g, " ")}"`
+        csv += `"${section.title}","${field.label}",${escapedValue}\n`
+      })
+    })
+
+    return csv
+  }
+
+  downloadFile(content, filename, mimeType) {
+    const blob = new Blob([content], { type: mimeType + ";charset=utf-8" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    a.download = `product-document-${new Date().toISOString().split("T")[0]}.json`
+    a.download = filename
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-
-    this.showNotification("导出成功", "文档已导出为JSON文件")
   }
-
   showNotification(title, message) {
     // 简单的通知实现
     const notification = document.createElement("div")
