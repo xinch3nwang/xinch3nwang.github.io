@@ -72,7 +72,7 @@
                 </div>
                 <div class="profile-content">
                     <h2 class="profile-title">Hello 我是汪欣晨</h2>
-                    <h3 class="profile-subtitle">一个没什么追求的人</h3>
+                    <h3 class="profile-subtitle">一个没什么追求但喜欢探索的人</h3>
                     <p class="profile-description">
                         <!-- 蓑笠不惊云起落 卧看江月去还来 烟雨平生竹杖客 松风煮雪即吾乡 -->
                         回首向来萧瑟处，归去，也无风雨也无晴。
@@ -87,6 +87,29 @@
                         document.querySelector('.profile-description').innerHTML = '他常会向往能回到那年他一十二 只需要好好上学生活单纯没忧愁';
                     });
                 </script>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience-section">
+        
+            <h2 class="section-title">个人经历</h2>
+            <div class="experience-grid">
+                <div class="job-content">
+                    <h3 class="job-title">本科</h3>
+                    <p class="job-company">南通大学</p>
+                    <p class="job-description">
+                        2021.9 - 2022.6：计算机科学与技术
+                    </p>
+                </div>
+                <div class="divider"></div>
+                <div class="job-content">
+                    <h3 class="job-title">硕士</h3>
+                    <p class="job-company">西南财经大学</p>
+                    <p class="job-description">
+                        2023.9 - 2025.6：计算机科学与技术 [图像相关方向]
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -138,6 +161,80 @@
                 </div>
             </div>
         </section>
+
+        <!-- Blog Section -->
+        <section id="blogs" class="blogs-section">
+            <h2 class="section-title">博客文章</h2>
+            <div class="blogs-grid" id="blogs-container">
+                <!-- Blog posts will be loaded here dynamically -->
+            </div>
+            <div class="project-links" style="margin-top: 20px" ;>
+                <a href="./tech_learn/fragment/fragment.html" class="project-link">
+                    阅读更多 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </section>
+        <!-- Include Marked.js for markdown parsing -->
+        <script src="https://g.alicdn.com/code/lib/marked/15.0.4/marked.min.js"></script>
+        <!-- Modal for displaying markdown content -->
+        <div class="modal fade" id="markdownModal" tabindex="-1" aria-labelledby="markdownModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="markdownModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="markdownContent">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            // Load blog posts dynamically
+            fetch('./tech_learn/fragment/fragposts.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('blogs-container');
+                    // Show only the first two posts
+                    const postsToShow = data.slice(0, 2);
+                    postsToShow.forEach(post => {
+                        const blogCard = document.createElement('div');
+                        blogCard.className = 'blog-card';
+                        blogCard.innerHTML = `
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-meta">${post.date} by ${post.author}</p>
+                            <p class="blog-description">${post.content}</p>
+                        `;
+                        // Add click event to load and display markdown content
+                        blogCard.addEventListener('click', function() {
+                            if (post.link) {
+                                // Adjust the path to be relative to the root directory
+                                const adjustedPath = post.link.replace('./frag/', './tech_learn/fragment/frag/');
+                                fetch(adjustedPath)
+                                    .then(response => response.text())
+                                    .then(markdownContent => {
+                                        document.getElementById('markdownModalLabel').textContent = post.title;
+                                        document.getElementById('markdownContent').innerHTML = marked.parse(markdownContent);
+                                        // Show the modal
+                                        var modal = new bootstrap.Modal(document.getElementById('markdownModal'));
+                                        modal.show();
+                                    })
+                                    .catch(error => {
+                                        console.error('Error loading markdown file:', error);
+                                        alert('无法加载Markdown文件');
+                                    });
+                            }
+                        });
+                        container.appendChild(blogCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading blog posts:', error);
+                });
+        </script>
 
         <!-- Reading Section -->
         <section id="reads" class="reads-section">
@@ -215,7 +312,7 @@
             </div>
             <div class="project-links" style="margin-top: 20px" ;>
                 <a href="./projects/projects.html" class="project-link">
-                    更多项目 <i class="fas fa-external-link-alt"></i>
+                    发现更多 <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
         </section>
